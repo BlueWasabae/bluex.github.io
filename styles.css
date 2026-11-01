@@ -5231,3 +5231,256 @@ button {
 
 
 
+
+
+/* ========================================================
+   SMC GENESIS ENHANCED BLUEPRINT ARCHITECTURE
+   ======================================================== */
+
+/* 3 Core Foundation Tenets */
+.genesis-tenets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 32px 0 0;
+  max-width: 900px;
+}
+
+.genesis-tenet-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all var(--transition-fast);
+}
+
+.genesis-tenet-card:hover {
+  border-color: var(--color-cyan);
+  background: rgba(0, 255, 236, 0.04);
+  transform: translateY(-2px);
+}
+
+.genesis-tenet-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.genesis-tenet-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.genesis-tenet-desc {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+/* Timeframe Execution Matrix */
+.timeframe-matrix-box {
+  background: rgba(14, 18, 27, 0.9);
+  border: 1px solid rgba(0, 255, 236, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 36px 30px;
+  margin: 40px 0;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.matrix-tiers-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.matrix-tier-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  text-align: center;
+  transition: all var(--transition-fast);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.matrix-tier-card.htf {
+  border-top: 3px solid #38bdf8;
+}
+
+.matrix-tier-card.mtf {
+  border-top: 3px solid var(--color-gold);
+}
+
+.matrix-tier-card.ltf {
+  border-top: 3px solid var(--color-cyan);
+}
+
+.matrix-tier-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.matrix-tier-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+  align-self: center;
+}
+
+.matrix-tier-card.htf .matrix-tier-badge {
+  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+}
+
+.matrix-tier-card.mtf .matrix-tier-badge {
+  background: rgba(255, 184, 0, 0.12);
+  color: var(--color-gold);
+}
+
+.matrix-tier-card.ltf .matrix-tier-badge {
+  background: rgba(0, 255, 236, 0.12);
+  color: var(--color-cyan);
+}
+
+.matrix-tier-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.matrix-tier-desc {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.55;
+  flex-grow: 1;
+}
+
+.matrix-arrow-separator {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Practical Outcome Tag in Pillars */
+.pillar-outcome-tag {
+  margin-top: 8px;
+  padding: 6px 12px;
+  background: rgba(0, 255, 236, 0.06);
+  border-left: 2px solid var(--color-cyan);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.pillar-outcome-tag strong {
+  color: var(--color-cyan);
+}
+
+/* Institutional Philosophy Quote Box */
+.genesis-quote-card {
+  background: linear-gradient(135deg, rgba(14, 18, 27, 0.95) 0%, rgba(10, 14, 22, 0.98) 100%);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  text-align: center;
+  margin: 40px auto;
+  max-width: 860px;
+  position: relative;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 184, 0, 0.03);
+}
+
+.genesis-quote-text {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 600;
+  font-style: italic;
+  color: #f8fafc;
+  line-height: 1.7;
+}
+
+.genesis-quote-author {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--color-gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .genesis-tenets-grid {
+    grid-template-columns: 1fr;
+  }
+  .matrix-tiers-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .matrix-arrow-separator {
+    transform: rotate(90deg);
+    margin: -8px 0;
+  }
+}
+
+/* Light Mode Overrides */
+[data-theme="light"] .genesis-tenet-card {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+[data-theme="light"] .genesis-tenet-title {
+  color: #0f172a;
+}
+[data-theme="light"] .genesis-tenet-desc {
+  color: #475569;
+}
+[data-theme="light"] .timeframe-matrix-box {
+  background: #ffffff;
+  border-color: rgba(0, 168, 150, 0.25);
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+}
+[data-theme="light"] .matrix-tier-card {
+  background: #f8fafc;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+[data-theme="light"] .matrix-tier-title {
+  color: #0f172a;
+}
+[data-theme="light"] .matrix-tier-desc {
+  color: #475569;
+}
+[data-theme="light"] .matrix-arrow-separator {
+  color: #94a3b8;
+}
+[data-theme="light"] .pillar-outcome-tag {
+  background: rgba(0, 168, 150, 0.08);
+  border-left-color: #00a896;
+  color: #334155;
+}
+[data-theme="light"] .pillar-outcome-tag strong {
+  color: #00a896;
+}
+[data-theme="light"] .genesis-quote-card {
+  background: #ffffff;
+  border-color: rgba(217, 119, 6, 0.35);
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+}
+[data-theme="light"] .genesis-quote-text {
+  color: #0f172a;
+}
