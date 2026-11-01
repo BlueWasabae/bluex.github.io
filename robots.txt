@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.bluexacedamy.space/sitemap.xml
+Sitemap: https://www.bluexacademy.site/sitemap.xml
