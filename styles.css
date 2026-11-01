@@ -2729,6 +2729,56 @@ button {
   box-shadow: 0 6px 24px rgba(255, 184, 0, 0.55);
 }
 
+.brokers-card-main.treno {
+  border-color: rgba(0, 255, 236, 0.45);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 255, 236, 0.12);
+}
+
+.brokers-card-main.treno .broker-logo-badge {
+  border-color: rgba(0, 255, 236, 0.5);
+  box-shadow: 0 0 20px rgba(0, 255, 236, 0.25);
+  background: rgba(10, 25, 35, 0.85);
+}
+
+.brokers-card-main.treno .broker-partner-tag {
+  color: #00FFEC;
+}
+
+.brokers-card-main.treno .broker-tier-box:hover {
+  border-color: rgba(0, 255, 236, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 255, 236, 0.15);
+}
+
+.brokers-card-main.treno .broker-tier-box.featured {
+  background: linear-gradient(180deg, rgba(0, 255, 236, 0.05) 0%, rgba(10, 18, 25, 0.9) 100%);
+  border-color: rgba(0, 255, 236, 0.5);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 255, 236, 0.15);
+}
+
+.brokers-card-main.treno .btn-broker-register.highlight {
+  background: linear-gradient(135deg, #00FFEC 0%, #00B4D8 100%) !important;
+  color: #000000 !important;
+  border-color: #00FFEC !important;
+  box-shadow: 0 4px 18px rgba(0, 255, 236, 0.35) !important;
+}
+
+.brokers-card-main.treno .btn-broker-register.highlight:hover {
+  background: #26fff0 !important;
+  box-shadow: 0 6px 24px rgba(0, 255, 236, 0.55) !important;
+}
+
+.brokers-card-main.treno .broker-tier-box:not(.featured) .btn-broker-register {
+  background: rgba(0, 255, 236, 0.12);
+  border: 1px solid rgba(0, 255, 236, 0.4);
+  color: #FFFFFF;
+}
+
+.brokers-card-main.treno .broker-tier-box:not(.featured) .btn-broker-register:hover {
+  background: rgba(0, 255, 236, 0.25);
+  border-color: #00FFEC;
+  box-shadow: 0 4px 18px rgba(0, 255, 236, 0.3);
+}
+
 .broker-header-row {
   display: flex;
   align-items: flex-start;
@@ -4079,6 +4129,56 @@ button {
 
 [data-theme="light"] .brokers-card-main.lirunex .btn-broker-register.highlight svg {
   stroke: #ffffff !important;
+}
+
+/* Treno Markets in Light Mode */
+[data-theme="light"] .brokers-card-main.treno {
+  background: #ffffff !important;
+  border-color: rgba(14, 165, 233, 0.4) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .brokers-card-main.treno .broker-logo-badge {
+  background: #f0fdfa !important;
+  border-color: rgba(14, 165, 233, 0.4) !important;
+}
+
+[data-theme="light"] .brokers-card-main.treno .broker-partner-tag {
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] .brokers-card-main.treno .broker-tier-box.featured {
+  background: #f0fdfa !important;
+  border-color: #0ea5e9 !important;
+}
+
+[data-theme="light"] .brokers-card-main.treno .btn-broker-register.highlight {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3) !important;
+}
+
+[data-theme="light"] .brokers-card-main.treno .btn-broker-register.highlight * {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .brokers-card-main.treno .btn-broker-register.highlight svg {
+  stroke: #ffffff !important;
+}
+
+[data-theme="light"] .brokers-card-main.treno .broker-tier-box:not(.featured) .btn-broker-register {
+  background: rgba(14, 165, 233, 0.1) !important;
+  border-color: rgba(14, 165, 233, 0.35) !important;
+  color: #0369a1 !important;
+}
+
+[data-theme="light"] .brokers-card-main.treno .broker-tier-box:not(.featured) .btn-broker-register * {
+  color: #0369a1 !important;
+}
+
+[data-theme="light"] .brokers-card-main.treno .broker-tier-box:not(.featured) .btn-broker-register svg {
+  stroke: #0369a1 !important;
 }
 
 /* Calculator in Light Mode */
