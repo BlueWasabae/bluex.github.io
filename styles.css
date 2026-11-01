@@ -5484,3 +5484,397 @@ button {
 [data-theme="light"] .genesis-quote-text {
   color: #0f172a;
 }
+
+
+/* ==============================================================================
+   SMC GENESIS COURSE PROMOTION, INTERACTIVE CLICK EFFECTS & ENROLLMENT CTA STYLES
+   ============================================================================== */
+
+/* Top Announcement Bar */
+.genesis-top-announcement {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: linear-gradient(90deg, rgba(0, 255, 236, 0.08) 0%, rgba(245, 158, 11, 0.12) 50%, rgba(0, 255, 236, 0.08) 100%);
+  border: 1px solid rgba(0, 255, 236, 0.3);
+  border-radius: 12px;
+  padding: 12px 20px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 255, 236, 0.1);
+  animation: fadeInDown 0.6s ease-out;
+}
+.announcement-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.announcement-badge {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 50px;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.announcement-text {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+.announcement-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 255, 236, 0.12);
+  border: 1px solid rgba(0, 255, 236, 0.4);
+  color: #00ffec;
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 50px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+.announcement-btn:hover {
+  background: #00ffec;
+  color: #000;
+  box-shadow: 0 0 18px rgba(0, 255, 236, 0.5);
+  transform: translateX(2px);
+}
+
+/* Pulsing Glowing Button Effect */
+.btn-mentorship-glow {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 255, 236, 0.4), 0 0 40px rgba(0, 255, 236, 0.2);
+  animation: cta-pulse-glow 2.8s infinite ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-mentorship-glow:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 30px rgba(0, 255, 236, 0.6), 0 0 60px rgba(0, 255, 236, 0.3);
+}
+.btn-mentorship-glow::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -70%;
+  width: 45%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: rotate(25deg);
+  animation: button-shimmer 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+@keyframes cta-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 18px rgba(0, 255, 236, 0.35), 0 0 35px rgba(0, 255, 236, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 255, 236, 0.6), 0 0 55px rgba(0, 255, 236, 0.3);
+  }
+}
+@keyframes button-shimmer {
+  0% { left: -70%; }
+  30%, 100% { left: 150%; }
+}
+
+/* Pulse Ring Animation */
+.pulse-ring {
+  position: relative;
+}
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 1.5px solid var(--color-cyan);
+  animation: radar-ring 2.2s infinite cubic-bezier(0.24, 0, 0.38, 1);
+  pointer-events: none;
+}
+@keyframes radar-ring {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.08);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.12);
+    opacity: 0;
+  }
+}
+
+/* Dedicated Course Spotlight & Enrollment Box */
+.genesis-course-spotlight {
+  background: linear-gradient(135deg, rgba(14, 21, 37, 0.96) 0%, rgba(9, 13, 24, 0.96) 100%);
+  border: 1px solid rgba(0, 255, 236, 0.35);
+  border-radius: 20px;
+  padding: 44px 36px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 255, 236, 0.12);
+  margin-top: 20px;
+}
+.genesis-course-spotlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00ffec, #f59e0b, #00ffec);
+}
+.spotlight-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.spotlight-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 14px;
+  border-radius: 50px;
+}
+.spotlight-status-dot {
+  width: 8px;
+  height: 8px;
+  background: #34d399;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #34d399;
+  animation: pulse-dot 1.5s infinite;
+}
+.spotlight-features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 36px;
+}
+.spotlight-perk-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 24px 20px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.spotlight-perk-card:hover {
+  background: rgba(0, 255, 236, 0.04);
+  border-color: rgba(0, 255, 236, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 255, 236, 0.1);
+}
+.spotlight-perk-icon {
+  font-size: 1.8rem;
+  margin-bottom: 14px;
+  display: inline-block;
+}
+.spotlight-perk-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+.spotlight-perk-desc {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  line-height: 1.55;
+}
+.spotlight-action-box {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.spotlight-action-info {
+  flex: 1;
+  min-width: 260px;
+}
+.spotlight-action-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+.spotlight-action-desc {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+.spotlight-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Floating Action Pill (FAB) */
+.genesis-floating-cta {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  z-index: 9999;
+  animation: fadeInUp 0.8s ease-out;
+}
+.floating-cta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(10, 15, 26, 0.94);
+  border: 1.5px solid rgba(0, 255, 236, 0.5);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 12px 22px;
+  border-radius: 50px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 255, 236, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.floating-cta-pill:hover {
+  transform: translateY(-4px) scale(1.04);
+  border-color: #00ffec;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 35px rgba(0, 255, 236, 0.55);
+  color: #00ffec;
+}
+.floating-pulse {
+  width: 9px;
+  height: 9px;
+  background: #00ffec;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ffec;
+  animation: pulse-dot 1.5s infinite;
+}
+.floating-icon {
+  font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .spotlight-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 680px) {
+  .genesis-top-announcement {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .spotlight-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .genesis-course-spotlight {
+    padding: 28px 20px;
+  }
+  .spotlight-action-box {
+    padding: 20px 16px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .spotlight-btn-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .genesis-floating-cta {
+    bottom: 18px;
+    right: 18px;
+    left: 18px;
+  }
+  .floating-cta-pill {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] .genesis-top-announcement {
+  background: linear-gradient(90deg, rgba(0, 168, 150, 0.1) 0%, rgba(217, 119, 6, 0.12) 50%, rgba(0, 168, 150, 0.1) 100%);
+  border-color: rgba(0, 168, 150, 0.3);
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+}
+[data-theme="light"] .announcement-text {
+  color: #0f172a;
+}
+[data-theme="light"] .announcement-btn {
+  background: rgba(0, 168, 150, 0.12);
+  border-color: rgba(0, 168, 150, 0.4);
+  color: #008775;
+}
+[data-theme="light"] .announcement-btn:hover {
+  background: #00a896;
+  color: #fff;
+  box-shadow: 0 0 16px rgba(0, 168, 150, 0.4);
+}
+[data-theme="light"] .genesis-course-spotlight {
+  background: #ffffff;
+  border-color: rgba(0, 168, 150, 0.3);
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.07);
+}
+[data-theme="light"] .spotlight-perk-card {
+  background: #f8fafc;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+[data-theme="light"] .spotlight-perk-card:hover {
+  background: #f1f5f9;
+  border-color: rgba(0, 168, 150, 0.4);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+[data-theme="light"] .spotlight-perk-title {
+  color: #0f172a;
+}
+[data-theme="light"] .spotlight-perk-desc {
+  color: #475569;
+}
+[data-theme="light"] .spotlight-action-box {
+  background: #f8fafc;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+[data-theme="light"] .spotlight-action-title {
+  color: #0f172a;
+}
+[data-theme="light"] .spotlight-action-desc {
+  color: #475569;
+}
+[data-theme="light"] .floating-cta-pill {
+  background: #0f172a;
+  border-color: #00a896;
+  color: #ffffff;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.25);
+}
+[data-theme="light"] .floating-cta-pill:hover {
+  background: #00a896;
+  color: #ffffff;
+  border-color: #008775;
+}
