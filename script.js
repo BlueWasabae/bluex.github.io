@@ -57,6 +57,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ========================================================
+  // 1B. CLICK LOGO TO SMOOTH SCROLL TO TOP EVERY TIME
+  // ========================================================
+  const logoTriggers = document.querySelectorAll('.logo, .nav-logo-3d-img, a[href="#top"], a[href="#hero"]');
+  logoTriggers.forEach(el => {
+    el.addEventListener('click', (e) => {
+      const anchor = el.closest('a') || (el.tagName === 'A' ? el : null);
+      const href = anchor ? anchor.getAttribute('href') : null;
+      const currentPath = window.location.pathname.replace(/\/$/, '');
+      const isIndex = currentPath === '' || currentPath.endsWith('index.html');
+
+      // If on index (or root) and link points to top/hero or has no href
+      if (isIndex && (!href || href === '#top' || href === '#hero' || href === '#' || href === 'index.html' || href === 'index.html#top' || href === 'index.html#hero')) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, null, window.location.pathname + window.location.search);
+        }
+        if (navMenu && navMenu.classList.contains('mobile-open')) {
+          navMenu.classList.remove('mobile-open');
+        }
+      } else if (href === '#top' || href === '#' || (!href && el.classList.contains('logo'))) {
+        // Subpages scrolling to top of current page
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, null, window.location.pathname + window.location.search);
+        }
+        if (navMenu && navMenu.classList.contains('mobile-open')) {
+          navMenu.classList.remove('mobile-open');
+        }
+      }
+    });
+  });
+
 
   // Safe LocalStorage helpers for file:// and sandboxed iframe environments
   function safeGetStorage(key, fallback) {
@@ -115,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.about': 'About',
       'nav.brokers': 'Brokers',
       'nav.courses': 'Courses',
+      'nav.genesis': 'SMC Genesis',
       'nav.capital': 'Portfolio Strategy',
       'nav.calculator': 'Calculator',
       'nav.knowledge': 'Knowledge',
@@ -184,6 +226,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'course.card4Desc': 'Hands-on live market analysis, setup reviews, and direct 1-on-1 Q&A to master your execution discipline.',
       'course.btnEnroll': 'Enroll in Study Course via Telegram',
       'course.btnInquire': 'Submit Study Course Inquiry Below',
+      'course.genesisBannerTitle': '⚡ Flagship Curriculum: Explore SMC Genesis Institutional Blueprint ➔',
+      'course.genesisBannerSub': 'Deep dive into institutional liquidity pools, Fair Value Gaps, algorithmic order blocks, and live execution mentorship.',
+      'course.genesisBannerBtn': 'Open SMC Genesis Portal ➔',
 
       // Capital & Portfolio Strategy
       'capital.badge': 'Private Capital & Portfolio Strategy • Negotiable Terms',
@@ -458,6 +503,119 @@ document.addEventListener('DOMContentLoaded', () => {
       'compliance.item4Desc': 'Trading foreign exchange, CFDs, and financial derivatives carries substantial risk of capital loss and is not suitable for all individuals. Market participants are strictly self-directed and must practice sound risk management according to their own financial capacity.',
       'compliance.exactDisclaimer': '<strong>Official Disclaimer:</strong> Disclaimer: This content is for educational purposes only and does not constitute financial or investment advice. Trading in financial markets involves risk. Always conduct your own research and trade responsibly.',
 
+      // SMC Genesis Institutional Portal
+      'genesis.badge': 'Flagship Institutional Framework • Order Flow Blueprint',
+      'genesis.heroTitle': 'Decode the Algorithmic Engine.<br><span class="highlight">Trade Where Liquidity Accumulates.</span>',
+      'genesis.heroSub': 'The definitive institutional Smart Money Concepts (SMC) blueprint. Transition from retail liquidity provider to disciplined market operator exploiting institutional order flow, fair value gaps, and asymmetric 1:3+ to 1:10+ risk architecture.',
+      'genesis.metric1Val': '1:3 to 1:10+',
+      'genesis.metric1Label': 'Target Risk-to-Reward Ratio',
+      'genesis.metric2Val': 'Zero Indicators',
+      'genesis.metric2Label': 'Pure Liquidity & Price Action',
+      'genesis.metric3Val': '0.5% – 1.0%',
+      'genesis.metric3Label': 'Strict Capital Risk Per Setup',
+      'genesis.metric4Val': 'Direct 1-on-1',
+      'genesis.metric4Label': 'Live Mentorship with BlueX',
+      'genesis.heroApplyBtn': '⚡ Apply for Live Mentorship',
+      'genesis.heroCurriculumBtn': 'Explore Curriculum Modules ↓',
+      'genesis.heroBrokerBtn': 'Execute on Low-Latency Raw Spreads ➔',
+
+      // The Paradigm Shift
+      'genesis.shiftBadge': 'The Paradigm Shift • Institutional vs Retail',
+      'genesis.shiftTitle': 'Why 95% of Retail Traders Are Simply Liquidity',
+      'genesis.shiftDesc': 'Retail technical analysis teaches traders to place stops right where central bank algorithms look to fill massive institutional orders. SMC Genesis teaches you to identify the engineered traps and execute alongside smart money.',
+      'genesis.retailColTitle': 'The Retail Indicator Fallacy',
+      'genesis.instColTitle': 'The SMC Genesis Institutional Edge',
+      'genesis.shiftR1': 'Trading lagging indicators (RSI, MACD, Stochastics) that react long after moves happened.',
+      'genesis.shiftI1': 'Reading algorithmic Interbank Price Delivery (IPDA) and institutional time-and-price arrays.',
+      'genesis.shiftR2': 'Buying breakouts above resistance, becoming instant liquidity for institutional sell orders.',
+      'genesis.shiftI2': 'Waiting for Buy-Side Liquidity sweeps (BSL) and entering on structural shifts into fair value.',
+      'genesis.shiftR3': 'Poor 1:1 or 1:1.5 risk-to-reward requiring a fragile 70%+ win rate to avoid blowouts.',
+      'genesis.shiftI3': 'Asymmetric 1:3+ to 1:10+ risk architecture where a 40% win rate yields substantial compound growth.',
+      'genesis.shiftR4': 'Emotional revenge trading, widening stops, and guessing arbitrary tops and bottoms.',
+      'genesis.shiftI4': 'Mechanical invalidation rules, predefined risk, and strict daily checklists.',
+
+      // Curriculum 6 Modules
+      'genesis.curriculumBadge': 'Systematic 6-Stage Curriculum',
+      'genesis.curriculumTitle': 'The Complete SMC Genesis Architecture',
+      'genesis.curriculumSub': 'Every module is engineered to progressively dismantle retail fallacies and replace them with institutional order flow precision.',
+      'genesis.m1Num': 'Module 01',
+      'genesis.m1Title': 'Institutional Liquidity Engineering',
+      'genesis.m1Desc': 'Master Buy-Side (BSL) and Sell-Side Liquidity (SSL) mapping, Equal Highs/Lows manipulation, Inducement (IDM) traps, and the Turtle Soup purge.',
+      'genesis.m2Num': 'Module 02',
+      'genesis.m2Title': 'Advanced Market Structure & Fractal Shifts',
+      'genesis.m2Desc': 'Differentiate true Break of Structure (BOS) from Change of Character (CHoCH). Uncover internal vs swing structure to avoid fakeouts across multi-timeframes.',
+      'genesis.m3Num': 'Module 03',
+      'genesis.m3Title': 'Algorithmic Pricing Matrix & Equilibrium',
+      'genesis.m3Desc': 'The 50% Equilibrium principle: why institutions only buy in Discount and sell in Premium. Master Dealing Ranges, Fib mitigation arrays, and Killzones.',
+      'genesis.m4Num': 'Module 04',
+      'genesis.m4Title': 'Imbalance Mechanics & Order Flow Footprints',
+      'genesis.m4Desc': 'Identify Fair Value Gaps (FVG) / Single Prints, high-probability Order Blocks (OB), Breaker Blocks, and mitigation voids that act as price magnets.',
+      'genesis.m5Num': 'Module 05',
+      'genesis.m5Title': 'Surgical Lower-Timeframe Execution Checklists',
+      'genesis.m5Desc': 'Step-by-step entry protocol: HTF liquidity purge -> LTF displacement & CHoCH -> FVG refinement -> Tight invalidation point with 1:3+ to 1:10+ RR.',
+      'genesis.m6Num': 'Module 06',
+      'genesis.m6Title': 'Asymmetric Capital Strategy & Mindset Neutrality',
+      'genesis.m6Desc': 'Eliminate fear, greed, and revenge trading. Implement 0.5%–1.0% strict risk allocation, professional trade journaling, and private capital/prop scaling.',
+
+      // Interactive Concept Dissection
+      'genesis.tabPillars': 'Concept Breakdown',
+      'genesis.tabLiquidity': '1. Liquidity Pools',
+      'genesis.tabFVG': '2. Fair Value Gaps',
+      'genesis.tabOB': '3. Order Blocks & Breakers',
+      'genesis.tabRisk': '4. Asymmetric 1:3+ Math',
+      'genesis.tabLqHeading': 'Liquidity Pools: Where Smart Money Feeds',
+      'genesis.tabLqText': 'Institutions execute millions in volume and cannot simply click market buy without moving the price. They must engineer liquidity by driving price into retail stop clusters (Buy-Side Liquidity above swing highs, Sell-Side Liquidity below swing lows). Once stops are triggered, smart money absorbs the liquidity and reverses price violently.',
+      'genesis.tabLqRule': 'Core SMC Rule: Never trade into unpurged liquidity. Wait for the sweep, then look for structural displacement.',
+      'genesis.tabFvgHeading': 'Fair Value Gaps: Algorithmic Delivery Imbalances',
+      'genesis.tabFvgText': 'When an institution aggressively deploys capital, price moves with immense velocity, leaving a three-candle sequence where Candle 1 and Candle 3 wicks do not overlap. This single-sided delivery leaves an imbalance (FVG) that the algorithm must subsequently revisit to rebalance fair value before continuing the expansion.',
+      'genesis.tabFvgRule': 'Core SMC Rule: Fair Value Gaps inside Discount zones provide optimal entry mitigation with minimal drawdown.',
+      'genesis.tabObHeading': 'Order Blocks & Breaker Blocks: Institutional Footprints',
+      'genesis.tabObText': 'An Order Block is the specific candle or candle cluster where smart money placed their positioning before an aggressive structural expansion broke market highs or lows. A Breaker Block occurs when an order block fails, gets swept, and flips its polarity to act as a powerful reaction level.',
+      'genesis.tabObRule': 'Core SMC Rule: A valid Order Block must cause a Break of Structure (BOS) and leave a Fair Value Gap.',
+      'genesis.tabRiskHeading': 'Asymmetric Risk: The Mathematics of Long-Term Wealth',
+      'genesis.tabRiskText': 'Retail traders obsess over 80-90% win rates, which leads to holding losing trades and blowing accounts. In SMC Genesis, by executing strictly with 1:3, 1:5, or 1:10+ risk-to-reward ratios, you can be wrong on 6 out of 10 trades (40% win rate) and still generate substantial compound gains while risking only 0.5%–1.0% per trade.',
+      'genesis.tabRiskRule': 'Core SMC Rule: Never risk more than 1% per trade. Let asymmetric math do the heavy lifting.',
+
+      // Admission & Live Mentorship
+      'genesis.admissionBadge': 'Selective Admission • Direct Live Mentorship',
+      'genesis.admissionTitle': 'Study Course with BlueX: Live Interactive Coaching',
+      'genesis.admissionSub': 'We uphold rigorous standards. This is not for get-rich-quick gamblers or signal chasers. We build disciplined institutional execution operators.',
+      'genesis.std1Title': 'Capital Preservation Priority',
+      'genesis.std1Desc': 'Must commit to zero-tolerance risk management (0.5%–1.0% max per trade). Overleveraging is immediate grounds for dismissal.',
+      'genesis.std2Title': 'Mechanical Execution Discipline',
+      'genesis.std2Desc': 'Dedication to objective setups: liquidity sweeps, structural shifts, and imbalances rather than emotional guessing.',
+      'genesis.std3Title': 'Trade Journaling & Review',
+      'genesis.std3Desc': 'Active maintenance of trade logs, statistical tracking, and execution checklists to eradicate psychological tilt.',
+      'genesis.std4Title': 'Commitment to Live Sessions',
+      'genesis.std4Desc': 'Active participation in live screen-sharing chart sessions, disciplined practice, and systematic simulation.',
+      'genesis.applyTelegramBtn': 'Message BlueX on Telegram to Apply (@moonbluefx)',
+
+      // Institutional Brokers for SMC
+      'genesis.brokerBadge': 'Execution Speed & Raw Liquidity',
+      'genesis.brokerTitle': 'Recommended Brokers for SMC Execution',
+      'genesis.brokerDesc': 'Smart Money Concepts execution requires ultra-low latency, tightest raw spreads, deep order books, and zero artificial slippage. We recommend the following tier-1 regulated partners:',
+      'genesis.brokerTrenoNote': 'Top Partner • Raw Spreads • Ultra-Low Latency',
+      'genesis.brokerGtcNote': 'Global Multi-Regulated • Institutional Liquidity',
+      'genesis.brokerLirunexNote': 'Regulated STP Broker • Deep Forex & Gold Liquidity',
+
+      // FAQ
+      'genesis.faqBadge': 'Frequently Asked Questions',
+      'genesis.faqTitle': 'Everything You Need to Know About SMC Genesis',
+      'genesis.faq1Q': 'What makes SMC Genesis fundamentally different from retail technical analysis?',
+      'genesis.faq1A': 'Retail analysis relies on lagging indicators (RSI, moving averages) and static trendlines which central bank algorithms routinely exploit for liquidity. SMC Genesis teaches you how the Interbank Price Delivery Algorithm (IPDA) actually prices markets, where buy and sell stops accumulate, and how to execute after liquidity purges.',
+      'genesis.faq2Q': 'Can beginners learn SMC Genesis, or is prior experience required?',
+      'genesis.faq2A': 'Beginners actually often excel faster because they do not have years of bad retail indicator habits to unlearn. SMC Genesis starts from the absolute bedrock of market liquidity and builds up step-by-step into advanced multi-timeframe execution.',
+      'genesis.faq3Q': 'Which financial instruments work best with SMC Genesis?',
+      'genesis.faq3A': 'SMC Genesis is a universal order flow framework. It applies seamlessly to Gold (XAUUSD), major Forex pairs (EURUSD, GBPUSD, USDJPY), equity indices (US30, NAS100), and liquid cryptocurrencies (BTC, ETH).',
+      'genesis.faq4Q': 'What kind of risk-to-reward ratios can I expect from this strategy?',
+      'genesis.faq4A': 'SMC setups target asymmetric profiles starting from 1:3 up to 1:10+. Because entries are refined on lower timeframes at pristine imbalance zones, stop losses are tight and structural, maximizing your capital efficiency.',
+      'genesis.faq5Q': 'How can I enroll in the live mentorship program with BlueX?',
+      'genesis.faq5A': 'Enrollment is conducted selectively through direct interview. Contact BlueX directly on Telegram at @moonbluefx to discuss your trading goals, background, and schedule a consultation.',
+
+      // Bottom CTA
+      'genesis.ctaTitle': 'Ready to Master Institutional Order Flow?',
+      'genesis.ctaSub': 'Stop donating liquidity to the market. Join BlueX and build an enduring, profitable career.',
+
       // Footer
       'footer.copy': '© 2026 BlueX. Master Your Ego. Master Your Trades. All rights reserved.'
     },
@@ -468,6 +626,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.about': 'អំពី BlueX',
       'nav.brokers': 'ឈ្មួញកណ្តាល',
       'nav.courses': 'វគ្គសិក្សា',
+      'nav.genesis': 'SMC Genesis',
       'nav.capital': 'យុទ្ធសាស្ត្រផលប័ត្រ',
       'nav.calculator': 'គណនា Lot',
       'nav.knowledge': 'ចំណេះដឹង',
@@ -537,6 +696,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'course.card4Desc': 'វិភាគទីផ្សារផ្ទាល់ ពិនិត្យ Setup ជាមួយគ្នា និងសួរសំណួរដេញដោលផ្ទាល់មាត់ ដើម្បីពង្រឹងការអនុវត្តជាក់ស្តែង។',
       'course.btnEnroll': 'ចុះឈ្មោះរៀនផ្ទាល់តាម Telegram',
       'course.btnInquire': 'ផ្ញើសំណួរសាកសួរខាងក្រោម',
+      'course.genesisBannerTitle': '⚡ កម្មវិធីសិក្សាស្ថាប័នស្នូល: ស្វែងយល់ពីប្លង់មេ SMC Genesis ➔',
+      'course.genesisBannerSub': 'ស្វែងយល់ស៊ីជម្រៅអំពី Liquidity Pools ស្ថាប័ន, Fair Value Gaps, Order Blocks និងការបណ្តុះបណ្តាលផ្ទាល់។',
+      'course.genesisBannerBtn': 'បើកទំព័រ SMC Genesis ➔',
 
       // Capital & Portfolio Strategy
       'capital.badge': 'យុទ្ធសាស្ត្រដើមទុន & ផលប័ត្រឯកជន • លក្ខខណ្ឌអាចចរចាបាន',
@@ -810,6 +972,119 @@ document.addEventListener('DOMContentLoaded', () => {
       'compliance.item4Title': 'ការជួញដូរដោយខ្លួនឯង & សេចក្តីជូនដំណឹងអំពីហានិភ័យ',
       'compliance.item4Desc': 'ការជួញដូររូបិយប័ណ្ណបរទេស (Forex), CFD និងឧបករណ៍ហិរញ្ញវត្ថុដេរីវេទីវ មានហានិភ័យខ្ពស់នៃការខាតបង់ដើមទុន ហើយមិនស័ក្តិសមសម្រាប់មនុស្សគ្រប់គ្នានោះទេ។ អ្នកចូលរួមទីផ្សារត្រូវតែសម្រេចចិត្តដោយខ្លួនឯង និងអនុវត្តការគ្រប់គ្រងហានិភ័យស្របតាមលទ្ធភាពហិរញ្ញវត្ថុផ្ទាល់ខ្លួន។',
       'compliance.exactDisclaimer': '<strong>សេចក្តីប្រកាសបដិសេធជាផ្លូវការ៖</strong> មាតិកានេះគឺសម្រាប់គោលបំណងអប់រំតែប៉ុណ្ណោះ ហើយមិនមែនជាការណែនាំផ្នែកហិរញ្ញវត្ថុ ឬការវិនិយោគឡើយ។ ការជួញដូរក្នុងទីផ្សារហិរញ្ញវត្ថុមានហានិភ័យ។ សូមស្រាវជ្រាវដោយខ្លួនឯង និងជួញដូរប្រកបដោយការទទួលខុសត្រូវជានិច្ច។',
+
+      // SMC Genesis Institutional Portal
+      'genesis.badge': 'ក្របខ័ណ្ឌស្ថាប័នស្នូល • ប្លង់មេនៃលំហូរ Order Flow',
+      'genesis.heroTitle': 'ស្រាយបំភ្លឺក្បួនដោះស្រាយ Algorithmic<br><span class="highlight">ជួញដូរនៅកន្លែងដែលសាច់ប្រាក់ Liquidity ប្រមូលផ្ដុំ</span>',
+      'genesis.heroSub': 'ប្លង់មេគំរូនីតិវិធី Smart Money Concepts (SMC) កម្រិតស្ថាប័នពិតប្រាកដ។ ផ្លាស់ប្តូរពីអ្នកផ្តល់សាច់ប្រាក់ retail ទៅជាប្រតិបត្តិករទីផ្សារប្រកបដោយវិន័យខ្ពស់ ដោយចាប់យកលំហូរស្ថាប័ន Fair Value Gaps និងអត្រាហានិភ័យ-ផលចំណេញខ្ពស់ 1:3+ ដល់ 1:10+។',
+      'genesis.metric1Val': '1:3 ដល់ 1:10+',
+      'genesis.metric1Label': 'សមាមាត្រហានិភ័យ-ផលចំណេញ (R:R)',
+      'genesis.metric2Val': 'គ្មានសូចនាករយឺតយ៉ាវ',
+      'genesis.metric2Label': 'ផ្អែកលើ Liquidity & សកម្មភាពតម្លៃសុទ្ធ',
+      'genesis.metric3Val': '0.5% – 1.0%',
+      'genesis.metric3Label': 'កម្រិតហានិភ័យទុនអតិបរមាក្នុងមួយ Trade',
+      'genesis.metric4Val': 'ផ្ទាល់ 1-on-1',
+      'genesis.metric4Label': 'ការបង្រៀនផ្ទាល់ជាមួយ BlueX',
+      'genesis.heroApplyBtn': '⚡ ចុះឈ្មោះចូលរួមការបណ្តុះបណ្តាលផ្ទាល់',
+      'genesis.heroCurriculumBtn': 'ពិនិត្យមើលមេរៀនប្លង់មេ ↓',
+      'genesis.heroBrokerBtn': 'ជួញដូរលើ Raw Spreads ល្បឿនលឿន ➔',
+
+      // The Paradigm Shift
+      'genesis.shiftBadge': 'ការផ្លាស់ប្តូរផ្នត់គំនិត • ស្ថាប័នធំ vs Retail',
+      'genesis.shiftTitle': 'ហេតុអ្វី Trader 95% ក្លាយជា Liquidity សម្រាប់ទីផ្សារ',
+      'genesis.shiftDesc': 'ការវិភាគបច្ចេកទេសទូទៅបង្រៀនឱ្យដាក់ Stop-loss នៅត្រង់កន្លែងដែលក្បួនដោះស្រាយធនាគារកណ្តាលស្វែងរកដើម្បីបំពេញបញ្ជាទិញ-លក់ស្ថាប័នធំៗ។ SMC Genesis បង្រៀនអ្នកឱ្យមើលឃើញអន្ទាក់ទាំងនេះ ហើយប្រតិបត្តិការស្របតាមលំហូរ Smart Money។',
+      'genesis.retailColTitle': 'ភាពបរាជ័យនៃវិធីសាស្ត្រ Retail',
+      'genesis.instColTitle': 'ឧត្តមភាពនៃ SMC Genesis កម្រិតស្ថាប័ន',
+      'genesis.shiftR1': 'ជួញដូរតាមសូចនាករយឺតយ៉ាវ (RSI, MACD) ដែលប្រតិកម្មក្រោយពេលតម្លៃដើររួចហើយ។',
+      'genesis.shiftI1': 'វិភាគយន្តការចែកចាយតម្លៃធនាគារ (IPDA) និងវដ្ត Time & Price របស់ស្ថាប័ន។',
+      'genesis.shiftR2': 'ទិញតាម Breakout លើ Resistance ហើយក្លាយជា Liquidity ឱ្យស្ថាប័នលក់ចុះមកវិញ។',
+      'genesis.shiftI2': 'រង់ចាំការបោសសម្អាត BSL រួចចូលទិញ-លក់លើការផ្លាស់ប្តូររចនាសម្ព័ន្ធ និង Fair Value Gap។',
+      'genesis.shiftR3': 'សមាមាត្រ R:R ទាប 1:1 ឬ 1:1.5 ដែលទាមទារ Win-rate ខ្ពស់លើស 70% ដើម្បីរស់។',
+      'genesis.shiftI3': 'សមាមាត្រ Asymmetric 1:3+ ដល់ 1:10+ ដែលគ្រាន់តែ Win-rate 40% ក៏បង្កើតប្រាក់ចំណេញជាប្រព័ន្ធបាន។',
+      'genesis.shiftR4': 'ការជួញដូរតាមអារម្មណ៍ខឹងសងសឹក ពង្រីក Stop-loss និងទស្សន៍ទាយចំណុចកំពូល-បាតដោយគ្មានមូលដ្ឋាន។',
+      'genesis.shiftI4': 'វិន័យផ្អែកលើចំណុច Invalidation ច្បាស់លាស់ កំណត់ហានិភ័យមុនជានិច្ច និងបញ្ជីត្រួតពិនិត្យរាល់ថ្ងៃ។',
+
+      // Curriculum 6 Modules
+      'genesis.curriculumBadge': 'កម្មវិធីសិក្សាជាប្រព័ន្ធ ៦ ដំណាក់កាល',
+      'genesis.curriculumTitle': 'រចនាសម្ព័ន្ធកម្មវិធីសិក្សា SMC Genesis ពេញលេញ',
+      'genesis.curriculumSub': 'គ្រប់មេរៀនត្រូវបានរៀបចំឡើងដើម្បីលុបបំបាត់ការភ័ន្តច្រឡំចាស់ៗ និងជំនួសដោយភាពច្បាស់លាស់នៃលំហូរទុនស្ថាប័ន។',
+      'genesis.m1Num': 'មេរៀនទី ០១',
+      'genesis.m1Title': 'យន្តការសាច់ប្រាក់ Liquidity របស់ស្ថាប័ន',
+      'genesis.m1Desc': 'ស្វែងយល់ការគូសផែនទី BSL និង SSL, ការកម្ទេច Equal Highs/Lows, អន្ទាក់ Inducement (IDM) និងការបោសសម្អាត Turtle Soup។',
+      'genesis.m2Num': 'មេរៀនទី ០២',
+      'genesis.m2Title': 'រចនាសម្ព័ន្ធទីផ្សារកម្រិតខ្ពស់ & Fractal Shifts',
+      'genesis.m2Desc': 'បែងចែកឱ្យច្បាស់រវាង BOS និង CHoCH ពិតប្រាកដ។ យល់ពីរចនាសម្ព័ន្ធខាងក្នុង (Internal) និងខាងក្រៅ (Swing) គ្រប់ Timeframe។',
+      'genesis.m3Num': 'មេរៀនទី ០៣',
+      'genesis.m3Title': 'ក្បួនដោះស្រាយតម្លៃ & ចំណុចលំនឹង Equilibrium',
+      'genesis.m3Desc': 'គោលការណ៍លំនឹង 50%: ហេតុអ្វីស្ថាប័នធំទិញតែនៅ Discount និងលក់នៅ Premium។ គ្រប់គ្រង Dealing Ranges និង Session Killzones។',
+      'genesis.m4Num': 'មេរៀនទី ០៤',
+      'genesis.m4Title': 'ភាពអតុល្យភាព Imbalance & Order Blocks',
+      'genesis.m4Desc': 'កំណត់សម្គាល់ Fair Value Gaps (FVG), Order Blocks (OB) ដែលមានប្រូបាប៊ីលីតេខ្ពស់ Breakers និងការបំពេញចន្លោះទទេនៃតម្លៃ។',
+      'genesis.m5Num': 'មេរៀនទី ០៥',
+      'genesis.m5Title': 'បញ្ជីត្រួតពិនិត្យប្រតិបត្តិការកម្រិត Timeframe តូច',
+      'genesis.m5Desc': 'លំដាប់លំដោយនៃការចូល Trade: HTF Liquidity Purge -> LTF Displacement & CHoCH -> FVG Refinement -> Stop-loss តូចជាមួយ R:R 1:3+ ដល់ 1:10+។',
+      'genesis.m6Num': 'មេរៀនទី ០៦',
+      'genesis.m6Title': 'យុទ្ធសាស្ត្រទុន Asymmetric & ផ្នត់គំនិតអព្យាក្រឹត',
+      'genesis.m6Desc': 'លុបបំបាត់ការភ័យខ្លាច ភាពលោភលន់ និងការសងសឹកទីផ្សារ។ អនុវត្តការកំណត់ហានិភ័យ 0.5%–1.0% និងការកត់ត្រា Trade ប្រកបដោយវិជ្ជាជីវៈ។',
+
+      // Interactive Concept Dissection
+      'genesis.tabPillars': 'ការបំបែកគំនិតលម្អិត',
+      'genesis.tabLiquidity': '១. Liquidity Pools',
+      'genesis.tabFVG': '២. Fair Value Gaps',
+      'genesis.tabOB': '៣. Order Blocks & Breakers',
+      'genesis.tabRisk': '៤. គណិតវិទ្យា Asymmetric 1:3+',
+      'genesis.tabLqHeading': 'Liquidity Pools: កន្លែងដែល Smart Money បំពេញបញ្ជា',
+      'genesis.tabLqText': 'ស្ថាប័នធំៗជួញដូរទំហំរាប់រយលាន ដូច្នេះពួកគេមិនអាចចុចទិញភ្លាមៗដោយមិនរុញតម្លៃឡើងនោះទេ។ ពួកគេត្រូវតែរុញតម្លៃឱ្យទៅបុក Stop-loss របស់ Trader ទូទៅ (BSL លើចំណុចខ្ពស់ និង SSL ក្រោមចំណុចទាប)។ ពេលដែល Stop ត្រូវបានកម្ទេច Smart Money នឹងស្រូបយកបរិមាណនោះ ហើយបង្វែរទិសដៅភ្លាមៗ។',
+      'genesis.tabLqRule': 'វិធានស្នូល SMC: កុំ Trade ចូលទៅក្នុង Liquidity ដែលមិនទាន់ត្រូវបានបោសសម្អាត។ រង់ចាំ Sweep រួចចាំរកមើល Displacement។',
+      'genesis.tabFvgHeading': 'Fair Value Gaps: ភាពអតុល្យភាពនៃតម្លៃដែលក្បួនដោះស្រាយបន្សល់ទុក',
+      'genesis.tabFvgText': 'នៅពេលស្ថាប័នដាក់ទុនយ៉ាងខ្លាំងក្លា តម្លៃរត់យ៉ាងលឿន បង្កើតចន្លោះទជោមទៀន ៣ ដែលកន្ទុយទៀនទី១ និងទី៣ មិនជាន់គ្នា។ នេះជាភាពអតុល្យភាព (FVG) ដែល Algorithm ត្រូវតែត្រឡប់មកបំពេញតុល្យភាពវិញ មុននឹងបន្តដំណើរទៅមុខ។',
+      'genesis.tabFvgRule': 'វិធានស្នូល SMC: Fair Value Gap ដែលស្ថិតនៅក្នុង Discount Zone ផ្តល់នូវឱកាសចូល Trade ដ៏ល្អបំផុតជាមួយ Drawdown ទាបបំផុត។',
+      'genesis.tabObHeading': 'Order Blocks & Breakers: ស្នាមជើងដើមទុនរបស់ស្ថាប័ន',
+      'genesis.tabObText': 'Order Block គឺជាទៀន ឬបណ្តុំទៀនដែល Smart Money បានបើក Position មុនពេលតម្លៃផ្ទុះឡើងបំបែក Highs ឬ Lows។ ចំណែក Breaker Block កើតឡើងនៅពេល Order Block ត្រូវបានទម្លុះ ហើយត្រឡប់មុខងារមកជាកម្រិតទប់ដ៏រឹងមាំវិញ។',
+      'genesis.tabObRule': 'វិធានស្នូល SMC: Order Block ដែលមានសុពលភាពត្រូវតែបង្កឱ្យមាន BOS និងបន្សល់ទុក Fair Value Gap។',
+      'genesis.tabRiskHeading': 'ហានិភ័យ Asymmetric: គណិតវិទ្យានៃទ្រព្យសម្បត្តិយូរអង្វែង',
+      'genesis.tabRiskText': 'Trader ទូទៅតែងតែចង់បាន Win-rate ខ្ពស់ 80-90% ដែលនាំឱ្យពួកគេទ្រាំខាតរហូតដល់បែក Account។ នៅក្នុង SMC Genesis ដោយអនុវត្តយ៉ាងម៉ឺងម៉ាត់ជាមួយ R:R 1:3, 1:5 ឬ 1:10+ អ្នកអាចខាត 6 ដងក្នុង 10 ដង (Win-rate 40%) ក៏នៅតែអាចបង្កើនផលចំណេញយ៉ាងច្រើន ដោយប្រថុយទុនត្រឹម 0.5%–1.0% ប៉ុណ្ណោះក្នុងមួយ Trade។',
+      'genesis.tabRiskRule': 'វិធានស្នូល SMC: កុំប្រថុយលើសពី 1% ក្នុងមួយ Trade ឱ្យសោះ។ ទុកឱ្យគណិតវិទ្យា Asymmetric បង្កើតផលចំណេញជូនអ្នក។',
+
+      // Admission & Live Mentorship
+      'genesis.admissionBadge': 'ការជ្រើសរើសមានកំណត់ • ការបង្រៀនផ្ទាល់ Live',
+      'genesis.admissionTitle': 'វគ្គសិក្សាជាមួយ BlueX: ការបង្រៀនផ្ទាល់អន្តរកម្ម',
+      'genesis.admissionSub': 'យើងប្រកាន់ខ្ជាប់នូវស្តង់ដារតឹងរ៉ឹងបំផុត។ វគ្គនេះមិនមែនសម្រាប់អ្នកចង់មានលឿន ឬអ្នកចាំយក Signal នោះទេ។ យើងបណ្តុះបណ្តាលប្រតិបត្តិករទីផ្សារប្រកបដោយវិន័យស្ថាប័នពិតប្រាកដ។',
+      'genesis.std1Title': 'អាទិភាពការពារដើមទុនទីមួយ',
+      'genesis.std1Desc': 'ត្រូវតែប្តេជ្ញាគ្រប់គ្រងហានិភ័យយ៉ាងតឹងរ៉ឹង (0.5%–1.0% អតិបរមា)។ ការ Overlot នឹងត្រូវដកសិទ្ធិសិក្សាភ្លាមៗ។',
+      'genesis.std2Title': 'វិន័យប្រតិបត្តិការតាមក្បួនខ្នាត',
+      'genesis.std2Desc': 'អនុវត្តតាម Setup ជាក់ស្តែង: ការបោសសម្អាត Liquidity, ការផ្លាស់ប្តូររចនាសម្ព័ន្ធ និង Imbalances មិនមែនទាយតាមចិត្ត។',
+      'genesis.std3Title': 'ការកត់ត្រា Trade & ពិនិត្យឡើងវិញ',
+      'genesis.std3Desc': 'កត់ត្រារាល់ Trade ទាំងអស់ តាមដានស្ថិតិ និងបញ្ជីត្រួតពិនិត្យ ដើម្បីលុបបំបាត់កំហុសផ្លូវចិត្ត។',
+      'genesis.std4Title': 'ការប្តេជ្ញាចូលរួម Live & អនុវត្ត',
+      'genesis.std4Desc': 'ចូលរួមយ៉ាងសកម្មក្នុងការវិភាគ Chart ផ្ទាល់ អនុវត្តជាក់ស្តែង និងធ្វើតេស្តលើ Simulation ជាប្រព័ន្ធ។',
+      'genesis.applyTelegramBtn': 'ផ្ញើសារទៅកាន់ BlueX លើ Telegram ដើម្បីចុះឈ្មោះ (@moonbluefx)',
+
+      // Institutional Brokers for SMC
+      'genesis.brokerBadge': 'ល្បឿនប្រតិបត្តិការ & សាច់ប្រាក់ Raw Liquidity',
+      'genesis.brokerTitle': 'Broker ណែនាំសម្រាប់ជួញដូរតាមវិធីសាស្ត្រ SMC',
+      'genesis.brokerDesc': 'ការជួញដូរតាម SMC ទាមទារល្បឿនលឿនបំផុត Spreads ទាបបំផុត សាច់ប្រាក់ជ្រៅ និងគ្មាន Slippage សិប្បនិម្មិត។ យើងសូមណែនាំដៃគូដែលមានអាជ្ញាប័ណ្ណលំដាប់កំពូលដូចខាងក្រោម:',
+      'genesis.brokerTrenoNote': 'ដៃគូកំពូល • Raw Spreads • ល្បឿនលឿនបំផុត',
+      'genesis.brokerGtcNote': 'អាជ្ញាប័ណ្ណសកលច្រើន • សាច់ប្រាក់កម្រិតស្ថាប័ន',
+      'genesis.brokerLirunexNote': 'Broker STP មានអាជ្ញាប័ណ្ណ • សាច់ប្រាក់ Forex & មាសជ្រៅ',
+
+      // FAQ
+      'genesis.faqBadge': 'សំណួរដែលសួរញឹកញាប់',
+      'genesis.faqTitle': 'អ្វីៗទាំងអស់ដែលអ្នកត្រូវដឹងអំពី SMC Genesis',
+      'genesis.faq1Q': 'តើអ្វីដែលធ្វើឱ្យ SMC Genesis ខុសប្លែកទាំងស្រុងពីការវិភាគបច្ចេកទេសទូទៅ?',
+      'genesis.faq1A': 'ការវិភាគបែប Retail ពឹងផ្អែកលើ Indicator យឺតយ៉ាវ (RSI, Moving Averages) និង Trendline ដែលក្បួនដោះស្រាយធនាគារកណ្តាលតែងតែរុញឱ្យបុកដើម្បីយក Liquidity។ SMC Genesis បង្រៀនអ្នកពីរបៀបដែល Interbank Price Delivery Algorithm (IPDA) ដំណើរការតម្លៃពិតប្រាកដ កន្លែងដែល Stop ប្រមូលផ្តុំ និងរបៀបចូល Trade ក្រោយការបោសសម្អាតរួចរាល់។',
+      'genesis.faq2Q': 'តើអ្នកទើបចាប់ផ្តើមអាចរៀន SMC Genesis បានទេ ឬត្រូវការបទពិសោធន៍ពីមុន?',
+      'genesis.faq2A': 'តាមពិតទៅ អ្នកទើបចាប់ផ្តើមច្រើនតែយល់បានលឿនជាង ព្រោះពួកគេមិនទាន់ជាប់ទម្លាប់ប្រើ Indicator ខុសៗជាច្រើនឆ្នាំ។ SMC Genesis ចាប់ផ្តើមពីមូលដ្ឋានគ្រឹះនៃ Liquidity ទីផ្សារ ហើយកសាងឡើងមួយជំហានម្តងៗរហូតដល់ការអនុវត្តកម្រិតខ្ពស់។',
+      'genesis.faq3Q': 'តើឧបករណ៍ហិរញ្ញវត្ថុណាខ្លះដែលដំណើរការល្អបំផុតជាមួយ SMC Genesis?',
+      'genesis.faq3A': 'SMC Genesis គឺជាក្របខ័ណ្ឌ Order Flow សកល។ វាដំណើរការយ៉ាងល្អឥតខ្ចោះលើមាស (XAUUSD), គូរូបិយប័ណ្ណសំខាន់ៗ (EURUSD, GBPUSD, USDJPY), សន្ទស្សន៍ភាគហ៊ុន (US30, NAS100) និងរូបិយប័ណ្ណឌីជីថល (BTC, ETH)។',
+      'genesis.faq4Q': 'តើខ្ញុំអាចរំពឹងទទួលបានសមាមាត្រ R:R កម្រិតណាពីយុទ្ធសាស្ត្រនេះ?',
+      'genesis.faq4A': 'Setup របស់ SMC ផ្តោតលើផលចំណេញ Asymmetric ចាប់ពី 1:3 ដល់ 1:10+។ ដោយសារចំណុចចូលត្រូវបានសម្រិតសម្រាំងលើ Timeframe តូចនៅតំបន់ Imbalance ច្បាស់លាស់ Stop Loss គឺតូច និងមានសុវត្ថិភាពខ្ពស់។',
+      'genesis.faq5Q': 'តើខ្ញុំអាចចុះឈ្មោះចូលរៀនវគ្គផ្ទាល់ជាមួយ BlueX ដោយរបៀបណា?',
+      'genesis.faq5A': 'ការចុះឈ្មោះត្រូវបានធ្វើឡើងតាមរយៈការសម្ភាសន៍ដោយផ្ទាល់។ សូមទាក់ទងមកកាន់ BlueX ផ្ទាល់លើ Telegram: @moonbluefx ដើម្បីពិភាក្សាពីគោលដៅ និងកំណត់ពេលវេលាពិគ្រោះយោបល់។',
+
+      // Bottom CTA
+      'genesis.ctaTitle': 'ត្រៀមខ្លួនរួចរាល់ហើយឬនៅដើម្បីគ្រប់គ្រងលំហូរទុនស្ថាប័ន?',
+      'genesis.ctaSub': 'បញ្ឈប់ការផ្តល់ប្រាក់ឱ្យទីផ្សារដោយងងឹតងងល់។ ចូលរួមជាមួយ BlueX ដើម្បីកសាងអាជីពជួញដូរប្រកបដោយនិរន្តរភាព។',
 
       // Footer
       'footer.copy': '© 2026 BlueX. គ្រប់គ្រងអហំការរបស់អ្នក។ គ្រប់គ្រងការជួញដូររបស់អ្នក។ រក្សាសិទ្ធិគ្រប់យ៉ាង។'
@@ -1193,9 +1468,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
+  // 9B. SMC GENESIS INTERACTIVE CONCEPT TABS
+  // ========================================================
+  const genesisConceptTabs = document.querySelectorAll('.genesis-concept-tab');
+  const genesisConceptCards = document.querySelectorAll('.genesis-concept-card');
+  if (genesisConceptTabs.length > 0) {
+    genesisConceptTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        genesisConceptTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const target = tab.getAttribute('data-concept');
+        genesisConceptCards.forEach(card => {
+          if (card.getAttribute('data-concept') === target) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+
+  // ========================================================
   // 10. SUBTLE AMBIENT CARD SPOTLIGHT GLOW
   // ========================================================
-  const cards = document.querySelectorAll('.pillar-card, .mentorship-card-main, .about-portrait-card, .capital-card-main, .calculator-card-main, .brokers-card-main, .broker-tier-box, .course-standards-box, .compliance-card, .social-direct-box, .knowledge-card-main, .lesson-card, .book-card');
+  const cards = document.querySelectorAll('.pillar-card, .mentorship-card-main, .about-portrait-card, .capital-card-main, .calculator-card-main, .brokers-card-main, .broker-tier-box, .course-standards-box, .compliance-card, .social-direct-box, .knowledge-card-main, .lesson-card, .book-card, .genesis-module-card, .genesis-compare-col, .genesis-concept-card, .genesis-metric-card, .course-genesis-banner');
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
