@@ -57,16 +57,28 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: 18px; /* High-class elevated +2px baseline for superior readability */
   color-scheme: dark;
   background-color: #080a0f;
+}
+
+@media (max-width: 1024px) {
+  html {
+    font-size: 17.5px;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 17px;
+  }
 }
 
 body {
   font-family: var(--font-sans);
   background-color: transparent;
   color: var(--text-primary);
-  line-height: 1.6;
+  line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   position: relative;
@@ -314,9 +326,9 @@ button {
 }
 
 .nav-link {
-  font-size: 0.78rem;
+  font-size: 13.5px;
   font-weight: 600;
-  padding: 6px 10px;
+  padding: 5px 8.5px;
   border-radius: var(--radius-pill);
   color: var(--text-secondary);
   white-space: nowrap;
@@ -6601,4 +6613,450 @@ body {
   0%   { left: -60%; }
   45%  { left: 130%; }
   100% { left: 130%; }
+}
+
+/* ==========================================================================
+   MODERN KHMER GEOMETRIC TYPOGRAPHY SYSTEM (NOTO SANS KHMER + KANTUMRUY PRO)
+   ========================================================================== */
+html[lang="km"],
+html[lang="km"] body,
+html[lang="km"] input,
+html[lang="km"] button,
+html[lang="km"] select,
+html[lang="km"] textarea {
+  font-family: 'Noto Sans Khmer', 'Kantumruy Pro', 'Plus Jakarta Sans', var(--font-sans) !important;
+  line-height: 1.82 !important;
+}
+
+html[lang="km"] h1,
+html[lang="km"] h2,
+html[lang="km"] h3,
+html[lang="km"] h4,
+html[lang="km"] .hero-title,
+html[lang="km"] .section-title,
+html[lang="km"] .genesis-title,
+html[lang="km"] .mentorship-title,
+html[lang="km"] .capital-title,
+html[lang="km"] .calc-title,
+html[lang="km"] .broker-main-title {
+  font-family: 'Noto Sans Khmer', 'Kantumruy Pro', 'Outfit', sans-serif !important;
+  font-weight: 700 !important;
+  line-height: 1.38 !important;
+}
+
+html[lang="km"] p,
+html[lang="km"] .hero-desc,
+html[lang="km"] .genesis-lead,
+html[lang="km"] .mentorship-body-text,
+html[lang="km"] .capital-lead-text,
+html[lang="km"] .pillar-desc,
+html[lang="km"] .module-desc,
+html[lang="km"] .faq-answer p {
+  font-size: 1.03rem;
+  line-height: 1.85 !important;
+}
+
+/* ==========================================================================
+   SMC GENESIS • BEYOND THE CHARTS ARCHITECTURAL STYLING
+   ========================================================================== */
+.course-genesis-banner {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 26px 30px;
+  background: linear-gradient(135deg, rgba(14, 20, 32, 0.95) 0%, rgba(8, 12, 20, 0.95) 100%);
+  border: 1px solid rgba(255, 59, 87, 0.35);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 59, 87, 0.12);
+  margin-top: 36px;
+}
+
+.course-genesis-banner-brand {
+  flex-shrink: 0;
+}
+
+.course-genesis-emblem {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 59, 87, 0.4);
+  border: 1px solid rgba(255, 59, 87, 0.5);
+}
+
+.smc-beyond-hero {
+  position: relative;
+  padding: 130px 0 70px;
+  overflow: hidden;
+}
+
+.smc-hero-bg-banner {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.12;
+  filter: blur(1.5px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.smc-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.smc-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.smc-breadcrumb a:hover {
+  color: var(--color-cyan);
+}
+
+.smc-breadcrumb .crumb-active {
+  color: var(--color-cyan);
+  font-weight: 600;
+}
+
+.smc-emblem-showcase {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 22px;
+}
+
+.smc-emblem-frame {
+  padding: 6px;
+  background: radial-gradient(circle, rgba(255, 59, 87, 0.3) 0%, transparent 70%);
+  border-radius: 20px;
+}
+
+.smc-emblem-img {
+  width: 104px;
+  height: 104px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 0 32px rgba(255, 59, 87, 0.45);
+  border: 1px solid rgba(255, 59, 87, 0.5);
+}
+
+.smc-crimson-badge {
+  background: rgba(255, 59, 87, 0.12) !important;
+  border-color: rgba(255, 59, 87, 0.45) !important;
+  color: #ff3b57 !important;
+  font-weight: 800 !important;
+}
+
+.smc-crimson-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff3b57;
+  box-shadow: 0 0 10px #ff3b57;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.smc-mrc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 900px;
+  margin: 32px auto 0;
+}
+
+.smc-mrc-card {
+  background: rgba(14, 18, 28, 0.88);
+  border: 1px solid rgba(255, 59, 87, 0.28);
+  border-radius: var(--radius-md);
+  padding: 20px 18px;
+  text-align: center;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.smc-mrc-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 59, 87, 0.6);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 0 0 22px rgba(255, 59, 87, 0.22);
+}
+
+.smc-mrc-letter {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #ff3b57;
+  letter-spacing: 0.15em;
+  margin-bottom: 6px;
+}
+
+.smc-mrc-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.smc-mrc-desc {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.smc-exec-intro-section {
+  padding: 30px 0 50px;
+}
+
+.smc-exec-intro-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  padding: 44px 40px;
+  box-shadow: var(--shadow-card);
+}
+
+.smc-exec-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.smc-section-tag {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--color-cyan);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.smc-exec-heading {
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.28;
+  margin-bottom: 16px;
+}
+
+.smc-exec-paragraph {
+  font-size: 0.96rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.smc-charter-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.smc-charter-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.smc-charter-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  margin-top: 9px;
+  flex-shrink: 0;
+}
+
+.smc-wisdom-box {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 4px solid var(--color-cyan);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  margin-bottom: 14px;
+}
+
+.smc-wisdom-box.emerald-accent {
+  border-left-color: #10b981;
+}
+
+.smc-wisdom-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--color-cyan);
+  margin-bottom: 6px;
+}
+
+.smc-wisdom-box.emerald-accent .smc-wisdom-label {
+  color: #10b981;
+}
+
+.smc-wisdom-quote {
+  font-size: 1rem;
+  font-style: italic;
+  color: #ffffff;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.smc-wisdom-author {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.smc-creed-banner {
+  background: linear-gradient(135deg, rgba(255, 59, 87, 0.15) 0%, rgba(14, 18, 28, 0.9) 100%);
+  border: 1px solid rgba(255, 59, 87, 0.35);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  text-align: center;
+}
+
+.smc-creed-title {
+  font-family: 'Noto Sans Khmer', 'Kantumruy Pro', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.smc-creed-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .smc-mrc-grid {
+    grid-template-columns: 1fr;
+  }
+  .smc-exec-grid {
+    grid-template-columns: 1fr;
+  }
+  .smc-exec-intro-card {
+    padding: 28px 20px;
+  }
+  .course-genesis-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 18px;
+  }
+}
+
+/* ==========================================================================
+   EXECUTIVE SWISS PRIVATE BANKING LIGHT THEME ENHANCEMENT
+   ========================================================================== */
+[data-theme="light"] {
+  --bg-main: #f4f7fb;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f8fafc;
+  --bg-card-hover: #edf2f7;
+  --bg-pill: #eef2f6;
+  --bg-pill-hover: #e2e8f0;
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --border-medium: rgba(15, 23, 42, 0.15);
+  --border-gold: rgba(180, 83, 9, 0.4);
+  --border-cyan: rgba(2, 132, 199, 0.4);
+  --color-cyan: #0284c7;
+  --color-gold: #b45309;
+  --color-amber: #d97706;
+  --text-primary: #090e17;
+  --text-secondary: #1e293b;
+  --text-muted: #475569;
+  --shadow-card: 0 4px 6px -1px rgba(15, 23, 42, 0.04), 0 20px 40px -15px rgba(15, 23, 42, 0.07);
+}
+
+[data-theme="light"] body {
+  background-color: #f4f7fb !important;
+  color: #090e17 !important;
+}
+
+[data-theme="light"] .bg-golden-waves-horizon {
+  opacity: 0.3 !important;
+  filter: contrast(1.15) saturate(1.2) sepia(0.35) !important;
+}
+
+[data-theme="light"] .site-bg-overlay {
+  background: radial-gradient(circle at center, rgba(244, 247, 251, 0.2) 0%, rgba(244, 247, 251, 0.88) 100%) !important;
+}
+
+[data-theme="light"] .smc-beyond-hero {
+  background: radial-gradient(circle at 50% 10%, rgba(2, 132, 199, 0.06) 0%, transparent 60%);
+}
+
+[data-theme="light"] .smc-exec-intro-card {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .smc-exec-heading {
+  color: #090e17 !important;
+}
+
+[data-theme="light"] .smc-exec-paragraph,
+[data-theme="light"] .smc-charter-item {
+  color: #1e293b !important;
+}
+
+[data-theme="light"] .smc-mrc-card {
+  background: #ffffff !important;
+  border-color: rgba(225, 29, 72, 0.25) !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] .smc-mrc-title {
+  color: #090e17 !important;
+}
+
+[data-theme="light"] .smc-mrc-desc {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .smc-wisdom-box {
+  background: #f8fafc !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+  border-left-color: #0284c7 !important;
+}
+
+[data-theme="light"] .smc-wisdom-box.emerald-accent {
+  border-left-color: #059669 !important;
+}
+
+[data-theme="light"] .smc-wisdom-quote {
+  color: #090e17 !important;
+}
+
+[data-theme="light"] .smc-creed-banner {
+  background: linear-gradient(135deg, rgba(225, 29, 72, 0.08) 0%, #ffffff 100%) !important;
+  border-color: rgba(225, 29, 72, 0.25) !important;
+}
+
+[data-theme="light"] .smc-creed-title {
+  color: #090e17 !important;
+}
+
+[data-theme="light"] .course-genesis-banner {
+  background: #ffffff !important;
+  border-color: rgba(225, 29, 72, 0.28) !important;
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .course-genesis-banner-title {
+  color: #090e17 !important;
+}
+
+[data-theme="light"] .course-genesis-banner-desc {
+  color: #475569 !important;
 }

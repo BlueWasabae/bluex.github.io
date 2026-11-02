@@ -40,13 +40,13 @@
   <link rel="apple-touch-icon" href="./assets/images/bluex-3d-logo.png">
   <meta name="theme-color" content="#08090d">
 
-  <!-- Google Fonts: Popular Luxury Fonts (Cinzel, Outfit, Plus Jakarta Sans, Playfair Display, Kantumruy Pro) -->
+  <!-- Google Fonts: Popular Luxury Fonts + Modern Khmer (Noto Sans Khmer, Kantumruy Pro, JetBrains Mono) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Kantumruy+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600;700&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=20261103v2">
+  <link rel="stylesheet" href="styles.css?v=20261103v3">
 
   <style>
     /* Specific Table & Ecosystem Elements for SMC Genesis */
@@ -173,53 +173,79 @@
 
   <main>
     <!-- ========================================================
-         HERO SECTION: SMC GENESIS
+         HERO SECTION: SMC GENESIS • BEYOND THE CHARTS
          ======================================================== -->
-    <section class="genesis-hero" id="hero">
+    <section class="genesis-hero smc-beyond-hero" id="hero">
+      <div class="smc-hero-bg-banner" style="background-image: url('./assets/images/smc-genesis-hero-banner.jpg');"></div>
       <div class="container">
         <div class="genesis-hero-inner">
           <!-- Breadcrumb navigation -->
-          <div style="margin-bottom: 16px; font-size: 0.82rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 8px;">
-            <a href="index.html" style="color: inherit; text-decoration: none;">BlueX Home</a>
+          <div class="smc-breadcrumb">
+            <a href="index.html">BlueX Home</a>
             <span>/</span>
-            <span style="color: var(--color-cyan);">SMC Genesis Portal</span>
+            <span class="crumb-active">SMC Genesis • Beyond The Charts</span>
           </div>
-          <br>
+
+          <!-- Official SMC Genesis Emblem -->
+          <div class="smc-emblem-showcase">
+            <div class="smc-emblem-frame">
+              <img src="./assets/images/smc-genesis-logo.jpg" alt="SMC Genesis • Beyond The Charts Official Logo" class="smc-emblem-img">
+            </div>
+          </div>
 
           <!-- Glowing Badge -->
-          <div class="genesis-badge pulse-ring">
-            <span class="genesis-pulse-dot"></span>
-            <span data-i18n="genesis.badge">🎓 Official Mentorship Course • Learn Institutional Trading</span>
+          <div class="genesis-badge smc-crimson-badge pulse-ring">
+            <span class="smc-crimson-dot"></span>
+            <span data-i18n="genesis.badge">SMC GENESIS • BEYOND THE CHARTS • VERSION 4.0 PRO</span>
           </div>
 
           <!-- Main Title -->
-          <h1 class="genesis-title" data-i18n="genesis.heroTitle">
-            Master Institutional Trading with SMC Genesis.<br>
-            <span class="highlight">Official Masterclass &amp; Training Program.</span>
+          <h1 class="genesis-title smc-main-title" data-i18n="genesis.heroTitle">
+            SMC GENESIS • BEYOND THE CHARTS<br>
+            <span class="highlight">Institutional Trading Architecture &amp; Masterclass.</span>
           </h1>
 
           <!-- Lead Subtitle -->
-          <p class="genesis-lead" data-i18n="genesis.heroSub">
-            Stop donating liquidity to retail traps. We teach you how to trade Gold (XAU/USD) with pure mechanical Market Structure, institutional Supply &amp; Demand, liquidity sweeps, and disciplined capital preservation.
+          <p class="genesis-lead smc-lead-intro" data-i18n="genesis.heroSub">
+            An institutional-grade synthesis of Smart Money Concepts 2.0 &amp; 3.0 engineered for Gold (XAU/USD) and major liquid markets. Built on the M.R.C Protocol (Mindset • Rules • Consistency), SMC Genesis replaces retail indicator guesswork with a structured 10-Module Quantitative Architecture—teaching you how institutions engineer liquidity, transfer multi-timeframe data, and execute with asymmetric risk precision.
           </p>
+
+          <!-- The M.R.C Protocol Trio (Official Slide 01 Architecture) -->
+          <div class="smc-mrc-grid">
+            <div class="smc-mrc-card">
+              <div class="smc-mrc-letter">• M •</div>
+              <div class="smc-mrc-title" data-i18n="genesis.tenet1Title">MINDSET</div>
+              <div class="smc-mrc-desc" data-i18n="genesis.tenet1Desc">Probabilistic thinking, emotional neutrality &amp; controlled risk acceptance</div>
+            </div>
+            <div class="smc-mrc-card">
+              <div class="smc-mrc-letter">• R •</div>
+              <div class="smc-mrc-title" data-i18n="genesis.tenet2Title">RULES</div>
+              <div class="smc-mrc-desc" data-i18n="genesis.tenet2Desc">100% mechanical checklist discipline — no confirmation, no execution</div>
+            </div>
+            <div class="smc-mrc-card">
+              <div class="smc-mrc-letter">• C •</div>
+              <div class="smc-mrc-title" data-i18n="genesis.tenet3Title">CONSISTENT</div>
+              <div class="smc-mrc-desc" data-i18n="genesis.tenet3Desc">Long-term durability where Profit = Knowledge + Repeatable Skill</div>
+            </div>
+          </div>
 
           <!-- Key Metrics Grid -->
           <div class="genesis-metrics-grid">
             <div class="genesis-metric-card">
-              <div class="genesis-metric-value" data-i18n="genesis.metric1Val">1:3 to 1:10+</div>
-              <div class="genesis-metric-label" data-i18n="genesis.metric1Label">Target Risk-to-Reward Ratio</div>
+              <div class="genesis-metric-value" data-i18n="genesis.metric1Val">10 Modules</div>
+              <div class="genesis-metric-label" data-i18n="genesis.metric1Label">Structured Quantitative Curriculum</div>
             </div>
             <div class="genesis-metric-card">
               <div class="genesis-metric-value" data-i18n="genesis.metric2Val">Zero Indicators</div>
-              <div class="genesis-metric-label" data-i18n="genesis.metric2Label">Pure Liquidity &amp; Price Action</div>
+              <div class="genesis-metric-label" data-i18n="genesis.metric2Label">Pure Structure, S&amp;D &amp; Liquidity</div>
             </div>
             <div class="genesis-metric-card">
               <div class="genesis-metric-value" data-i18n="genesis.metric3Val">0.5% – 1.0%</div>
               <div class="genesis-metric-label" data-i18n="genesis.metric3Label">Strict Capital Risk Per Setup</div>
             </div>
             <div class="genesis-metric-card">
-              <div class="genesis-metric-value" data-i18n="genesis.metric4Val">Direct Access</div>
-              <div class="genesis-metric-label" data-i18n="genesis.metric4Label">Course Inquiries &amp; Direct DM (@Le_Bluue)</div>
+              <div class="genesis-metric-value" data-i18n="genesis.metric4Val">1:3 to 1:10+</div>
+              <div class="genesis-metric-label" data-i18n="genesis.metric4Label">Asymmetric Risk-to-Reward Profile</div>
             </div>
           </div>
 
@@ -235,7 +261,7 @@
               <span data-i18n="genesis.heroApplyBtn">⚡ Register Now • DM @Le_Bluue</span>
             </a>
 
-            <a href="https://t.me/moonbluefx" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="border-color: rgba(0, 255, 236, 0.4); color: var(--color-cyan);" title="Join Community Group (t.me/moonbluefx)">
+            <a href="https://t.me/moonbluefx" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="border-color: rgba(56, 189, 248, 0.45); color: var(--color-cyan);" title="Join Community Group (t.me/moonbluefx)">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.832.922z"/>
               </svg>
@@ -243,35 +269,70 @@
             </a>
 
             <a href="#topics" class="btn-secondary">
-              <span data-i18n="genesis.heroCurriculumBtn">Explore Course Syllabus ↓</span>
-            </a>
-
-            <a href="#brokers-genesis" class="btn-open-knowledge-page" style="margin-left: 0;">
-              <span data-i18n="genesis.heroBrokerBtn">Execute on Low-Latency Raw Spreads ➔</span>
+              <span data-i18n="genesis.heroCurriculumBtn">Explore 10-Module Syllabus ↓</span>
             </a>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <!-- 3 Core Foundation Tenets (from Institutional Blueprint) -->
-          <div class="genesis-tenets-grid">
-            <div class="genesis-tenet-card">
-              <span class="genesis-tenet-icon">🧠</span>
-              <div>
-                <div class="genesis-tenet-title" data-i18n="genesis.tenet1Title">01. MINDSET</div>
-                <div class="genesis-tenet-desc" data-i18n="genesis.tenet1Desc">Emotional discipline &amp; probabilistic thinking</div>
+    <!-- ========================================================
+         EXECUTIVE INTRODUCTION: WHAT IS SMC GENESIS?
+         ======================================================== -->
+    <section class="smc-exec-intro-section">
+      <div class="container">
+        <div class="smc-exec-intro-card">
+          <div class="smc-exec-grid">
+            <!-- Left: Core Philosophy & Curriculum Charter -->
+            <div class="smc-exec-left">
+              <span class="smc-section-tag" data-i18n="genesis.introTag">EXECUTIVE BRIEFING • BEYOND THE CHARTS</span>
+              <h2 class="smc-exec-heading" data-i18n="genesis.introTitle">
+                A Quantitative Operating System for Institutional Price Delivery
+              </h2>
+              <p class="smc-exec-paragraph" data-i18n="genesis.introP1">
+                Financial markets do not move by random chance or retail chart patterns. Every major price expansion is driven by institutional liquidity engineering—accumulating orders where retail traders place predictable stop-losses.
+              </p>
+              <p class="smc-exec-paragraph" data-i18n="genesis.introP2">
+                <strong>SMC Genesis (Version 4.0 Pro)</strong> is the proprietary flagship curriculum of BlueX Academy. It synthesizes foundational Smart Money Concepts 2.0 &amp; 3.0 into a clean, rule-based institutional desk framework—designed to take a trader from raw structural mapping to surgical lower-timeframe execution without ever relying on lagging indicators.
+              </p>
+
+              <div class="smc-charter-rules">
+                <div class="smc-charter-item">
+                  <span class="smc-charter-dot"></span>
+                  <span data-i18n="genesis.charter1"><strong>Data Collection &amp; Homework Discipline:</strong> Theory alone builds zero skill. Mastery requires structured backtesting, forward-testing, and systematic chart logging.</span>
+                </div>
+                <div class="smc-charter-item">
+                  <span class="smc-charter-dot"></span>
+                  <span data-i18n="genesis.charter2"><strong>Objective Rule Validation:</strong> Every structural break (BOS), internal pullback (IBOS), fractal shift (FTS), and sweep is governed by strict mechanical criteria.</span>
+                </div>
+                <div class="smc-charter-item">
+                  <span class="smc-charter-dot"></span>
+                  <span data-i18n="genesis.charter3"><strong>Protected Intellectual Property:</strong> Complete lesson schematics, proprietary entry checklists, and live chart drills are reserved exclusively for enrolled SMC Genesis students.</span>
+                </div>
               </div>
             </div>
-            <div class="genesis-tenet-card">
-              <span class="genesis-tenet-icon">🛡️</span>
-              <div>
-                <div class="genesis-tenet-title" data-i18n="genesis.tenet2Title">02. RULES</div>
-                <div class="genesis-tenet-desc" data-i18n="genesis.tenet2Desc">Strict execution discipline &amp; risk protection</div>
+
+            <!-- Right: Institutional Wisdom & Core Creed (From Slide 02) -->
+            <div class="smc-exec-right">
+              <div class="smc-wisdom-box cyan-accent">
+                <div class="smc-wisdom-label" data-i18n="genesis.wisdom1Tag">INSTITUTIONAL WISDOM</div>
+                <blockquote class="smc-wisdom-quote">“A small profit is better than a big loss.”</blockquote>
+                <div class="smc-wisdom-author">— Ron Rash</div>
               </div>
-            </div>
-            <div class="genesis-tenet-card">
-              <span class="genesis-tenet-icon">🎯</span>
-              <div>
-                <div class="genesis-tenet-title" data-i18n="genesis.tenet3Title">03. ACCURACY</div>
-                <div class="genesis-tenet-desc" data-i18n="genesis.tenet3Desc">Consistency in institutional Supply &amp; Demand</div>
+
+              <div class="smc-wisdom-box emerald-accent">
+                <div class="smc-wisdom-label" data-i18n="genesis.wisdom2Tag">DISCIPLINE OVER EMOTION</div>
+                <blockquote class="smc-wisdom-quote">“Successful traders are not afraid of losing money, they are afraid of losing their discipline.”</blockquote>
+                <div class="smc-wisdom-author">— Ray Dalio</div>
+              </div>
+
+              <div class="smc-creed-banner">
+                <div class="smc-creed-title" data-i18n="genesis.creedText">
+                  SMC GENESIS: ធ្វើគឺដើម្បីទាំងអស់គ្នា ទាំងអស់គ្នាគឺធ្វើដើម្បីខ្លួនឯង!
+                </div>
+                <div class="smc-creed-sub" data-i18n="genesis.creedSub">
+                  Built for the collective • Mastered through personal discipline
+                </div>
               </div>
             </div>
           </div>
@@ -413,57 +474,93 @@
       </div>
 
       <div class="genesis-modules-grid">
-        <!-- Topic 01 -->
+        <!-- Module 01 -->
         <div class="genesis-module-card">
-          <span class="module-badge-num" data-i18n="genesis.m1Num">Topic 01</span>
-          <h3 class="module-title" data-i18n="genesis.m1Title">Market Structure Foundations (BOS, IBOS, FTS)</h3>
+          <span class="module-badge-num" data-i18n="genesis.m1Num">Module 01</span>
+          <h3 class="module-title" data-i18n="genesis.m1Title">Mindset, M.R.C Protocol &amp; TradingView Setup</h3>
           <p class="module-desc" data-i18n="genesis.m1Desc">
-            The architecture of financial markets: distinguishing between Major Trend Continuation (BOS), Internal Retracement Pullbacks (IBOS), and Fractal Structural Shifts (FTS) without retail lagging indicators.
+            The foundational operating philosophy: Mindset (probabilistic thinking), Rules (100% mechanical checklist discipline), and Consistency. Complete TradingView chart configuration, trendline templates, and zone styling.
           </p>
         </div>
 
-        <!-- Topic 02 -->
+        <!-- Module 02 -->
         <div class="genesis-module-card">
-          <span class="module-badge-num" data-i18n="genesis.m2Num">Topic 02</span>
-          <h3 class="module-title" data-i18n="genesis.m2Title">Multi-Timeframe Correlation &amp; Data Transfer</h3>
+          <span class="module-badge-num" data-i18n="genesis.m2Num">Module 02</span>
+          <h3 class="module-title" data-i18n="genesis.m2Title">Market Structure Foundations (BOS, IBOS, FTS)</h3>
           <p class="module-desc" data-i18n="genesis.m2Desc">
-            Understanding the Data Transfer Mechanism: how higher-timeframe pullbacks unfold as counter-trend structures on middle timeframes, and where structural shifts signal completion back into macro flow.
+            The mechanical grammar of price action: distinguishing between Major Trend Continuation (BOS), Internal Retracement Pullbacks (IBOS), and Fractal Structural Shifts (FTS) without retail lagging indicators.
           </p>
         </div>
 
-        <!-- Topic 03 -->
+        <!-- Module 03 -->
         <div class="genesis-module-card">
-          <span class="module-badge-num" data-i18n="genesis.m3Num">Topic 03</span>
-          <h3 class="module-title" data-i18n="genesis.m3Title">The 4 Supply &amp; Demand Extraction Models</h3>
+          <span class="module-badge-num" data-i18n="genesis.m3Num">Module 03</span>
+          <h3 class="module-title" data-i18n="genesis.m3Title">Multi-Timeframe Matrix &amp; Data Transfer Theory</h3>
           <p class="module-desc" data-i18n="genesis.m3Desc">
-            Moving beyond basic support/resistance into institutional footprints: Rally-Base-Drop (RBD), Drop-Base-Rally (DBR), Rally-Base-Rally (RBR), and Drop-Base-Drop (DBD) at extreme and decisional displacement origins.
+            How institutions transfer data across timeframes: High Timeframe (H4/D1) macro bias synchronized with Middle Timeframe (M15/H1) structural pullbacks and Low Timeframe (M1/M3) surgical execution triggers.
           </p>
         </div>
 
-        <!-- Topic 04 -->
+        <!-- Module 04 -->
         <div class="genesis-module-card">
-          <span class="module-badge-num" data-i18n="genesis.m4Num">Topic 04</span>
-          <h3 class="module-title" data-i18n="genesis.m4Title">Mitigation Lifecycle &amp; Zone Dynamics</h3>
+          <span class="module-badge-num" data-i18n="genesis.m4Num">Module 04</span>
+          <h3 class="module-title" data-i18n="genesis.m4Title">The 4 Supply &amp; Demand Extraction Models</h3>
           <p class="module-desc" data-i18n="genesis.m4Desc">
-            The 3-phase institutional zone lifecycle: Zone Creation, Continuation Model, and Reversal Shift. Why unmitigated fresh zones hold high probability and how break-even settlements occur.
+            Moving beyond basic support/resistance into institutional footprints: Range-Based, Pivot-Based, Single-Candle Extreme Order Block, and Fractal Wick S&amp;D at high-displacement structural origins.
           </p>
         </div>
 
-        <!-- Topic 05 -->
+        <!-- Module 05 -->
         <div class="genesis-module-card">
-          <span class="module-badge-num" data-i18n="genesis.m5Num">Topic 05</span>
-          <h3 class="module-title" data-i18n="genesis.m5Title">Liquidity Anatomy &amp; The 5 Core Retail Traps</h3>
+          <span class="module-badge-num" data-i18n="genesis.m5Num">Module 05</span>
+          <h3 class="module-title" data-i18n="genesis.m5Title">Mitigation Lifecycle &amp; Last Defender (LDD)</h3>
           <p class="module-desc" data-i18n="genesis.m5Desc">
-            How smart money engineers liquidity: Buy-Side &amp; Sell-Side pools, the 5 Visual Traps (Swing stops, Double structures, Trendline inducement, Range purges), BCC sweeps vs. Liquidity RUN, and BIO Theory.
+            The 3-phase institutional zone lifecycle: Zone Creation, Continuation Model, and Reversal Shift. Tracking unmitigated fresh zones, break-even settlements, and the Last Defender Demand/Supply protocol.
           </p>
         </div>
 
-        <!-- Topic 06 -->
+        <!-- Module 06 -->
         <div class="genesis-module-card">
-          <span class="module-badge-num" data-i18n="genesis.m6Num">Topic 06</span>
-          <h3 class="module-title" data-i18n="genesis.m6Title">Multi-Scenario Execution &amp; Asymmetric Compounding</h3>
+          <span class="module-badge-num" data-i18n="genesis.m6Num">Module 06</span>
+          <h3 class="module-title" data-i18n="genesis.m6Title">Liquidity Anatomy &amp; The 5 Core Retail Traps</h3>
           <p class="module-desc" data-i18n="genesis.m6Desc">
-            Executing with high-probability scenario models: Counter-Trend Exhaustion, Structure Refinement Pro-Trend, and Instant Momentum Expansion — paired with fixed 0.5%–1.0% risk and minimum 1:3 to 1:5+ RR.
+            How smart money engineers liquidity pools: Buy-Side &amp; Sell-Side liquidity, the 5 core retail traps (Swing stops, Double tops/bottoms, Trendline traps, Range purges, Inducements), and liquidity runs.
+          </p>
+        </div>
+
+        <!-- Module 07 -->
+        <div class="genesis-module-card">
+          <span class="module-badge-num" data-i18n="genesis.m7Num">Module 07</span>
+          <h3 class="module-title" data-i18n="genesis.m7Title">Sweep Taxonomy, BCC &amp; BIO Theory</h3>
+          <p class="module-desc" data-i18n="genesis.m7Desc">
+            Deep dive into Wick Sweeps vs. Body Candle Closed (BCC) traps. Applying By Independent Objective (BIO) Theory where BOS confirms BOS, IBOS confirms IBOS, and FT confirms FT to prevent false validation.
+          </p>
+        </div>
+
+        <!-- Module 08 -->
+        <div class="genesis-module-card">
+          <span class="module-badge-num" data-i18n="genesis.m8Num">Module 08</span>
+          <h3 class="module-title" data-i18n="genesis.m8Title">Canonical Liquidity Sweeps (Cases 1, 2 &amp; 3)</h3>
+          <p class="module-desc" data-i18n="genesis.m8Desc">
+            Surgical execution rules for Candlestick Closed In (-X-) notation: Case 1 (BOS sweep requiring IBOS shift), Case 2 (IBOS sweep requiring FT shift), and Case 3 (Fractal sweep requiring structural validation).
+          </p>
+        </div>
+
+        <!-- Module 09 -->
+        <div class="genesis-module-card">
+          <span class="module-badge-num" data-i18n="genesis.m9Num">Module 09</span>
+          <h3 class="module-title" data-i18n="genesis.m9Title">The 3 Execution Scenarios (Counter, Pro &amp; Momentum)</h3>
+          <p class="module-desc" data-i18n="genesis.m9Desc">
+            Standard operating procedures: Scenario 1 (Counter-Trend Exhaustion at major zones), Scenario 2 (Pro-Trend Refinement Types 1, 2, 3), and Scenario 3 (Instant Momentum Breakout without deep pullback).
+          </p>
+        </div>
+
+        <!-- Module 10 -->
+        <div class="genesis-module-card">
+          <span class="module-badge-num" data-i18n="genesis.m10Num">Module 10</span>
+          <h3 class="module-title" data-i18n="genesis.m10Title">Institutional Trade &amp; Risk Management</h3>
+          <p class="module-desc" data-i18n="genesis.m10Desc">
+            Defending capital with mathematical rigor: 2-3 Pip Stop Loss Padding against spread spikes, mechanical Break-Even rules, asymmetric 1:3 to 1:10+ RR targets, and strict 0.5%–1.0% risk limits.
           </p>
         </div>
       </div>
@@ -1101,6 +1198,6 @@
     </a>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20261103v3"></script>
 </body>
 </html>
