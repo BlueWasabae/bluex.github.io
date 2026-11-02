@@ -1,4 +1,4 @@
-﻿// ========================================================
+// ========================================================
 // BlueX Portfolio & Trading Ecosystem - Core Engine
 // Features:
 // 1. Navigation & Smooth Scroll
@@ -1637,18 +1637,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
       draw() {
-        const currentAlpha = Math.max(0.08, Math.min(1, this.alpha));
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        const currentAlpha = Math.max(0.12, Math.min(1, this.alpha * (isLight ? 1.35 : 1)));
         ctx.save();
         ctx.translate(this.x, this.y);
 
-        let color = "rgba(255, 184, 0, " + currentAlpha + ")";
-        let shadowColor = 'rgba(255, 184, 0, 0.6)';
+        let color = isLight
+          ? "rgba(180, 83, 9, " + currentAlpha + ")"
+          : "rgba(255, 184, 0, " + currentAlpha + ")";
+        let shadowColor = isLight ? 'rgba(180, 83, 9, 0.55)' : 'rgba(255, 184, 0, 0.6)';
         if (this.colorType === 'cyan') {
-          color = "rgba(0, 255, 224, " + (currentAlpha * 0.9) + ")";
-          shadowColor = 'rgba(0, 255, 224, 0.6)';
+          color = isLight
+            ? "rgba(2, 132, 199, " + (currentAlpha * 0.95) + ")"
+            : "rgba(0, 255, 224, " + (currentAlpha * 0.9) + ")";
+          shadowColor = isLight ? 'rgba(2, 132, 199, 0.55)' : 'rgba(0, 255, 224, 0.6)';
         } else if (this.colorType === 'white') {
-          color = "rgba(255, 255, 255, " + currentAlpha + ")";
-          shadowColor = 'rgba(255, 255, 255, 0.7)';
+          color = isLight
+            ? "rgba(15, 23, 42, " + (currentAlpha * 0.65) + ")"
+            : "rgba(255, 255, 255, " + currentAlpha + ")";
+          shadowColor = isLight ? 'rgba(180, 83, 9, 0.45)' : 'rgba(255, 255, 255, 0.7)';
         }
 
         if (this.isStar) {
@@ -1708,6 +1715,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       ctx.clearRect(0, 0, width, height);
 
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -1717,12 +1725,12 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            const beamAlpha = 0.11 * (1 - dist / 105);
+            const beamAlpha = (isLight ? 0.18 : 0.11) * (1 - dist / 105);
             const beamColor = particles[i].colorType === 'cyan' 
-              ? "rgba(0, 255, 224, " + beamAlpha + ")" 
-              : "rgba(255, 184, 0, " + beamAlpha + ")";
+              ? (isLight ? "rgba(2, 132, 199, " + beamAlpha + ")" : "rgba(0, 255, 224, " + beamAlpha + ")")
+              : (isLight ? "rgba(180, 83, 9, " + beamAlpha + ")" : "rgba(255, 184, 0, " + beamAlpha + ")");
             ctx.strokeStyle = beamColor;
-            ctx.lineWidth = 0.6;
+            ctx.lineWidth = isLight ? 0.75 : 0.6;
             ctx.stroke();
           }
         }
