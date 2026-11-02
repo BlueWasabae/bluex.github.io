@@ -165,8 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.faq': 'FAQ',
       'nav.connect': 'Connect',
       'nav.telegram': 'Telegram',
-      'nav.register': 'Register',
-      'nav.registerNow': 'Register',
+      'nav.register': 'Register Now',
+      'nav.registerNow': 'Register Now',
 
       // Hero
       'hero.hey': 'Hey',
@@ -515,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.metric3Label': 'Strict Capital Risk Per Setup',
       'genesis.metric4Val': 'Class Admissions',
       'genesis.metric4Label': 'Inquiries & Direct DM (@Le_Bluue)',
-      'genesis.heroApplyBtn': '⚡ Enroll in Class: DM @Le_Bluue',
+      'genesis.heroApplyBtn': '⚡ Register Now - DM @Le_Bluue',
       'genesis.heroCurriculumBtn': 'Explore Course Syllabus ↓',
       'genesis.heroCommunityBtn': '👥 Join Community Telegram (t.me/moonbluefx)',
       'genesis.heroBrokerBtn': 'Execute on Low-Latency Raw Spreads →',
@@ -628,7 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.spotlightActionTitle': 'Ready to Master Institutional Trading?',
       'genesis.spotlightActionDesc': 'Limited seats per class intake to ensure high-conviction student execution and focused learning.',
       'genesis.spotlightActionBtn': '⚡ Inquire for Class Admissions: DM @Le_Bluue',
-      'genesis.floatingCta': '⚡ Enroll in Class: DM @Le_Bluue',
+      'genesis.floatingCta': '⚡ Register Now - DM @Le_Bluue',
       'genesis.brokerBadge': 'Execution Speed & Raw Liquidity',
       'genesis.brokerTitle': 'Recommended Brokers for SMC Execution',
       'genesis.brokerDesc': 'Smart Money Concepts execution requires ultra-low latency, tightest raw spreads, deep order books, and zero artificial slippage. We recommend the following tier-1 regulated partners:',

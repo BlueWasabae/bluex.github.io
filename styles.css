@@ -5958,3 +5958,236 @@ button {
   color: #ffffff;
   border-color: #008775;
 }
+
+
+/* ==========================================================================
+   24K GOLDEN WAVE HORIZON & LUXURY INTERACTIVE DECORATIONS
+   ========================================================================== */
+.bg-golden-waves-horizon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 42vh;
+  min-height: 260px;
+  max-height: 460px;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+  mask-image: linear-gradient(to top, rgba(0,0,0,0.95) 20%, rgba(0,0,0,0.4) 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.95) 20%, rgba(0,0,0,0.4) 70%, transparent 100%);
+}
+
+.golden-wave-layer {
+  position: absolute;
+  bottom: -15px;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background-image: url('./assets/images/gold-waves-pattern.png');
+  background-repeat: repeat-x;
+  background-position: bottom center;
+  background-size: auto 88%;
+  pointer-events: none;
+}
+
+.golden-wave-layer.wave-back {
+  opacity: 0.24;
+  filter: drop-shadow(0 0 14px rgba(255, 184, 0, 0.55)) hue-rotate(-6deg);
+  animation: goldWaveDriftRight 34s linear infinite alternate;
+  transform: scaleY(0.92);
+}
+
+.golden-wave-layer.wave-front {
+  opacity: 0.42;
+  filter: drop-shadow(0 0 18px rgba(255, 208, 75, 0.75));
+  animation: goldWaveDriftLeft 24s ease-in-out infinite alternate;
+}
+
+@keyframes goldWaveDriftLeft {
+  0%   { transform: translate3d(0%, 0px, 0) scaleY(1); }
+  50%  { transform: translate3d(-12%, -8px, 0) scaleY(1.04); }
+  100% { transform: translate3d(-24%, 2px, 0) scaleY(0.98); }
+}
+
+@keyframes goldWaveDriftRight {
+  0%   { transform: translate3d(-20%, 4px, 0) scaleY(0.92); }
+  50%  { transform: translate3d(-8%, -6px, 0) scaleY(0.97); }
+  100% { transform: translate3d(4%, 2px, 0) scaleY(0.92); }
+}
+
+/* Decorative Golden Wave Card Accent on Hero & Major Containers */
+.hero-card::after,
+.mentorship-card-main::after,
+.social-connect-card::after,
+.genesis-course-spotlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background-image: url('./assets/images/gold-waves-pattern.png');
+  background-repeat: repeat-x;
+  background-position: bottom center;
+  background-size: auto 130px;
+  opacity: 0.14;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px rgba(255, 184, 0, 0.45));
+  z-index: 0;
+}
+
+/* 1-Click Direct Personal Contact DM & Registration Card */
+.direct-dm-register-card {
+  position: relative;
+  background: radial-gradient(circle at 85% 15%, rgba(255, 184, 0, 0.14) 0%, rgba(0, 255, 224, 0.08) 45%, rgba(11, 14, 23, 0.95) 100%);
+  border: 1px solid rgba(255, 184, 0, 0.45);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(255, 184, 0, 0.15);
+  overflow: hidden;
+  z-index: 2;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+
+.direct-dm-register-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 65px rgba(0, 0, 0, 0.75), 0 0 42px rgba(255, 184, 0, 0.28);
+  border-color: rgba(255, 184, 0, 0.75);
+}
+
+.dm-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 184, 0, 0.14);
+  border: 1px solid rgba(255, 184, 0, 0.4);
+  color: var(--color-gold);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.dm-card-title {
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.dm-card-desc {
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.dm-perks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.dm-perk-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+}
+
+.dm-perk-item span:first-child {
+  color: var(--color-gold);
+  font-size: 1rem;
+}
+
+.btn-oneclick-dm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  text-decoration: none;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA800 50%, #00FFE0 100%);
+  background-size: 200% auto;
+  color: #05070c !important;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 16px 24px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(255, 184, 0, 0.4);
+  animation: liquidGoldPulse 4s ease infinite alternate;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-oneclick-dm:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 14px 38px rgba(0, 255, 224, 0.5), 0 0 25px rgba(255, 184, 0, 0.6);
+}
+
+@keyframes liquidGoldPulse {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.btn-community-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  background: rgba(0, 255, 224, 0.08);
+  border: 1px solid rgba(0, 255, 224, 0.35);
+  color: var(--color-cyan);
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.btn-community-secondary:hover {
+  background: rgba(0, 255, 224, 0.16);
+  transform: translateY(-1px);
+}
+
+/* Navbar Register Now 1-Click Shimmer Button */
+.nav-register-dm-btn {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #FFD700 0%, #FFB800 55%, #00FFE0 100%) !important;
+  color: #05070b !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 20px rgba(255, 184, 0, 0.45), 0 0 12px rgba(0, 255, 224, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+}
+
+.nav-register-dm-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  transform: rotate(25deg);
+  animation: navBtnSheen 3.5s ease-in-out infinite;
+}
+
+@keyframes navBtnSheen {
+  0%   { left: -60%; }
+  45%  { left: 130%; }
+  100% { left: 130%; }
+}
