@@ -1,4 +1,4 @@
-// ========================================================
+﻿// ========================================================
 // BlueX Portfolio & Trading Ecosystem - Core Engine
 // Features:
 // 1. Navigation & Smooth Scroll
@@ -1572,4 +1572,203 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+
+
+  // ========================================================
+  // 11. LUXURY STARLIGHT BEAMING & GOLDEN EMBER CANVAS ENGINE
+  // ========================================================
+  function initBluexStarlightCanvas() {
+    const canvas = document.getElementById('bluexStarlightCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+    const particleCount = 65;
+    let shootingStar = null;
+    let mouse = { x: -1000, y: -1000 };
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class CosmicParticle {
+      constructor() {
+        this.reset(true);
+      }
+      reset(initial = false) {
+        this.x = Math.random() * width;
+        this.y = initial ? Math.random() * height : height + 10;
+        this.vy = -(Math.random() * 0.45 + 0.12);
+        this.vx = (Math.random() - 0.5) * 0.25;
+        this.size = Math.random() * 2.2 + 0.7;
+        this.baseAlpha = Math.random() * 0.5 + 0.25;
+        this.alpha = this.baseAlpha;
+        this.phase = Math.random() * Math.PI * 2;
+        this.speed = Math.random() * 0.03 + 0.012;
+        const rand = Math.random();
+        this.colorType = rand > 0.55 ? 'gold' : (rand > 0.20 ? 'cyan' : 'white');
+        this.isStar = Math.random() > 0.65;
+      }
+      update() {
+        this.y += this.vy;
+        this.x += this.vx;
+        this.phase += this.speed;
+        this.alpha = this.baseAlpha + Math.sin(this.phase) * 0.25;
+
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          const force = (120 - dist) / 120;
+          this.x += (dx / dist) * force * 1.5;
+          this.y += (dy / dist) * force * 1.5;
+        }
+
+        if (this.y < -15 || this.x < -15 || this.x > width + 15) {
+          this.reset();
+        }
+      }
+      draw() {
+        const currentAlpha = Math.max(0.08, Math.min(1, this.alpha));
+        ctx.save();
+        ctx.translate(this.x, this.y);
+
+        let color = "rgba(255, 184, 0, " + currentAlpha + ")";
+        let shadowColor = 'rgba(255, 184, 0, 0.6)';
+        if (this.colorType === 'cyan') {
+          color = "rgba(0, 255, 224, " + (currentAlpha * 0.9) + ")";
+          shadowColor = 'rgba(0, 255, 224, 0.6)';
+        } else if (this.colorType === 'white') {
+          color = "rgba(255, 255, 255, " + currentAlpha + ")";
+          shadowColor = 'rgba(255, 255, 255, 0.7)';
+        }
+
+        if (this.isStar) {
+          const s = this.size * 2.2;
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.moveTo(0, -s);
+          ctx.quadraticCurveTo(0, 0, s, 0);
+          ctx.quadraticCurveTo(0, 0, 0, s);
+          ctx.quadraticCurveTo(0, 0, -s, 0);
+          ctx.quadraticCurveTo(0, 0, 0, -s);
+          ctx.fill();
+
+          ctx.strokeStyle = color;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(-s * 1.6, 0);
+          ctx.lineTo(s * 1.6, 0);
+          ctx.moveTo(0, -s * 1.6);
+          ctx.lineTo(0, s * 1.6);
+          ctx.stroke();
+        } else {
+          ctx.beginPath();
+          ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = color;
+          ctx.shadowColor = shadowColor;
+          ctx.shadowBlur = this.size * 3.5;
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new CosmicParticle());
+    }
+
+    function spawnShootingStar() {
+      if (shootingStar) return;
+      const startX = Math.random() * (width * 0.7);
+      const startY = Math.random() * (height * 0.3);
+      shootingStar = {
+        x: startX,
+        y: startY,
+        vx: 8 + Math.random() * 5,
+        vy: 4 + Math.random() * 3,
+        life: 1.0,
+        decay: 0.022
+      };
+    }
+    setInterval(spawnShootingStar, 6500);
+
+    function render() {
+      if (document.hidden) {
+        requestAnimationFrame(render);
+        return;
+      }
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 105) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            const beamAlpha = 0.11 * (1 - dist / 105);
+            const beamColor = particles[i].colorType === 'cyan' 
+              ? "rgba(0, 255, 224, " + beamAlpha + ")" 
+              : "rgba(255, 184, 0, " + beamAlpha + ")";
+            ctx.strokeStyle = beamColor;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      if (shootingStar) {
+        const grad = ctx.createLinearGradient(
+          shootingStar.x, shootingStar.y,
+          shootingStar.x - shootingStar.vx * 14, shootingStar.y - shootingStar.vy * 14
+        );
+        grad.addColorStop(0, "rgba(255, 255, 255, " + shootingStar.life + ")");
+        grad.addColorStop(0.3, "rgba(255, 184, 0, " + (shootingStar.life * 0.8) + ")");
+        grad.addColorStop(0.6, "rgba(0, 255, 224, " + (shootingStar.life * 0.5) + ")");
+        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        ctx.beginPath();
+        ctx.moveTo(shootingStar.x, shootingStar.y);
+        ctx.lineTo(shootingStar.x - shootingStar.vx * 14, shootingStar.y - shootingStar.vy * 14);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.8;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(shootingStar.x, shootingStar.y, 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255, 255, 255, " + shootingStar.life + ")";
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.9)';
+        ctx.shadowBlur = 8;
+        ctx.fill();
+
+        shootingStar.x += shootingStar.vx;
+        shootingStar.y += shootingStar.vy;
+        shootingStar.life -= shootingStar.decay;
+
+        if (shootingStar.life <= 0 || shootingStar.x > width + 50 || shootingStar.y > height + 50) {
+          shootingStar = null;
+        }
+      }
+
+      requestAnimationFrame(render);
+    }
+    render();
+  }
+  initBluexStarlightCanvas();
 });
