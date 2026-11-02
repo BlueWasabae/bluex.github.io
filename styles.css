@@ -59,25 +59,51 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   color-scheme: dark;
+  background-color: #080a0f;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-main);
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(0, 255, 224, 0.04) 0%, transparent 60%),
-    linear-gradient(180deg, rgba(7, 8, 14, 0.88) 0%, rgba(7, 8, 14, 0.96) 100%),
-    url('./assets/images/trading-atmosphere-bg.jpg');
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
+  background-color: transparent;
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   position: relative;
   min-height: 100vh;
+}
+
+/* ==========================================================================
+   3D BLUEX LOOPING VIDEO BACKGROUND ENGINE
+   ========================================================================== */
+.site-bg-wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  background: #080a0f;
+}
+
+.site-bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.9) contrast(1.05);
+}
+
+/* Deep vignette gradient to prioritize center hero typography and side navigation */
+.site-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(8, 10, 15, 0.1) 0%, rgba(8, 10, 15, 0.8) 100%);
+  pointer-events: none;
+}
+
+[data-theme="light"] .site-bg-wrapper {
+  opacity: 0.12;
 }
 
 /* Background Atmosphere Glow */
