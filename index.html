@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script>
+    if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.location.replace('https://' + window.location.host + window.location.pathname + window.location.search + window.location.hash);
+    }
+  </script>
   <title>BlueX Trading Academy • Master Institutional Trading | Official Website</title>
   <meta name="description" content="Welcome to BlueX Trading Academy. Master Gold (XAU/USD) with institutional Supply &amp; Demand, mechanical market structure, and disciplined capital preservation. Join our official class and trader community today.">
   <meta name="author" content="BlueX">
@@ -42,12 +49,11 @@
 </head>
 <body>
 
-  <!-- Hitofude Ryuu Deep-Sea Stroke Dragon Looping Video Background -->
+  <!-- 24K Golden Wave Horizon Background -->
   <div class="site-bg-wrapper">
-    <video autoplay muted loop playsinline preload="auto" poster="./assets/images/dragon-sea-strokes-poster.jpg" class="site-bg-video">
-      <source src="dragon-sea-strokes.webm" type="video/webm">
-      <source src="dragon-sea-strokes.mp4" type="video/mp4">
-    </video>
+    <div class="bg-golden-waves-horizon">
+      <div class="golden-wave-layer"></div>
+    </div>
     <div class="site-bg-overlay"></div>
   </div>
 
