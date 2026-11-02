@@ -1779,4 +1779,40 @@ document.addEventListener('DOMContentLoaded', () => {
     render();
   }
   initBluexStarlightCanvas();
+
+  // ========================================================
+  // 12. SMART TOOLBAR: HIDE ON SCROLL DOWN, SHOW ON SCROLL UP
+  // ========================================================
+  const siteHeader = document.querySelector('.site-header');
+  let lastScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+  let scrollTicking = false;
+
+  function handleHeaderScrollDirection() {
+    if (!siteHeader) return;
+    const currentScrollY = Math.max(0, window.pageYOffset || document.documentElement.scrollTop || 0);
+    const delta = currentScrollY - lastScrollY;
+
+    if (currentScrollY <= 55) {
+      siteHeader.classList.remove('header-hidden');
+      lastScrollY = currentScrollY;
+    } else if (delta > 5 && currentScrollY > 70) {
+      siteHeader.classList.add('header-hidden');
+      const openMenu = document.getElementById('navMenu');
+      if (openMenu && openMenu.classList.contains('mobile-open')) {
+        openMenu.classList.remove('mobile-open');
+      }
+      lastScrollY = currentScrollY;
+    } else if (delta < -3) {
+      siteHeader.classList.remove('header-hidden');
+      lastScrollY = currentScrollY;
+    }
+    scrollTicking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(handleHeaderScrollDirection);
+      scrollTicking = true;
+    }
+  }, { passive: true });
 });
