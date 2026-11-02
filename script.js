@@ -1638,29 +1638,28 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       draw() {
         const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-        const currentAlpha = Math.max(0.08, Math.min(0.75, this.alpha * (isLight ? 1.25 : 0.75)));
+        const currentAlpha = Math.max(0.10, Math.min(0.85, this.alpha * (isLight ? 1.3 : 0.9)));
         ctx.save();
         ctx.translate(this.x, this.y);
 
-        // Strictly Cyan, Electric Blue, and Silver-White (Zero Gold/Yellow in Background)
         let color = isLight
-          ? "rgba(2, 132, 199, " + currentAlpha + ")"
-          : "rgba(56, 189, 248, " + currentAlpha + ")";
-        let shadowColor = isLight ? 'rgba(2, 132, 199, 0.45)' : 'rgba(56, 189, 248, 0.5)';
+          ? "rgba(180, 83, 9, " + currentAlpha + ")"
+          : "rgba(255, 184, 0, " + currentAlpha + ")";
+        let shadowColor = isLight ? 'rgba(180, 83, 9, 0.5)' : 'rgba(255, 184, 0, 0.6)';
         if (this.colorType === 'cyan') {
           color = isLight
-            ? "rgba(14, 165, 233, " + (currentAlpha * 0.95) + ")"
+            ? "rgba(2, 132, 199, " + (currentAlpha * 0.95) + ")"
             : "rgba(0, 255, 224, " + (currentAlpha * 0.85) + ")";
-          shadowColor = isLight ? 'rgba(14, 165, 233, 0.5)' : 'rgba(0, 255, 224, 0.55)';
+          shadowColor = isLight ? 'rgba(2, 132, 199, 0.5)' : 'rgba(0, 255, 224, 0.55)';
         } else if (this.colorType === 'white') {
           color = isLight
-            ? "rgba(71, 85, 105, " + (currentAlpha * 0.65) + ")"
-            : "rgba(226, 232, 240, " + currentAlpha + ")";
-          shadowColor = isLight ? 'rgba(2, 132, 199, 0.35)' : 'rgba(226, 232, 240, 0.6)';
+            ? "rgba(15, 23, 42, " + (currentAlpha * 0.65) + ")"
+            : "rgba(255, 255, 255, " + currentAlpha + ")";
+          shadowColor = isLight ? 'rgba(180, 83, 9, 0.4)' : 'rgba(255, 255, 255, 0.65)';
         }
 
         if (this.isStar) {
-          const s = this.size * 1.9;
+          const s = this.size * 2.0;
           ctx.fillStyle = color;
           ctx.beginPath();
           ctx.moveTo(0, -s);
@@ -1671,7 +1670,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.fill();
 
           ctx.strokeStyle = color;
-          ctx.lineWidth = 0.45;
+          ctx.lineWidth = 0.5;
           ctx.beginPath();
           ctx.moveTo(-s * 1.5, 0);
           ctx.lineTo(s * 1.5, 0);
@@ -1683,7 +1682,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.arc(0, 0, this.size, 0, Math.PI * 2);
           ctx.fillStyle = color;
           ctx.shadowColor = shadowColor;
-          ctx.shadowBlur = this.size * 3.0;
+          ctx.shadowBlur = this.size * 3.2;
           ctx.fill();
         }
         ctx.restore();
@@ -1726,12 +1725,12 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            const beamAlpha = (isLight ? 0.14 : 0.08) * (1 - dist / 105);
+            const beamAlpha = (isLight ? 0.16 : 0.10) * (1 - dist / 105);
             const beamColor = particles[i].colorType === 'cyan' 
               ? (isLight ? "rgba(2, 132, 199, " + beamAlpha + ")" : "rgba(0, 255, 224, " + beamAlpha + ")")
-              : (isLight ? "rgba(71, 85, 105, " + beamAlpha + ")" : "rgba(148, 163, 184, " + beamAlpha + ")");
+              : (isLight ? "rgba(180, 83, 9, " + beamAlpha + ")" : "rgba(255, 184, 0, " + beamAlpha + ")");
             ctx.strokeStyle = beamColor;
-            ctx.lineWidth = isLight ? 0.65 : 0.5;
+            ctx.lineWidth = isLight ? 0.7 : 0.55;
             ctx.stroke();
           }
         }
@@ -1747,16 +1746,16 @@ document.addEventListener('DOMContentLoaded', () => {
           shootingStar.x, shootingStar.y,
           shootingStar.x - shootingStar.vx * 14, shootingStar.y - shootingStar.vy * 14
         );
-        grad.addColorStop(0, "rgba(226, 232, 240, " + shootingStar.life + ")");
-        grad.addColorStop(0.3, "rgba(56, 189, 248, " + (shootingStar.life * 0.75) + ")");
-        grad.addColorStop(0.6, "rgba(0, 255, 224, " + (shootingStar.life * 0.45) + ")");
+        grad.addColorStop(0, "rgba(255, 255, 255, " + shootingStar.life + ")");
+        grad.addColorStop(0.3, "rgba(255, 184, 0, " + (shootingStar.life * 0.8) + ")");
+        grad.addColorStop(0.6, "rgba(0, 255, 224, " + (shootingStar.life * 0.5) + ")");
         grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
         ctx.beginPath();
         ctx.moveTo(shootingStar.x, shootingStar.y);
         ctx.lineTo(shootingStar.x - shootingStar.vx * 14, shootingStar.y - shootingStar.vy * 14);
         ctx.strokeStyle = grad;
-        ctx.lineWidth = 1.5;
+        ctx.lineWidth = 1.6;
         ctx.stroke();
 
         ctx.beginPath();

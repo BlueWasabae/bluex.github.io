@@ -5971,10 +5971,10 @@ button {
 
 
 /* ==========================================================================
-   MINIMALIST VECTOR LINE-ART BLUEX + UKIYO-E WAVE VIDEO, KHMER NAVBAR FIT & MOBILE FIT
+   24K GOLDEN WAVE HORIZON BACKGROUND, KHMER NAVBAR FIT & MOBILE FIT
    ========================================================================== */
 
-/* 1. Exact Website Video Background Integration (Pure Obsidian #030407, Cyan/Silver, No Gold) */
+/* 1. Pure Luxury Obsidian Canvas + 24K Golden Wave Horizon (No BlueX Background Logo) */
 .site-bg-wrapper {
   position: fixed;
   inset: 0;
@@ -5982,33 +5982,52 @@ button {
   height: 100vh;
   overflow: hidden;
   z-index: -1;
-  background: #030407 !important;
-}
-
-.site-bg-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center !important;
-  /* Keeps the running electric wave dim and non-intrusive */
-  opacity: 0.75 !important;
-  filter: brightness(0.8) contrast(1.15) !important;
-  animation: none !important;
-  transform: none !important;
+  background: radial-gradient(ellipse at 50% 0%, rgba(15, 23, 42, 0.55) 0%, #07090f 65%, #040509 100%) !important;
 }
 
 .site-bg-overlay {
   position: absolute;
   inset: 0;
-  /* Soft center clarity with deep dark edges */
-  background: radial-gradient(circle at center, rgba(3, 4, 7, 0.1) 0%, rgba(3, 4, 7, 0.85) 100%) !important;
+  background: radial-gradient(circle at center, rgba(6, 8, 14, 0.05) 0%, rgba(6, 8, 14, 0.62) 100%) !important;
   pointer-events: none;
 }
 
-/* Remove warm/gold background glow orbs so background stays pure monochrome obsidian + cyan/silver */
-.bg-gold-light-sweep,
-.bg-glow-orb.amber {
-  display: none !important;
+/* Single Larger 24K Golden Wave Horizon */
+.bg-golden-waves-horizon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 225px;
+  min-height: 185px;
+  max-height: 255px;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+  mask-image: linear-gradient(to top, rgba(0,0,0,0.96) 32%, rgba(0,0,0,0.48) 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.96) 32%, rgba(0,0,0,0.48) 78%, transparent 100%);
+}
+
+.golden-wave-layer {
+  position: absolute;
+  bottom: -8px;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background-image: url('./assets/images/gold-waves-pattern.png');
+  background-repeat: repeat-x;
+  background-position: bottom center;
+  background-size: auto 195px;
+  opacity: 0.44;
+  filter: drop-shadow(0 0 16px rgba(255, 200, 60, 0.68));
+  animation: goldWaveDriftSingle 26s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes goldWaveDriftSingle {
+  0%   { transform: translate3d(0%, 0px, 0); }
+  50%  { transform: translate3d(-10%, -5px, 0); }
+  100% { transform: translate3d(-20%, 2px, 0); }
 }
 
 /* 2. Khmer Toolbar Fit (Fix Navbar Running Out of Space in Khmer Language Mode) */
@@ -6102,7 +6121,7 @@ html[lang="km"] .nav-register-dm-btn {
   pointer-events: none !important;
 }
 
-/* 4. Semi-Translucent Sections & Cards (So the BlueX Background Can Be Seen Through) */
+/* 4. Semi-Translucent Sections & Cards (So the Wave Horizon & Starlight Can Be Seen Through) */
 .hero-card,
 .mentorship-card-main,
 .capital-card-main,
@@ -6124,7 +6143,7 @@ html[lang="km"] .nav-register-dm-btn {
 .genesis-metric-card,
 .about-portrait-card,
 .capital-governance-card {
-  background: rgba(6, 9, 16, 0.68) !important;
+  background: rgba(8, 12, 21, 0.70) !important;
   backdrop-filter: blur(8px) !important;
   -webkit-backdrop-filter: blur(8px) !important;
 }
@@ -6136,7 +6155,7 @@ html[lang="km"] .nav-register-dm-btn {
 .mentorship-highlight-item,
 .standard-item,
 .gov-metric-item {
-  background: rgba(10, 14, 24, 0.56) !important;
+  background: rgba(12, 17, 29, 0.58) !important;
 }
 
 /* Clean Section Transitions: Eliminate Harsh Horizontal Lines & Color Jumps */
@@ -6180,16 +6199,16 @@ html[lang="km"] .nav-register-dm-btn {
     90deg,
     transparent 0%,
     rgba(0, 255, 224, 0.16) 28%,
-    rgba(226, 232, 240, 0.24) 50%,
+    rgba(255, 184, 0, 0.26) 50%,
     rgba(0, 255, 224, 0.16) 72%,
     transparent 100%
   );
   pointer-events: none;
 }
 
-/* 5. Light Mode Overhaul — Cool Platinum Pearl & Semi-Translucent Frosted Glass */
+/* 5. Light Mode Overhaul — Warm Champagne Ivory & Wave Horizon Visibility */
 html[data-theme="light"] {
-  background-color: #f1f5f9 !important;
+  background-color: #f3efe6 !important;
 }
 
 html[data-theme="light"] body {
@@ -6200,24 +6219,23 @@ html[data-theme="light"] body {
 
 [data-theme="light"] .site-bg-wrapper {
   opacity: 1 !important;
-  background: #f1f5f9 !important;
-}
-
-[data-theme="light"] .site-bg-video {
-  filter: invert(0.95) hue-rotate(180deg) saturate(1.85) contrast(1.25) !important;
-  opacity: 0.72 !important;
-  animation: none !important;
+  background: radial-gradient(ellipse at 50% 0%, #faf7f0 0%, #f3efe6 65%, #eae3d2 100%) !important;
 }
 
 [data-theme="light"] .site-bg-overlay {
-  background: radial-gradient(circle at center, rgba(241, 245, 249, 0.12) 0%, rgba(226, 232, 240, 0.72) 100%) !important;
+  background: radial-gradient(circle at center, rgba(243, 239, 230, 0.08) 0%, rgba(233, 226, 210, 0.55) 100%) !important;
+}
+
+[data-theme="light"] .bg-golden-waves-horizon .golden-wave-layer {
+  opacity: 0.72 !important;
+  filter: brightness(0.65) contrast(1.5) saturate(1.8) drop-shadow(0 2px 12px rgba(180, 110, 15, 0.38)) !important;
 }
 
 [data-theme="light"] .site-header .nav-wrapper {
-  background: rgba(255, 255, 255, 0.88) !important;
+  background: rgba(255, 252, 246, 0.88) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
-  border-color: rgba(2, 132, 199, 0.25) !important;
+  border-color: rgba(180, 130, 40, 0.30) !important;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08) !important;
 }
 
@@ -6242,11 +6260,11 @@ html[data-theme="light"] body {
 [data-theme="light"] .genesis-metric-card,
 [data-theme="light"] .about-portrait-card,
 [data-theme="light"] .capital-governance-card {
-  background: rgba(255, 255, 255, 0.72) !important;
+  background: rgba(255, 252, 246, 0.72) !important;
   backdrop-filter: blur(8px) !important;
   -webkit-backdrop-filter: blur(8px) !important;
-  border-color: rgba(2, 132, 199, 0.22) !important;
-  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.07), 0 0 22px rgba(2, 132, 199, 0.08) !important;
+  border-color: rgba(180, 130, 40, 0.28) !important;
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.07), 0 0 22px rgba(180, 130, 40, 0.09) !important;
 }
 
 [data-theme="light"] .calc-form-pane,
@@ -6256,12 +6274,12 @@ html[data-theme="light"] body {
 [data-theme="light"] .mentorship-highlight-item,
 [data-theme="light"] .standard-item,
 [data-theme="light"] .gov-metric-item {
-  background: rgba(248, 250, 252, 0.68) !important;
+  background: rgba(255, 253, 248, 0.65) !important;
 }
 
 [data-theme="light"] .dm-perk-item {
-  background: rgba(2, 132, 199, 0.06) !important;
-  border-color: rgba(2, 132, 199, 0.20) !important;
+  background: rgba(180, 130, 40, 0.07) !important;
+  border-color: rgba(180, 130, 40, 0.22) !important;
   color: #0f172a !important;
 }
 
@@ -6280,7 +6298,7 @@ html[data-theme="light"] body {
     90deg,
     transparent 0%,
     rgba(2, 132, 199, 0.22) 28%,
-    rgba(71, 85, 105, 0.30) 50%,
+    rgba(180, 83, 9, 0.35) 50%,
     rgba(2, 132, 199, 0.22) 72%,
     transparent 100%
   );
