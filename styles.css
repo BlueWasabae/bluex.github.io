@@ -250,7 +250,7 @@ button {
 }
 
 .site-header .container {
-  max-width: 1320px;
+  max-width: 1480px;
 }
 
 .nav-wrapper {
@@ -279,6 +279,8 @@ button {
   transition: transform var(--transition-fast);
   flex-shrink: 0 !important;
   min-width: max-content !important;
+  position: relative !important;
+  z-index: 5 !important;
   cursor: pointer;
   text-decoration: none;
   margin-right: 10px;
@@ -393,6 +395,8 @@ button {
   gap: 8px;
   flex-shrink: 0 !important;
   min-width: max-content !important;
+  position: relative !important;
+  z-index: 5 !important;
 }
 
 .nav-tool-btn {
@@ -3608,7 +3612,7 @@ body.menu-drawer-locked .site-header .nav-wrapper {
   }
 }
 
-@media (min-width: 1240px) and (max-width: 1340px) {
+@media (min-width: 1280px) and (max-width: 1440px) {
   .nav-link {
     font-size: 11.2px !important;
     padding: 3.5px 5px !important;
@@ -3634,7 +3638,7 @@ body.menu-drawer-locked .site-header .nav-wrapper {
   }
 }
 
-@media (max-width: 1240px) {
+@media (max-width: 1279px) {
   .nav-menu {
     display: none !important;
   }
@@ -6330,7 +6334,7 @@ html.menu-open #floatingEnrollBtn {
 
 /* 2. Khmer Toolbar Fit (Fix Navbar Running Out of Space in Khmer Language Mode) */
 .site-header .container {
-  max-width: 1440px !important;
+  max-width: 1480px !important;
 }
 
 .nav-wrapper {
@@ -6384,7 +6388,29 @@ html[lang="km"] .nav-register-dm-btn {
   flex-shrink: 0 !important;
 }
 
-@media (max-width: 1240px) {
+@media (min-width: 1380px) and (max-width: 1540px) {
+  html[lang="km"] .nav-link {
+    font-size: 0.7rem !important;
+    padding: 3px 5px !important;
+  }
+  html[lang="km"] .nav-menu {
+    gap: 1.5px !important;
+  }
+  html[lang="km"] .nav-right-actions {
+    gap: 4px !important;
+  }
+  html[lang="km"] .nav-tool-btn {
+    padding: 4px 6px !important;
+    font-size: 0.68rem !important;
+  }
+  html[lang="km"] .nav-cta-btn,
+  html[lang="km"] .nav-register-dm-btn {
+    padding: 4px 8px !important;
+    font-size: 0.7rem !important;
+  }
+}
+
+@media (max-width: 1379px) {
   html[lang="km"] .nav-menu {
     display: none !important;
   }
