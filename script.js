@@ -41,19 +41,67 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', updateActiveNavLink, { passive: true });
   updateActiveNavLink();
 
-  // Mobile Menu Toggle
+  // ========================================================
+  // 1A. LUXURY MOBILE NAVIGATION DRAWER & BACKDROP
+  // ========================================================
   const mobileToggle = document.getElementById('mobileMenuToggle');
   const navMenu = document.getElementById('navMenu');
 
+  // Inject or retrieve drawer backdrop
+  let navBackdrop = document.querySelector('.nav-drawer-backdrop');
+  if (!navBackdrop) {
+    navBackdrop = document.createElement('div');
+    navBackdrop.className = 'nav-drawer-backdrop';
+    document.body.appendChild(navBackdrop);
+  }
+
+  function openMobileMenu() {
+    if (!navMenu) return;
+    navMenu.classList.add('mobile-open');
+    if (mobileToggle) mobileToggle.classList.add('active');
+    if (navBackdrop) navBackdrop.classList.add('active');
+    document.body.classList.add('menu-drawer-locked');
+  }
+
+  function closeMobileMenu() {
+    if (!navMenu) return;
+    navMenu.classList.remove('mobile-open');
+    if (mobileToggle) mobileToggle.classList.remove('active');
+    if (navBackdrop) navBackdrop.classList.remove('active');
+    document.body.classList.remove('menu-drawer-locked');
+  }
+
   if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('mobile-open');
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (navMenu.classList.contains('mobile-open')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+
+    if (navBackdrop) {
+      navBackdrop.addEventListener('click', closeMobileMenu);
+    }
+
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('#navDrawerCloseBtn')) {
+        e.preventDefault();
+        closeMobileMenu();
+      }
     });
 
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
-        navMenu.classList.remove('mobile-open');
+        closeMobileMenu();
       });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('mobile-open')) {
+        closeMobileMenu();
+      }
     });
   }
 
@@ -78,9 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.history && window.history.replaceState) {
           window.history.replaceState(null, null, window.location.pathname + window.location.search);
         }
-        if (navMenu && navMenu.classList.contains('mobile-open')) {
-          navMenu.classList.remove('mobile-open');
-        }
+        closeMobileMenu();
       } else if (href === '#top' || href === '#' || (!href && el.classList.contains('logo'))) {
         // Subpages scrolling to top of current page
         e.preventDefault();
@@ -91,9 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.history && window.history.replaceState) {
           window.history.replaceState(null, null, window.location.pathname + window.location.search);
         }
-        if (navMenu && navMenu.classList.contains('mobile-open')) {
-          navMenu.classList.remove('mobile-open');
-        }
+        closeMobileMenu();
       }
     });
   });
@@ -156,7 +200,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.about': 'About',
       'nav.brokers': 'Brokers',
       'nav.courses': 'Courses',
-      'nav.genesis': 'SMC Genesis',
+      'nav.genesis': '<span class="genesis-pulse-dot"></span> SMC Genesis <span class="nav-new-badge">NEW</span>',
+      'nav.drawerBrand': 'BLUEX TERMINAL',
+      'nav.spotlightDesc': 'Institutional Blueprint: M.R.C Protocol &amp; 10 Modules',
+      'nav.drawerDm': 'Register Now — Direct DM (@Le_Bluue)',
       'nav.capital': 'Portfolio Strategy',
       'nav.calculator': 'Calculator',
       'nav.knowledge': 'Knowledge',
@@ -683,7 +730,10 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.about': 'អំពី BlueX',
       'nav.brokers': 'ឈ្មួញកណ្តាល',
       'nav.courses': 'វគ្គសិក្សា',
-      'nav.genesis': 'SMC Genesis',
+      'nav.genesis': '<span class="genesis-pulse-dot"></span> SMC Genesis <span class="nav-new-badge">ថ្មី</span>',
+      'nav.drawerBrand': 'បណ្តាញ BLUEX TERMINAL',
+      'nav.spotlightDesc': 'គោលការណ៍ M.R.C &amp; មេរៀនស្ថាប័ន ១០ ម៉ូឌុល',
+      'nav.drawerDm': 'ចុះឈ្មោះឥឡូវនេះ — ផ្ញើសារផ្ទាល់ (@Le_Bluue)',
       'nav.capital': 'យុទ្ធសាស្ត្រផលប័ត្រ',
       'nav.calculator': 'គណនា Lot',
       'nav.knowledge': 'ចំណេះដឹង',
@@ -1858,10 +1908,7 @@ document.addEventListener('DOMContentLoaded', () => {
       lastScrollY = currentScrollY;
     } else if (delta > 5 && currentScrollY > 70) {
       siteHeader.classList.add('header-hidden');
-      const openMenu = document.getElementById('navMenu');
-      if (openMenu && openMenu.classList.contains('mobile-open')) {
-        openMenu.classList.remove('mobile-open');
-      }
+      closeMobileMenu();
       lastScrollY = currentScrollY;
     } else if (delta < -3) {
       siteHeader.classList.remove('header-hidden');
