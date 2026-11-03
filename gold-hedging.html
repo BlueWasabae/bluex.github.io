@@ -46,7 +46,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600;700&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=20261103v15">
+  <link rel="stylesheet" href="styles.css?v=20261103v16">
 </head>
 <body class="page-hedging">
 
@@ -112,11 +112,11 @@
           <li><a href="smc-genesis.html" class="nav-link nav-link-genesis" data-i18n="nav.genesis"><span class="genesis-pulse-dot"></span>SMC Genesis <span class="nav-new-badge">NEW</span></a></li>
           <li><a href="gold-hedging.html" class="nav-link active" data-i18n="nav.hedging"><span class="nav-label-full">Gold </span>Hedging</a></li>
           <li><a href="index.html#capital" class="nav-link" data-i18n="nav.capital">Strategy</a></li>
-          <li><a href="index.html#calculator" class="nav-link" data-i18n="nav.calculator">Calculator</a></li>
+          <li><a href="#calculator" class="nav-link" data-i18n="nav.calculator">Calculator</a></li>
           <li><a href="knowledge.html" class="nav-link" data-i18n="nav.knowledge">Knowledge</a></li>
           <li><a href="index.html#pillars" class="nav-link" data-i18n="nav.pillars">Pillars</a></li>
           <li><a href="index.html#media" class="nav-link" data-i18n="nav.media">Media</a></li>
-          <li><a href="index.html#faq" class="nav-link" data-i18n="nav.faq">FAQ</a></li>
+          <li><a href="#faq" class="nav-link" data-i18n="nav.faq">FAQ</a></li>
           <li class="nav-item-connect"><a href="index.html#connect" class="nav-link" data-i18n="nav.connect">Connect</a></li>
 
           <!-- Mobile Drawer Performance / FX Freeze Mode Toggle -->
@@ -138,42 +138,44 @@
           </li>
         </ul>
 
-        <!-- Right Action Group -->
+        <!-- Right Header Actions: Language, Theme & Register Now -->
         <div class="nav-right-actions">
-          <div class="lang-switch-wrapper">
-            <button type="button" class="btn-lang-toggle" id="langToggleBtn" aria-label="Switch Language" title="ប្តូរភាសា / Switch Language">
-              <span class="lang-label-main">KH</span>
-              <span class="lang-label-sub">ខ្មែរ</span>
-            </button>
-          </div>
-
-          <div class="theme-switch-wrapper">
-            <button type="button" class="btn-theme-toggle" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Light / Dark Mode">
-              <svg class="theme-icon sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-              </svg>
-              <svg class="theme-icon moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-              </svg>
-            </button>
-          </div>
-
-          <button type="button" class="btn-fx-toggle" id="fxToggleBtn" aria-label="Toggle Visual FX" title="Freeze / Resume Ambient Motion FX">
-            <span class="fx-icon">⚡</span>
-            <span class="fx-text">FX</span>
+          <!-- Khmer Language Switcher Button -->
+          <button class="nav-tool-btn" id="langToggleBtn" type="button" aria-label="Switch Language" title="ប្តូរជាភាសាខ្មែរ">
+            <span class="lang-flag">🇰🇭</span>
+            <span id="langBtnText">ខ្មែរ</span>
           </button>
 
-          <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="btn-nav-cta" data-i18n="nav.registerBtn">
-            <span class="nav-cta-pulse"></span>
-            Register Now
+          <!-- Light / Dark Mode Toggle Button -->
+          <button class="nav-tool-btn nav-theme-btn" id="themeToggleBtn" type="button" aria-label="Toggle Theme" title="Toggle Light / Dark Mode">
+            <svg class="theme-icon sun-icon" id="sunIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="theme-icon moon-icon" id="moonIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <!-- Effects Freeze / Performance Lite Toggle Button -->
+          <button class="nav-tool-btn nav-fx-btn" id="fxToggleBtn" type="button" aria-label="Toggle Effects / Smooth Mobile" title="Effects: ON (Click to Freeze / Smooth Mobile)">
+            <span class="fx-icon" id="fxNavIcon">⚡</span>
+            <span class="fx-label" id="fxBtnText" data-i18n="nav.fx">FX</span>
+          </button>
+
+          <!-- Register Now CTA Button (1-Click Direct Personal Contact DM) -->
+          <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="nav-cta-btn nav-register-dm-btn" title="Register Now — 1-Click Direct DM (@Le_Bluue)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+            </svg>
+            <span data-i18n="nav.register">Register Now</span>
           </a>
 
           <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
@@ -268,54 +270,141 @@
         <div class="hedging-calc-wrapper">
           <!-- Left Column: Inputs & Parameters -->
           <div class="hedging-calc-panel hedging-calc-inputs">
-            <!-- Step 1: Transaction Direction -->
+            <!-- Asset Selection: Gold vs Silver -->
             <div class="calc-group-block">
-              <label class="calc-block-label" data-i18n="hedging.step1Label">1. Physical Inventory Flow</label>
+              <label class="calc-block-label" data-i18n="hedging.assetSelectLabel">1. Select Precious Metal (ជ្រើសរើសលោហៈ)</label>
+              <div class="hedging-metal-switcher">
+                <button type="button" class="metal-switch-btn active" id="metalSwitchGold" data-metal="XAU">
+                  <span class="metal-icon">🟡</span>
+                  <div class="metal-info">
+                    <span class="metal-name" data-i18n="hedging.metalGoldName">Gold (XAU/USD)</span>
+                    <span class="metal-spec">1 Lot = 100 oz (3,110.35g ≈ 82.94 តម្លឹង)</span>
+                  </div>
+                </button>
+                <button type="button" class="metal-switch-btn" id="metalSwitchSilver" data-metal="XAG">
+                  <span class="metal-icon">⚪</span>
+                  <div class="metal-info">
+                    <span class="metal-name" data-i18n="hedging.metalSilverName">Silver (XAG/USD)</span>
+                    <span class="metal-spec">1 Lot = 5,000 oz (155,517g ≈ 4,147 តម្លឹង)</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Live Market Spot Price Strip -->
+            <div class="live-spot-ticker-bar">
+              <div class="live-status-pill">
+                <span class="pulse-dot-green"></span>
+                <span class="live-status-text" id="liveFeedStatus">LIVE SPOT FEED</span>
+              </div>
+              <div class="live-price-display">
+                <span class="live-symbol" id="liveSpotSymbol">XAU/USD:</span>
+                <span class="live-price-val" id="liveSpotPriceDisplay">$3,948.50</span>
+                <span class="live-price-unit">/ oz</span>
+              </div>
+              <div class="live-feed-actions">
+                <span class="live-feed-timestamp" id="liveFeedTimestamp">Auto-synced</span>
+                <button type="button" class="btn-refresh-feed" id="btnRefreshSpot" aria-label="Refresh Live Spot Price" title="Refresh Live Market Spot">
+                  <svg class="refresh-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 4v6h-6"></path>
+                    <path d="M1 20v-6h6"></path>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                  </svg>
+                  <span data-i18n="hedging.btnRefresh">Refresh</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Transaction Direction -->
+            <div class="calc-group-block">
+              <label class="calc-block-label" data-i18n="hedging.step1Label">2. Physical Inventory Flow (ចរន្តស្តុកហាង)</label>
               <div class="direction-toggle-grid">
                 <button type="button" class="dir-toggle-btn active" id="dirBuyGold" data-direction="BUY_PHYSICAL">
                   <span class="dir-icon">📥</span>
                   <div class="dir-info">
-                    <span class="dir-title" data-i18n="hedging.dirBuyTitle">Shop Buys Gold</span>
+                    <span class="dir-title" data-i18n="hedging.dirBuyTitle">Shop Buys Metal (ទិញចូល)</span>
                     <span class="dir-sub" data-i18n="hedging.dirBuySub">Inventory UP (+Weight) ➔ Need Digital SHORT</span>
                   </div>
                 </button>
                 <button type="button" class="dir-toggle-btn" id="dirSellGold" data-direction="SELL_PHYSICAL">
                   <span class="dir-icon">📤</span>
                   <div class="dir-info">
-                    <span class="dir-title" data-i18n="hedging.dirSellTitle">Shop Sells Gold</span>
+                    <span class="dir-title" data-i18n="hedging.dirSellTitle">Shop Sells Metal (លក់ចេញ)</span>
                     <span class="dir-sub" data-i18n="hedging.dirSellSub">Inventory DOWN (-Weight) ➔ Need Digital LONG</span>
                   </div>
                 </button>
               </div>
             </div>
 
-            <!-- Step 2: Weight & Unit Selection -->
+            <!-- Local Cambodian Physical Cash Market Rate (Outside Digital) -->
+            <div class="calc-group-block local-khmer-rate-block">
+              <div class="local-rate-header">
+                <label class="calc-block-label" data-i18n="hedging.localRateLabel">3. Cambodian Physical Shop Cash Price (ថ្លៃទីផ្សារក្រៅ Digital)</label>
+                <button type="button" class="btn-auto-sync-spot" id="btnSyncLocalRate" title="Auto-calculate base spot equivalent per Damlung">
+                  ⚡ <span data-i18n="hedging.btnSyncSpot">Auto-Sync Spot</span>
+                </button>
+              </div>
+              <div class="local-rate-grid">
+                <div class="calc-param-field">
+                  <label class="calc-sub-label" for="hedgeLocalDamlungInput" data-i18n="hedging.damlungRateLabel">Local Cash / Damlung (ដុល្លារ / ១ តម្លឹង)</label>
+                  <div class="calc-input-adornment">
+                    <span class="input-prefix">$</span>
+                    <input type="number" id="hedgeLocalDamlungInput" class="calc-number-input" value="4800.00" min="10" max="15000" step="5">
+                  </div>
+                </div>
+                <div class="calc-param-field">
+                  <label class="calc-sub-label" data-i18n="hedging.chiRateLabel">Equivalent per Chi (ដុល្លារ / ១ ជី)</label>
+                  <div class="calc-read-only-adornment">
+                    <span class="input-prefix">$</span>
+                    <span class="read-only-val" id="dispPricePerChi">480.00</span>
+                    <span class="input-suffix">/ ជី (Chi)</span>
+                  </div>
+                </div>
+              </div>
+              <p class="calc-helper-note" data-i18n="hedging.localRateHelp">
+                Physical counter cash rate quoted in Cambodian shops. 1 Damlung = 10 Chi = 37.5g ≈ 1.20565 Troy Ounces.
+              </p>
+            </div>
+
+            <!-- Weight & Unit Selection with Khmer Shop Presets -->
             <div class="calc-group-block">
-              <label class="calc-block-label" data-i18n="hedging.step2Label">2. Physical Quantity & Unit</label>
+              <label class="calc-block-label" data-i18n="hedging.step2Label">4. Physical Quantity & Unit (ទម្ងន់ជាក់ស្តែង)</label>
               <div class="weight-input-row">
                 <div class="calc-input-field flex-grow">
-                  <input type="number" id="hedgeWeightInput" class="calc-number-input" value="10" min="0.01" step="any" placeholder="Enter quantity">
+                  <input type="number" id="hedgeWeightInput" class="calc-number-input" value="10" min="0.001" step="any" placeholder="Enter quantity">
                 </div>
                 <div class="calc-select-field">
                   <select id="hedgeUnitSelect" class="calc-select-dropdown">
                     <option value="damlung" selected>Damlung (តម្លឹង - 37.5g)</option>
                     <option value="chi">Chi (ជី - 3.75g)</option>
-                    <option value="grams">Grams (g)</option>
+                    <option value="grams">Grams (ក្រាម - g)</option>
                     <option value="ounces">Troy Ounces (oz)</option>
-                    <option value="kilograms">Kilograms (kg)</option>
+                    <option value="kilograms">Kilograms (គីឡូ - kg)</option>
                   </select>
+                </div>
+              </div>
+
+              <!-- Relatable Khmer Gold Shop Presets -->
+              <div class="shop-presets-container">
+                <span class="shop-presets-title" data-i18n="hedging.shopPresetsTitle">Shop Standard Presets (ទំហំស្តង់ដារហាងមាស):</span>
+                <div class="shop-presets-row">
+                  <button type="button" class="btn-shop-preset" data-weight="1" data-unit="chi">1 ជី (Chi Ring ~3.75g)</button>
+                  <button type="button" class="btn-shop-preset" data-weight="5" data-unit="chi">5 ជី (Chi ~18.75g)</button>
+                  <button type="button" class="btn-shop-preset" data-weight="1" data-unit="damlung">1 តម្លឹង (Damlung ~37.5g)</button>
+                  <button type="button" class="btn-shop-preset active" data-weight="10" data-unit="damlung">10 តម្លឹង (Batch ~375g)</button>
+                  <button type="button" class="btn-shop-preset" data-weight="1" data-unit="kilograms">1 គីឡូ (1 Kg Bar)</button>
                 </div>
               </div>
             </div>
 
-            <!-- Step 3: Financial & Risk Parameters -->
+            <!-- Financial Parameters: Spot Price & Leverage -->
             <div class="calc-params-grid">
-              <!-- Spot Price -->
+              <!-- Digital Spot Price -->
               <div class="calc-param-field">
-                <label class="calc-sub-label" for="hedgeSpotInput" data-i18n="hedging.paramSpot">XAU/USD Spot Price ($/oz)</label>
+                <label class="calc-sub-label" for="hedgeSpotInput" data-i18n="hedging.paramSpot">Digital Spot Price ($/oz)</label>
                 <div class="calc-input-adornment">
                   <span class="input-prefix">$</span>
-                  <input type="number" id="hedgeSpotInput" class="calc-number-input" value="2740.00" min="1000" max="6000" step="0.5">
+                  <input type="number" id="hedgeSpotInput" class="calc-number-input" value="3948.50" min="5" max="10000" step="0.5">
                 </div>
               </div>
 
@@ -330,7 +419,26 @@
               </div>
             </div>
 
-            <!-- Step 4: Adverse Volatility Buffer -->
+            <!-- Broker Account Balance Input ("How much balance should I input?") -->
+            <div class="calc-group-block account-equity-block">
+              <div class="account-equity-header">
+                <label class="calc-block-label" for="hedgeAccountBalanceInput" data-i18n="hedging.accountBalanceLabel">
+                  5. Your Broker Account Balance ($ USD Equity)
+                </label>
+                <button type="button" class="btn-autofill-equity" id="btnAutoFillSafeBalance" title="Auto-fill the mathematically calculated safe balance target">
+                  💡 <span data-i18n="hedging.btnAutoFillBalance">Auto-Fill Safe Target</span>
+                </button>
+              </div>
+              <div class="calc-input-adornment">
+                <span class="input-prefix">$</span>
+                <input type="number" id="hedgeAccountBalanceInput" class="calc-number-input" value="2500.00" min="0" step="50" placeholder="Enter your current broker balance">
+              </div>
+              <p class="calc-helper-note" data-i18n="hedging.balanceHelperNote">
+                How much to deposit: Enter your account equity to verify if your capital buffer safely covers adverse market swings or if more capital is needed.
+              </p>
+            </div>
+
+            <!-- Adverse Volatility Buffer Presets -->
             <div class="calc-group-block">
               <div class="buffer-label-row">
                 <label class="calc-sub-label" data-i18n="hedging.paramBuffer">Adverse Price Swing Buffer ($/oz)</label>
@@ -361,6 +469,30 @@
               </p>
             </div>
 
+            <!-- Physical Shop Cash & Margin Lock Card -->
+            <div class="shop-cash-counter-card">
+              <div class="cash-card-header">
+                <span class="cash-card-badge" data-i18n="hedging.cashCounterBadge">COUNTER CASH & LOCKED SPREAD PROFIT</span>
+                <span class="cash-card-status" id="spreadStatusPill">PROTECTED</span>
+              </div>
+              <div class="cash-card-grid">
+                <div class="cash-metric-cell">
+                  <span class="cash-metric-label" data-i18n="hedging.counterCashLabel">Physical Counter Cash Paid/Received:</span>
+                  <span class="cash-metric-value gold-accent" id="cardPhysicalCashTotal">$48,000.00</span>
+                  <span class="cash-metric-sub" id="cardPhysicalCashBreakdown">At $4,800.00 / Damlung</span>
+                </div>
+                <div class="cash-metric-cell">
+                  <span class="cash-metric-label" data-i18n="hedging.digitalSpotLabel">Digital Hedge Spot Value:</span>
+                  <span class="cash-metric-value" id="cardDigitalSpotTotal">$47,605.10</span>
+                  <span class="cash-metric-sub" id="cardDigitalSpotBreakdown">12.057 oz × $3,948.50/oz</span>
+                </div>
+              </div>
+              <div class="cash-locked-profit-banner">
+                <span class="profit-label" data-i18n="hedging.lockedSpreadLabel">🔒 Locked Counter Margin Profit:</span>
+                <strong class="profit-amount text-success" id="cardLockedProfit">+$394.90 USD</strong>
+              </div>
+            </div>
+
             <!-- Primary Metrics Grid -->
             <div class="hedge-results-grid">
               <!-- Broker Rounded Lots -->
@@ -377,41 +509,80 @@
                 <span class="hedge-metric-footnote" id="cardResidualDamlung">≈ 0.05 Damlung (0.47 Chi)</span>
               </div>
 
-              <!-- Physical Notional Value -->
-              <div class="hedge-metric-card">
-                <span class="hedge-metric-title" data-i18n="hedging.resNotional">Physical Inventory Value</span>
-                <span class="hedge-metric-number" id="cardNotionalVal">$33,034.90</span>
-                <span class="hedge-metric-footnote" id="cardOuncesVal">12.056 Troy Ounces</span>
-              </div>
-
-              <!-- Required Margin -->
+              <!-- Required Initial Margin -->
               <div class="hedge-metric-card">
                 <span class="hedge-metric-title" data-i18n="hedging.resMargin">Initial Margin Required</span>
-                <span class="hedge-metric-number cyan-accent" id="cardMarginVal">$164.40</span>
+                <span class="hedge-metric-number cyan-accent" id="cardMarginVal">$236.91</span>
                 <span class="hedge-metric-footnote" id="cardLeverageNote">At 1:200 leverage</span>
+              </div>
+
+              <!-- Stop-Out Risk Spot Price -->
+              <div class="hedge-metric-card">
+                <span class="hedge-metric-title" data-i18n="hedging.stopOutRisk">Stop-Out Invalidation Spot</span>
+                <span class="hedge-metric-number text-danger" id="cardStopOutPrice">$4,146.90</span>
+                <span class="hedge-metric-footnote" id="cardStopOutDistance">+198.40 $/oz safety distance</span>
               </div>
             </div>
 
-            <!-- Safe Capital Recommendation Box -->
-            <div class="safe-capital-box">
+            <!-- Account Capital Safety Health Box -->
+            <div class="safe-capital-box" id="accountHealthBox">
               <div class="safe-capital-header">
                 <div>
                   <span class="safe-capital-badge" data-i18n="hedging.safeCapBadge">RECOMMENDED BROKER CAPITAL</span>
-                  <div class="safe-capital-amount" id="cardSafeCapital">$1,364.40 USD</div>
+                  <div class="safe-capital-amount" id="cardSafeCapital">$1,436.91 USD</div>
                 </div>
-                <div class="safe-capital-tag" data-i18n="hedging.safeCapTag">Zero Stop-Out Architecture</div>
+                <div class="account-diagnostic-pill" id="cardAccountDiagPill">CAPITAL HEALTHY</div>
               </div>
               <div class="safe-capital-breakdown">
                 <div class="cap-breakdown-row">
+                  <span data-i18n="hedging.userBalanceRow">Your Input Balance:</span>
+                  <strong id="breakdownUserBalance">$2,500.00</strong>
+                </div>
+                <div class="cap-breakdown-row">
                   <span data-i18n="hedging.capRowMargin">Initial Margin (Broker Lock):</span>
-                  <strong id="breakdownMargin">$164.40</strong>
+                  <strong id="breakdownMargin">$236.91</strong>
                 </div>
                 <div class="cap-breakdown-row">
                   <span data-i18n="hedging.capRowBuffer">Adverse Swing Buffer (+$100/oz):</span>
                   <strong id="breakdownBuffer">$1,200.00</strong>
                 </div>
-                <div class="cap-breakdown-formula">
-                  Safe Balance = Margin + (Lots × 100 × Buffer/oz)
+                <div class="cap-breakdown-row highlight-surplus">
+                  <span data-i18n="hedging.balanceStatusLabel">Buffer Surplus / Shortfall:</span>
+                  <strong id="breakdownSurplus" class="text-success">+$1,063.09 Surplus</strong>
+                </div>
+              </div>
+              <div class="diagnostic-explanation" id="diagnosticExplanationText">
+                🟢 Safe Capital: Your balance safely covers broker margin plus more than $100/oz market swing against your hedge.
+              </div>
+            </div>
+
+            <!-- Relatable 60-Second Shop Cashier SOP -->
+            <div class="cashier-walkthrough-card">
+              <div class="walkthrough-header">
+                <span class="walkthrough-badge">⚡ 60-SECOND SHOP CASHIER SOP</span>
+                <h4 class="walkthrough-title" data-i18n="hedging.sopHeader">របៀបប្រើប្រាស់ជាក់ស្តែងនៅតុហាងមាស (How Every Shop Uses It)</h4>
+              </div>
+              <div class="walkthrough-steps">
+                <div class="walkthrough-step">
+                  <span class="step-num">1</span>
+                  <div class="step-body">
+                    <strong data-i18n="hedging.step1Title">អតិថិជនមកដោះដូរមាសនៅតុហាង</strong>
+                    <p data-i18n="hedging.step1Desc">ថ្លឹងទម្ងន់មាស (តម្លឹង/ជី) ➔ គណនាប្រាក់រូបវន្តជូនអតិថិជនតាមតម្លៃតុហាង។</p>
+                  </div>
+                </div>
+                <div class="walkthrough-step">
+                  <span class="step-num">2</span>
+                  <div class="step-body">
+                    <strong data-i18n="hedging.step2Title">បើក App MT5 / Broker រយៈពេល ១០ វិនាទី</strong>
+                    <p data-i18n="hedging.step2Desc">ចុច Sell/Buy តាមទំហំ <span class="gold-accent" id="walkthroughLotsText">0.12 Lots</span> ដែលម៉ាស៊ីនបង្ហាញខាងលើ។</p>
+                  </div>
+                </div>
+                <div class="walkthrough-step">
+                  <span class="step-num">3</span>
+                  <div class="step-body">
+                    <strong data-i18n="hedging.step3Title">រួចរាល់ • ហានិភ័យមាសចុះថ្លៃស្មើ 0%</strong>
+                    <p data-i18n="hedging.step3Desc">ទោះមាសឡើងឬចុះ $100-$300 ក៏ប្រាក់ចំណេញហាងត្រូវបានការពារ ១០០%។</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -809,6 +980,6 @@
     </a>
   </div>
 
-  <script src="script.js?v=20261103v15"></script>
+  <script src="script.js?v=20261103v16"></script>
 </body>
 </html>
