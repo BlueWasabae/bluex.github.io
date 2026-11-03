@@ -14,31 +14,48 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ========================================================
-  // 1. NAVIGATION ACTIVE STATE & SMOOTH SCROLLING
+  // 1. NAVIGATION ACTIVE STATE & SMOOTH SCROLLING (ZERO REFLOW)
   // ========================================================
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section[id], header[id]');
+  let sectionPositions = [];
 
+  function cacheSectionPositions() {
+    sectionPositions = Array.from(sections).map(current => ({
+      id: current.getAttribute('id'),
+      top: current.offsetTop - 140,
+      height: current.offsetHeight
+    }));
+  }
+  cacheSectionPositions();
+  window.addEventListener('resize', cacheSectionPositions, { passive: true });
+  window.addEventListener('load', cacheSectionPositions, { passive: true });
+
+  let navScrollTicking = false;
   function updateActiveNavLink() {
-    let scrollY = window.pageYOffset;
-
-    sections.forEach(current => {
-      const sectionHeight = current.offsetHeight;
-      const sectionTop = current.offsetTop - 140;
-      const sectionId = current.getAttribute('id');
-
-      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    for (let i = 0; i < sectionPositions.length; i++) {
+      const s = sectionPositions[i];
+      if (scrollY >= s.top && scrollY < s.top + s.height) {
         navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${sectionId}`) {
-            link.classList.add('active');
+          if (link.getAttribute('href') === `#${s.id}`) {
+            if (!link.classList.contains('active')) link.classList.add('active');
+          } else {
+            link.classList.remove('active');
           }
         });
+        break;
       }
-    });
+    }
+    navScrollTicking = false;
   }
 
-  window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+  window.addEventListener('scroll', () => {
+    if (!navScrollTicking) {
+      window.requestAnimationFrame(updateActiveNavLink);
+      navScrollTicking = true;
+    }
+  }, { passive: true });
   updateActiveNavLink();
 
   // ========================================================
@@ -439,7 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.drawerBrand': 'BLUEX TERMINAL',
       'nav.spotlightDesc': 'Institutional Blueprint: M.R.C Protocol &amp; 10 Modules',
       'nav.drawerDm': 'Register Now — Direct DM (@Le_Bluue)',
-      'nav.capital': 'Portfolio Strategy',
+      'nav.capital': 'Strategy',
       'nav.calculator': 'Calculator',
       'nav.knowledge': 'Knowledge',
       'nav.pillars': 'Pillars',
@@ -972,7 +989,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.drawerBrand': 'បណ្តាញ BLUEX TERMINAL',
       'nav.spotlightDesc': 'គោលការណ៍ M.R.C &amp; មេរៀនស្ថាប័ន ១០ ម៉ូឌុល',
       'nav.drawerDm': 'ចុះឈ្មោះឥឡូវនេះ — ផ្ញើសារផ្ទាល់ (@Le_Bluue)',
-      'nav.capital': 'យុទ្ធសាស្ត្រផលប័ត្រ',
+      'nav.capital': 'យុទ្ធសាស្ត្រ',
       'nav.calculator': 'គណនា Lot',
       'nav.knowledge': 'ចំណេះដឹង',
       'nav.pillars': 'គោលការណ៍គ្រឹះ',
@@ -1905,7 +1922,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 11. LUXURY STARLIGHT BEAMING & GOLDEN EMBER CANVAS ENGINE
+  // 11. LUXURY STARLIGHT BEAMING & GOLDEN EMBER CANVAS ENGINE (CHILLED 60FPS)
   // ========================================================
   function initBluexStarlightCanvas() {
     const canvas = document.getElementById('bluexStarlightCanvas');
@@ -1914,41 +1931,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let width, height;
     let particles = [];
     const isMobile = window.innerWidth <= 768;
-    const particleCount = isMobile ? 22 : 48;
-    let shootingStar = null;
-    let mouse = { x: -1000, y: -1000 };
+    const particleCount = isMobile ? 6 : 14;
     let animFrameId = null;
     let isPaused = false;
-
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    }, { passive: true });
-
-    function drawStaticStarfield() {
-      ctx.clearRect(0, 0, width, height);
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      for (let i = 0; i < Math.min(particles.length, 24); i++) {
-        const p = particles[i];
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        const col = p.colorType === 'cyan' 
-          ? (isLight ? "rgba(2, 132, 199, 0.45)" : "rgba(0, 255, 224, 0.4)")
-          : (isLight ? "rgba(180, 83, 9, 0.45)" : "rgba(255, 184, 0, 0.4)");
-        ctx.beginPath();
-        ctx.arc(0, 0, Math.min(p.size, 1.4), 0, Math.PI * 2);
-        ctx.fillStyle = col;
-        ctx.fill();
-        ctx.restore();
-      }
-    }
+    let isScrolling = false;
+    let scrollStopTimer = null;
 
     function resize() {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      if (document.documentElement.classList.contains('effects-frozen') || isPaused) {
-        drawStaticStarfield();
-      }
     }
     window.addEventListener('resize', resize, { passive: true });
     resize();
@@ -1960,83 +1951,27 @@ document.addEventListener('DOMContentLoaded', () => {
       reset(initial = false) {
         this.x = Math.random() * width;
         this.y = initial ? Math.random() * height : height + 10;
-        this.vy = -(Math.random() * 0.40 + 0.10);
-        this.vx = (Math.random() - 0.5) * 0.20;
-        this.size = Math.random() * 2.0 + 0.6;
-        this.baseAlpha = Math.random() * 0.45 + 0.20;
-        this.alpha = this.baseAlpha;
-        this.phase = Math.random() * Math.PI * 2;
-        this.speed = Math.random() * 0.025 + 0.010;
-        const rand = Math.random();
-        this.colorType = rand > 0.55 ? 'gold' : (rand > 0.20 ? 'cyan' : 'white');
-        this.isStar = Math.random() > 0.70;
+        this.vy = -(Math.random() * 0.25 + 0.08);
+        this.vx = (Math.random() - 0.5) * 0.12;
+        this.size = Math.random() * 1.5 + 0.6;
+        this.baseAlpha = Math.random() * 0.35 + 0.15;
+        this.colorType = Math.random() > 0.5 ? 'gold' : 'cyan';
       }
       update() {
         this.y += this.vy;
         this.x += this.vx;
-        this.phase += this.speed;
-        this.alpha = this.baseAlpha + Math.sin(this.phase) * 0.20;
-
-        if (!isMobile) {
-          const dx = this.x - mouse.x;
-          const dy = this.y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
-            const force = (100 - dist) / 100;
-            this.x += (dx / dist) * force * 1.2;
-            this.y += (dy / dist) * force * 1.2;
-          }
-        }
-
-        if (this.y < -15 || this.x < -15 || this.x > width + 15) {
+        if (this.y < -10 || this.x < -10 || this.x > width + 10) {
           this.reset();
         }
       }
       draw() {
         const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-        const currentAlpha = Math.max(0.10, Math.min(0.85, this.alpha * (isLight ? 1.2 : 0.85)));
-        ctx.save();
-        ctx.translate(this.x, this.y);
-
-        let color = isLight
-          ? "rgba(180, 83, 9, " + currentAlpha + ")"
-          : "rgba(255, 184, 0, " + currentAlpha + ")";
-        let haloColor = isLight ? 'rgba(180, 83, 9, 0.18)' : 'rgba(255, 184, 0, 0.22)';
-        if (this.colorType === 'cyan') {
-          color = isLight
-            ? "rgba(2, 132, 199, " + (currentAlpha * 0.95) + ")"
-            : "rgba(0, 255, 224, " + (currentAlpha * 0.85) + ")";
-          haloColor = isLight ? 'rgba(2, 132, 199, 0.18)' : 'rgba(0, 255, 224, 0.22)';
-        } else if (this.colorType === 'white') {
-          color = isLight
-            ? "rgba(15, 23, 42, " + (currentAlpha * 0.65) + ")"
-            : "rgba(255, 255, 255, " + currentAlpha + ")";
-          haloColor = isLight ? 'rgba(180, 83, 9, 0.15)' : 'rgba(255, 255, 255, 0.25)';
-        }
-
-        if (this.isStar) {
-          const s = this.size * 1.8;
-          ctx.fillStyle = color;
-          ctx.beginPath();
-          ctx.moveTo(0, -s);
-          ctx.quadraticCurveTo(0, 0, s, 0);
-          ctx.quadraticCurveTo(0, 0, 0, s);
-          ctx.quadraticCurveTo(0, 0, -s, 0);
-          ctx.quadraticCurveTo(0, 0, 0, -s);
-          ctx.fill();
-        } else {
-          // Hardware-accelerated dual-circle glow (no expensive shadowBlur)
-          ctx.beginPath();
-          ctx.arc(0, 0, this.size * 2.2, 0, Math.PI * 2);
-          ctx.fillStyle = haloColor;
-          ctx.fill();
-
-          ctx.beginPath();
-          ctx.arc(0, 0, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = color;
-          ctx.fill();
-        }
-        ctx.restore();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.colorType === 'cyan'
+          ? (isLight ? 'rgba(2, 132, 199, ' + this.baseAlpha + ')' : 'rgba(0, 255, 224, ' + this.baseAlpha + ')')
+          : (isLight ? 'rgba(180, 83, 9, ' + this.baseAlpha + ')' : 'rgba(255, 184, 0, ' + this.baseAlpha + ')');
+        ctx.fill();
       }
     }
 
@@ -2044,25 +1979,8 @@ document.addEventListener('DOMContentLoaded', () => {
       particles.push(new CosmicParticle());
     }
 
-    function spawnShootingStar() {
-      if (document.documentElement.classList.contains('effects-frozen') || isPaused) return;
-      if (shootingStar) return;
-      const startX = Math.random() * (width * 0.7);
-      const startY = Math.random() * (height * 0.3);
-      shootingStar = {
-        x: startX,
-        y: startY,
-        vx: 8 + Math.random() * 5,
-        vy: 4 + Math.random() * 3,
-        life: 1.0,
-        decay: 0.022
-      };
-    }
-    setInterval(spawnShootingStar, 7500);
-
     function render() {
-      if (document.documentElement.classList.contains('effects-frozen') || isPaused) {
-        drawStaticStarfield();
+      if (document.documentElement.classList.contains('effects-frozen') || isPaused || isScrolling) {
         animFrameId = null;
         return;
       }
@@ -2071,71 +1989,25 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       ctx.clearRect(0, 0, width, height);
-
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-
-      // Desktop only: Connecting constellation beams
-      if (!isMobile) {
-        for (let i = 0; i < particles.length; i++) {
-          for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 92) {
-              ctx.beginPath();
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(particles[j].x, particles[j].y);
-              const beamAlpha = (isLight ? 0.14 : 0.08) * (1 - dist / 92);
-              const beamColor = particles[i].colorType === 'cyan' 
-                ? (isLight ? "rgba(2, 132, 199, " + beamAlpha + ")" : "rgba(0, 255, 224, " + beamAlpha + ")")
-                : (isLight ? "rgba(180, 83, 9, " + beamAlpha + ")" : "rgba(255, 184, 0, " + beamAlpha + ")");
-              ctx.strokeStyle = beamColor;
-              ctx.lineWidth = isLight ? 0.6 : 0.5;
-              ctx.stroke();
-            }
-          }
-        }
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
       }
-
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-
-      if (shootingStar) {
-        const grad = ctx.createLinearGradient(
-          shootingStar.x, shootingStar.y,
-          shootingStar.x - shootingStar.vx * 12, shootingStar.y - shootingStar.vy * 12
-        );
-        grad.addColorStop(0, "rgba(255, 255, 255, " + shootingStar.life + ")");
-        grad.addColorStop(0.3, "rgba(255, 184, 0, " + (shootingStar.life * 0.7) + ")");
-        grad.addColorStop(0.6, "rgba(0, 255, 224, " + (shootingStar.life * 0.4) + ")");
-        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-
-        ctx.beginPath();
-        ctx.moveTo(shootingStar.x, shootingStar.y);
-        ctx.lineTo(shootingStar.x - shootingStar.vx * 12, shootingStar.y - shootingStar.vy * 12);
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.arc(shootingStar.x, shootingStar.y, 2.0, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255, 255, 255, " + shootingStar.life + ")";
-        ctx.fill();
-
-        shootingStar.x += shootingStar.vx;
-        shootingStar.y += shootingStar.vy;
-        shootingStar.life -= shootingStar.decay;
-
-        if (shootingStar.life <= 0 || shootingStar.x > width + 50 || shootingStar.y > height + 50) {
-          shootingStar = null;
-        }
-      }
-
       animFrameId = requestAnimationFrame(render);
     }
     render();
+
+    // Auto-pause canvas during active scrolling to free 100% GPU for buttery 60+ FPS scroll
+    window.addEventListener('scroll', () => {
+      isScrolling = true;
+      clearTimeout(scrollStopTimer);
+      scrollStopTimer = setTimeout(() => {
+        isScrolling = false;
+        if (!animFrameId && !isPaused && !document.documentElement.classList.contains('effects-frozen')) {
+          animFrameId = requestAnimationFrame(render);
+        }
+      }, 100);
+    }, { passive: true });
 
     window.pauseBluexCanvas = function() {
       isPaused = true;
@@ -2158,7 +2030,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (translations && translations.km) {
     translations.km['nav.about'] = 'អំពីយើង';
     translations.km['nav.brokers'] = 'Brokers';
-    translations.km['nav.capital'] = 'ផលប័ត្រ';
+    translations.km['nav.capital'] = 'យុទ្ធសាស្ត្រ';
     translations.km['nav.pillars'] = 'គោលការណ៍';
     translations.km['nav.faq'] = 'សំណួរ';
     translations.km['nav.connect'] = 'ទាក់ទង';
