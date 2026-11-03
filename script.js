@@ -34,26 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let navScrollTicking = false;
   function updateActiveNavLink() {
     const currentPath = window.location.pathname.replace(/\/$/, '');
-    const isGenesis = currentPath.endsWith('smc-genesis.html');
-    const isKnowledge = currentPath.endsWith('knowledge.html');
+    const subpages = ['smc-genesis.html', 'knowledge.html', 'gold-hedging.html'];
+    const activeSubpage = subpages.find(page => currentPath.endsWith(page));
 
-    if (isGenesis) {
+    if (activeSubpage) {
       navLinks.forEach(link => {
         const href = link.getAttribute('href') || '';
-        if (href === 'smc-genesis.html' || href.includes('smc-genesis.html')) {
-          link.classList.add('active');
-        } else {
-          link.classList.remove('active');
-        }
-      });
-      navScrollTicking = false;
-      return;
-    }
-
-    if (isKnowledge) {
-      navLinks.forEach(link => {
-        const href = link.getAttribute('href') || '';
-        if (href === 'knowledge.html' || href.includes('knowledge.html')) {
+        if (href === activeSubpage || href.startsWith(activeSubpage + '#')) {
           link.classList.add('active');
         } else {
           link.classList.remove('active');
@@ -481,6 +468,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.brokers': 'Brokers',
       'nav.courses': 'Courses',
       'nav.genesis': '<span class="genesis-pulse-dot"></span> SMC Genesis <span class="nav-new-badge">NEW</span>',
+      'nav.hedging': '<span class="nav-label-full">Gold </span>Hedging',
       'nav.drawerBrand': 'BLUEX TERMINAL',
       'nav.spotlightDesc': 'Institutional Blueprint: 10 Quantitative Modules',
       'nav.drawerDm': 'Register Now — Direct DM (@Le_Bluue)',
@@ -1003,6 +991,85 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.ctaTitle': 'Ready to Step Into the Institutional Flow?',
       'genesis.ctaSub': 'Stop donating retail liquidity to algorithms. Connect directly with BlueX or join our growing trader community.',
 
+      // ========================================================
+      // Gold Hedging Protocol (English)
+      // ========================================================
+      'hedging.heroBadge': 'Delta-Neutral Bullion & Treasury Architecture',
+      'hedging.heroSubBadge': 'XAU/USD Physical Shop Integration',
+      'hedging.heroTitle': 'Gold Hedging <span class="gold-accent">Protocol</span>',
+      'hedging.heroDesc': 'Eliminate directional market exposure for jewelry stores, physical bullion vaults, and bullion custodians. Seamlessly translate Cambodian Damlung (តម្លឹង), Chi (ជី), and Grams into exact MT4/MT5 digital spot positions to lock in 100% of retail spread and fabrication margins.',
+      'hedging.btnCalc': '⚡ Launch Hedging Calculator',
+      'hedging.btnArch': 'Delta-Neutral Mechanics ➔',
+      'hedging.ribbonDelta': 'Delta-Neutral Equilibrium',
+      'hedging.ribbonConversion': 'Precision Standard Lot Conversion',
+      'hedging.ribbonProfit': 'Retail Spread & Fabrication Margin Protected',
+      'hedging.calcBadge': 'Real-Time Treasury Tool',
+      'hedging.calcTitle': 'Physical-to-Digital <span class="gold-accent">Hedging Calculator</span>',
+      'hedging.calcSubtitle': 'Calculate the exact mathematical counter-order, required initial margin, and safe fluctuation buffer required to keep your business delta-neutral.',
+      'hedging.step1Label': '1. Physical Inventory Flow',
+      'hedging.dirBuyTitle': 'Shop Buys Gold',
+      'hedging.dirBuySub': 'Inventory UP (+Weight) ➔ Need Digital SHORT',
+      'hedging.dirSellTitle': 'Shop Sells Gold',
+      'hedging.dirSellSub': 'Inventory DOWN (-Weight) ➔ Need Digital LONG',
+      'hedging.step2Label': '2. Physical Quantity & Unit',
+      'hedging.paramSpot': 'XAU/USD Spot Price ($/oz)',
+      'hedging.paramLeverage': 'Broker Leverage',
+      'hedging.paramBuffer': 'Adverse Price Swing Buffer ($/oz)',
+      'hedging.bufferHelp': 'Capital reserve held in broker equity to absorb market moves against your hedge without triggering a stop-out before physical inventory is settled.',
+      'hedging.resBrokerLots': 'Standard Broker Lots',
+      'hedging.resResidual': 'Unhedged Micro-Residual',
+      'hedging.resNotional': 'Physical Inventory Value',
+      'hedging.resMargin': 'Initial Margin Required',
+      'hedging.safeCapBadge': 'RECOMMENDED BROKER CAPITAL',
+      'hedging.safeCapTag': 'Zero Stop-Out Architecture',
+      'hedging.capRowMargin': 'Initial Margin (Broker Lock):',
+      'hedging.capRowBuffer': 'Adverse Swing Buffer (+$100/oz):',
+      'hedging.proofTitle': 'Institutional Conversion Formulation',
+      'hedging.archBadge': 'Dealer Principles',
+      'hedging.archTitle': 'The Mechanics of <span class="gold-accent">Delta-Neutral Equilibrium</span>',
+      'hedging.archSubtitle': 'Physical gold shops generate consistent profit from retail spreads, fabrication premiums, and minting markups. Holding naked directional risk gambles your business equity against global macroeconomic volatility.',
+      'hedging.unhedgedTag': 'TRADITIONAL UNHEDGED SHOP',
+      'hedging.unhedgedTitle': 'Naked Inventory Exposure',
+      'hedging.unhedgedDesc': 'A shop buys 100 Damlung ($274,000) of gold from walk-in retail clients. Over the weekend, gold drops $120/oz on global macroeconomic news.',
+      'hedging.hedgedTag': 'BLUEX DELTA-NEUTRAL PROTOCOL',
+      'hedging.hedgedTitle': 'Pure Delta Equilibrium (Δ = 0)',
+      'hedging.hedgedDesc': 'The shop logs 100 Damlung into BlueX Terminal and opens a 1.21 Lot XAU/USD digital short immediately upon receiving physical gold.',
+      'hedging.protocolBadge': 'SOP Protocol',
+      'hedging.protocolTitle': 'The 4-Step <span class="gold-accent">Dealer Operating SOP</span>',
+      'hedging.protocolSubtitle': 'Mechanical procedures executed by cashiers, vault managers, and bullion treasurers to guarantee zero slippage and flawless balance.',
+      'hedging.sop1Title': 'Physical Inflow & Verification',
+      'hedging.sop1Desc': 'Weigh incoming jewelry or bullion bars on certified scales. Log exact Damlung, Chi, or grams into the shop register. Confirm purity (99.99% or 24K).',
+      'hedging.sop2Title': 'Instant Counter-Order Execution',
+      'hedging.sop2Desc': 'Open your dedicated hedging terminal (MT4/MT5). Execute the exact calculated Lot counter-order. If physical gold was bought, place a Market Short. If sold, place a Market Long.',
+      'hedging.sop3Title': 'Physical Resale & Digital Unwind',
+      'hedging.sop3Desc': 'When the physical gold is sold to retail customers or dispatched to a refinery, simultaneously close the corresponding digital position on MT4/MT5.',
+      'hedging.sop4Title': 'Financing & Swap-Free Discipline',
+      'hedging.sop4Desc': 'Bullion inventory cycles often span days or weeks. Standard retail accounts charge overnight swap fees that slowly erode profits. Always utilize a Swap-Free institutional account.',
+      'hedging.matrixBadge': 'Conversion Matrix',
+      'hedging.matrixTitle': 'Institutional <span class="gold-accent">Weight Standards</span>',
+      'hedging.matrixSubtitle': 'Mathematical equivalence between traditional Cambodian gold units, metric mass, international Troy Ounces, and digital spot lots.',
+      'hedging.colUnit': 'Gold Unit',
+      'hedging.colKhmer': 'Traditional Name',
+      'hedging.colGrams': 'Metric Grams',
+      'hedging.colOunces': 'Troy Ounces (oz)',
+      'hedging.colLots': 'MT4/MT5 Standard Lots',
+      'hedging.colEquiv': 'Equivalence',
+      'hedging.brokerBadge': 'Institutional Infrastructure Partner',
+      'hedging.brokerTitle': 'Zero-Spread Execution via <span class="cyan-accent">Treno Markets</span>',
+      'hedging.brokerDesc': 'Hedging thin physical margins requires ultra-tight institutional conditions. Treno Markets provides raw liquidity spreads (0.0 pips on XAU/USD), swap-free holding accounts, and sub-millisecond execution to ensure zero basis slippage on counter-orders.',
+      'hedging.brokerCta': 'Open Institutional Account on Treno Markets ➔',
+      'hedging.faqBadge': 'Frequently Answered',
+      'hedging.faqTitle': 'Institutional <span class="gold-accent">Hedging FAQ</span>',
+      'hedging.q1Title': 'Why should our shop hedge when gold generally rises in the long term?',
+      'hedging.q1Answer': 'As a gold retailer, your profit engine is the spread between your buying price and selling price plus fabrication markup. You are in the business of high-turnover retail trading, not long-term speculative investing. Sudden 3%–5% intra-week market drops can completely wipe out months of retail profits if your vault inventory remains unhedged.',
+      'hedging.q2Title': 'What happens if gold spikes while we have an open Short hedge?',
+      'hedging.q2Answer': 'If the gold spot price surges, your digital short position will show a floating loss. However, the physical gold in your shop\'s vault appreciates by the exact same dollar amount. That is why holding our recommended Safe Capital Buffer ($100/oz adverse reserve) is essential: it ensures your broker account comfortably absorbs the temporary digital drawdown while your physical bullion gains value.',
+      'hedging.q3Title': 'How do we handle odd weights smaller than 0.01 lot (31.1g)?',
+      'hedging.q3Answer': 'Standard MT4/MT5 brokers execute in minimum increments of 0.01 lot (1 Troy Ounce = 31.10g ≈ 0.83 Damlung). For fractional transactions below 1 Troy Ounce, the calculator identifies your exact unhedged micro-residual. You simply accumulate minor retail purchases until reaching the 0.01 lot threshold, maintaining over 98% portfolio hedging efficiency.',
+      'hedging.q4Title': 'Can we hedge other metals like Silver or Platinum?',
+      'hedging.q4Answer': 'Yes. The mathematical delta-neutral principles remain identical across Silver (XAG/USD) and Platinum (XPT/USD), adjusting only for standard contract sizes (5,000 oz per standard Silver lot). BlueX Terminal provides custom formulas for multi-metal treasury desks.',
+      'hedging.floatingCta': 'Consult Treasury Setup • DM @Le_Bluue',
+
       // Footer
       'footer.copy': '© 2026 BlueX. Master Your Ego. Master Your Trades. All rights reserved.'
     },
@@ -1014,6 +1081,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.brokers': 'ឈ្មួញកណ្តាល',
       'nav.courses': 'វគ្គសិក្សា',
       'nav.genesis': '<span class="genesis-pulse-dot"></span> SMC Genesis <span class="nav-new-badge">ថ្មី</span>',
+      'nav.hedging': 'Hedging<span class="nav-label-full"> មាស</span>',
       'nav.drawerBrand': 'បណ្តាញ BLUEX TERMINAL',
       'nav.spotlightDesc': 'ស្ថាបត្យកម្មស្ថាប័ន ១០ ម៉ូឌុល',
       'nav.drawerDm': 'ចុះឈ្មោះឥឡូវនេះ — ផ្ញើសារផ្ទាល់ (@Le_Bluue)',
@@ -1536,6 +1604,85 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.ctaTitle': 'ត្រៀមខ្លួនរួចរាល់ហើយឬនៅដើម្បីឈានជើងចូលក្នុងលំហូរស្ថាប័ន?',
       'genesis.ctaSub': 'បញ្ឈប់ការផ្តល់ប្រាក់ឱ្យទីផ្សារដោយងងឹតងងល់។ ទំនាក់ទំនងផ្ទាល់ជាមួយ BlueX ឬចូលរួមក្នុងសហគមន៍ Trader របស់យើង។',
 
+      // ========================================================
+      // Gold Hedging Protocol (Khmer)
+      // ========================================================
+      'hedging.heroBadge': 'ស្ថាបត្យកម្មរតនាគារ & Delta-Neutral មាសសុទ្ធ',
+      'hedging.heroSubBadge': 'ការតភ្ជាប់រវាងហាងមាសរូបវន្ត និង XAU/USD Digital',
+      'hedging.heroTitle': 'ពិធីការការពារហានិភ័យមាស <span class="gold-accent">Gold Hedging</span>',
+      'hedging.heroDesc': 'លុបបំបាត់ហានិភ័យការប្រែប្រួលថ្លៃមាសសម្រាប់ហាងមាស ហាងលក់គ្រឿងអលង្ការ និងឃ្លាំងស្តុកមាស។ បម្លែងឯកតាមាសខ្មែរដូចជា តម្លឹង ជី និងក្រាម ទៅជាទំហំកិច្ចសន្យាឌីជីថល (Lots) លើ MT4/MT5 យ៉ាងជាក់លាក់ ដើម្បីការពារចំណេញពីថ្លៃឈ្នួល និងគម្លាតថ្លៃទិញ-លក់បាន ១០០%។',
+      'hedging.btnCalc': '⚡ បើកម៉ាស៊ីនគណនា Hedging',
+      'hedging.btnArch': 'យន្តការ Delta-Neutral ➔',
+      'hedging.ribbonDelta': 'លំនឹង Delta-Neutral ស្មើ ០',
+      'hedging.ribbonConversion': 'បម្លែងទំហំ Lot ស្តង់ដារសុក្រឹត',
+      'hedging.ribbonProfit': 'ការពារប្រាក់ចំណេញពីគម្លាតថ្លៃ និងឈ្នួល ១០០%',
+      'hedging.calcBadge': 'ឧបករណ៍រតនាគារតាមពេលវេលាជាក់ស្តែង',
+      'hedging.calcTitle': 'ម៉ាស៊ីនគណនា <span class="gold-accent">Hedging មាសរូបវន្តទៅឌីជីថល</span>',
+      'hedging.calcSubtitle': 'គណនាបញ្ជាការពារហានិភ័យតាមគណិតវិទ្យាសុក្រឹត ប្រាក់តម្កល់ Margin និងទុនបម្រុងសុវត្ថិភាពដើម្បីរក្សាតុល្យភាព Delta-Neutral។',
+      'hedging.step1Label': '១. ចរន្តស្តុកមាសរូបវន្តក្នុងហាង',
+      'hedging.dirBuyTitle': 'ហាងទិញមាសចូល',
+      'hedging.dirBuySub': 'ស្តុកមាសកើន (+ទម្ងន់) ➔ ត្រូវបើក Digital SHORT',
+      'hedging.dirSellTitle': 'ហាងលក់មាសចេញ',
+      'hedging.dirSellSub': 'ស្តុកមាសថយ (-ទម្ងន់) ➔ ត្រូវបើក Digital LONG',
+      'hedging.step2Label': '២. ទម្ងន់មាសរូបវន្ត និងឯកតា',
+      'hedging.paramSpot': 'ថ្លៃមាសពិភពលោក Spot ($/oz)',
+      'hedging.paramLeverage': 'Leverage ឈ្មួញកណ្តាល',
+      'hedging.paramBuffer': 'ទុនបម្រុងការប្រែប្រួលថ្លៃ ($/oz)',
+      'hedging.bufferHelp': 'ទុនបម្រុងសុវត្ថិភាពក្នុងគណនី Broker ដើម្បីការពារកុំឱ្យ Stop-Out នៅពេលទីផ្សារប្រែប្រួលរហ័ស មុនពេលស្តុកមាសត្រូវបានទូទាត់។',
+      'hedging.resBrokerLots': 'ទំហំ Lot ស្តង់ដារលើ Broker',
+      'hedging.resResidual': 'ទម្ងន់នៅសល់មិនទាន់ Hedged',
+      'hedging.resNotional': 'តម្លៃសរុបនៃស្តុកមាសរូបវន្ត',
+      'hedging.resMargin': 'ប្រាក់តម្កល់ Margin ដំបូង',
+      'hedging.safeCapBadge': 'ទុនគណនីសុវត្ថិភាពដែលណែនាំ',
+      'hedging.safeCapTag': 'ស្ថាបត្យកម្មគ្មាន Stop-Out',
+      'hedging.capRowMargin': 'Margin តម្កល់ (Broker ចាក់សោ):',
+      'hedging.capRowBuffer': 'ទុនបម្រុងប្រែប្រួលថ្លៃ (+$100/oz):',
+      'hedging.proofTitle': 'រូបមន្តបម្លែងតាមកម្រិតស្ថាប័ន',
+      'hedging.archBadge': 'គោលការណ៍សម្រាប់អាជីវកម្មមាស',
+      'hedging.archTitle': 'យន្តការនៃ <span class="gold-accent">លំនឹង Delta-Neutral</span>',
+      'hedging.archSubtitle': 'ហាងមាសរូបវន្តបង្កើតប្រាក់ចំណេញជាប់លាប់ពីគម្លាតថ្លៃទិញ-លក់ និងថ្លៃឈ្នួលកែច្នៃ។ ការទុកឱ្យស្តុកមាសប្រឈមនឹងទីផ្សារដោយគ្មាន Hedging គឺជាការយកទុនអាជីវកម្មទៅលេងល្បែងជាមួយទីផ្សារពិភពលោក។',
+      'hedging.unhedgedTag': 'ហាងមាសបុរាណដែលមិនបាន Hedging',
+      'hedging.unhedgedTitle': 'ស្តុកមាសប្រឈមហានិភ័យ ១០០%',
+      'hedging.unhedgedDesc': 'ហាងទិញមាស ១០០ តម្លឹង ($២៧៤,០០០) ពីអតិថិជន។ ឆ្លងចុងសប្តាហ៍ ថ្លៃមាសពិភពលោកធ្លាក់ចុះ $១២០/oz ដោយសារព័ត៌មានម៉ាក្រូសេដ្ឋកិច្ច។',
+      'hedging.hedgedTag': 'ពិធីការ BLUEX DELTA-NEUTRAL',
+      'hedging.hedgedTitle': 'លំនឹង Delta ស្មើ ០ សុក្រឹត (Δ = 0)',
+      'hedging.hedgedDesc': 'ហាងកត់ត្រា ១០០ តម្លឹងក្នុង BlueX Terminal ហើយបើកបញ្ជា Short ១.២១ Lot XAU/USD ភ្លាមៗពេលទទួលមាសរូបវន្ត។',
+      'hedging.protocolBadge': 'ពិធីការស្តង់ដារប្រតិបត្តិការ (SOP)',
+      'hedging.protocolTitle': 'នីតិវិធីប្រតិបត្តិការ ៤ ជំហាន <span class="gold-accent">Dealer SOP</span>',
+      'hedging.protocolSubtitle': 'នីតិវិធីដែលអនុវត្តដោយបេឡាធិការ នាយកឃ្លាំង និងអ្នកគ្រប់គ្រងរតនាគារ ដើម្បីលុបបំបាត់ Slippage និងរក្សាតុល្យភាព។',
+      'hedging.sop1Title': 'ការថ្លឹងទម្ងន់ & ផ្ទៀងផ្ទាត់មាសចូល',
+      'hedging.sop1Desc': 'ថ្លឹងគ្រឿងអលង្ការ ឬមាសដុំលើជញ្ជីងស្តង់ដារ។ កត់ត្រាចំនួនតម្លឹង ជី ឬក្រាមចូលក្នុងបញ្ជីហាងឱ្យបានច្បាស់លាស់ និងបញ្ជាក់កម្រិតទឹកមាស (៩៩.៩៩% ឬ ២៤K)។',
+      'hedging.sop2Title': 'ការបើកបញ្ជាការពារហានិភ័យភ្លាមៗ',
+      'hedging.sop2Desc': 'បើកកម្មវិធី Hedging (MT4/MT5) ហើយដាក់បញ្ជា Lot តាមការគណនា។ ប្រសិនបើហាងទិញមាសចូល ត្រូវដាក់ Market Short។ ប្រសិនបើហាងលក់មាសចេញ ត្រូវដាក់ Market Long។',
+      'hedging.sop3Title': 'ការលក់មាសរូបវន្តចេញ & បិទបញ្ជាឌីជីថល',
+      'hedging.sop3Desc': 'នៅពេលមាសរូបវន្តត្រូវបានលក់ទៅឱ្យអតិថិជនរាយ ឬបញ្ជូនទៅរោងចក្រចម្រាញ់ ត្រូវបិទបញ្ជាឌីជីថលដែលត្រូវគ្នានៅលើ MT4/MT5 ភ្លាមៗ។',
+      'hedging.sop4Title': 'វិន័យ Swap-Free & ការគ្រប់គ្រងហិរញ្ញវត្ថុ',
+      'hedging.sop4Desc': 'វដ្តស្តុកមាសជារឿយៗអូសបន្លាយច្រើនថ្ងៃ ឬសប្តាហ៍។ គណនីទូទៅកាត់ថ្លៃ Swap ពេលកាន់រំលងយប់ដែលធ្វើឱ្យបាត់ចំណេញ។ ត្រូវតែប្រើប្រាស់គណនី Swap-Free ស្ថាប័នជាដាច់ខាត។',
+      'hedging.matrixBadge': 'តារាងបម្លែងខ្នាត',
+      'hedging.matrixTitle': 'ស្តង់ដារទម្ងន់ <span class="gold-accent">កម្រិតស្ថាប័ន</span>',
+      'hedging.matrixSubtitle': 'សមមូលគណិតវិទ្យារវាងឯកតាមាសប្រពៃណីខ្មែរ ទម្ងន់ម៉ែត្រ ឯកតាអន្តរជាតិ Troy Ounces និងកិច្ចសន្យាឌីជីថល Lots។',
+      'hedging.colUnit': 'ឯកតាមាស',
+      'hedging.colKhmer': 'ឈ្មោះប្រពៃណីខ្មែរ',
+      'hedging.colGrams': 'ទម្ងន់គិតជាក្រាម (g)',
+      'hedging.colOunces': 'Troy Ounces (oz)',
+      'hedging.colLots': 'Lots ស្តង់ដារ MT4/MT5',
+      'hedging.colEquiv': 'សមមូល',
+      'hedging.brokerBadge': 'ដៃគូហេដ្ឋារចនាសម្ព័ន្ធស្ថាប័ន',
+      'hedging.brokerTitle': 'ការអនុវត្តបញ្ជាគ្មាន Spread ជាមួយ <span class="cyan-accent">Treno Markets</span>',
+      'hedging.brokerDesc': 'ការការពារហានិភ័យលើស្តុកមាសទាមទារលក្ខខណ្ឌស្ថាប័នយ៉ាងតឹងរ៉ឹង។ Treno Markets ផ្តល់ Raw Spread (0.0 pips លើ XAU/USD), គណនី Swap-Free និងល្បឿនបញ្ជូនបញ្ជាលឿនបំផុតក្រោម ១៥ មិល្លីវិនាទី។',
+      'hedging.brokerCta': 'បើកគណនីស្ថាប័នលើ Treno Markets ➔',
+      'hedging.faqBadge': 'សំណួរដែលសួរញឹកញាប់',
+      'hedging.faqTitle': 'សំណួរ-ចម្លើយអំពី <span class="gold-accent">Gold Hedging</span>',
+      'hedging.q1Title': 'ហេតុអ្វីបានជាហាងយើងខ្ញុំត្រូវ Hedging បើមាសឡើងថ្លៃជានិច្ចក្នុងរយៈពេលវែង?',
+      'hedging.q1Answer': 'ក្នុងនាមជាអ្នកលក់មាស ប្រភពចំណេញរបស់អ្នកគឺគម្លាតថ្លៃទិញ-លក់ និងថ្លៃឈ្នួលកែច្នៃ។ អ្នកកំពុងប្រកបអាជីវកម្មលក់រាយដែលទាមទារចរន្តលឿន មិនមែនជាការវិនិយោគទុករយៈពេលវែងឡើយ។ ការធ្លាក់ចុះ ៣%–៥% ភ្លាមៗក្នុងមួយសប្តាហ៍អាចលេបយកប្រាក់ចំណេញរាប់ខែរបស់អ្នក ប្រសិនបើស្តុកមាសមិនត្រូវបានការពារ។',
+      'hedging.q2Title': 'តើមានអ្វីកើតឡើងប្រសិនបើមាសឡើងថ្លៃខ្លាំង ពេលដែលយើងកំពុងកាន់ Short Hedging?',
+      'hedging.q2Answer': 'ប្រសិនបើថ្លៃមាសឡើងខ្ពស់ បញ្ជាឌីជីថល Short របស់អ្នកនឹងបង្ហាញការខាតបង់បណ្តោះអាសន្ន។ ប៉ុន្តែស្តុកមាសរូបវន្តនៅក្នុងទូហាងរបស់អ្នកបានឡើងថ្លៃក្នុងចំនួនទឹកប្រាក់ស្មើគ្នាបេះបិទ។ នេះហើយជាមូលហេតុដែលការរក្សាទុនបម្រុងសុវត្ថិភាព Safe Capital ($100/oz) មានសារៈសំខាន់បំផុត ដើម្បីធានាថាគណនីមិនរងការ Stop-Out។',
+      'hedging.q3Title': 'តើយើងគ្រប់គ្រងទម្ងន់តូចៗក្រោម ០.០១ Lot (៣១.១ក្រាម) ដោយរបៀបណា?',
+      'hedging.q3Answer': 'Broker MT4/MT5 អនុញ្ញាតឱ្យបើកបញ្ជាអប្បបរមា ០.០១ Lot (១ Troy Ounce = ៣១.១០ ក្រាម ≈ ០.៨៣ តម្លឹង)។ សម្រាប់ទម្ងន់តូចៗ ម៉ាស៊ីនគណនានឹងបង្ហាញទម្ងន់នៅសល់ (Micro-Residual)។ អ្នកគ្រាន់តែប្រមូលការទិញរាយតូចៗរហូតដល់គ្រប់ ០.០១ Lot ដើម្បីបើកបញ្ជា ដោយរក្សាប្រសិទ្ធភាព Hedging បានជាង ៩៨%។',
+      'hedging.q4Title': 'តើយើងអាច Hedging លោហៈធាតុផ្សេងទៀតដូចជា ប្រាក់ ឬប្លាទីនបានទេ?',
+      'hedging.q4Answer': 'បាន។ គោលការណ៍គណិតវិទ្យា Delta-Neutral គឺដូចគ្នាសម្រាប់ប្រាក់ (XAG/USD) និងប្លាទីន (XPT/USD) ដោយគ្រាន់តែកែសម្រួលទំហំកិច្ចសន្យាស្តង់ដារ (៥,០០០ oz ក្នុងមួយ Lot ប្រាក់)។ BlueX Terminal ផ្តល់រូបមន្តជាក់លាក់សម្រាប់តុរតនាគារពហុលោហៈ។',
+      'hedging.floatingCta': 'ពិគ្រោះយោបល់រៀបចំរតនាគារ • DM @Le_Bluue',
+
       // Footer
       'footer.copy': '© 2026 BlueX. គ្រប់គ្រងអហំការរបស់អ្នក។ គ្រប់គ្រងការជួញដូររបស់អ្នក។ រក្សាសិទ្ធិគ្រប់យ៉ាង។'
     }
@@ -1694,6 +1841,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update calculator dynamic labels/status
     updatePairSpecs();
     calculateLotSize();
+    if (typeof calculateGoldHedging === 'function') {
+      calculateGoldHedging();
+    }
 
     safeSetStorage('bluex_lang', lang);
   }
@@ -1753,6 +1903,178 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial Calculation Run
   updatePairSpecs();
   calculateLotSize();
+
+  // ========================================================
+  // 4B. GOLD HEDGING PROTOCOL REAL-TIME CALCULATOR ENGINE
+  // ========================================================
+  const hedgeWeightInput = document.getElementById('hedgeWeightInput');
+  const hedgeUnitSelect = document.getElementById('hedgeUnitSelect');
+  const hedgeSpotInput = document.getElementById('hedgeSpotInput');
+  const hedgeLeverageSelect = document.getElementById('hedgeLeverageSelect');
+  const dirBuyGold = document.getElementById('dirBuyGold');
+  const dirSellGold = document.getElementById('dirSellGold');
+  const bufferChips = document.querySelectorAll('.btn-buffer-chip');
+
+  let currentHedgeDirection = 'BUY_PHYSICAL';
+  let currentHedgeBuffer = 100;
+
+  function calculateGoldHedging() {
+    if (!hedgeWeightInput || !hedgeUnitSelect || !hedgeSpotInput || !hedgeLeverageSelect) return;
+
+    const weight = parseFloat(hedgeWeightInput.value) || 0;
+    const unit = hedgeUnitSelect.value || 'damlung';
+    const spot = parseFloat(hedgeSpotInput.value) || 2740;
+    const leverage = parseFloat(hedgeLeverageSelect.value) || 200;
+    const buffer = currentHedgeBuffer;
+
+    // Gram conversion factors
+    const gramsPerUnit = {
+      damlung: 37.5,
+      chi: 3.75,
+      grams: 1.0,
+      ounces: 31.1034768,
+      kilograms: 1000.0
+    };
+
+    const unitNamesKhmer = {
+      damlung: 'តម្លឹង',
+      chi: 'ជី',
+      grams: 'ក្រាម',
+      ounces: 'Troy Ounces',
+      kilograms: 'គីឡូក្រាម'
+    };
+
+    const totalGrams = weight * (gramsPerUnit[unit] || 37.5);
+    const troyOunces = totalGrams / 31.1034768;
+    const exactLots = troyOunces / 100.0;
+    let brokerLots = Math.round(exactLots * 100) / 100;
+    if (brokerLots === 0 && exactLots > 0.005) brokerLots = 0.01;
+
+    const notionalUSD = troyOunces * spot;
+    const marginUSD = (brokerLots * 100 * spot) / leverage;
+    const bufferUSD = brokerLots * 100 * buffer;
+    const safeCapitalUSD = marginUSD + bufferUSD;
+
+    const hedgedGrams = brokerLots * 100 * 31.1034768;
+    const residualGrams = Math.abs(totalGrams - hedgedGrams);
+    const residualDamlung = residualGrams / 37.5;
+    const residualChi = residualGrams / 3.75;
+
+    // Update DOM elements
+    const isBuy = currentHedgeDirection === 'BUY_PHYSICAL';
+    const banner = document.getElementById('hedgeActionBanner');
+    const pill = document.getElementById('hedgeActionPill');
+    const headline = document.getElementById('hedgeActionHeadline');
+    const reason = document.getElementById('hedgeActionReason');
+    const resStandardLots = document.getElementById('resStandardLots');
+
+    if (resStandardLots) resStandardLots.textContent = brokerLots.toFixed(2);
+
+    const currentLang = document.documentElement.getAttribute('lang') || 'en';
+
+    if (banner && pill && headline && reason) {
+      if (isBuy) {
+        banner.classList.remove('action-buy');
+        pill.textContent = currentLang === 'km' ? 'បើកលក់ / SHORT XAU/USD' : 'OPEN SHORT / SELL XAU/USD';
+        headline.innerHTML = currentLang === 'km'
+          ? `លក់ <span class="gold-accent">${brokerLots.toFixed(2)}</span> LOTS XAU/USD`
+          : `SELL <span class="gold-accent">${brokerLots.toFixed(2)}</span> LOTS XAU/USD`;
+        reason.textContent = currentLang === 'km'
+          ? `ស្តុកមាសក្នុងហាងកើនឡើង ${totalGrams.toFixed(2)}g (${weight} ${unitNamesKhmer[unit] || unit})។ បើក Digital SHORT ដើម្បីការពារការធ្លាក់ថ្លៃមាស។`
+          : `Your physical inventory increased by ${totalGrams.toFixed(2)}g (${weight} ${unit}). Open a ${brokerLots.toFixed(2)} digital short to eliminate gold price drop risk.`;
+      } else {
+        banner.classList.add('action-buy');
+        pill.textContent = currentLang === 'km' ? 'បើកទិញ / LONG XAU/USD' : 'OPEN LONG / BUY XAU/USD';
+        headline.innerHTML = currentLang === 'km'
+          ? `ទិញ <span class="cyan-accent">${brokerLots.toFixed(2)}</span> LOTS XAU/USD`
+          : `BUY <span class="cyan-accent">${brokerLots.toFixed(2)}</span> LOTS XAU/USD`;
+        reason.textContent = currentLang === 'km'
+          ? `ស្តុកមាសក្នុងហាងថយចុះ ${totalGrams.toFixed(2)}g (${weight} ${unitNamesKhmer[unit] || unit})។ បើក Digital LONG ដើម្បីការពារថ្លៃទិញបំពេញស្តុកឡើងថ្លៃ។`
+          : `Your physical inventory decreased by ${totalGrams.toFixed(2)}g (${weight} ${unit}). Open a ${brokerLots.toFixed(2)} digital long to hedge replenishment inventory costs.`;
+      }
+    }
+
+    const elBrokerLots = document.getElementById('cardBrokerLots');
+    if (elBrokerLots) elBrokerLots.textContent = `${brokerLots.toFixed(2)} Lots`;
+
+    const elExactLots = document.getElementById('cardExactLots');
+    if (elExactLots) elExactLots.textContent = currentLang === 'km' ? `ពិតប្រាកដ: ${exactLots.toFixed(5)} Lots` : `Exact: ${exactLots.toFixed(5)} Lots`;
+
+    const elResidualWeight = document.getElementById('cardResidualWeight');
+    if (elResidualWeight) elResidualWeight.textContent = `${residualGrams.toFixed(2)} g`;
+
+    const elResidualDamlung = document.getElementById('cardResidualDamlung');
+    if (elResidualDamlung) {
+      elResidualDamlung.textContent = currentLang === 'km'
+        ? `≈ ${residualDamlung.toFixed(2)} តម្លឹង (${residualChi.toFixed(2)} ជី)`
+        : `≈ ${residualDamlung.toFixed(2)} Damlung (${residualChi.toFixed(2)} Chi)`;
+    }
+
+    const elNotionalVal = document.getElementById('cardNotionalVal');
+    if (elNotionalVal) elNotionalVal.textContent = `$${notionalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+    const elOuncesVal = document.getElementById('cardOuncesVal');
+    if (elOuncesVal) elOuncesVal.textContent = `${troyOunces.toFixed(3)} Troy Ounces`;
+
+    const elMarginVal = document.getElementById('cardMarginVal');
+    if (elMarginVal) elMarginVal.textContent = `$${marginUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+    const elLeverageNote = document.getElementById('cardLeverageNote');
+    if (elLeverageNote) elLeverageNote.textContent = currentLang === 'km' ? `នៅកម្រិត 1:${leverage}` : `At 1:${leverage} leverage`;
+
+    const elSafeCapital = document.getElementById('cardSafeCapital');
+    if (elSafeCapital) elSafeCapital.textContent = `$${safeCapitalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
+
+    const elBreakdownMargin = document.getElementById('breakdownMargin');
+    if (elBreakdownMargin) elBreakdownMargin.textContent = `$${marginUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+    const elBreakdownBuffer = document.getElementById('breakdownBuffer');
+    if (elBreakdownBuffer) elBreakdownBuffer.textContent = `$${bufferUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+    const elBufferValText = document.getElementById('hedgeBufferValText');
+    if (elBufferValText) elBufferValText.textContent = `+$${buffer.toFixed(2)} / oz`;
+
+    const elMathProofSteps = document.getElementById('mathProofSteps');
+    if (elMathProofSteps) {
+      elMathProofSteps.innerHTML = currentLang === 'km'
+        ? `${weight} ${unitNamesKhmer[unit] || unit} × ${(gramsPerUnit[unit] || 37.5).toFixed(2)}g = ${totalGrams.toFixed(2)}g មាសសុទ្ធ<br>${totalGrams.toFixed(2)}g ÷ 31.1035g/oz = ${troyOunces.toFixed(4)} Troy Ounces<br>${troyOunces.toFixed(4)} oz ÷ 100 oz/Lot = <strong>${exactLots.toFixed(5)} Digital Lots</strong>`
+        : `${weight} ${unit} × ${(gramsPerUnit[unit] || 37.5).toFixed(2)}g = ${totalGrams.toFixed(2)}g Physical Gold<br>${totalGrams.toFixed(2)}g ÷ 31.1035g/oz = ${troyOunces.toFixed(4)} Troy Ounces<br>${troyOunces.toFixed(4)} oz ÷ 100 oz/Lot = <strong>${exactLots.toFixed(5)} Digital Lots</strong>`;
+    }
+  }
+
+  if (hedgeWeightInput && hedgeUnitSelect && hedgeSpotInput && hedgeLeverageSelect) {
+    if (dirBuyGold && dirSellGold) {
+      dirBuyGold.addEventListener('click', () => {
+        currentHedgeDirection = 'BUY_PHYSICAL';
+        dirBuyGold.classList.add('active');
+        dirSellGold.classList.remove('active');
+        calculateGoldHedging();
+      });
+      dirSellGold.addEventListener('click', () => {
+        currentHedgeDirection = 'SELL_PHYSICAL';
+        dirSellGold.classList.add('active');
+        dirBuyGold.classList.remove('active');
+        calculateGoldHedging();
+      });
+    }
+
+    bufferChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        bufferChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        currentHedgeBuffer = parseFloat(chip.getAttribute('data-buffer')) || 100;
+        calculateGoldHedging();
+      });
+    });
+
+    hedgeWeightInput.addEventListener('input', calculateGoldHedging);
+    hedgeUnitSelect.addEventListener('change', calculateGoldHedging);
+    hedgeSpotInput.addEventListener('input', calculateGoldHedging);
+    hedgeLeverageSelect.addEventListener('change', calculateGoldHedging);
+
+    // Initial calculation for hedging
+    calculateGoldHedging();
+  }
 
 
   // ========================================================

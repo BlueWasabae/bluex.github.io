@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script>
+    if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.location.replace('https://' + window.location.host + window.location.pathname + window.location.search + window.location.hash);
+    }
+  </script>
+  <title>Gold Hedging Protocol • Delta-Neutral Bullion Architecture | BlueX Academy</title>
+  <meta name="description" content="Master institutional delta-neutral gold hedging for physical bullion shops, jewelry dealers, and treasury custodians. Interactive Damlung, Chi, and Grams to XAU/USD digital lot calculator.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.bluexacademy.site/gold-hedging.html">
+
+  <!-- OpenGraph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BlueX Trading Academy">
+  <meta property="og:url" content="https://www.bluexacademy.site/gold-hedging.html">
+  <meta property="og:title" content="Gold Hedging Protocol • Delta-Neutral Bullion Architecture | BlueX Academy">
+  <meta property="og:description" content="Master institutional delta-neutral gold hedging for physical bullion shops, jewelry dealers, and treasury custodians. Calculate exact XAU/USD lots from Damlung, Chi, and Grams.">
+  <meta property="og:image" content="https://www.bluexacademy.site/assets/images/bluex-thumbnail.jpg?v=20261102v3">
+  <meta property="og:image:secure_url" content="https://www.bluexacademy.site/assets/images/bluex-thumbnail.jpg?v=20261102v3">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="720">
+  <meta property="og:image:alt" content="Gold Hedging Protocol - BlueX Trading Academy">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.bluexacademy.site/gold-hedging.html">
+  <meta name="twitter:title" content="Gold Hedging Protocol • Delta-Neutral Bullion Architecture | BlueX Academy">
+  <meta name="twitter:description" content="Master institutional delta-neutral gold hedging for physical bullion shops, jewelry dealers, and treasury custodians. Calculate exact XAU/USD lots from Damlung, Chi, and Grams.">
+  <meta name="twitter:image" content="https://www.bluexacademy.site/assets/images/bluex-thumbnail.jpg?v=20261102v3">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./assets/images/bluex-3d-logo.png">
+  <link rel="apple-touch-icon" href="./assets/images/bluex-3d-logo.png">
+  <meta name="theme-color" content="#08090d">
+
+  <!-- Google Fonts: Popular Luxury Fonts + Modern Khmer -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600;700&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="styles.css?v=20261103v15">
+</head>
+<body class="page-hedging">
+
+  <!-- 24K Golden Wave Horizon Background -->
+  <div class="site-bg-wrapper">
+    <div class="bg-golden-waves-horizon">
+      <div class="golden-wave-layer"></div>
+    </div>
+    <div class="site-bg-overlay"></div>
+  </div>
+
+  <!-- Ambient Atmosphere & Luxury Starlight Canvas -->
+  <div class="bg-glow-orb cyan"></div>
+  <div class="bg-glow-orb amber"></div>
+  <div class="bg-glow-orb blue"></div>
+  <div class="bg-gold-light-sweep"></div>
+  <canvas id="bluexStarlightCanvas" class="bg-starlight-canvas"></canvas>
+
+  <!-- ========================================================
+       SITE HEADER & NAVIGATION
+       ======================================================== -->
+  <header class="site-header" id="top">
+    <div class="container">
+      <nav class="nav-wrapper">
+        <!-- 3D Brand Logo -->
+        <a href="index.html" class="logo" id="brandLogo" aria-label="BlueX Official - Return to Home" title="BlueX Home">
+          <img src="./assets/images/bluex-3d-logo.png" alt="BlueX" class="nav-logo-3d-img">
+        </a>
+
+        <!-- Centered Menu Pills -->
+        <ul class="nav-menu" id="navMenu">
+          <!-- Mobile Drawer Header -->
+          <li class="nav-mobile-header nav-mobile-only">
+            <div class="nav-drawer-brand">
+              <span class="nav-drawer-dot"></span>
+              <span data-i18n="nav.drawerBrand">BLUEX TERMINAL</span>
+            </div>
+            <button type="button" class="nav-drawer-close-btn" id="navDrawerCloseBtn" aria-label="Close menu">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </li>
+
+          <!-- Mobile Drawer Feature Spotlight: SMC Genesis -->
+          <li class="nav-mobile-spotlight nav-mobile-only">
+            <a href="smc-genesis.html" class="nav-spotlight-card">
+              <div class="nav-spotlight-top">
+                <span class="nav-spotlight-tag"><span class="genesis-pulse-dot"></span> MASTERCLASS</span>
+                <span class="nav-spotlight-arrow">➔</span>
+              </div>
+              <div class="nav-spotlight-title">SMC Genesis • Beyond The Charts</div>
+              <div class="nav-spotlight-sub" data-i18n="nav.spotlightDesc">Institutional Blueprint: 10 Quantitative Modules</div>
+            </a>
+          </li>
+
+          <!-- Navigation Links -->
+          <li class="nav-item-home"><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+          <li><a href="index.html#about" class="nav-link" data-i18n="nav.about">About</a></li>
+          <li><a href="index.html#brokers" class="nav-link" data-i18n="nav.brokers">Brokers</a></li>
+          <li><a href="index.html#courses" class="nav-link" data-i18n="nav.courses">Courses</a></li>
+          <li><a href="smc-genesis.html" class="nav-link nav-link-genesis" data-i18n="nav.genesis"><span class="genesis-pulse-dot"></span>SMC Genesis <span class="nav-new-badge">NEW</span></a></li>
+          <li><a href="gold-hedging.html" class="nav-link active" data-i18n="nav.hedging"><span class="nav-label-full">Gold </span>Hedging</a></li>
+          <li><a href="index.html#capital" class="nav-link" data-i18n="nav.capital">Strategy</a></li>
+          <li><a href="index.html#calculator" class="nav-link" data-i18n="nav.calculator">Calculator</a></li>
+          <li><a href="knowledge.html" class="nav-link" data-i18n="nav.knowledge">Knowledge</a></li>
+          <li><a href="index.html#pillars" class="nav-link" data-i18n="nav.pillars">Pillars</a></li>
+          <li><a href="index.html#media" class="nav-link" data-i18n="nav.media">Media</a></li>
+          <li><a href="index.html#faq" class="nav-link" data-i18n="nav.faq">FAQ</a></li>
+          <li class="nav-item-connect"><a href="index.html#connect" class="nav-link" data-i18n="nav.connect">Connect</a></li>
+
+          <!-- Mobile Drawer Performance / FX Freeze Mode Toggle -->
+          <li class="nav-mobile-settings nav-mobile-only">
+            <div class="nav-mobile-settings-row">
+              <span class="nav-mobile-settings-label" data-i18n="nav.perfMode">FX Visuals</span>
+              <button type="button" class="btn-fx-toggle" id="fxToggleBtnDrawer" aria-label="Toggle visual effects">
+                <span class="fx-icon">⚡</span>
+                <span class="fx-label" data-i18n="nav.fxOn">FX On</span>
+              </button>
+            </div>
+          </li>
+
+          <!-- Mobile Drawer CTA -->
+          <li class="nav-mobile-cta nav-mobile-only">
+            <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="btn-primary" data-i18n="nav.drawerDm">
+              Register Now — Direct DM (@Le_Bluue)
+            </a>
+          </li>
+        </ul>
+
+        <!-- Right Action Group -->
+        <div class="nav-right-actions">
+          <div class="lang-switch-wrapper">
+            <button type="button" class="btn-lang-toggle" id="langToggleBtn" aria-label="Switch Language" title="ប្តូរភាសា / Switch Language">
+              <span class="lang-label-main">KH</span>
+              <span class="lang-label-sub">ខ្មែរ</span>
+            </button>
+          </div>
+
+          <div class="theme-switch-wrapper">
+            <button type="button" class="btn-theme-toggle" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Light / Dark Mode">
+              <svg class="theme-icon sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <svg class="theme-icon moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <button type="button" class="btn-fx-toggle" id="fxToggleBtn" aria-label="Toggle Visual FX" title="Freeze / Resume Ambient Motion FX">
+            <span class="fx-icon">⚡</span>
+            <span class="fx-text">FX</span>
+          </button>
+
+          <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="btn-nav-cta" data-i18n="nav.registerBtn">
+            <span class="nav-cta-pulse"></span>
+            Register Now
+          </a>
+
+          <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+            <span class="hamburger-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                <line x1="4" y1="7" x2="20" y2="7"></line>
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="17" x2="20" y2="17"></line>
+              </svg>
+            </span>
+            <span class="close-icon" style="display: none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Backdrop -->
+  <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main id="main-content">
+
+    <!-- ========================================================
+         HERO SECTION: GOLD HEDGING PROTOCOL
+         ======================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-card hedging-hero-card">
+          <div class="hero-top-row">
+            <div class="hero-left-content">
+              <div class="hero-badge-group">
+                <span class="role-pill" data-i18n="hedging.heroBadge">Delta-Neutral Bullion & Treasury Architecture</span>
+                <span class="role-pill mentor" data-i18n="hedging.heroSubBadge">XAU/USD Physical Shop Integration</span>
+              </div>
+              <h1 class="hero-title" data-i18n="hedging.heroTitle">
+                Gold Hedging <span class="gold-accent">Protocol</span>
+              </h1>
+              <p class="hedging-hero-desc" data-i18n="hedging.heroDesc">
+                Eliminate directional market exposure for jewelry stores, physical bullion vaults, and bullion custodians. Seamlessly translate Cambodian Damlung (តម្លឹង), Chi (ជី), and Grams into exact MT4/MT5 digital spot positions to lock in 100% of retail spread and fabrication margins.
+              </p>
+              <div class="hero-cta-group">
+                <a href="#calculator" class="btn-mentorship" data-i18n="hedging.btnCalc">
+                  ⚡ Launch Hedging Calculator
+                </a>
+                <a href="#architecture" class="btn-secondary" data-i18n="hedging.btnArch">
+                  Delta-Neutral Mechanics ➔
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Highlights Metrics -->
+          <div class="hedging-metrics-ribbon">
+            <div class="hedging-metric-item">
+              <div class="hedging-metric-val">Δ = 0.00</div>
+              <div class="hedging-metric-lbl" data-i18n="hedging.ribbonDelta">Delta-Neutral Equilibrium</div>
+            </div>
+            <div class="hedging-metric-item">
+              <div class="hedging-metric-val gold-accent">1.00 Lot = 82.94 Damlung</div>
+              <div class="hedging-metric-lbl" data-i18n="hedging.ribbonConversion">Precision Standard Lot Conversion</div>
+            </div>
+            <div class="hedging-metric-item">
+              <div class="hedging-metric-val cyan-accent">100% Lock</div>
+              <div class="hedging-metric-lbl" data-i18n="hedging.ribbonProfit">Retail Spread & Fabrication Margin Protected</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         INTERACTIVE DELTA-NEUTRAL HEDGING CALCULATOR
+         ======================================================== -->
+    <section class="hedging-calc-section" id="calculator">
+      <div class="container">
+        <div class="section-badge-center">
+          <span class="role-pill" data-i18n="hedging.calcBadge">Real-Time Treasury Tool</span>
+        </div>
+        <h2 class="section-heading-center" data-i18n="hedging.calcTitle">
+          Physical-to-Digital <span class="gold-accent">Hedging Calculator</span>
+        </h2>
+        <p class="section-sub-center" data-i18n="hedging.calcSubtitle">
+          Calculate the exact mathematical counter-order, required initial margin, and safe fluctuation buffer required to keep your business delta-neutral.
+        </p>
+
+        <div class="hedging-calc-wrapper">
+          <!-- Left Column: Inputs & Parameters -->
+          <div class="hedging-calc-panel hedging-calc-inputs">
+            <!-- Step 1: Transaction Direction -->
+            <div class="calc-group-block">
+              <label class="calc-block-label" data-i18n="hedging.step1Label">1. Physical Inventory Flow</label>
+              <div class="direction-toggle-grid">
+                <button type="button" class="dir-toggle-btn active" id="dirBuyGold" data-direction="BUY_PHYSICAL">
+                  <span class="dir-icon">📥</span>
+                  <div class="dir-info">
+                    <span class="dir-title" data-i18n="hedging.dirBuyTitle">Shop Buys Gold</span>
+                    <span class="dir-sub" data-i18n="hedging.dirBuySub">Inventory UP (+Weight) ➔ Need Digital SHORT</span>
+                  </div>
+                </button>
+                <button type="button" class="dir-toggle-btn" id="dirSellGold" data-direction="SELL_PHYSICAL">
+                  <span class="dir-icon">📤</span>
+                  <div class="dir-info">
+                    <span class="dir-title" data-i18n="hedging.dirSellTitle">Shop Sells Gold</span>
+                    <span class="dir-sub" data-i18n="hedging.dirSellSub">Inventory DOWN (-Weight) ➔ Need Digital LONG</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 2: Weight & Unit Selection -->
+            <div class="calc-group-block">
+              <label class="calc-block-label" data-i18n="hedging.step2Label">2. Physical Quantity & Unit</label>
+              <div class="weight-input-row">
+                <div class="calc-input-field flex-grow">
+                  <input type="number" id="hedgeWeightInput" class="calc-number-input" value="10" min="0.01" step="any" placeholder="Enter quantity">
+                </div>
+                <div class="calc-select-field">
+                  <select id="hedgeUnitSelect" class="calc-select-dropdown">
+                    <option value="damlung" selected>Damlung (តម្លឹង - 37.5g)</option>
+                    <option value="chi">Chi (ជី - 3.75g)</option>
+                    <option value="grams">Grams (g)</option>
+                    <option value="ounces">Troy Ounces (oz)</option>
+                    <option value="kilograms">Kilograms (kg)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Financial & Risk Parameters -->
+            <div class="calc-params-grid">
+              <!-- Spot Price -->
+              <div class="calc-param-field">
+                <label class="calc-sub-label" for="hedgeSpotInput" data-i18n="hedging.paramSpot">XAU/USD Spot Price ($/oz)</label>
+                <div class="calc-input-adornment">
+                  <span class="input-prefix">$</span>
+                  <input type="number" id="hedgeSpotInput" class="calc-number-input" value="2740.00" min="1000" max="6000" step="0.5">
+                </div>
+              </div>
+
+              <!-- Leverage -->
+              <div class="calc-param-field">
+                <label class="calc-sub-label" for="hedgeLeverageSelect" data-i18n="hedging.paramLeverage">Broker Leverage</label>
+                <select id="hedgeLeverageSelect" class="calc-select-dropdown">
+                  <option value="100">1:100 (Conservative)</option>
+                  <option value="200" selected>1:200 (Institutional Standard)</option>
+                  <option value="500">1:500 (High Capital Efficiency)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Step 4: Adverse Volatility Buffer -->
+            <div class="calc-group-block">
+              <div class="buffer-label-row">
+                <label class="calc-sub-label" data-i18n="hedging.paramBuffer">Adverse Price Swing Buffer ($/oz)</label>
+                <span class="buffer-display-val" id="hedgeBufferValText">+$100.00 / oz</span>
+              </div>
+              <div class="buffer-presets-row">
+                <button type="button" class="btn-buffer-chip" data-buffer="50">+$50 / oz</button>
+                <button type="button" class="btn-buffer-chip active" data-buffer="100">+$100 / oz</button>
+                <button type="button" class="btn-buffer-chip" data-buffer="150">+$150 / oz</button>
+                <button type="button" class="btn-buffer-chip" data-buffer="200">+$200 / oz</button>
+              </div>
+              <p class="calc-helper-note" data-i18n="hedging.bufferHelp">
+                Capital reserve held in broker equity to absorb market moves against your hedge without triggering a stop-out before physical inventory is settled.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Column: Outputs & Execution Card -->
+          <div class="hedging-calc-panel hedging-calc-results">
+            <!-- Action Recommendation Banner -->
+            <div class="hedge-action-banner" id="hedgeActionBanner">
+              <div class="hedge-action-pill" id="hedgeActionPill">OPEN SHORT / SELL</div>
+              <div class="hedge-action-headline" id="hedgeActionHeadline">
+                SELL <span class="gold-accent" id="resStandardLots">0.12</span> LOTS XAU/USD
+              </div>
+              <p class="hedge-action-reason" id="hedgeActionReason">
+                Your physical inventory increased by 375.00g (10 Damlung). Open a 0.12 digital short to eliminate gold price drop risk.
+              </p>
+            </div>
+
+            <!-- Primary Metrics Grid -->
+            <div class="hedge-results-grid">
+              <!-- Broker Rounded Lots -->
+              <div class="hedge-metric-card highlight">
+                <span class="hedge-metric-title" data-i18n="hedging.resBrokerLots">Standard Broker Lots</span>
+                <span class="hedge-metric-number" id="cardBrokerLots">0.12 Lots</span>
+                <span class="hedge-metric-footnote" id="cardExactLots">Exact: 0.12056 Lots</span>
+              </div>
+
+              <!-- Unhedged Residual -->
+              <div class="hedge-metric-card">
+                <span class="hedge-metric-title" data-i18n="hedging.resResidual">Unhedged Micro-Residual</span>
+                <span class="hedge-metric-number" id="cardResidualWeight">1.75 g</span>
+                <span class="hedge-metric-footnote" id="cardResidualDamlung">≈ 0.05 Damlung (0.47 Chi)</span>
+              </div>
+
+              <!-- Physical Notional Value -->
+              <div class="hedge-metric-card">
+                <span class="hedge-metric-title" data-i18n="hedging.resNotional">Physical Inventory Value</span>
+                <span class="hedge-metric-number" id="cardNotionalVal">$33,034.90</span>
+                <span class="hedge-metric-footnote" id="cardOuncesVal">12.056 Troy Ounces</span>
+              </div>
+
+              <!-- Required Margin -->
+              <div class="hedge-metric-card">
+                <span class="hedge-metric-title" data-i18n="hedging.resMargin">Initial Margin Required</span>
+                <span class="hedge-metric-number cyan-accent" id="cardMarginVal">$164.40</span>
+                <span class="hedge-metric-footnote" id="cardLeverageNote">At 1:200 leverage</span>
+              </div>
+            </div>
+
+            <!-- Safe Capital Recommendation Box -->
+            <div class="safe-capital-box">
+              <div class="safe-capital-header">
+                <div>
+                  <span class="safe-capital-badge" data-i18n="hedging.safeCapBadge">RECOMMENDED BROKER CAPITAL</span>
+                  <div class="safe-capital-amount" id="cardSafeCapital">$1,364.40 USD</div>
+                </div>
+                <div class="safe-capital-tag" data-i18n="hedging.safeCapTag">Zero Stop-Out Architecture</div>
+              </div>
+              <div class="safe-capital-breakdown">
+                <div class="cap-breakdown-row">
+                  <span data-i18n="hedging.capRowMargin">Initial Margin (Broker Lock):</span>
+                  <strong id="breakdownMargin">$164.40</strong>
+                </div>
+                <div class="cap-breakdown-row">
+                  <span data-i18n="hedging.capRowBuffer">Adverse Swing Buffer (+$100/oz):</span>
+                  <strong id="breakdownBuffer">$1,200.00</strong>
+                </div>
+                <div class="cap-breakdown-formula">
+                  Safe Balance = Margin + (Lots × 100 × Buffer/oz)
+                </div>
+              </div>
+            </div>
+
+            <!-- Mathematical Proof Breakdown -->
+            <div class="hedging-math-proof">
+              <div class="math-proof-title" data-i18n="hedging.proofTitle">Institutional Conversion Formulation</div>
+              <div class="math-proof-steps" id="mathProofSteps">
+                10 Damlung × 37.50g = 375.00g Physical Gold<br>
+                375.00g ÷ 31.1034768g/oz = 12.0565 Troy Ounces<br>
+                12.0565 oz ÷ 100 oz/Lot = <strong>0.12056 Digital Lots</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         DELTA-NEUTRAL ARCHITECTURE: WHY SHOPS MUST HEDGE
+         ======================================================== -->
+    <section class="hedging-architecture-section" id="architecture">
+      <div class="container">
+        <div class="section-badge-center">
+          <span class="role-pill" data-i18n="hedging.archBadge">Dealer Principles</span>
+        </div>
+        <h2 class="section-heading-center" data-i18n="hedging.archTitle">
+          The Mechanics of <span class="gold-accent">Delta-Neutral Equilibrium</span>
+        </h2>
+        <p class="section-sub-center" data-i18n="hedging.archSubtitle">
+          Physical gold shops generate consistent profit from retail spreads, fabrication premiums, and minting markups. Holding naked directional risk gambles your business equity against global macroeconomic volatility.
+        </p>
+
+        <div class="hedging-compare-grid">
+          <!-- Scenario A: Unhedged -->
+          <div class="compare-card unhedged">
+            <div class="compare-header">
+              <span class="compare-tag danger" data-i18n="hedging.unhedgedTag">TRADITIONAL UNHEDGED SHOP</span>
+              <h3 class="compare-title" data-i18n="hedging.unhedgedTitle">Naked Inventory Exposure</h3>
+            </div>
+            <p class="compare-body" data-i18n="hedging.unhedgedDesc">
+              A shop buys 100 Damlung ($274,000) of gold from walk-in retail clients. Over the weekend, gold drops $120/oz on global macroeconomic news.
+            </p>
+            <div class="compare-metrics">
+              <div class="compare-metric-row">
+                <span>Physical Inventory Devaluation:</span>
+                <strong class="text-danger">-$14,467 USD</strong>
+              </div>
+              <div class="compare-metric-row">
+                <span>Digital Hedging Offset:</span>
+                <strong>$0.00 (None)</strong>
+              </div>
+              <div class="compare-metric-row total">
+                <span>Net Shop Treasury Loss:</span>
+                <strong class="text-danger">-$14,467 USD (Wiped Out Months of Margins)</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scenario B: Delta-Neutral Hedged -->
+          <div class="compare-card hedged">
+            <div class="compare-header">
+              <span class="compare-tag success" data-i18n="hedging.hedgedTag">BLUEX DELTA-NEUTRAL PROTOCOL</span>
+              <h3 class="compare-title" data-i18n="hedging.hedgedTitle">Pure Delta Equilibrium (Δ = 0)</h3>
+            </div>
+            <p class="compare-body" data-i18n="hedging.hedgedDesc">
+              The shop logs 100 Damlung into BlueX Terminal and opens a 1.21 Lot XAU/USD digital short immediately upon receiving physical gold.
+            </p>
+            <div class="compare-metrics">
+              <div class="compare-metric-row">
+                <span>Physical Inventory Devaluation:</span>
+                <strong class="text-danger">-$14,467 USD</strong>
+              </div>
+              <div class="compare-metric-row">
+                <span>Digital Short Position Gain:</span>
+                <strong class="text-success">+$14,467 USD</strong>
+              </div>
+              <div class="compare-metric-row total">
+                <span>Net Inventory P&L:</span>
+                <strong class="text-cyan">$0.00 (100% Spread Profit Preserved)</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         THE 4-STEP DEALER OPERATING PROTOCOL
+         ======================================================== -->
+    <section class="hedging-protocol-section" id="protocol">
+      <div class="container">
+        <div class="section-badge-center">
+          <span class="role-pill" data-i18n="hedging.protocolBadge">SOP Protocol</span>
+        </div>
+        <h2 class="section-heading-center" data-i18n="hedging.protocolTitle">
+          The 4-Step <span class="gold-accent">Dealer Operating SOP</span>
+        </h2>
+        <p class="section-sub-center" data-i18n="hedging.protocolSubtitle">
+          Mechanical procedures executed by cashiers, vault managers, and bullion treasurers to guarantee zero slippage and flawless balance.
+        </p>
+
+        <div class="protocol-steps-grid">
+          <!-- Step 1 -->
+          <div class="protocol-step-card">
+            <div class="step-card-num">01</div>
+            <h3 class="step-card-title" data-i18n="hedging.sop1Title">Physical Inflow & Verification</h3>
+            <p class="step-card-desc" data-i18n="hedging.sop1Desc">
+              Weigh incoming jewelry or bullion bars on certified scales. Log exact Damlung, Chi, or grams into the shop register. Confirm purity (99.99% or 24K).
+            </p>
+            <div class="step-card-tip">
+              <strong>Institutional Rule:</strong> Consolidate transactions every 15 minutes or execute on each threshold of 1 Damlung.
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="protocol-step-card">
+            <div class="step-card-num">02</div>
+            <h3 class="step-card-title" data-i18n="hedging.sop2Title">Instant Counter-Order Execution</h3>
+            <p class="step-card-desc" data-i18n="hedging.sop2Desc">
+              Open your dedicated hedging terminal (MT4/MT5). Execute the exact calculated Lot counter-order. If physical gold was bought, place a Market Short. If sold, place a Market Long.
+            </p>
+            <div class="step-card-tip">
+              <strong>Execution Target:</strong> Fill order within 60 seconds of retail receipt to prevent basis risk.
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="protocol-step-card">
+            <div class="step-card-num">03</div>
+            <h3 class="step-card-title" data-i18n="hedging.sop3Title">Physical Resale & Digital Unwind</h3>
+            <p class="step-card-desc" data-i18n="hedging.sop3Desc">
+              When the physical gold is sold to retail customers or dispatched to a refinery, simultaneously close the corresponding digital position on MT4/MT5.
+            </p>
+            <div class="step-card-tip">
+              <strong>Equilibrium Check:</strong> Closing the digital position restores cash balance and unlocks allocated margin.
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="protocol-step-card">
+            <div class="step-card-num">04</div>
+            <h3 class="step-card-title" data-i18n="hedging.sop4Title">Financing & Swap-Free Discipline</h3>
+            <p class="step-card-desc" data-i18n="hedging.sop4Desc">
+              Bullion inventory cycles often span days or weeks. Standard retail accounts charge overnight swap fees that slowly erode profits. Always utilize a Swap-Free institutional account.
+            </p>
+            <div class="step-card-tip">
+              <strong>Broker Rule:</strong> Zero overnight swap charges and raw ECN spreads (0.0 - 0.1 pips) are strictly required.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CONVERSION MATRIX & REFERENCE STANDARDS
+         ======================================================== -->
+    <section class="hedging-matrix-section" id="conversions">
+      <div class="container">
+        <div class="section-badge-center">
+          <span class="role-pill" data-i18n="hedging.matrixBadge">Conversion Matrix</span>
+        </div>
+        <h2 class="section-heading-center" data-i18n="hedging.matrixTitle">
+          Institutional <span class="gold-accent">Weight Standards</span>
+        </h2>
+        <p class="section-sub-center" data-i18n="hedging.matrixSubtitle">
+          Mathematical equivalence between traditional Cambodian gold units, metric mass, international Troy Ounces, and digital spot lots.
+        </p>
+
+        <div class="hedging-table-card">
+          <table class="hedging-table">
+            <thead>
+              <tr>
+                <th data-i18n="hedging.colUnit">Gold Unit</th>
+                <th data-i18n="hedging.colKhmer">Traditional Name</th>
+                <th data-i18n="hedging.colGrams">Metric Grams</th>
+                <th data-i18n="hedging.colOunces">Troy Ounces (oz)</th>
+                <th data-i18n="hedging.colLots">MT4/MT5 Standard Lots</th>
+                <th data-i18n="hedging.colEquiv">Equivalence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1 Hun</strong></td>
+                <td>១ ហ៊ុន</td>
+                <td>0.375 g</td>
+                <td>0.01206 oz</td>
+                <td>0.00012 Lot</td>
+                <td>0.1 Chi (ជី)</td>
+              </tr>
+              <tr>
+                <td><strong>1 Chi</strong></td>
+                <td>១ ជី</td>
+                <td>3.750 g</td>
+                <td>0.12057 oz</td>
+                <td>0.00121 Lot</td>
+                <td>10 Hun (ហ៊ុន)</td>
+              </tr>
+              <tr>
+                <td><strong>1 Damlung</strong></td>
+                <td>១ តម្លឹង</td>
+                <td>37.500 g</td>
+                <td>1.20565 oz</td>
+                <td>0.01206 Lot</td>
+                <td>10 Chi (ជី)</td>
+              </tr>
+              <tr>
+                <td><strong>10 Damlung</strong></td>
+                <td>១០ តម្លឹង</td>
+                <td>375.000 g</td>
+                <td>12.0565 oz</td>
+                <td>0.12056 Lot</td>
+                <td>Standard Jewelry Batch</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>1.00 Standard Lot</strong></td>
+                <td>កិច្ចសន្យា 1.00 Lot</td>
+                <td>3,110.35 g</td>
+                <td>100.000 oz</td>
+                <td>1.00000 Lot</td>
+                <td><strong>82.9426 Damlung (តម្លឹង)</strong></td>
+              </tr>
+              <tr>
+                <td><strong>1 Kilogram</strong></td>
+                <td>១ គីឡូក្រាម</td>
+                <td>1,000.000 g</td>
+                <td>32.1507 oz</td>
+                <td>0.32151 Lot</td>
+                <td>26.6667 Damlung (តម្លឹង)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         RECOMMENDED PARTNER BROKER: TRENO MARKETS
+         ======================================================== -->
+    <section class="hedging-broker-section" id="broker">
+      <div class="container">
+        <div class="hedging-broker-card">
+          <div class="hedging-broker-left">
+            <span class="role-pill mentor" data-i18n="hedging.brokerBadge">Institutional Infrastructure Partner</span>
+            <h2 class="hedging-broker-title" data-i18n="hedging.brokerTitle">
+              Zero-Spread Execution via <span class="cyan-accent">Treno Markets</span>
+            </h2>
+            <p class="hedging-broker-desc" data-i18n="hedging.brokerDesc">
+              Hedging thin physical margins requires ultra-tight institutional conditions. Treno Markets provides raw liquidity spreads (0.0 pips on XAU/USD), swap-free holding accounts, and sub-millisecond execution to ensure zero basis slippage on counter-orders.
+            </p>
+            <div class="broker-highlights-row">
+              <div class="broker-highlight-pill">
+                <span>⚡</span> 0.0 - 0.1 Pip Raw Spread
+              </div>
+              <div class="broker-highlight-pill">
+                <span>🛡️</span> 100% Swap-Free Accounts
+              </div>
+              <div class="broker-highlight-pill">
+                <span>⚡</span> Deep Bank-Tier Liquidity
+              </div>
+            </div>
+            <div class="broker-cta-row">
+              <a href="https://portal.trenomarkets.com/register?accInf=2c52jco9ij" target="_blank" rel="noopener noreferrer" class="btn-mentorship" data-i18n="hedging.brokerCta">
+                Open Institutional Account on Treno Markets ➔
+              </a>
+            </div>
+          </div>
+          <div class="hedging-broker-right">
+            <div class="broker-specs-box">
+              <div class="spec-row">
+                <span>Spread on XAU/USD:</span>
+                <strong class="text-cyan">0.0 - 0.1 Pips Raw</strong>
+              </div>
+              <div class="spec-row">
+                <span>Swap on Gold:</span>
+                <strong class="text-success">$0.00 (Swap-Free)</strong>
+              </div>
+              <div class="spec-row">
+                <span>Leverage:</span>
+                <strong>Up to 1:500</strong>
+              </div>
+              <div class="spec-row">
+                <span>Platform:</span>
+                <strong>MetaTrader 5 (MT5)</strong>
+              </div>
+              <div class="spec-row">
+                <span>Execution Speed:</span>
+                <strong>&lt; 15 ms</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         DEALER HEDGING FAQ
+         ======================================================== -->
+    <section class="hedging-faq-section" id="faq">
+      <div class="container">
+        <div class="section-badge-center">
+          <span class="role-pill" data-i18n="hedging.faqBadge">Frequently Answered</span>
+        </div>
+        <h2 class="section-heading-center" data-i18n="hedging.faqTitle">
+          Institutional <span class="gold-accent">Hedging FAQ</span>
+        </h2>
+
+        <div class="hedging-faq-grid">
+          <!-- Q1 -->
+          <div class="faq-item">
+            <h3 class="faq-question" data-i18n="hedging.q1Title">Why should our shop hedge when gold generally rises in the long term?</h3>
+            <p class="faq-answer" data-i18n="hedging.q1Answer">
+              As a gold retailer, your profit engine is the spread between your buying price and selling price plus fabrication markup. You are in the business of high-turnover retail trading, not long-term speculative investing. Sudden 3%–5% intra-week market drops can completely wipe out months of retail profits if your vault inventory remains unhedged.
+            </p>
+          </div>
+
+          <!-- Q2 -->
+          <div class="faq-item">
+            <h3 class="faq-question" data-i18n="hedging.q2Title">What happens if gold spikes while we have an open Short hedge?</h3>
+            <p class="faq-answer" data-i18n="hedging.q2Answer">
+              If the gold spot price surges, your digital short position will show a floating loss. However, the physical gold in your shop's vault appreciates by the exact same dollar amount. That is why holding our recommended <strong>Safe Capital Buffer</strong> ($100/oz adverse reserve) is essential: it ensures your broker account comfortably absorbs the temporary digital drawdown while your physical bullion gains value.
+            </p>
+          </div>
+
+          <!-- Q3 -->
+          <div class="faq-item">
+            <h3 class="faq-question" data-i18n="hedging.q3Title">How do we handle odd weights smaller than 0.01 lot (31.1g)?</h3>
+            <p class="faq-answer" data-i18n="hedging.q3Answer">
+              Standard MT4/MT5 brokers execute in minimum increments of 0.01 lot (1 Troy Ounce = 31.10g ≈ 0.83 Damlung). For fractional transactions below 1 Troy Ounce, the calculator identifies your exact unhedged micro-residual. You simply accumulate minor retail purchases until reaching the 0.01 lot threshold, maintaining over 98% portfolio hedging efficiency.
+            </p>
+          </div>
+
+          <!-- Q4 -->
+          <div class="faq-item">
+            <h3 class="faq-question" data-i18n="hedging.q4Title">Can we hedge other metals like Silver or Platinum?</h3>
+            <p class="faq-answer" data-i18n="hedging.q4Answer">
+              Yes. The mathematical delta-neutral principles remain identical across Silver (XAG/USD) and Platinum (XPT/USD), adjusting only for standard contract sizes (5,000 oz per standard Silver lot). BlueX Terminal provides custom formulas for multi-metal treasury desks.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       SITE FOOTER
+       ======================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="logo" id="footerBrandLogo" aria-label="BlueX Official - Return to Home" title="Return to BlueX Home">
+        <img src="./assets/images/bluex-3d-logo.png" alt="BlueX" style="height: 36px; width: auto; filter: drop-shadow(0 0 12px rgba(0, 255, 224, 0.4));">
+      </a>
+
+      <p class="footer-copy" data-i18n="footer.copy">© 2026 BlueX. Master Your Ego. Master Your Trades. All rights reserved.</p>
+
+      <div class="footer-socials">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/bluewasabae" target="_blank" rel="noopener noreferrer" class="social-circle-link fb" title="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+
+        <!-- Telegram Direct DM -->
+        <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="social-circle-link tg" style="border-color: rgba(255, 184, 0, 0.4); color: var(--color-gold);" title="Telegram DM (@Le_Bluue)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.832.922z"/>
+          </svg>
+        </a>
+
+        <!-- Telegram Community Group -->
+        <a href="https://t.me/moonbluefx" target="_blank" rel="noopener noreferrer" class="social-circle-link tg" title="Telegram Community Group (t.me/moonbluefx)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.832.922z"/>
+          </svg>
+        </a>
+
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@bluewasabae" target="_blank" rel="noopener noreferrer" class="social-circle-link tt" title="TikTok">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.525.02c1.31 0 2.6.43 3.65 1.22 1.05.8 1.82 1.9 2.18 3.16.89-.01 1.77.16 2.58.5.81.34 1.52.86 2.07 1.51l-2.02 2.02c-.39-.46-.89-.82-1.46-1.04-.57-.23-1.18-.32-1.79-.28v6.95c0 1.9-.75 3.72-2.1 5.07-1.34 1.34-3.17 2.1-5.07 2.1-1.91 0-3.73-.76-5.08-2.1-1.34-1.35-2.1-3.17-2.1-5.07 0-1.91.76-3.73 2.1-5.08 1.35-1.34 3.17-2.1 5.08-2.1.48 0 .96.05 1.43.15v2.85c-.47-.16-.96-.24-1.46-.24-.95 0-1.87.38-2.54 1.05-.67.67-1.05 1.58-1.05 2.53 0 .95.38 1.87 1.05 2.54.67.67 1.59 1.05 2.54 1.05.95 0 1.86-.38 2.53-1.05.67-.67 1.05-1.59 1.05-2.54V.02h2.02z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating 1-Click Register Now Action Pill -->
+  <div class="genesis-floating-cta" id="floatingEnrollBtn">
+    <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="floating-cta-pill" title="Register Now — 1-Click Direct DM to BlueX (@Le_Bluue)">
+      <span class="floating-pulse"></span>
+      <span class="floating-icon">⚡</span>
+      <span data-i18n="hedging.floatingCta">Consult Treasury Setup • DM @Le_Bluue</span>
+    </a>
+  </div>
+
+  <script src="script.js?v=20261103v15"></script>
+</body>
+</html>
