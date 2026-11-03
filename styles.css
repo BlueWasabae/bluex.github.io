@@ -8326,21 +8326,311 @@ html[lang="km"] .brokers-title {
   color: var(--color-gold);
 }
 
-/* Metal Switcher (Gold vs Silver) */
-.hedging-metal-switcher {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* ========================================================
+   NEAT HEDGING CALCULATOR ARCHITECTURE (UPGRADED V16)
+   ======================================================== */
+
+/* 3-Step Visual Process Ribbon */
+.calc-workflow-ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 12px;
-  margin-bottom: 18px;
+  margin: 32px auto 28px;
+  padding: 16px 24px;
+  background: rgba(14, 18, 28, 0.7);
+  border: 1px solid rgba(255, 184, 0, 0.2);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(12px);
+  max-width: 1100px;
 }
 
-.metal-switch-btn {
+.workflow-ribbon-step {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.03);
+  flex: 1;
+}
+
+.step-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 4px 9px;
+  background: rgba(255, 184, 0, 0.15);
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-pill);
+  color: var(--color-gold);
+  white-space: nowrap;
+}
+
+.step-badge.success {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.step-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.step-text strong {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.step-text span {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+}
+
+.workflow-ribbon-arrow {
+  color: var(--color-gold);
+  font-size: 1.1rem;
+  opacity: 0.6;
+}
+
+/* Master Calculator Card */
+.hedging-calculator-card {
+  background: rgba(14, 18, 28, 0.88);
+  border: 1px solid rgba(255, 184, 0, 0.25);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+/* Top Unified Command Bar */
+.calc-top-command-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px 24px;
+  background: rgba(0, 0, 0, 0.45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.calc-metal-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.calc-metal-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.calc-metal-tab:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.calc-metal-tab.active {
+  background: rgba(255, 184, 0, 0.16);
+  border-color: var(--color-gold);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(255, 184, 0, 0.25);
+}
+
+.tab-metal-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.tab-metal-dot.gold { background: var(--color-gold); box-shadow: 0 0 6px var(--color-gold); }
+.tab-metal-dot.silver { background: #cbd5e1; box-shadow: 0 0 6px #cbd5e1; }
+
+.tab-metal-label {
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.tab-metal-sub {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+/* Live Spot Pill */
+.calc-live-spot-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(0, 255, 224, 0.08);
+  border: 1px solid rgba(0, 255, 224, 0.28);
+  border-radius: var(--radius-pill);
+}
+
+.live-spot-sym {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.live-spot-num {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #fff;
+}
+
+.live-spot-time {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.btn-refresh-spot-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-refresh-spot-icon:hover {
+  background: rgba(0, 255, 224, 0.2);
+  border-color: #00ffe0;
+  color: #fff;
+}
+
+.btn-refresh-spot-icon.loading svg {
+  animation: spin 0.8s linear infinite;
+}
+
+/* Currency Toggle */
+.calc-currency-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.currency-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.currency-btn {
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.currency-btn.active {
+  background: rgba(255, 184, 0, 0.18);
+  border-color: var(--color-gold);
+  color: #fff;
+}
+
+/* Main Grid */
+.calc-main-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 28px;
+  padding: 28px 24px;
+}
+
+/* Input Cards */
+.calc-col-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.calc-card-section {
+  padding: 20px 22px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+}
+
+.card-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.section-step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 184, 0, 0.18);
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  font-size: 0.82rem;
+  font-weight: 900;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.section-step-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.section-step-title {
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+}
+
+.section-step-desc {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Direction Segmented Control */
+.direction-segmented-control {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.dir-segment-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md);
   color: var(--text-secondary);
   cursor: pointer;
@@ -8348,246 +8638,69 @@ html[lang="km"] .brokers-title {
   transition: all var(--transition-fast);
 }
 
-.metal-switch-btn:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 184, 0, 0.35);
+.dir-segment-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 184, 0, 0.3);
   color: #fff;
 }
 
-.metal-switch-btn.active {
+.dir-segment-btn.active {
   background: rgba(255, 184, 0, 0.12);
   border-color: var(--color-gold);
   color: #fff;
-  box-shadow: 0 0 20px rgba(255, 184, 0, 0.22);
+  box-shadow: 0 0 16px rgba(255, 184, 0, 0.18);
 }
 
-.metal-switch-btn[data-metal="XAG"].active {
-  background: rgba(226, 232, 240, 0.12);
-  border-color: #cbd5e1;
-  box-shadow: 0 0 20px rgba(226, 232, 240, 0.2);
+.dir-segment-btn.active[data-direction="SELL_PHYSICAL"] {
+  background: rgba(0, 255, 224, 0.1);
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 16px rgba(0, 255, 224, 0.18);
 }
 
-.metal-icon {
-  font-size: 1.5rem;
+.dir-btn-icon {
+  font-size: 1.3rem;
   line-height: 1;
-  flex-shrink: 0;
 }
 
-.metal-info {
+.dir-btn-text {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.metal-name {
-  font-size: 0.94rem;
+.dir-btn-text strong {
+  font-size: 0.84rem;
   font-weight: 800;
-  letter-spacing: -0.01em;
-  color: #fff;
 }
 
-.metal-spec {
-  font-size: 0.73rem;
+.dir-btn-text span {
+  font-size: 0.7rem;
   color: var(--text-muted);
-  font-family: var(--font-mono);
 }
 
-/* Live Spot Price Strip */
-.live-spot-ticker-bar {
+/* Presets Bar */
+.calc-presets-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px;
-  padding: 12px 16px;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(0, 255, 224, 0.25);
-  border-radius: var(--radius-md);
-  margin-bottom: 22px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
-}
-
-.live-status-pill {
-  display: inline-flex;
-  align-items: center;
   gap: 8px;
-  padding: 4px 10px;
-  background: rgba(0, 255, 224, 0.1);
-  border: 1px solid rgba(0, 255, 224, 0.3);
-  border-radius: var(--radius-pill);
+  margin-bottom: 16px;
 }
 
-.pulse-dot-green {
-  width: 8px;
-  height: 8px;
-  background: #00ffe0;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #00ffe0;
-  animation: pulseDot 1.8s infinite;
-}
-
-.live-status-text {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #00ffe0;
-}
-
-.live-price-display {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
-}
-
-.live-symbol {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-}
-
-.live-price-val {
-  font-family: var(--font-mono);
-  font-size: 1.25rem;
-  font-weight: 900;
-  color: #ffffff;
-}
-
-.live-price-unit {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.live-feed-actions {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.live-feed-timestamp {
-  font-size: 0.72rem;
-  font-family: var(--font-mono);
-  color: var(--text-muted);
-}
-
-.btn-refresh-feed {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 4px 9px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: var(--radius-pill);
-  color: var(--text-secondary);
-  font-size: 0.75rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.btn-refresh-feed:hover {
-  background: rgba(0, 255, 224, 0.15);
-  border-color: #00ffe0;
-  color: #ffffff;
-}
-
-.btn-refresh-feed.loading svg {
-  animation: spin 0.8s linear infinite;
-}
-
-/* Local Cambodian Physical Rate Block */
-.local-khmer-rate-block {
-  padding: 16px;
-  background: rgba(255, 184, 0, 0.03);
-  border: 1px dashed rgba(255, 184, 0, 0.28);
-  border-radius: var(--radius-md);
-}
-
-.local-rate-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.local-rate-header .calc-block-label {
-  margin-bottom: 0;
-}
-
-.btn-auto-sync-spot {
-  padding: 3px 8px;
-  background: rgba(255, 184, 0, 0.12);
-  border: 1px solid rgba(255, 184, 0, 0.35);
-  border-radius: var(--radius-pill);
-  color: var(--color-gold);
-  font-size: 0.72rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.btn-auto-sync-spot:hover {
-  background: rgba(255, 184, 0, 0.25);
-  color: #fff;
-}
-
-.local-rate-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-.calc-read-only-adornment {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 10px 14px 10px 28px;
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-md);
-  font-family: var(--font-mono);
-}
-
-.calc-read-only-adornment .input-prefix {
-  position: absolute;
-  left: 12px;
-  color: var(--color-gold);
-  font-weight: 700;
-}
-
-.calc-read-only-adornment .read-only-val {
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #fff;
-}
-
-.calc-read-only-adornment .input-suffix {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-left: 6px;
-}
-
-/* Shop Quick Presets */
-.shop-presets-container {
-  margin-top: 10px;
-}
-
-.shop-presets-title {
-  display: block;
-  font-size: 0.76rem;
+.presets-caption {
+  font-size: 0.74rem;
   font-weight: 700;
   color: var(--text-muted);
-  margin-bottom: 6px;
 }
 
-.shop-presets-row {
+.presets-chips-row {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
 
-.btn-shop-preset {
-  padding: 5px 9px;
+.chip-preset {
+  padding: 5px 10px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-pill);
@@ -8598,39 +8711,157 @@ html[lang="km"] .brokers-title {
   transition: all var(--transition-fast);
 }
 
-.btn-shop-preset:hover {
-  background: rgba(255, 184, 0, 0.1);
-  border-color: rgba(255, 184, 0, 0.4);
+.chip-preset:hover {
+  background: rgba(255, 184, 0, 0.12);
+  border-color: rgba(255, 184, 0, 0.35);
   color: #fff;
 }
 
-.btn-shop-preset.active {
-  background: rgba(255, 184, 0, 0.18);
+.chip-preset.active {
+  background: rgba(255, 184, 0, 0.2);
   border-color: var(--color-gold);
   color: #fff;
 }
 
-/* Account Equity Block ("how much should i input") */
-.account-equity-block {
-  padding: 14px 16px;
-  background: rgba(0, 255, 224, 0.03);
-  border: 1px solid rgba(0, 255, 224, 0.2);
+/* Inputs & Form Fields */
+.calc-dual-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.calc-input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.flex-1 { flex: 1; }
+.flex-2 { flex: 2; }
+.flex-3 { flex: 3; }
+
+.field-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.clean-number-input,
+.clean-select-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.clean-number-input:focus,
+.clean-select-input:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 12px rgba(255, 184, 0, 0.2);
+}
+
+/* Local Rate Box */
+.calc-local-rate-container {
+  padding: 12px 14px;
+  background: rgba(255, 184, 0, 0.04);
+  border: 1px dashed rgba(255, 184, 0, 0.28);
   border-radius: var(--radius-md);
 }
 
-.account-equity-header {
+.local-rate-header-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
 }
 
-.account-equity-header .calc-block-label {
-  margin-bottom: 0;
-  color: #00ffe0;
+.btn-micro-sync {
+  padding: 3px 8px;
+  background: rgba(255, 184, 0, 0.15);
+  border: 1px solid rgba(255, 184, 0, 0.35);
+  border-radius: var(--radius-pill);
+  color: var(--color-gold);
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
-.btn-autofill-equity {
+.btn-micro-sync:hover {
+  background: rgba(255, 184, 0, 0.25);
+  color: #fff;
+}
+
+.currency-adornment {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currency-adornment .cur-prefix {
+  position: absolute;
+  left: 12px;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  color: var(--color-gold);
+  pointer-events: none;
+}
+
+.currency-adornment .cur-suffix {
+  position: absolute;
+  right: 12px;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.currency-adornment .clean-number-input {
+  padding-left: 28px;
+  padding-right: 90px;
+}
+
+.read-only-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+}
+
+.pill-label {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.pill-value {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* Balance & Fluctuation Safety */
+.calc-balance-group {
+  margin-bottom: 16px;
+}
+
+.balance-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.btn-auto-fill-safe {
   padding: 3px 8px;
   background: rgba(0, 255, 224, 0.12);
   border: 1px solid rgba(0, 255, 224, 0.35);
@@ -8642,228 +8873,740 @@ html[lang="km"] .brokers-title {
   transition: all var(--transition-fast);
 }
 
-.btn-autofill-equity:hover {
+.btn-auto-fill-safe:hover {
   background: rgba(0, 255, 224, 0.25);
   color: #fff;
 }
 
-/* Physical Shop Cash & Margin Lock Card */
-.shop-cash-counter-card {
-  padding: 18px 20px;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 184, 0, 0.28);
-  border-radius: var(--radius-lg);
-  margin-bottom: 20px;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+.currency-adornment.highlight-balance {
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(0, 255, 224, 0.25);
 }
 
-.cash-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.cash-card-badge {
-  font-size: 0.73rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-gold);
-}
-
-.cash-card-status {
-  padding: 3px 8px;
-  background: rgba(0, 255, 224, 0.12);
-  border: 1px solid rgba(0, 255, 224, 0.3);
-  border-radius: var(--radius-pill);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 800;
+.currency-adornment.highlight-balance .cur-prefix {
   color: #00ffe0;
 }
 
-.cash-card-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+.calc-buffer-group {
+  margin-bottom: 14px;
 }
 
-.cash-metric-cell {
+.buffer-label-row {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
-.cash-metric-label {
+.buffer-val-badge {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-gold);
+}
+
+.buffer-chips-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.chip-buffer {
+  padding: 7px 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.chip-buffer:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.chip-buffer.active {
+  background: rgba(255, 184, 0, 0.18);
+  border-color: var(--color-gold);
+  color: #fff;
+}
+
+.calc-advanced-params-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.adv-param-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.adv-param-label {
   font-size: 0.74rem;
   color: var(--text-muted);
 }
 
-.cash-metric-value {
+.adv-param-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  color: var(--color-gold);
   font-family: var(--font-mono);
-  font-size: 1.15rem;
-  font-weight: 900;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.adv-param-input {
+  width: 70px;
+  background: transparent;
+  border: none;
+  outline: none;
   color: #fff;
-}
-
-.cash-metric-sub {
-  font-size: 0.7rem;
-  color: var(--text-secondary);
   font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
-.cash-locked-profit-banner {
+.adv-param-select {
+  padding: 5px 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  outline: none;
+}
+
+/* Right Column: Execution Ticket */
+.calc-ticket-card {
+  background: linear-gradient(135deg, rgba(20, 24, 36, 0.95) 0%, rgba(12, 16, 24, 0.98) 100%);
+  border: 1px solid rgba(255, 184, 0, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 24px 22px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+  position: relative;
+}
+
+.ticket-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 10px;
-}
-
-.profit-label {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.profit-amount {
-  font-family: var(--font-mono);
-  font-size: 1.05rem;
-  font-weight: 900;
-}
-
-.text-success {
-  color: #10b981 !important;
-}
-
-.text-danger {
-  color: #ef4444 !important;
-}
-
-/* Account Diagnostic Status Pill */
-.account-diagnostic-pill {
-  padding: 3px 10px;
-  border-radius: var(--radius-pill);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.4);
-  color: #10b981;
-}
-
-.account-diagnostic-pill.status-tight {
-  background: rgba(245, 158, 11, 0.15);
-  border-color: rgba(245, 158, 11, 0.4);
-  color: #f59e0b;
-}
-
-.account-diagnostic-pill.status-danger {
-  background: rgba(239, 68, 68, 0.15);
-  border-color: rgba(239, 68, 68, 0.4);
-  color: #ef4444;
-}
-
-.cap-breakdown-row.highlight-surplus {
-  padding-top: 6px;
-  border-top: 1px dashed rgba(255, 255, 255, 0.1);
-  font-weight: 700;
-}
-
-.diagnostic-explanation {
-  font-size: 0.78rem;
-  line-height: 1.5;
-  color: var(--text-secondary);
-  padding: 8px 10px;
-  margin-top: 10px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: var(--radius-sm);
-  border-left: 3px solid #10b981;
-}
-
-.diagnostic-explanation.status-tight {
-  border-left-color: #f59e0b;
-}
-
-.diagnostic-explanation.status-danger {
-  border-left-color: #ef4444;
-}
-
-/* 60-Second Shop Cashier SOP Card */
-.cashier-walkthrough-card {
-  padding: 18px 20px;
-  background: rgba(255, 184, 0, 0.03);
-  border: 1px solid rgba(255, 184, 0, 0.2);
-  border-radius: var(--radius-lg);
-  margin-bottom: 20px;
-}
-
-.walkthrough-header {
   margin-bottom: 14px;
 }
 
-.walkthrough-badge {
+.ticket-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ticket-status-pill {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  background: rgba(255, 184, 0, 0.18);
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-pill);
+  color: var(--color-gold);
+}
+
+.ticket-asset-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.btn-copy-ticket {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-copy-ticket:hover {
+  background: rgba(0, 255, 224, 0.18);
+  border-color: #00ffe0;
+  color: #fff;
+}
+
+.ticket-hero-action {
+  padding: 18px 20px;
+  background: linear-gradient(135deg, rgba(255, 184, 0, 0.14) 0%, rgba(20, 24, 36, 0.95) 100%);
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-md);
+  margin-bottom: 18px;
+  box-shadow: 0 8px 24px rgba(255, 184, 0, 0.16);
+}
+
+.ticket-hero-action.action-buy {
+  background: linear-gradient(135deg, rgba(0, 255, 224, 0.14) 0%, rgba(20, 24, 36, 0.95) 100%);
+  border-color: var(--color-cyan);
+  box-shadow: 0 8px 24px rgba(0, 255, 224, 0.18);
+}
+
+.ticket-command-sub {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--color-gold);
+  margin-bottom: 4px;
+}
+
+.ticket-hero-action.action-buy .ticket-command-sub {
+  color: var(--color-cyan);
+}
+
+.ticket-command-headline {
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+
+.ticket-command-explanation {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* 3 Key Takeaways */
+.ticket-key-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.ticket-metric-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+}
+
+.ticket-metric-box.highlight-profit {
+  background: rgba(16, 185, 129, 0.06);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.metric-box-title {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+
+.metric-box-number {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #fff;
+}
+
+.metric-box-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  display: block;
+  text-align: right;
+}
+
+/* Account Health Bar */
+.ticket-account-health-bar {
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  margin-bottom: 14px;
+}
+
+.health-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.health-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.health-explanation-text {
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+/* Cashier Fast SOP Checklist */
+.ticket-cashier-checklist {
+  padding: 12px 14px;
+  background: rgba(255, 184, 0, 0.03);
+  border: 1px solid rgba(255, 184, 0, 0.18);
+  border-radius: var(--radius-md);
+  margin-bottom: 14px;
+}
+
+.checklist-title {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--color-gold);
+  margin-bottom: 8px;
+}
+
+.checklist-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.checklist-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.77rem;
+  color: var(--text-secondary);
+}
+
+.chk-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 184, 0, 0.15);
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  font-size: 0.7rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* Collapsible Detailed Content */
+.btn-toggle-details {
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.btn-toggle-details:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.ticket-detailed-content {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.detailed-metrics-table {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.detail-row strong {
+  font-family: var(--font-mono);
+  color: #fff;
+}
+
+.detail-row.highlight {
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ticket-math-proof-box {
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-sm);
+}
+
+.proof-header {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--color-gold);
+  margin-bottom: 4px;
+}
+
+.proof-code {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* ========================================================
+   INTERACTIVE MARKET CRASH TEST SIMULATOR
+   ======================================================== */
+.hedging-simulator-section {
+  margin-top: 40px;
+}
+
+.simulator-card {
+  padding: 32px 30px;
+  background: rgba(14, 18, 28, 0.85);
+  border: 1px solid rgba(0, 255, 224, 0.28);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(16px);
+}
+
+.simulator-header {
+  margin-bottom: 22px;
+}
+
+.simulator-tag {
+  display: inline-block;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.08em;
-  color: var(--color-gold);
+  padding: 4px 10px;
+  background: rgba(0, 255, 224, 0.12);
+  border: 1px solid rgba(0, 255, 224, 0.35);
+  border-radius: var(--radius-pill);
+  color: #00ffe0;
+  margin-bottom: 8px;
 }
 
-.walkthrough-title {
-  font-size: 0.96rem;
-  font-weight: 800;
+.simulator-title {
+  font-size: 1.35rem;
+  font-weight: 900;
   color: #fff;
-  margin-top: 4px;
+  margin-bottom: 6px;
 }
 
-.walkthrough-steps {
+.simulator-desc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 820px;
+  margin: 0;
+}
+
+.simulator-scenarios-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.sim-scenario-btn {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
 }
 
-.walkthrough-step {
+.sim-scenario-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 255, 224, 0.35);
+  color: #fff;
+}
+
+.sim-scenario-btn.active {
+  background: rgba(0, 255, 224, 0.14);
+  border-color: #00ffe0;
+  color: #fff;
+  box-shadow: 0 0 18px rgba(0, 255, 224, 0.22);
+}
+
+.sim-btn-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.sim-btn-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.sim-btn-sub {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.sim-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.sim-result-card {
+  padding: 22px 20px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sim-result-card.unhedged {
+  border-color: rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.04);
+}
+
+.sim-result-card.hedged {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.04);
+}
+
+.sim-card-header {
+  margin-bottom: 14px;
+}
+
+.sim-card-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 6px;
+}
+
+.sim-card-badge.danger {
+  background: rgba(239, 68, 68, 0.18);
+  border: 1px solid #ef4444;
+  color: #ef4444;
+}
+
+.sim-card-badge.success {
+  background: rgba(16, 185, 129, 0.18);
+  border: 1px solid #10b981;
+  color: #10b981;
+}
+
+.sim-card-title {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+}
+
+.sim-metrics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.sim-metric-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.sim-metric-row strong {
+  font-family: var(--font-mono);
+}
+
+.sim-metric-row.highlight-net {
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.sim-verdict {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-}
-
-.step-num {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: rgba(255, 184, 0, 0.18);
-  border: 1px solid var(--color-gold);
-  color: var(--color-gold);
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
   font-size: 0.78rem;
-  font-weight: 800;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.step-body {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.step-body strong {
-  font-size: 0.85rem;
-  color: #fff;
-}
-
-.step-body p {
-  font-size: 0.78rem;
-  color: var(--text-secondary);
   line-height: 1.45;
+}
+
+.sim-verdict.danger {
+  background: rgba(239, 68, 68, 0.1);
+  border-left: 3px solid #ef4444;
+  color: #fca5a5;
+}
+
+.sim-verdict.success {
+  background: rgba(16, 185, 129, 0.1);
+  border-left: 3px solid #10b981;
+  color: #86efac;
+}
+
+.sim-verdict p {
   margin: 0;
+}
+
+/* ========================================================
+   REAL PHNOM PENH CASE STUDY
+   ======================================================== */
+.hedging-casestudy-section {
+  margin-top: 40px;
+}
+
+.casestudy-card {
+  padding: 32px 30px;
+  background: rgba(14, 18, 28, 0.75);
+  border: 1px solid rgba(255, 184, 0, 0.25);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(14px);
+}
+
+.casestudy-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  background: rgba(255, 184, 0, 0.15);
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-pill);
+  color: var(--color-gold);
+  margin-bottom: 8px;
+}
+
+.casestudy-title {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.casestudy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.casestudy-col {
+  padding: 18px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+}
+
+.casestudy-col.highlight {
+  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.04);
+}
+
+.col-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--color-gold);
+  margin-bottom: 8px;
+}
+
+.casestudy-col.highlight .col-title {
+  color: #10b981;
+}
+
+.casestudy-col p {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .calc-workflow-ribbon {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .workflow-ribbon-arrow {
+    display: none;
+  }
+  .calc-main-grid {
+    grid-template-columns: 1fr;
+    padding: 20px 16px;
+  }
+  .simulator-scenarios-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sim-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+  .casestudy-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .calc-top-command-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .calc-dual-row {
+    flex-direction: column;
+  }
+  .direction-segmented-control {
+    grid-template-columns: 1fr;
+  }
+  .buffer-chips-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .simulator-scenarios-bar {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Comparison Section */
@@ -9354,6 +10097,156 @@ html[lang="km"] .brokers-title {
 
 [data-theme="light"] .profit-label {
   color: #0f172a !important;
+}
+
+[data-theme="light"] .calc-workflow-ribbon {
+  background: #ffffff !important;
+  border-color: rgba(180, 130, 40, 0.25) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .step-text strong {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .hedging-calculator-card {
+  background: #ffffff !important;
+  border-color: rgba(180, 130, 40, 0.25) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .calc-top-command-bar {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .calc-metal-tab {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .calc-metal-tab.active {
+  background: #fef3c7 !important;
+  border-color: #d97706 !important;
+  color: #92400e !important;
+}
+
+[data-theme="light"] .currency-btn {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .currency-btn.active {
+  background: #fef3c7 !important;
+  border-color: #d97706 !important;
+  color: #92400e !important;
+}
+
+[data-theme="light"] .calc-card-section {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .section-step-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .dir-segment-btn {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] .dir-segment-btn.active {
+  background: #fef3c7 !important;
+  border-color: #d97706 !important;
+}
+
+[data-theme="light"] .dir-btn-text strong {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .clean-number-input,
+[data-theme="light"] .clean-select-input {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .read-only-pill {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .pill-value {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .calc-ticket-card {
+  background: #ffffff !important;
+  border-color: rgba(180, 130, 40, 0.3) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .ticket-command-headline {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .ticket-metric-box {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .metric-box-number {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .ticket-account-health-bar {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .simulator-card {
+  background: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .simulator-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .sim-scenario-btn {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .sim-scenario-btn.active {
+  background: #e0f2fe !important;
+  border-color: #0284c7 !important;
+  color: #0369a1 !important;
+}
+
+[data-theme="light"] .sim-card-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .casestudy-card {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .casestudy-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .casestudy-col {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
 }
 
 [data-theme="light"] .compare-card {

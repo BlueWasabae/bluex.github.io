@@ -46,7 +46,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600;700&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=20261103v16">
+  <link rel="stylesheet" href="styles.css?v=20261103v17">
 </head>
 <body class="page-hedging">
 
@@ -267,333 +267,496 @@
           Calculate the exact mathematical counter-order, required initial margin, and safe fluctuation buffer required to keep your business delta-neutral.
         </p>
 
-        <div class="hedging-calc-wrapper">
-          <!-- Left Column: Inputs & Parameters -->
-          <div class="hedging-calc-panel hedging-calc-inputs">
-            <!-- Asset Selection: Gold vs Silver -->
-            <div class="calc-group-block">
-              <label class="calc-block-label" data-i18n="hedging.assetSelectLabel">1. Select Precious Metal (ជ្រើសរើសលោហៈ)</label>
-              <div class="hedging-metal-switcher">
-                <button type="button" class="metal-switch-btn active" id="metalSwitchGold" data-metal="XAU">
-                  <span class="metal-icon">🟡</span>
-                  <div class="metal-info">
-                    <span class="metal-name" data-i18n="hedging.metalGoldName">Gold (XAU/USD)</span>
-                    <span class="metal-spec">1 Lot = 100 oz (3,110.35g ≈ 82.94 តម្លឹង)</span>
-                  </div>
-                </button>
-                <button type="button" class="metal-switch-btn" id="metalSwitchSilver" data-metal="XAG">
-                  <span class="metal-icon">⚪</span>
-                  <div class="metal-info">
-                    <span class="metal-name" data-i18n="hedging.metalSilverName">Silver (XAG/USD)</span>
-                    <span class="metal-spec">1 Lot = 5,000 oz (155,517g ≈ 4,147 តម្លឹង)</span>
-                  </div>
-                </button>
-              </div>
+        <!-- 3-Step Visual Process Bar: How It Works At A Glance -->
+        <div class="calc-workflow-ribbon">
+          <div class="workflow-ribbon-step">
+            <span class="step-badge">1. តុហាងមាស</span>
+            <div class="step-text">
+              <strong data-i18n="hedging.ribbonStep1Title">១. ថ្លឹងទម្ងន់ & ទូទាត់ប្រាក់រូបវន្ត</strong>
+              <span data-i18n="hedging.ribbonStep1Sub">អតិថិជនដោះដូរមាសនៅតុហាងតាមតម្លៃក្នុងស្រុក</span>
+            </div>
+          </div>
+          <div class="workflow-ribbon-arrow">➔</div>
+          <div class="workflow-ribbon-step">
+            <span class="step-badge">2. APP MT5</span>
+            <div class="step-text">
+              <strong data-i18n="hedging.ribbonStep2Title">២. បើកបញ្ជា Hedge (១០ វិនាទី)</strong>
+              <span data-i18n="hedging.ribbonStep2Sub">ចុច Sell/Buy តាមទំហំ Lot ដែលម៉ាស៊ីនបង្ហាញ</span>
+            </div>
+          </div>
+          <div class="workflow-ribbon-arrow">➔</div>
+          <div class="workflow-ribbon-step highlight">
+            <span class="step-badge success">3. សុវត្ថិភាព</span>
+            <div class="step-text">
+              <strong data-i18n="hedging.ribbonStep3Title">៣. ហានិភ័យស្មើ 0%</strong>
+              <span data-i18n="hedging.ribbonStep3Sub">ការពារប្រាក់ចំណេញពីគម្លាតថ្លៃ និងឈ្នួល ១០០%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Master Calculator Card -->
+        <div class="hedging-calculator-card">
+          <!-- Top Unified Command Bar: Metal Switcher + Live Feed + Currency Selector -->
+          <div class="calc-top-command-bar">
+            <!-- Metal Tabs -->
+            <div class="calc-metal-tabs">
+              <button type="button" class="calc-metal-tab active" id="metalSwitchGold" data-metal="XAU">
+                <span class="tab-metal-dot gold"></span>
+                <span class="tab-metal-label" data-i18n="hedging.metalGoldName">Gold (XAU/USD)</span>
+                <span class="tab-metal-sub">1 Lot = 100 oz</span>
+              </button>
+              <button type="button" class="calc-metal-tab" id="metalSwitchSilver" data-metal="XAG">
+                <span class="tab-metal-dot silver"></span>
+                <span class="tab-metal-label" data-i18n="hedging.metalSilverName">Silver (XAG/USD)</span>
+                <span class="tab-metal-sub">1 Lot = 5,000 oz</span>
+              </button>
             </div>
 
-            <!-- Live Market Spot Price Strip -->
-            <div class="live-spot-ticker-bar">
-              <div class="live-status-pill">
-                <span class="pulse-dot-green"></span>
-                <span class="live-status-text" id="liveFeedStatus">LIVE SPOT FEED</span>
-              </div>
-              <div class="live-price-display">
-                <span class="live-symbol" id="liveSpotSymbol">XAU/USD:</span>
-                <span class="live-price-val" id="liveSpotPriceDisplay">$3,948.50</span>
-                <span class="live-price-unit">/ oz</span>
-              </div>
-              <div class="live-feed-actions">
-                <span class="live-feed-timestamp" id="liveFeedTimestamp">Auto-synced</span>
-                <button type="button" class="btn-refresh-feed" id="btnRefreshSpot" aria-label="Refresh Live Spot Price" title="Refresh Live Market Spot">
-                  <svg class="refresh-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M23 4v6h-6"></path>
-                    <path d="M1 20v-6h6"></path>
-                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                  </svg>
-                  <span data-i18n="hedging.btnRefresh">Refresh</span>
-                </button>
-              </div>
+            <!-- Live Spot Price Pill -->
+            <div class="calc-live-spot-pill">
+              <span class="pulse-dot-green"></span>
+              <span class="live-spot-sym" id="liveSpotSymbol">XAU/USD:</span>
+              <strong class="live-spot-num" id="liveSpotPriceDisplay">$3,948.50</strong>
+              <span class="live-spot-time" id="liveFeedTimestamp">Auto-synced</span>
+              <button type="button" class="btn-refresh-spot-icon" id="btnRefreshSpot" title="Refresh Live Spot Price" aria-label="Refresh spot">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 4v6h-6"></path>
+                  <path d="M1 20v-6h6"></path>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+              </button>
             </div>
 
-            <!-- Transaction Direction -->
-            <div class="calc-group-block">
-              <label class="calc-block-label" data-i18n="hedging.step1Label">2. Physical Inventory Flow (ចរន្តស្តុកហាង)</label>
-              <div class="direction-toggle-grid">
-                <button type="button" class="dir-toggle-btn active" id="dirBuyGold" data-direction="BUY_PHYSICAL">
-                  <span class="dir-icon">📥</span>
-                  <div class="dir-info">
-                    <span class="dir-title" data-i18n="hedging.dirBuyTitle">Shop Buys Metal (ទិញចូល)</span>
-                    <span class="dir-sub" data-i18n="hedging.dirBuySub">Inventory UP (+Weight) ➔ Need Digital SHORT</span>
-                  </div>
-                </button>
-                <button type="button" class="dir-toggle-btn" id="dirSellGold" data-direction="SELL_PHYSICAL">
-                  <span class="dir-icon">📤</span>
-                  <div class="dir-info">
-                    <span class="dir-title" data-i18n="hedging.dirSellTitle">Shop Sells Metal (លក់ចេញ)</span>
-                    <span class="dir-sub" data-i18n="hedging.dirSellSub">Inventory DOWN (-Weight) ➔ Need Digital LONG</span>
-                  </div>
-                </button>
-              </div>
-            </div>
-
-            <!-- Local Cambodian Physical Cash Market Rate (Outside Digital) -->
-            <div class="calc-group-block local-khmer-rate-block">
-              <div class="local-rate-header">
-                <label class="calc-block-label" data-i18n="hedging.localRateLabel">3. Cambodian Physical Shop Cash Price (ថ្លៃទីផ្សារក្រៅ Digital)</label>
-                <button type="button" class="btn-auto-sync-spot" id="btnSyncLocalRate" title="Auto-calculate base spot equivalent per Damlung">
-                  ⚡ <span data-i18n="hedging.btnSyncSpot">Auto-Sync Spot</span>
-                </button>
-              </div>
-              <div class="local-rate-grid">
-                <div class="calc-param-field">
-                  <label class="calc-sub-label" for="hedgeLocalDamlungInput" data-i18n="hedging.damlungRateLabel">Local Cash / Damlung (ដុល្លារ / ១ តម្លឹង)</label>
-                  <div class="calc-input-adornment">
-                    <span class="input-prefix">$</span>
-                    <input type="number" id="hedgeLocalDamlungInput" class="calc-number-input" value="4800.00" min="10" max="15000" step="5">
-                  </div>
-                </div>
-                <div class="calc-param-field">
-                  <label class="calc-sub-label" data-i18n="hedging.chiRateLabel">Equivalent per Chi (ដុល្លារ / ១ ជី)</label>
-                  <div class="calc-read-only-adornment">
-                    <span class="input-prefix">$</span>
-                    <span class="read-only-val" id="dispPricePerChi">480.00</span>
-                    <span class="input-suffix">/ ជី (Chi)</span>
-                  </div>
-                </div>
-              </div>
-              <p class="calc-helper-note" data-i18n="hedging.localRateHelp">
-                Physical counter cash rate quoted in Cambodian shops. 1 Damlung = 10 Chi = 37.5g ≈ 1.20565 Troy Ounces.
-              </p>
-            </div>
-
-            <!-- Weight & Unit Selection with Khmer Shop Presets -->
-            <div class="calc-group-block">
-              <label class="calc-block-label" data-i18n="hedging.step2Label">4. Physical Quantity & Unit (ទម្ងន់ជាក់ស្តែង)</label>
-              <div class="weight-input-row">
-                <div class="calc-input-field flex-grow">
-                  <input type="number" id="hedgeWeightInput" class="calc-number-input" value="10" min="0.001" step="any" placeholder="Enter quantity">
-                </div>
-                <div class="calc-select-field">
-                  <select id="hedgeUnitSelect" class="calc-select-dropdown">
-                    <option value="damlung" selected>Damlung (តម្លឹង - 37.5g)</option>
-                    <option value="chi">Chi (ជី - 3.75g)</option>
-                    <option value="grams">Grams (ក្រាម - g)</option>
-                    <option value="ounces">Troy Ounces (oz)</option>
-                    <option value="kilograms">Kilograms (គីឡូ - kg)</option>
-                  </select>
-                </div>
-              </div>
-
-              <!-- Relatable Khmer Gold Shop Presets -->
-              <div class="shop-presets-container">
-                <span class="shop-presets-title" data-i18n="hedging.shopPresetsTitle">Shop Standard Presets (ទំហំស្តង់ដារហាងមាស):</span>
-                <div class="shop-presets-row">
-                  <button type="button" class="btn-shop-preset" data-weight="1" data-unit="chi">1 ជី (Chi Ring ~3.75g)</button>
-                  <button type="button" class="btn-shop-preset" data-weight="5" data-unit="chi">5 ជី (Chi ~18.75g)</button>
-                  <button type="button" class="btn-shop-preset" data-weight="1" data-unit="damlung">1 តម្លឹង (Damlung ~37.5g)</button>
-                  <button type="button" class="btn-shop-preset active" data-weight="10" data-unit="damlung">10 តម្លឹង (Batch ~375g)</button>
-                  <button type="button" class="btn-shop-preset" data-weight="1" data-unit="kilograms">1 គីឡូ (1 Kg Bar)</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Financial Parameters: Spot Price & Leverage -->
-            <div class="calc-params-grid">
-              <!-- Digital Spot Price -->
-              <div class="calc-param-field">
-                <label class="calc-sub-label" for="hedgeSpotInput" data-i18n="hedging.paramSpot">Digital Spot Price ($/oz)</label>
-                <div class="calc-input-adornment">
-                  <span class="input-prefix">$</span>
-                  <input type="number" id="hedgeSpotInput" class="calc-number-input" value="3948.50" min="5" max="10000" step="0.5">
-                </div>
-              </div>
-
-              <!-- Leverage -->
-              <div class="calc-param-field">
-                <label class="calc-sub-label" for="hedgeLeverageSelect" data-i18n="hedging.paramLeverage">Broker Leverage</label>
-                <select id="hedgeLeverageSelect" class="calc-select-dropdown">
-                  <option value="100">1:100 (Conservative)</option>
-                  <option value="200" selected>1:200 (Institutional Standard)</option>
-                  <option value="500">1:500 (High Capital Efficiency)</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Broker Account Balance Input ("How much balance should I input?") -->
-            <div class="calc-group-block account-equity-block">
-              <div class="account-equity-header">
-                <label class="calc-block-label" for="hedgeAccountBalanceInput" data-i18n="hedging.accountBalanceLabel">
-                  5. Your Broker Account Balance ($ USD Equity)
-                </label>
-                <button type="button" class="btn-autofill-equity" id="btnAutoFillSafeBalance" title="Auto-fill the mathematically calculated safe balance target">
-                  💡 <span data-i18n="hedging.btnAutoFillBalance">Auto-Fill Safe Target</span>
-                </button>
-              </div>
-              <div class="calc-input-adornment">
-                <span class="input-prefix">$</span>
-                <input type="number" id="hedgeAccountBalanceInput" class="calc-number-input" value="2500.00" min="0" step="50" placeholder="Enter your current broker balance">
-              </div>
-              <p class="calc-helper-note" data-i18n="hedging.balanceHelperNote">
-                How much to deposit: Enter your account equity to verify if your capital buffer safely covers adverse market swings or if more capital is needed.
-              </p>
-            </div>
-
-            <!-- Adverse Volatility Buffer Presets -->
-            <div class="calc-group-block">
-              <div class="buffer-label-row">
-                <label class="calc-sub-label" data-i18n="hedging.paramBuffer">Adverse Price Swing Buffer ($/oz)</label>
-                <span class="buffer-display-val" id="hedgeBufferValText">+$100.00 / oz</span>
-              </div>
-              <div class="buffer-presets-row">
-                <button type="button" class="btn-buffer-chip" data-buffer="50">+$50 / oz</button>
-                <button type="button" class="btn-buffer-chip active" data-buffer="100">+$100 / oz</button>
-                <button type="button" class="btn-buffer-chip" data-buffer="150">+$150 / oz</button>
-                <button type="button" class="btn-buffer-chip" data-buffer="200">+$200 / oz</button>
-              </div>
-              <p class="calc-helper-note" data-i18n="hedging.bufferHelp">
-                Capital reserve held in broker equity to absorb market moves against your hedge without triggering a stop-out before physical inventory is settled.
-              </p>
+            <!-- Currency Toggle: USD vs KHR -->
+            <div class="calc-currency-toggle">
+              <span class="currency-label">Currency:</span>
+              <button type="button" class="currency-btn active" id="curBtnUSD" data-currency="USD">USD ($)</button>
+              <button type="button" class="currency-btn" id="curBtnKHR" data-currency="KHR">KHR (៛)</button>
             </div>
           </div>
 
-          <!-- Right Column: Outputs & Execution Card -->
-          <div class="hedging-calc-panel hedging-calc-results">
-            <!-- Action Recommendation Banner -->
-            <div class="hedge-action-banner" id="hedgeActionBanner">
-              <div class="hedge-action-pill" id="hedgeActionPill">OPEN SHORT / SELL</div>
-              <div class="hedge-action-headline" id="hedgeActionHeadline">
-                SELL <span class="gold-accent" id="resStandardLots">0.12</span> LOTS XAU/USD
+          <!-- 2-Column Responsive Body -->
+          <div class="calc-main-grid">
+            <!-- Left Column: Inputs in 2 Clean Groups -->
+            <div class="calc-col-inputs">
+              <!-- Block 1: Physical Shop Counter Transaction -->
+              <div class="calc-card-section">
+                <div class="card-section-header">
+                  <span class="section-step-num">1</span>
+                  <div class="section-step-info">
+                    <h3 class="section-step-title" data-i18n="hedging.inputStep1Title">Physical Counter Inflow (តុហាងមាសរបស់អ្នក)</h3>
+                    <p class="section-step-desc" data-i18n="hedging.inputStep1Desc">ជ្រើសរើសចរន្តស្តុក និងទម្ងន់មាសជាក់ស្តែងដែលអតិថិជនដោះដូរ</p>
+                  </div>
+                </div>
+
+                <!-- Direction: Customer Sells (Shop Buys) vs Customer Buys (Shop Sells) -->
+                <div class="direction-segmented-control">
+                  <button type="button" class="dir-segment-btn active" id="dirBuyGold" data-direction="BUY_PHYSICAL">
+                    <span class="dir-btn-icon">📥</span>
+                    <div class="dir-btn-text">
+                      <strong data-i18n="hedging.dirBuyTitle">Shop Buys Gold (ហាងទិញចូល)</strong>
+                      <span data-i18n="hedging.dirBuySub">Customer sells to shop ➔ Open SHORT</span>
+                    </div>
+                  </button>
+                  <button type="button" class="dir-segment-btn" id="dirSellGold" data-direction="SELL_PHYSICAL">
+                    <span class="dir-btn-icon">📤</span>
+                    <div class="dir-btn-text">
+                      <strong data-i18n="hedging.dirSellTitle">Shop Sells Gold (ហាងលក់ចេញ)</strong>
+                      <span data-i18n="hedging.dirSellSub">Customer buys from shop ➔ Open LONG</span>
+                    </div>
+                  </button>
+                </div>
+
+                <!-- Quick Shop Presets -->
+                <div class="calc-presets-bar">
+                  <span class="presets-caption" data-i18n="hedging.presetsCaption">Quick Presets (ទំហំស្តង់ដារហាង):</span>
+                  <div class="presets-chips-row">
+                    <button type="button" class="chip-preset" data-weight="1" data-unit="chi">💍 1 ជី (Chi)</button>
+                    <button type="button" class="chip-preset" data-weight="5" data-unit="chi">📿 5 ជី (Chi)</button>
+                    <button type="button" class="chip-preset" data-weight="1" data-unit="damlung">🥇 1 តម្លឹង</button>
+                    <button type="button" class="chip-preset active" data-weight="10" data-unit="damlung">📦 10 តម្លឹង</button>
+                    <button type="button" class="chip-preset" data-weight="1" data-unit="kilograms">🧱 1 គីឡូ (Kg)</button>
+                  </div>
+                </div>
+
+                <!-- Weight Input & Unit Row -->
+                <div class="calc-dual-row">
+                  <div class="calc-input-box flex-3">
+                    <label class="field-label" for="hedgeWeightInput" data-i18n="hedging.fieldWeight">Physical Weight (ទម្ងន់ជាក់ស្តែង)</label>
+                    <input type="number" id="hedgeWeightInput" class="clean-number-input" value="10" min="0.001" step="any" placeholder="Enter weight">
+                  </div>
+                  <div class="calc-input-box flex-2">
+                    <label class="field-label" for="hedgeUnitSelect" data-i18n="hedging.fieldUnit">Unit (ឯកតា)</label>
+                    <select id="hedgeUnitSelect" class="clean-select-input">
+                      <option value="damlung" selected>Damlung (តម្លឹង - 37.5g)</option>
+                      <option value="chi">Chi (ជី - 3.75g)</option>
+                      <option value="grams">Grams (ក្រាម - g)</option>
+                      <option value="ounces">Troy Ounces (oz)</option>
+                      <option value="kilograms">Kilograms (គីឡូ - kg)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Local Cambodian Counter Rate -->
+                <div class="calc-local-rate-container">
+                  <div class="local-rate-header-row">
+                    <label class="field-label" for="hedgeLocalDamlungInput" data-i18n="hedging.damlungRateLabel">
+                      Local Counter Cash Price (ថ្លៃទីផ្សារក្រៅ Digital)
+                    </label>
+                    <button type="button" class="btn-micro-sync" id="btnSyncLocalRate" title="Auto-sync to digital spot equivalent">
+                      ⚡ <span data-i18n="hedging.btnSyncSpot">Auto-Sync Spot</span>
+                    </button>
+                  </div>
+                  <div class="calc-dual-row">
+                    <div class="calc-input-box flex-1">
+                      <div class="currency-adornment">
+                        <span class="cur-prefix">$</span>
+                        <input type="number" id="hedgeLocalDamlungInput" class="clean-number-input" value="4800.00" min="10" max="15000" step="5">
+                        <span class="cur-suffix">/ Damlung</span>
+                      </div>
+                    </div>
+                    <div class="calc-input-box flex-1">
+                      <div class="read-only-pill">
+                        <span class="pill-label">≈ Per Chi (ជី):</span>
+                        <strong class="pill-value" id="dispPricePerChi">$480.00</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p class="hedge-action-reason" id="hedgeActionReason">
-                Your physical inventory increased by 375.00g (10 Damlung). Open a 0.12 digital short to eliminate gold price drop risk.
+
+              <!-- Block 2: Broker Account & Volatility Buffer -->
+              <div class="calc-card-section">
+                <div class="card-section-header">
+                  <span class="section-step-num">2</span>
+                  <div class="section-step-info">
+                    <h3 class="section-step-title" data-i18n="hedging.inputStep2Title">Broker Capital & Safety Buffer (ដើមទុន & សុវត្ថិភាព)</h3>
+                    <p class="section-step-desc" data-i18n="hedging.inputStep2Desc">កំណត់ចំនួនទុនដើម្បីធានាថាគណនីមិនដែលរងការ Stop-Out</p>
+                  </div>
+                </div>
+
+                <!-- Account Balance Input with Auto-Fill -->
+                <div class="calc-balance-group">
+                  <div class="balance-label-row">
+                    <label class="field-label" for="hedgeAccountBalanceInput" data-i18n="hedging.accountBalanceLabel">
+                      Your Broker Account Balance ($ USD Equity)
+                    </label>
+                    <button type="button" class="btn-auto-fill-safe" id="btnAutoFillSafeBalance" title="Auto-fill recommended safe buffer capital">
+                      💡 <span data-i18n="hedging.btnAutoFillBalance">Auto-Fill Safe Target</span>
+                    </button>
+                  </div>
+                  <div class="currency-adornment highlight-balance">
+                    <span class="cur-prefix">$</span>
+                    <input type="number" id="hedgeAccountBalanceInput" class="clean-number-input" value="2500.00" min="0" step="50" placeholder="Enter broker balance">
+                    <span class="cur-suffix" id="balanceKhrEquivalent">≈ 10,200,000 ៛</span>
+                  </div>
+                </div>
+
+                <!-- Fluctuation Buffer Selector -->
+                <div class="calc-buffer-group">
+                  <div class="buffer-label-row">
+                    <span class="field-label" data-i18n="hedging.paramBuffer">Adverse Fluctuation Buffer (ទុនបម្រុងការរលាក់ថ្លៃ):</span>
+                    <strong class="buffer-val-badge" id="hedgeBufferValText">±$100.00 / oz</strong>
+                  </div>
+                  <div class="buffer-chips-row">
+                    <button type="button" class="chip-buffer" data-buffer="50">±$50/oz (Light)</button>
+                    <button type="button" class="chip-buffer active" data-buffer="100">±$100/oz (Standard)</button>
+                    <button type="button" class="chip-buffer" data-buffer="150">±$150/oz (Heavy)</button>
+                    <button type="button" class="chip-buffer" data-buffer="200">±$200/oz (Ultra)</button>
+                  </div>
+                </div>
+
+                <!-- Advanced Parameters (Spot & Leverage) -->
+                <div class="calc-advanced-params-row">
+                  <div class="adv-param-item">
+                    <span class="adv-param-label" data-i18n="hedging.paramSpot">Digital Spot Price:</span>
+                    <div class="adv-param-input-wrap">
+                      <span>$</span>
+                      <input type="number" id="hedgeSpotInput" class="adv-param-input" value="3948.50" min="5" max="10000" step="0.5">
+                    </div>
+                  </div>
+                  <div class="adv-param-item">
+                    <span class="adv-param-label" data-i18n="hedging.paramLeverage">Broker Leverage:</span>
+                    <select id="hedgeLeverageSelect" class="adv-param-select">
+                      <option value="100">1:100 (Conservative)</option>
+                      <option value="200" selected>1:200 (Institutional Standard)</option>
+                      <option value="500">1:500 (High Efficiency)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Clean Institutional Execution Ticket -->
+            <div class="calc-col-results">
+              <div class="calc-ticket-card" id="calcTicketCard">
+                <!-- Ticket Top Header -->
+                <div class="ticket-header">
+                  <div class="ticket-badge-wrap">
+                    <span class="ticket-status-pill" id="ticketActionType">HEDGE EXECUTION ORDER</span>
+                    <span class="ticket-asset-tag" id="ticketAssetTag">XAU/USD SPOT</span>
+                  </div>
+                  <button type="button" class="btn-copy-ticket" id="btnCopyTicket" title="Copy exact order details to clipboard">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span id="copyBtnText" data-i18n="hedging.btnCopyOrder">Copy Trade</span>
+                  </button>
+                </div>
+
+                <!-- Main Bold Trade Order Callout -->
+                <div class="ticket-hero-action" id="hedgeActionBanner">
+                  <div class="ticket-command-sub" id="ticketActionSubtitle">EXECUTE ON MT4/MT5:</div>
+                  <div class="ticket-command-headline" id="hedgeActionHeadline">
+                    SELL <span class="gold-accent" id="resStandardLots">0.12</span> LOTS XAU/USD
+                  </div>
+                  <p class="ticket-command-explanation" id="hedgeActionReason">
+                    Your physical inventory increased by 375.00g (10 Damlung). Open a 0.12 digital short to neutralize gold drop risk.
+                  </p>
+                </div>
+
+                <!-- 3 Essential Takeaway Cards -->
+                <div class="ticket-key-metrics-grid">
+                  <!-- Metric 1: Locked Spread Profit -->
+                  <div class="ticket-metric-box highlight-profit">
+                    <span class="metric-box-title" data-i18n="hedging.lockedSpreadLabel">Locked Counter Profit (ប្រាក់ចំណេញសុទ្ធ)</span>
+                    <div class="metric-box-number text-success" id="cardLockedProfit">+$394.90 USD</div>
+                    <span class="metric-box-sub" id="cardLockedProfitKhr">≈ 1,611,000 ៛ (100% Protected)</span>
+                  </div>
+
+                  <!-- Metric 2: Recommended Safe Deposit -->
+                  <div class="ticket-metric-box">
+                    <span class="metric-box-title" data-i18n="hedging.safeCapBadge">Recommended Safe Capital (ទុនសុវត្ថិភាព)</span>
+                    <div class="metric-box-number" id="cardSafeCapital">$1,436.91 USD</div>
+                    <span class="metric-box-sub" id="cardSafeCapitalKhr">≈ 5,862,000 ៛ (Zero Stop-Out)</span>
+                  </div>
+
+                  <!-- Metric 3: Stop-Out Risk Price -->
+                  <div class="ticket-metric-box">
+                    <span class="metric-box-title" data-i18n="hedging.stopOutRisk">Stop-Out Invalidation Level (កម្រិតប្រឈម)</span>
+                    <div class="metric-box-number text-danger" id="cardStopOutPrice">$4,146.90</div>
+                    <span class="metric-box-sub" id="cardStopOutDistance">+$198.40/oz away from spot</span>
+                  </div>
+                </div>
+
+                <!-- Live Account Health Status Bar -->
+                <div class="ticket-account-health-bar" id="accountHealthBox">
+                  <div class="health-status-row">
+                    <span class="health-label" data-i18n="hedging.healthStatusLabel">Account Capital Status:</span>
+                    <span class="account-diagnostic-pill" id="cardAccountDiagPill">CAPITAL FULLY PROTECTED</span>
+                  </div>
+                  <div class="health-explanation-text" id="diagnosticExplanationText">
+                    🟢 Safe Capital: Your balance safely covers broker margin plus more than $100/oz market swing against your hedge.
+                  </div>
+                </div>
+
+                <!-- Cashier Fast Action Checklist -->
+                <div class="ticket-cashier-checklist">
+                  <div class="checklist-title" data-i18n="hedging.fastSopTitle">⚡ 30-Second Cashier Action:</div>
+                  <div class="checklist-steps">
+                    <div class="checklist-step">
+                      <span class="chk-num">1</span>
+                      <span data-i18n="hedging.fastStep1">Settle customer cash at shop counter (<strong id="quickCashTotal">$48,000.00</strong>).</span>
+                    </div>
+                    <div class="checklist-step">
+                      <span class="chk-num">2</span>
+                      <span data-i18n="hedging.fastStep2">Open broker app & place <strong class="gold-accent" id="quickLotsText">0.12 Lots</strong>.</span>
+                    </div>
+                    <div class="checklist-step">
+                      <span class="chk-num">3</span>
+                      <span data-i18n="hedging.fastStep3">Market risk is eliminated. Retail spread profit is 100% secured.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Collapsible Detailed Arithmetic Section -->
+                <div class="ticket-collapsible-wrapper">
+                  <button type="button" class="btn-toggle-details" id="btnToggleDetails" aria-expanded="false">
+                    <span id="toggleDetailsText" data-i18n="hedging.toggleDetails">▼ Show Advanced Arithmetic & Residuals</span>
+                  </button>
+                  <div class="ticket-detailed-content" id="ticketDetailedContent" style="display: none;">
+                    <div class="detailed-metrics-table">
+                      <div class="detail-row">
+                        <span>Standard Broker Execution:</span>
+                        <strong id="cardBrokerLots">0.12 Lots</strong>
+                      </div>
+                      <div class="detail-row">
+                        <span>Exact Decimal Lot Sizing:</span>
+                        <strong id="cardExactLots">0.12056 Lots</strong>
+                      </div>
+                      <div class="detail-row">
+                        <span>Unhedged Micro-Residual:</span>
+                        <strong id="cardResidualWeight">1.75g (≈ 0.05 Damlung)</strong>
+                      </div>
+                      <div class="detail-row">
+                        <span>Physical Stock Value:</span>
+                        <strong id="cardPhysicalCashTotal">$48,000.00 USD</strong>
+                      </div>
+                      <div class="detail-row">
+                        <span>Digital Spot Valuation:</span>
+                        <strong id="cardDigitalSpotTotal">$47,605.10 USD</strong>
+                      </div>
+                      <div class="detail-row">
+                        <span>Initial Required Margin (Lock):</span>
+                        <strong id="breakdownMargin">$236.91 USD</strong>
+                      </div>
+                      <div class="detail-row">
+                        <span>Fluctuation Buffer Reserve:</span>
+                        <strong id="breakdownBuffer">$1,200.00 USD</strong>
+                      </div>
+                      <div class="detail-row">
+                        <span>Your Input Equity:</span>
+                        <strong id="breakdownUserBalance">$2,500.00 USD</strong>
+                      </div>
+                      <div class="detail-row highlight">
+                        <span>Capital Surplus / Shortfall:</span>
+                        <strong id="breakdownSurplus" class="text-success">+$1,063.09 Surplus</strong>
+                      </div>
+                    </div>
+
+                    <div class="ticket-math-proof-box">
+                      <div class="proof-header" data-i18n="hedging.proofTitle">Mathematical Conversion Formulation:</div>
+                      <div class="proof-code" id="mathProofSteps">
+                        10 Damlung × 37.50g = 375.00g Physical Gold<br>
+                        375.00g ÷ 31.1035g/oz = 12.0565 Troy Ounces<br>
+                        12.0565 oz ÷ 100 oz/Lot = <strong>0.12056 Digital Lots</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================
+             INTERACTIVE MARKET CRASH TEST SIMULATOR (TEACH VISITOR HOW IT WORKS)
+             ======================================================== -->
+        <div class="hedging-simulator-section" id="simulator">
+          <div class="simulator-card">
+            <div class="simulator-header">
+              <div class="simulator-tag">🧪 INTERACTIVE STRESS TEST</div>
+              <h3 class="simulator-title" data-i18n="hedging.simTitle">
+                Market Crash Simulator: <span class="gold-accent">See How Hedging Protects Your Money</span>
+              </h3>
+              <p class="simulator-desc" data-i18n="hedging.simSubtitle">
+                What happens to your shop's capital if global gold prices move right now? Click any scenario below to run an instant real-time stress test on your physical inventory:
               </p>
             </div>
 
-            <!-- Physical Shop Cash & Margin Lock Card -->
-            <div class="shop-cash-counter-card">
-              <div class="cash-card-header">
-                <span class="cash-card-badge" data-i18n="hedging.cashCounterBadge">COUNTER CASH & LOCKED SPREAD PROFIT</span>
-                <span class="cash-card-status" id="spreadStatusPill">PROTECTED</span>
-              </div>
-              <div class="cash-card-grid">
-                <div class="cash-metric-cell">
-                  <span class="cash-metric-label" data-i18n="hedging.counterCashLabel">Physical Counter Cash Paid/Received:</span>
-                  <span class="cash-metric-value gold-accent" id="cardPhysicalCashTotal">$48,000.00</span>
-                  <span class="cash-metric-sub" id="cardPhysicalCashBreakdown">At $4,800.00 / Damlung</span>
-                </div>
-                <div class="cash-metric-cell">
-                  <span class="cash-metric-label" data-i18n="hedging.digitalSpotLabel">Digital Hedge Spot Value:</span>
-                  <span class="cash-metric-value" id="cardDigitalSpotTotal">$47,605.10</span>
-                  <span class="cash-metric-sub" id="cardDigitalSpotBreakdown">12.057 oz × $3,948.50/oz</span>
-                </div>
-              </div>
-              <div class="cash-locked-profit-banner">
-                <span class="profit-label" data-i18n="hedging.lockedSpreadLabel">🔒 Locked Counter Margin Profit:</span>
-                <strong class="profit-amount text-success" id="cardLockedProfit">+$394.90 USD</strong>
-              </div>
+            <!-- Scenario Control Buttons -->
+            <div class="simulator-scenarios-bar">
+              <button type="button" class="sim-scenario-btn" data-scenario="-50">
+                <span class="sim-btn-icon">📉</span>
+                <span class="sim-btn-title">Market Drops -$50/oz</span>
+                <span class="sim-btn-sub">Minor Retracement</span>
+              </button>
+              <button type="button" class="sim-scenario-btn active" data-scenario="-150">
+                <span class="sim-btn-icon">🚨</span>
+                <span class="sim-btn-title">Market Crashes -$150/oz</span>
+                <span class="sim-btn-sub">Weekend News Shock</span>
+              </button>
+              <button type="button" class="sim-scenario-btn" data-scenario="-300">
+                <span class="sim-btn-icon">💥</span>
+                <span class="sim-btn-title">Severe Collapse -$300/oz</span>
+                <span class="sim-btn-sub">Global Macro Dump</span>
+              </button>
+              <button type="button" class="sim-scenario-btn" data-scenario="150">
+                <span class="sim-btn-icon">🚀</span>
+                <span class="sim-btn-title">Market Moons +$150/oz</span>
+                <span class="sim-btn-sub">Bullish Breakout</span>
+              </button>
             </div>
 
-            <!-- Primary Metrics Grid -->
-            <div class="hedge-results-grid">
-              <!-- Broker Rounded Lots -->
-              <div class="hedge-metric-card highlight">
-                <span class="hedge-metric-title" data-i18n="hedging.resBrokerLots">Standard Broker Lots</span>
-                <span class="hedge-metric-number" id="cardBrokerLots">0.12 Lots</span>
-                <span class="hedge-metric-footnote" id="cardExactLots">Exact: 0.12056 Lots</span>
-              </div>
-
-              <!-- Unhedged Residual -->
-              <div class="hedge-metric-card">
-                <span class="hedge-metric-title" data-i18n="hedging.resResidual">Unhedged Micro-Residual</span>
-                <span class="hedge-metric-number" id="cardResidualWeight">1.75 g</span>
-                <span class="hedge-metric-footnote" id="cardResidualDamlung">≈ 0.05 Damlung (0.47 Chi)</span>
-              </div>
-
-              <!-- Required Initial Margin -->
-              <div class="hedge-metric-card">
-                <span class="hedge-metric-title" data-i18n="hedging.resMargin">Initial Margin Required</span>
-                <span class="hedge-metric-number cyan-accent" id="cardMarginVal">$236.91</span>
-                <span class="hedge-metric-footnote" id="cardLeverageNote">At 1:200 leverage</span>
-              </div>
-
-              <!-- Stop-Out Risk Spot Price -->
-              <div class="hedge-metric-card">
-                <span class="hedge-metric-title" data-i18n="hedging.stopOutRisk">Stop-Out Invalidation Spot</span>
-                <span class="hedge-metric-number text-danger" id="cardStopOutPrice">$4,146.90</span>
-                <span class="hedge-metric-footnote" id="cardStopOutDistance">+198.40 $/oz safety distance</span>
-              </div>
-            </div>
-
-            <!-- Account Capital Safety Health Box -->
-            <div class="safe-capital-box" id="accountHealthBox">
-              <div class="safe-capital-header">
-                <div>
-                  <span class="safe-capital-badge" data-i18n="hedging.safeCapBadge">RECOMMENDED BROKER CAPITAL</span>
-                  <div class="safe-capital-amount" id="cardSafeCapital">$1,436.91 USD</div>
+            <!-- Dynamic Side-by-Side Comparison Grid -->
+            <div class="sim-comparison-grid">
+              <!-- Left: Traditional Unhedged Shop -->
+              <div class="sim-result-card unhedged">
+                <div class="sim-card-header">
+                  <span class="sim-card-badge danger">TRADITIONAL UNHEDGED SHOP (ហាងគ្មាន HEDGING)</span>
+                  <h4 class="sim-card-title">Naked Exposure Result</h4>
                 </div>
-                <div class="account-diagnostic-pill" id="cardAccountDiagPill">CAPITAL HEALTHY</div>
-              </div>
-              <div class="safe-capital-breakdown">
-                <div class="cap-breakdown-row">
-                  <span data-i18n="hedging.userBalanceRow">Your Input Balance:</span>
-                  <strong id="breakdownUserBalance">$2,500.00</strong>
-                </div>
-                <div class="cap-breakdown-row">
-                  <span data-i18n="hedging.capRowMargin">Initial Margin (Broker Lock):</span>
-                  <strong id="breakdownMargin">$236.91</strong>
-                </div>
-                <div class="cap-breakdown-row">
-                  <span data-i18n="hedging.capRowBuffer">Adverse Swing Buffer (+$100/oz):</span>
-                  <strong id="breakdownBuffer">$1,200.00</strong>
-                </div>
-                <div class="cap-breakdown-row highlight-surplus">
-                  <span data-i18n="hedging.balanceStatusLabel">Buffer Surplus / Shortfall:</span>
-                  <strong id="breakdownSurplus" class="text-success">+$1,063.09 Surplus</strong>
-                </div>
-              </div>
-              <div class="diagnostic-explanation" id="diagnosticExplanationText">
-                🟢 Safe Capital: Your balance safely covers broker margin plus more than $100/oz market swing against your hedge.
-              </div>
-            </div>
-
-            <!-- Relatable 60-Second Shop Cashier SOP -->
-            <div class="cashier-walkthrough-card">
-              <div class="walkthrough-header">
-                <span class="walkthrough-badge">⚡ 60-SECOND SHOP CASHIER SOP</span>
-                <h4 class="walkthrough-title" data-i18n="hedging.sopHeader">របៀបប្រើប្រាស់ជាក់ស្តែងនៅតុហាងមាស (How Every Shop Uses It)</h4>
-              </div>
-              <div class="walkthrough-steps">
-                <div class="walkthrough-step">
-                  <span class="step-num">1</span>
-                  <div class="step-body">
-                    <strong data-i18n="hedging.step1Title">អតិថិជនមកដោះដូរមាសនៅតុហាង</strong>
-                    <p data-i18n="hedging.step1Desc">ថ្លឹងទម្ងន់មាស (តម្លឹង/ជី) ➔ គណនាប្រាក់រូបវន្តជូនអតិថិជនតាមតម្លៃតុហាង។</p>
+                <div class="sim-metrics-list">
+                  <div class="sim-metric-row">
+                    <span>Physical Stock Devaluation:</span>
+                    <strong class="text-danger" id="simUnhedgedPhysicalDiff">-$1,808.48 USD</strong>
+                  </div>
+                  <div class="sim-metric-row">
+                    <span>Broker Digital Protection:</span>
+                    <strong>$0.00 (None)</strong>
+                  </div>
+                  <div class="sim-metric-row highlight-net">
+                    <span>Net Market P&L:</span>
+                    <strong class="text-danger" id="simUnhedgedNet">-$1,808.48 Capital Loss</strong>
                   </div>
                 </div>
-                <div class="walkthrough-step">
-                  <span class="step-num">2</span>
-                  <div class="step-body">
-                    <strong data-i18n="hedging.step2Title">បើក App MT5 / Broker រយៈពេល ១០ វិនាទី</strong>
-                    <p data-i18n="hedging.step2Desc">ចុច Sell/Buy តាមទំហំ <span class="gold-accent" id="walkthroughLotsText">0.12 Lots</span> ដែលម៉ាស៊ីនបង្ហាញខាងលើ។</p>
+                <div class="sim-verdict danger">
+                  <span class="verdict-icon">❌</span>
+                  <p id="simUnhedgedVerdict">
+                    The drop wiped out your retail spread profit and burned into your core business capital.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Right: BlueX Delta-Neutral Hedged Shop -->
+              <div class="sim-result-card hedged">
+                <div class="sim-card-header">
+                  <span class="sim-card-badge success">BLUEX DELTA-NEUTRAL PROTOCOL (ហាងមាន HEDGING)</span>
+                  <h4 class="sim-card-title">Protected Equilibrium Result</h4>
+                </div>
+                <div class="sim-metrics-list">
+                  <div class="sim-metric-row">
+                    <span>Physical Stock Devaluation:</span>
+                    <strong class="text-danger" id="simHedgedPhysicalDiff">-$1,808.48 USD</strong>
+                  </div>
+                  <div class="sim-metric-row">
+                    <span>MT5 Short Hedge Gain:</span>
+                    <strong class="text-success" id="simHedgedDigitalDiff">+$1,800.00 USD</strong>
+                  </div>
+                  <div class="sim-metric-row highlight-net">
+                    <span>Net Market Fluctuation:</span>
+                    <strong class="text-success" id="simHedgedNet">$0.00 Net Loss (Protected)</strong>
                   </div>
                 </div>
-                <div class="walkthrough-step">
-                  <span class="step-num">3</span>
-                  <div class="step-body">
-                    <strong data-i18n="hedging.step3Title">រួចរាល់ • ហានិភ័យមាសចុះថ្លៃស្មើ 0%</strong>
-                    <p data-i18n="hedging.step3Desc">ទោះមាសឡើងឬចុះ $100-$300 ក៏ប្រាក់ចំណេញហាងត្រូវបានការពារ ១០០%។</p>
-                  </div>
+                <div class="sim-verdict success">
+                  <span class="verdict-icon">✅</span>
+                  <p id="simHedgedVerdict">
+                    Zero loss. Digital short offset the drop dollar-for-dollar. Your counter profit of <strong>+$394.90 USD</strong> is 100% safe in your bank account!
+                  </p>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            <!-- Mathematical Proof Breakdown -->
-            <div class="hedging-math-proof">
-              <div class="math-proof-title" data-i18n="hedging.proofTitle">Institutional Conversion Formulation</div>
-              <div class="math-proof-steps" id="mathProofSteps">
-                10 Damlung × 37.50g = 375.00g Physical Gold<br>
-                375.00g ÷ 31.1034768g/oz = 12.0565 Troy Ounces<br>
-                12.0565 oz ÷ 100 oz/Lot = <strong>0.12056 Digital Lots</strong>
+        <!-- ========================================================
+             REAL PHNOM PENH GOLD SHOP CASE STUDY
+             ======================================================== -->
+        <div class="hedging-casestudy-section">
+          <div class="casestudy-card">
+            <div class="casestudy-badge">📍 REAL PHNOM PENH CASE STUDY</div>
+            <h3 class="casestudy-title">
+              How Heng Dara Jewelry (Phsar Thmey) Saved <span class="gold-accent">$3,375.00</span> Over a Weekend
+            </h3>
+            <div class="casestudy-grid">
+              <div class="casestudy-col">
+                <h4 class="col-title">The Saturday Inflow</h4>
+                <p>
+                  On Saturday afternoon, retail clients sold <strong>20 Damlung (750.00g)</strong> of gold jewelry to the shop. The cashier paid <strong>$96,000 USD</strong> physical cash at $4,800/Damlung. Spot was $3,948/oz.
+                </p>
+              </div>
+              <div class="casestudy-col">
+                <h4 class="col-title">The 10-Second Action</h4>
+                <p>
+                  Instead of praying gold wouldn't crash over Sunday, the treasurer opened BlueX Terminal and placed a <strong>0.24 Lot XAU/USD Short</strong> on MT5, locking in a $789.80 counter spread profit.
+                </p>
+              </div>
+              <div class="casestudy-col highlight">
+                <h4 class="col-title">The Monday Market Shock</h4>
+                <p>
+                  Monday 6:00 AM: Global geopolitical news breaks, gold plunges <strong>-$140.00/oz</strong>. An unhedged shop lost $3,375 on inventory. Heng Dara shop's MT5 position gained +$3,360, neutralizing the drop completely. Net loss: <strong>$0.00</strong>.
+                </p>
               </div>
             </div>
           </div>
@@ -980,6 +1143,6 @@
     </a>
   </div>
 
-  <script src="script.js?v=20261103v16"></script>
+  <script src="script.js?v=20261103v17"></script>
 </body>
 </html>

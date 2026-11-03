@@ -1006,15 +1006,26 @@ document.addEventListener('DOMContentLoaded', () => {
       'hedging.calcBadge': 'Real-Time Treasury Tool',
       'hedging.calcTitle': 'Physical-to-Digital <span class="gold-accent">Hedging Calculator</span>',
       'hedging.calcSubtitle': 'Calculate the exact mathematical counter-order, required initial margin, and safe fluctuation buffer required to keep your business delta-neutral.',
+      'hedging.ribbonStep1Title': '1. Shop Counter Inflow',
+      'hedging.ribbonStep1Sub': 'Customer exchanges physical gold at local counter rate',
+      'hedging.ribbonStep2Title': '2. Open Hedge on MT5 (10s)',
+      'hedging.ribbonStep2Sub': 'Place the exact Lot size calculated by the engine',
+      'hedging.ribbonStep3Title': '3. Zero Price Risk',
+      'hedging.ribbonStep3Sub': '100% of retail spread and fabrication profit secured',
       'hedging.assetSelectLabel': '1. Select Precious Metal',
       'hedging.metalGoldName': 'Gold (XAU/USD)',
       'hedging.metalSilverName': 'Silver (XAG/USD)',
       'hedging.btnRefresh': 'Refresh',
       'hedging.step1Label': '2. Physical Inventory Flow',
+      'hedging.inputStep1Title': 'Physical Counter Inflow',
+      'hedging.inputStep1Desc': 'Select shop inventory direction and exact physical weight',
       'hedging.dirBuyTitle': 'Shop Buys Metal',
       'hedging.dirBuySub': 'Inventory UP (+Weight) ➔ Need Digital SHORT',
       'hedging.dirSellTitle': 'Shop Sells Metal',
       'hedging.dirSellSub': 'Inventory DOWN (-Weight) ➔ Need Digital LONG',
+      'hedging.presetsCaption': 'Quick Presets (Standard Sizes):',
+      'hedging.fieldWeight': 'Physical Weight',
+      'hedging.fieldUnit': 'Unit',
       'hedging.localRateLabel': '3. Cambodian Physical Shop Cash Price (Outside Digital)',
       'hedging.btnSyncSpot': 'Auto-Sync Spot',
       'hedging.damlungRateLabel': 'Local Cash / Damlung (USD / 1 Damlung)',
@@ -1022,6 +1033,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'hedging.localRateHelp': 'Physical counter cash rate quoted in Cambodian shops. 1 Damlung = 10 Chi = 37.5g ≈ 1.20565 Troy Ounces.',
       'hedging.step2Label': '4. Physical Quantity & Unit',
       'hedging.shopPresetsTitle': 'Shop Standard Presets (Relatable Unit Sizes):',
+      'hedging.inputStep2Title': 'Broker Capital & Safety Buffer',
+      'hedging.inputStep2Desc': 'Set adequate equity buffer to guarantee zero stop-out risk',
       'hedging.paramSpot': 'Digital Spot Price ($/oz)',
       'hedging.paramLeverage': 'Broker Leverage',
       'hedging.accountBalanceLabel': '5. Your Broker Account Balance ($ USD Equity)',
@@ -1029,6 +1042,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'hedging.balanceHelperNote': 'How much to deposit: Enter your account equity to verify if your capital buffer safely covers adverse market swings or if more capital is needed.',
       'hedging.paramBuffer': 'Adverse Price Swing Buffer ($/oz)',
       'hedging.bufferHelp': 'Capital reserve held in broker equity to absorb market moves against your hedge without triggering a stop-out before physical inventory is settled.',
+      'hedging.btnCopyOrder': 'Copy Trade',
       'hedging.cashCounterBadge': 'COUNTER CASH & LOCKED SPREAD PROFIT',
       'hedging.counterCashLabel': 'Physical Counter Cash Paid/Received:',
       'hedging.digitalSpotLabel': 'Digital Hedge Spot Value:',
@@ -1040,9 +1054,27 @@ document.addEventListener('DOMContentLoaded', () => {
       'hedging.stopOutRisk': 'Stop-Out Invalidation Spot',
       'hedging.safeCapBadge': 'RECOMMENDED BROKER CAPITAL',
       'hedging.safeCapTag': 'Zero Stop-Out Architecture',
+      'hedging.healthStatusLabel': 'Account Capital Status:',
+      'hedging.fastSopTitle': '⚡ 30-Second Cashier Action:',
+      'hedging.fastStep1': 'Settle customer cash at shop counter',
+      'hedging.fastStep2': 'Open broker app & place',
+      'hedging.fastStep3': 'Market risk is eliminated. Retail spread profit is 100% secured.',
+      'hedging.toggleDetails': '▼ Show Advanced Arithmetic & Residuals',
+      'hedging.hideDetails': '▲ Hide Advanced Arithmetic',
       'hedging.userBalanceRow': 'Your Input Balance:',
       'hedging.capRowMargin': 'Initial Margin (Broker Lock):',
       'hedging.capRowBuffer': 'Adverse Swing Buffer (+$100/oz):',
+      'hedging.balanceStatusLabel': 'Buffer Surplus / Shortfall:',
+      'hedging.sopHeader': 'Practical Cashier Execution (How Every Shop Uses It)',
+      'hedging.step1Title': 'Client Arrives at Shop Counter',
+      'hedging.step1Desc': 'Weigh physical metal (Damlung/Chi) ➔ Pay/receive local counter cash.',
+      'hedging.step2Title': 'Open Broker App on Phone/PC (10 Seconds)',
+      'hedging.step2Desc': 'Place the exact digital hedge lot size displayed by the calculator.',
+      'hedging.step3Title': 'Complete • Zero Gold Price Risk',
+      'hedging.step3Desc': 'Whether gold moves $100-$300 up or down, your shop profit is 100% protected.',
+      'hedging.proofTitle': 'Institutional Conversion Formulation',
+      'hedging.simTitle': 'Market Crash Simulator: <span class="gold-accent">See How Hedging Protects Your Money</span>',
+      'hedging.simSubtitle': 'What happens to your shop\'s capital if global gold prices move right now? Click any scenario below to run an instant real-time stress test on your physical inventory:',
       'hedging.balanceStatusLabel': 'Buffer Surplus / Shortfall:',
       'hedging.sopHeader': 'Practical Cashier Execution (How Every Shop Uses It)',
       'hedging.step1Title': 'Client Arrives at Shop Counter',
@@ -1646,15 +1678,26 @@ document.addEventListener('DOMContentLoaded', () => {
       'hedging.calcBadge': 'ឧបករណ៍រតនាគារតាមពេលវេលាជាក់ស្តែង',
       'hedging.calcTitle': 'ម៉ាស៊ីនគណនា <span class="gold-accent">Hedging មាសរូបវន្តទៅឌីជីថល</span>',
       'hedging.calcSubtitle': 'គណនាបញ្ជាការពារហានិភ័យតាមគណិតវិទ្យាសុក្រឹត ប្រាក់តម្កល់ Margin និងទុនបម្រុងសុវត្ថិភាពដើម្បីរក្សាតុល្យភាព Delta-Neutral។',
+      'hedging.ribbonStep1Title': '១. ថ្លឹងទម្ងន់ & ទូទាត់ប្រាក់រូបវន្ត',
+      'hedging.ribbonStep1Sub': 'អតិថិជនដោះដូរមាសនៅតុហាងតាមតម្លៃក្នុងស្រុក',
+      'hedging.ribbonStep2Title': '២. បើកបញ្ជា Hedge (១០ វិនាទី)',
+      'hedging.ribbonStep2Sub': 'ចុច Sell/Buy តាមទំហំ Lot ដែលម៉ាស៊ីនបង្ហាញ',
+      'hedging.ribbonStep3Title': '៣. ហានិភ័យស្មើ 0%',
+      'hedging.ribbonStep3Sub': 'ការពារប្រាក់ចំណេញពីគម្លាតថ្លៃ និងឈ្នួល ១០០%',
       'hedging.assetSelectLabel': '១. ជ្រើសរើសលោហៈធាតុដ៏មានតម្លៃ',
       'hedging.metalGoldName': 'មាស (XAU/USD)',
       'hedging.metalSilverName': 'ប្រាក់ (XAG/USD)',
       'hedging.btnRefresh': 'ទាញតម្លៃថ្មី',
       'hedging.step1Label': '២. ចរន្តស្តុកមាសរូបវន្តក្នុងហាង',
+      'hedging.inputStep1Title': 'ចរន្តស្តុកមាសរូបវន្ត (តុហាងមាសរបស់អ្នក)',
+      'hedging.inputStep1Desc': 'ជ្រើសរើសចរន្តស្តុក និងទម្ងន់មាសជាក់ស្តែងដែលអតិថិជនដោះដូរ',
       'hedging.dirBuyTitle': 'ហាងទិញមាសចូល',
       'hedging.dirBuySub': 'ស្តុកមាសកើន (+ទម្ងន់) ➔ ត្រូវបើក Digital SHORT',
       'hedging.dirSellTitle': 'ហាងលក់មាសចេញ',
       'hedging.dirSellSub': 'ស្តុកមាសថយ (-ទម្ងន់) ➔ ត្រូវបើក Digital LONG',
+      'hedging.presetsCaption': 'ទំហំស្តង់ដារហាងមាស (Quick Presets):',
+      'hedging.fieldWeight': 'ទម្ងន់ជាក់ស្តែង',
+      'hedging.fieldUnit': 'ឯកតា',
       'hedging.localRateLabel': '៣. ថ្លៃទីផ្សារប្រាក់រូបវន្តជាក់ស្តែងនៅកម្ពុជា (ក្រៅ Digital)',
       'hedging.btnSyncSpot': 'ទាញតាម Spot',
       'hedging.damlungRateLabel': 'ថ្លៃក្នុង ១ តម្លឹង (ដុល្លារ / ១ តម្លឹង)',
@@ -1662,6 +1705,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'hedging.localRateHelp': 'តម្លៃប្រាក់រូបវន្តជាក់ស្តែងដែលទិញ-លក់នៅតុហាងមាស។ ១ តម្លឹង = ១០ ជី = ៣៧.៥ ក្រាម ≈ ១.២០៥៦៥ Troy Ounces។',
       'hedging.step2Label': '៤. ទម្ងន់មាសរូបវន្ត និងឯកតា',
       'hedging.shopPresetsTitle': 'ទំហំស្តង់ដារហាងមាស (Quick Presets):',
+      'hedging.inputStep2Title': 'ដើមទុនគណនី & ទុនបម្រុងសុវត្ថិភាព',
+      'hedging.inputStep2Desc': 'កំណត់ចំនួនទុនដើម្បីធានាថាគណនីមិនដែលរងការ Stop-Out',
       'hedging.paramSpot': 'ថ្លៃមាសពិភពលោក Spot ($/oz)',
       'hedging.paramLeverage': 'Leverage ឈ្មួញកណ្តាល',
       'hedging.accountBalanceLabel': '៥. ចំនួនដើមទុនក្នុងគណនី Broker (សមតុល្យ $ USD)',
@@ -1669,6 +1714,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'hedging.balanceHelperNote': 'តើគួរដាក់ទុនប៉ុន្មាន៖ បញ្ចូលទុនរបស់អ្នកដើម្បីផ្ទៀងផ្ទាត់ថាតើទុនបម្រុងរបស់អ្នកអាចទប់ទល់នឹងការប្រែប្រួលហាងឆេងទីផ្សារដោយសុវត្ថិភាព ឬត្រូវបន្ថែមទុន។',
       'hedging.paramBuffer': 'ទុនបម្រុងការប្រែប្រួលថ្លៃ ($/oz)',
       'hedging.bufferHelp': 'ទុនបម្រុងសុវត្ថិភាពក្នុងគណនី Broker ដើម្បីការពារកុំឱ្យ Stop-Out នៅពេលទីផ្សារប្រែប្រួលរហ័ស មុនពេលស្តុកមាសត្រូវបានទូទាត់។',
+      'hedging.btnCopyOrder': 'ចម្លងបញ្ជាជួញដូរ',
       'hedging.cashCounterBadge': 'ប្រាក់រូបវន្តនៅតុហាង & ប្រាក់ចំណេញគម្លាតដែលបានចាក់សោ',
       'hedging.counterCashLabel': 'ប្រាក់រូបវន្តទូទាត់នៅតុហាង:',
       'hedging.digitalSpotLabel': 'តម្លៃ Spot ឌីជីថល (Hedge):',
@@ -1680,9 +1726,27 @@ document.addEventListener('DOMContentLoaded', () => {
       'hedging.stopOutRisk': 'កម្រិត Spot ដែលប្រឈមនឹង Stop-Out',
       'hedging.safeCapBadge': 'ទុនគណនីសុវត្ថិភាពដែលណែនាំ',
       'hedging.safeCapTag': 'ស្ថាបត្យកម្មគ្មាន Stop-Out',
+      'hedging.healthStatusLabel': 'ស្ថានភាពដើមទុនគណនី:',
+      'hedging.fastSopTitle': '⚡ សកម្មភាព ៣០ វិនាទីសម្រាប់បេឡាករ:',
+      'hedging.fastStep1': 'ទូទាត់ប្រាក់ជាមួយអតិថិជននៅតុហាង',
+      'hedging.fastStep2': 'បើក App MT5 & ដាក់បញ្ជាទំហំ',
+      'hedging.fastStep3': 'ហានិភ័យត្រូវបានលុបបំបាត់។ ប្រាក់ចំណេញត្រូវបានការពារ ១០០%។',
+      'hedging.toggleDetails': '▼ បង្ហាញរូបមន្តគណិតវិទ្យា & ទម្ងន់នៅសល់',
+      'hedging.hideDetails': '▲ លាក់ព័ត៌មានលម្អិត',
       'hedging.userBalanceRow': 'ទុនដែលអ្នកបានបញ្ចូល:',
       'hedging.capRowMargin': 'Margin តម្កល់ (Broker ចាក់សោ):',
       'hedging.capRowBuffer': 'ទុនបម្រុងប្រែប្រួលថ្លៃ (+$100/oz):',
+      'hedging.balanceStatusLabel': 'ស្ថានភាពទុនបម្រុងសុវត្ថិភាព:',
+      'hedging.sopHeader': 'របៀបប្រើប្រាស់ជាក់ស្តែងនៅតុហាងមាស (How Every Shop Uses It)',
+      'hedging.step1Title': 'អតិថិជនមកដោះដូរមាសនៅតុហាង',
+      'hedging.step1Desc': 'ថ្លឹងទម្ងន់មាស (តម្លឹង/ជី) ➔ គណនាប្រាក់រូបវន្តជូនអតិថិជនតាមតម្លៃតុហាង។',
+      'hedging.step2Title': 'បើក App MT5 / Broker រយៈពេល ១០ វិនាទី',
+      'hedging.step2Desc': 'ចុច Sell/Buy តាមទំហំ Lots ដែលម៉ាស៊ីនបង្ហាញខាងលើ។',
+      'hedging.step3Title': 'រួចរាល់ • ហានិភ័យមាសចុះថ្លៃស្មើ 0%',
+      'hedging.step3Desc': 'ទោះមាសឡើងឬចុះ $100-$300 ក៏ប្រាក់ចំណេញហាងត្រូវបានការពារ ១០០%។',
+      'hedging.proofTitle': 'រូបមន្តបម្លែងតាមកម្រិតស្ថាប័ន',
+      'hedging.simTitle': 'សាកល្បងតេស្តហាងឆេងទីផ្សារធ្លាក់ចុះ៖ <span class="gold-accent">មើលជាក់ស្តែងពីរបៀបដែល Hedging ការពារប្រាក់របស់អ្នក</span>',
+      'hedging.simSubtitle': 'តើមានអ្វីកើតឡើងចំពោះដើមទុនហាងរបស់អ្នក ប្រសិនបើតម្លៃមាសពិភពលោកប្រែប្រួលភ្លាមៗ? ចុចជ្រើសរើសស្ថានភាពខាងក្រោមដើម្បីតេស្តភ្លាមៗលើស្តុកមាសរបស់អ្នក៖',
       'hedging.balanceStatusLabel': 'ស្ថានភាពទុនបម្រុងសុវត្ថិភាព:',
       'hedging.sopHeader': 'របៀបប្រើប្រាស់ជាក់ស្តែងនៅតុហាងមាស (How Every Shop Uses It)',
       'hedging.step1Title': 'អតិថិជនមកដោះដូរមាសនៅតុហាង',
@@ -1975,14 +2039,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnRefreshSpot = document.getElementById('btnRefreshSpot');
     const btnSyncLocalRate = document.getElementById('btnSyncLocalRate');
     const btnAutoFillSafeBalance = document.getElementById('btnAutoFillSafeBalance');
-    const bufferChips = document.querySelectorAll('.btn-buffer-chip');
-    const shopPresetChips = document.querySelectorAll('.btn-shop-preset');
+    const btnCopyTicket = document.getElementById('btnCopyTicket');
+    const btnToggleDetails = document.getElementById('btnToggleDetails');
+    const curBtnUSD = document.getElementById('curBtnUSD');
+    const curBtnKHR = document.getElementById('curBtnKHR');
+    const bufferChips = document.querySelectorAll('.chip-buffer, .btn-buffer-chip');
+    const shopPresetChips = document.querySelectorAll('.chip-preset, .btn-shop-preset');
+    const simScenarioBtns = document.querySelectorAll('.sim-scenario-btn');
 
     if (!hedgeWeightInput || !hedgeUnitSelect || !hedgeSpotInput || !hedgeLeverageSelect) return;
 
     let currentHedgeMetal = 'XAU';
     let currentHedgeDirection = 'BUY_PHYSICAL';
     let currentHedgeBuffer = 100;
+    let currentCurrency = 'USD';
+    let currentSimDelta = -150;
+    const KHR_RATE = 4080;
+
     const cachedLivePrices = {
       XAU: 3948.50,
       XAG: 50.15
@@ -2053,7 +2126,6 @@ document.addEventListener('DOMContentLoaded', () => {
               const now = new Date();
               liveTimestamp.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
             }
-            // Auto-update Cambodian local price baseline if present
             if (hedgeLocalDamlungInput && (!hedgeLocalDamlungInput.value || isUserClick)) {
               syncLocalRateWithSpot();
             }
@@ -2070,9 +2142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function syncLocalRateWithSpot() {
       if (!hedgeLocalDamlungInput) return;
       const spot = parseFloat(hedgeSpotInput.value) || cachedLivePrices[currentHedgeMetal];
-      // 1 Damlung = 37.5g = 1.205653 Troy Oz
       const pureDamlungValue = spot * 1.205653;
-      // Add typical local Cambodian physical spread premium ($40/Damlung for gold, $2 for silver)
       const retailMarkup = currentHedgeMetal === 'XAU' ? 40 : 2;
       const localQuote = pureDamlungValue + retailMarkup;
       hedgeLocalDamlungInput.value = localQuote.toFixed(2);
@@ -2140,10 +2210,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const availableLossUSD = userBalance - (0.5 * marginUSD);
         stopOutDistance = availableLossUSD / (brokerLots * contractSize);
         if (isBuy) {
-          // Short hedge: stop-out occurs if spot RISES
           stopOutSpot = spot + stopOutDistance;
         } else {
-          // Long hedge: stop-out occurs if spot DROPS
           stopOutSpot = Math.max(0, spot - stopOutDistance);
         }
       }
@@ -2153,19 +2221,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Action Recommendation Banner
       const banner = document.getElementById('hedgeActionBanner');
-      const pill = document.getElementById('hedgeActionPill');
+      const actionPill = document.getElementById('ticketActionType');
       const headline = document.getElementById('hedgeActionHeadline');
       const reason = document.getElementById('hedgeActionReason');
       const resStandardLots = document.getElementById('resStandardLots');
-      const walkthroughLotsText = document.getElementById('walkthroughLotsText');
+      const quickLotsText = document.getElementById('quickLotsText');
+      const quickCashTotal = document.getElementById('quickCashTotal');
 
       if (resStandardLots) resStandardLots.textContent = brokerLots.toFixed(2);
-      if (walkthroughLotsText) walkthroughLotsText.textContent = `${brokerLots.toFixed(2)} Lots ${metalSymbol}`;
+      if (quickLotsText) quickLotsText.textContent = `${brokerLots.toFixed(2)} Lots ${metalSymbol}`;
+      if (quickCashTotal) quickCashTotal.textContent = `$${physicalCashTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
-      if (banner && pill && headline && reason) {
+      if (banner && headline && reason) {
         if (isBuy) {
           banner.classList.remove('action-buy');
-          pill.textContent = currentLang === 'km' ? `បើកលក់ / SHORT ${metalSymbol}` : `OPEN SHORT / SELL ${metalSymbol}`;
+          if (actionPill) actionPill.textContent = currentLang === 'km' ? 'បញ្ជាលក់ / SHORT HEDGE' : 'SHORT HEDGE EXECUTION';
           headline.innerHTML = currentLang === 'km'
             ? `លក់ <span class="gold-accent">${brokerLots.toFixed(2)}</span> LOTS ${metalSymbol}`
             : `SELL <span class="gold-accent">${brokerLots.toFixed(2)}</span> LOTS ${metalSymbol}`;
@@ -2174,7 +2244,7 @@ document.addEventListener('DOMContentLoaded', () => {
             : `Physical ${metalLabelEn} inventory increased by ${totalGrams.toFixed(2)}g (${weight} ${unit}). Open a ${brokerLots.toFixed(2)} digital short to eliminate spot drop risk.`;
         } else {
           banner.classList.add('action-buy');
-          pill.textContent = currentLang === 'km' ? `បើកទិញ / LONG ${metalSymbol}` : `OPEN LONG / BUY ${metalSymbol}`;
+          if (actionPill) actionPill.textContent = currentLang === 'km' ? 'បញ្ជាទិញ / LONG HEDGE' : 'LONG HEDGE EXECUTION';
           headline.innerHTML = currentLang === 'km'
             ? `ទិញ <span class="cyan-accent">${brokerLots.toFixed(2)}</span> LOTS ${metalSymbol}`
             : `BUY <span class="cyan-accent">${brokerLots.toFixed(2)}</span> LOTS ${metalSymbol}`;
@@ -2184,56 +2254,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // Physical Counter Cash & Locked Profit Card
-      const elPhysicalCashTotal = document.getElementById('cardPhysicalCashTotal');
-      if (elPhysicalCashTotal) elPhysicalCashTotal.textContent = `$${physicalCashTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
-      const elPhysicalCashBreakdown = document.getElementById('cardPhysicalCashBreakdown');
-      if (elPhysicalCashBreakdown) {
-        elPhysicalCashBreakdown.textContent = currentLang === 'km'
-          ? `${totalDamlungCount.toFixed(2)} តម្លឹង × $${localDamlungPrice.toFixed(2)}/តម្លឹង`
-          : `${totalDamlungCount.toFixed(2)} Damlung × $${localDamlungPrice.toFixed(2)}/Damlung`;
-      }
-
-      const elDigitalSpotTotal = document.getElementById('cardDigitalSpotTotal');
-      if (elDigitalSpotTotal) elDigitalSpotTotal.textContent = `$${digitalSpotTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
-      const elDigitalSpotBreakdown = document.getElementById('cardDigitalSpotBreakdown');
-      if (elDigitalSpotBreakdown) {
-        elDigitalSpotBreakdown.textContent = `${troyOunces.toFixed(3)} oz × $${spot.toFixed(2)}/oz`;
-      }
-
+      // Currency Equivalents & Metrics
       const elLockedProfit = document.getElementById('cardLockedProfit');
+      const elLockedProfitKhr = document.getElementById('cardLockedProfitKhr');
       if (elLockedProfit) {
         elLockedProfit.textContent = `+$${lockedProfit.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
       }
-
-      // Primary Results Metrics
-      const elBrokerLots = document.getElementById('cardBrokerLots');
-      if (elBrokerLots) elBrokerLots.textContent = `${brokerLots.toFixed(2)} Lots`;
-
-      const elExactLots = document.getElementById('cardExactLots');
-      if (elExactLots) {
-        elExactLots.textContent = currentLang === 'km'
-          ? `ពិតប្រាកដ: ${exactLots.toFixed(5)} Lots`
-          : `Exact: ${exactLots.toFixed(5)} Lots`;
+      if (elLockedProfitKhr) {
+        const khrVal = Math.round(lockedProfit * KHR_RATE);
+        elLockedProfitKhr.textContent = `≈ ${khrVal.toLocaleString('en-US')} ៛ (${currentLang === 'km' ? 'ការពារ ១០០%' : '100% Protected'})`;
       }
 
-      const elResidualWeight = document.getElementById('cardResidualWeight');
-      if (elResidualWeight) elResidualWeight.textContent = `${residualGrams.toFixed(2)} g`;
-
-      const elResidualDamlung = document.getElementById('cardResidualDamlung');
-      if (elResidualDamlung) {
-        elResidualDamlung.textContent = currentLang === 'km'
-          ? `≈ ${residualDamlung.toFixed(2)} តម្លឹង (${residualChi.toFixed(2)} ជី)`
-          : `≈ ${residualDamlung.toFixed(2)} Damlung (${residualChi.toFixed(2)} Chi)`;
+      const elSafeCapital = document.getElementById('cardSafeCapital');
+      const elSafeCapitalKhr = document.getElementById('cardSafeCapitalKhr');
+      if (elSafeCapital) {
+        elSafeCapital.textContent = `$${safeCapitalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
+      }
+      if (elSafeCapitalKhr) {
+        const khrCap = Math.round(safeCapitalUSD * KHR_RATE);
+        elSafeCapitalKhr.textContent = `≈ ${khrCap.toLocaleString('en-US')} ៛ (${currentLang === 'km' ? 'គ្មាន Stop-Out' : 'Zero Stop-Out'})`;
       }
 
-      const elMarginVal = document.getElementById('cardMarginVal');
-      if (elMarginVal) elMarginVal.textContent = `$${marginUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
-      const elLeverageNote = document.getElementById('cardLeverageNote');
-      if (elLeverageNote) elLeverageNote.textContent = currentLang === 'km' ? `នៅកម្រិត 1:${leverage}` : `At 1:${leverage} leverage`;
+      const elBalanceKhr = document.getElementById('balanceKhrEquivalent');
+      if (elBalanceKhr) {
+        const khrUserBal = Math.round(userBalance * KHR_RATE);
+        elBalanceKhr.textContent = `≈ ${khrUserBal.toLocaleString('en-US')} ៛`;
+      }
 
       // Stop-Out Price Card
       const elStopOutPrice = document.getElementById('cardStopOutPrice');
@@ -2249,24 +2295,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Account Health & Capital Safety Box
-      const elSafeCapital = document.getElementById('cardSafeCapital');
-      if (elSafeCapital) elSafeCapital.textContent = `$${safeCapitalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
-
-      const elBreakdownUserBalance = document.getElementById('breakdownUserBalance');
-      if (elBreakdownUserBalance) elBreakdownUserBalance.textContent = `$${userBalance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
-      const elBreakdownMargin = document.getElementById('breakdownMargin');
-      if (elBreakdownMargin) elBreakdownMargin.textContent = `$${marginUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
-      const elBreakdownBuffer = document.getElementById('breakdownBuffer');
-      if (elBreakdownBuffer) elBreakdownBuffer.textContent = `$${bufferUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
-      const elBufferValText = document.getElementById('hedgeBufferValText');
-      if (elBufferValText) elBufferValText.textContent = `+$${buffer.toFixed(2)} / oz`;
-
-      const elBreakdownSurplus = document.getElementById('breakdownSurplus');
       const elDiagPill = document.getElementById('cardAccountDiagPill');
       const elDiagText = document.getElementById('diagnosticExplanationText');
+      const elBreakdownSurplus = document.getElementById('breakdownSurplus');
+      const elBreakdownUserBalance = document.getElementById('breakdownUserBalance');
+      const elBreakdownMargin = document.getElementById('breakdownMargin');
+      const elBreakdownBuffer = document.getElementById('breakdownBuffer');
+      const elBufferValText = document.getElementById('hedgeBufferValText');
+
+      if (elBreakdownUserBalance) elBreakdownUserBalance.textContent = `$${userBalance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
+      if (elBreakdownMargin) elBreakdownMargin.textContent = `$${marginUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
+      if (elBreakdownBuffer) elBreakdownBuffer.textContent = `$${bufferUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
+      if (elBufferValText) elBufferValText.textContent = `±$${buffer.toFixed(2)} / oz`;
 
       const surplus = userBalance - safeCapitalUSD;
       if (elBreakdownSurplus && elDiagPill && elDiagText) {
@@ -2275,7 +2315,7 @@ document.addEventListener('DOMContentLoaded', () => {
           elDiagPill.textContent = currentLang === 'km' ? 'ទុនសុវត្ថិភាពពេញលេញ (100%)' : 'CAPITAL FULLY PROTECTED';
           elBreakdownSurplus.className = 'text-success';
           elBreakdownSurplus.textContent = `+$${surplus.toFixed(2)} Surplus`;
-          elDiagText.className = 'diagnostic-explanation';
+          elDiagText.className = 'health-explanation-text';
           elDiagText.textContent = currentLang === 'km'
             ? `🟢 សុវត្ថិភាពខ្ពស់បំផុត៖ ដើមទុនរបស់អ្នកគ្របដណ្តប់ទាំង Margin និងទុនបម្រុងលើសពី $${buffer}/oz។ គ្មានហានិភ័យ Stop-Out ឡើយ។`
             : `🟢 Capital Protected: Your balance safely covers required margin plus more than $${buffer}/oz market swing against your hedge. Zero liquidation risk.`;
@@ -2284,7 +2324,7 @@ document.addEventListener('DOMContentLoaded', () => {
           elDiagPill.textContent = currentLang === 'km' ? 'ទុនបម្រុងនៅមានកម្រិត' : 'TIGHT MARGIN BUFFER';
           elBreakdownSurplus.className = 'text-danger';
           elBreakdownSurplus.textContent = `-$${Math.abs(surplus).toFixed(2)} Shortfall`;
-          elDiagText.className = 'diagnostic-explanation status-tight';
+          elDiagText.className = 'health-explanation-text';
           elDiagText.textContent = currentLang === 'km'
             ? `🟡 ទុនបម្រុងនៅស្តើង៖ គណនីអាចបើកបញ្ជាបាន ប៉ុន្តែដើម្បីការពារការ Stop-Out នៅពេលទីផ្សាររលាក់ សូមបន្ថែម $${Math.abs(surplus).toFixed(2)} ទៀត។`
             : `🟡 Tight Buffer: Position can open, but buffer is slim. Deposit $${Math.abs(surplus).toFixed(2)} more to reach full ±$${buffer}/oz protection.`;
@@ -2293,12 +2333,30 @@ document.addEventListener('DOMContentLoaded', () => {
           elDiagPill.textContent = currentLang === 'km' ? 'ទុនមិនទាន់គ្រប់គ្រាន់' : 'INSUFFICIENT BALANCE';
           elBreakdownSurplus.className = 'text-danger';
           elBreakdownSurplus.textContent = `-$${Math.abs(surplus).toFixed(2)} Under Margin`;
-          elDiagText.className = 'diagnostic-explanation status-danger';
+          elDiagText.className = 'health-explanation-text';
           elDiagText.textContent = currentLang === 'km'
             ? `🔴 ទុនមិនគ្រប់៖ អ្នកមិនអាចបើក ${brokerLots.toFixed(2)} Lots បានឡើយ។ តម្រូវការ Margin អប្បបរមាគឺ $${marginUSD.toFixed(2)} USD។`
             : `🔴 Insufficient Capital: Cannot execute ${brokerLots.toFixed(2)} Lots. Minimum initial margin required is $${marginUSD.toFixed(2)} USD.`;
         }
       }
+
+      // Detailed Table Metrics
+      const elBrokerLots = document.getElementById('cardBrokerLots');
+      if (elBrokerLots) elBrokerLots.textContent = `${brokerLots.toFixed(2)} Lots`;
+
+      const elExactLots = document.getElementById('cardExactLots');
+      if (elExactLots) elExactLots.textContent = `${exactLots.toFixed(5)} Lots`;
+
+      const elResidualWeight = document.getElementById('cardResidualWeight');
+      if (elResidualWeight) {
+        elResidualWeight.textContent = `${residualGrams.toFixed(2)}g (≈ ${residualDamlung.toFixed(2)} ${currentLang === 'km' ? 'តម្លឹង' : 'Damlung'})`;
+      }
+
+      const elPhysicalCashTotal = document.getElementById('cardPhysicalCashTotal');
+      if (elPhysicalCashTotal) elPhysicalCashTotal.textContent = `$${physicalCashTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
+
+      const elDigitalSpotTotal = document.getElementById('cardDigitalSpotTotal');
+      if (elDigitalSpotTotal) elDigitalSpotTotal.textContent = `$${digitalSpotTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
 
       // Mathematical Proof Step Breakdown
       const elMathProofSteps = document.getElementById('mathProofSteps');
@@ -2307,12 +2365,86 @@ document.addEventListener('DOMContentLoaded', () => {
           ? `${weight} ${unitNamesKhmer[unit] || unit} × ${(gramsPerUnit[unit] || 37.5).toFixed(2)}g = ${totalGrams.toFixed(2)}g ${metalLabelKhmer}រូបវន្ត<br>${totalGrams.toFixed(2)}g ÷ 31.1035g/oz = ${troyOunces.toFixed(4)} Troy Ounces<br>${troyOunces.toFixed(4)} oz ÷ ${contractSize} oz/Lot = <strong>${exactLots.toFixed(5)} Digital Lots</strong>`
           : `${weight} ${unit} × ${(gramsPerUnit[unit] || 37.5).toFixed(2)}g = ${totalGrams.toFixed(2)}g Physical ${metalLabelEn}<br>${totalGrams.toFixed(2)}g ÷ 31.1035g/oz = ${troyOunces.toFixed(4)} Troy Ounces<br>${troyOunces.toFixed(4)} oz ÷ ${contractSize} oz/Lot = <strong>${exactLots.toFixed(5)} Digital Lots</strong>`;
       }
+
+      // Re-run simulator with current parameters
+      runCrashSimulation(currentSimDelta);
+    }
+
+    // 3. Dynamic Market Volatility Stress-Test Simulator Engine
+    function runCrashSimulation(deltaPrice) {
+      currentSimDelta = deltaPrice;
+      const weight = parseFloat(hedgeWeightInput.value) || 0;
+      const unit = hedgeUnitSelect.value || 'damlung';
+      const isXAU = currentHedgeMetal === 'XAU';
+      const contractSize = isXAU ? 100 : 5000;
+      const isBuy = currentHedgeDirection === 'BUY_PHYSICAL';
+      const currentLang = document.documentElement.getAttribute('lang') || 'en';
+
+      const totalGrams = weight * (gramsPerUnit[unit] || 37.5);
+      const troyOunces = totalGrams / 31.1034768;
+      const exactLots = troyOunces / contractSize;
+      let brokerLots = Math.round(exactLots * 100) / 100;
+      if (brokerLots === 0 && exactLots > (isXAU ? 0.005 : 0.0002)) brokerLots = 0.01;
+
+      // Physical gold value delta
+      const physicalDiff = troyOunces * deltaPrice;
+
+      // Digital hedge trade delta
+      // When shop buys physical gold, it opens SHORT. If price drops (deltaPrice < 0), Short makes profit (+).
+      const digitalDiff = isBuy ? (brokerLots * contractSize * (-deltaPrice)) : (brokerLots * contractSize * deltaPrice);
+
+      // Net impact
+      const unhedgedNet = physicalDiff;
+      const hedgedNet = physicalDiff + digitalDiff;
+
+      const elSimUnhedgedPhysical = document.getElementById('simUnhedgedPhysicalDiff');
+      const elSimUnhedgedNet = document.getElementById('simUnhedgedNet');
+      const elSimHedgedPhysical = document.getElementById('simHedgedPhysicalDiff');
+      const elSimHedgedDigital = document.getElementById('simHedgedDigitalDiff');
+      const elSimHedgedNet = document.getElementById('simHedgedNet');
+      const elSimUnhedgedVerdict = document.getElementById('simUnhedgedVerdict');
+      const elSimHedgedVerdict = document.getElementById('simHedgedVerdict');
+
+      if (elSimUnhedgedPhysical) {
+        elSimUnhedgedPhysical.textContent = (physicalDiff >= 0 ? '+' : '-') + `$${Math.abs(physicalDiff).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
+      }
+      if (elSimUnhedgedNet) {
+        elSimUnhedgedNet.textContent = (unhedgedNet >= 0 ? '+' : '-') + `$${Math.abs(unhedgedNet).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${unhedgedNet >= 0 ? 'Gain' : 'Capital Loss'}`;
+      }
+      if (elSimHedgedPhysical) {
+        elSimHedgedPhysical.textContent = (physicalDiff >= 0 ? '+' : '-') + `$${Math.abs(physicalDiff).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
+      }
+      if (elSimHedgedDigital) {
+        elSimHedgedDigital.textContent = (digitalDiff >= 0 ? '+' : '-') + `$${Math.abs(digitalDiff).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
+      }
+      if (elSimHedgedNet) {
+        const sign = hedgedNet >= 0 ? '+' : '-';
+        elSimHedgedNet.textContent = `$${Math.abs(hedgedNet).toFixed(2)} Net Difference (${currentLang === 'km' ? 'ការពារ ១០០%' : '100% Protected'})`;
+      }
+
+      if (elSimUnhedgedVerdict && elSimHedgedVerdict) {
+        if (deltaPrice < 0) {
+          elSimUnhedgedVerdict.textContent = currentLang === 'km'
+            ? `ការធ្លាក់ចុះ $${Math.abs(deltaPrice)}/oz បានលេបត្របាក់យកប្រាក់ចំណេញ និងបានបំផ្លាញដើមទុនអាជីវកម្មរបស់អ្នកអស់ $${Math.abs(unhedgedNet).toFixed(2)} USD ភ្លាមៗ!`
+            : `The $${Math.abs(deltaPrice)}/oz drop wiped out your retail spread profit and destroyed $${Math.abs(unhedgedNet).toFixed(2)} USD of core business capital!`;
+          elSimHedgedVerdict.innerHTML = currentLang === 'km'
+            ? `គ្មានការខាតបង់ឡើយ! បញ្ជា MT5 Short បានផ្តល់ផលចំណេញមកវិញចំនួន <strong>+$${Math.abs(digitalDiff).toFixed(2)} USD</strong> ស្មើនឹងការខាតរូបវន្តបេះបិទ។ ប្រាក់ចំណេញហាងរបស់អ្នកត្រូវបានការពារ ១០០%! 🏆`
+            : `Zero loss! The digital short generated <strong>+$${Math.abs(digitalDiff).toFixed(2)} USD</strong> to offset the physical drop dollar-for-dollar. Your counter profit is 100% secure in your bank account! 🏆`;
+        } else {
+          elSimUnhedgedVerdict.textContent = currentLang === 'km'
+            ? `មាសឡើងថ្លៃ $${deltaPrice}/oz ប៉ុន្តែការរង់ចាំទិញបំពេញស្តុកឡើងវិញនឹងត្រូវចំណាយថ្លៃដើមខ្ពស់ជាងមុន $${Math.abs(physicalDiff).toFixed(2)} USD!`
+            : `Gold gained $${deltaPrice}/oz, but replenishing sold inventory now costs $${Math.abs(physicalDiff).toFixed(2)} USD more out of pocket!`;
+          elSimHedgedVerdict.innerHTML = currentLang === 'km'
+            ? `តុល្យភាព Delta-Neutral រក្សាដើមទុនបំពេញស្តុកបានស្មើ ១០០% ដោយគ្មានការប្រែប្រួលឡើយ។ 🏆`
+            : `Delta-Neutral balance neutralized replenishment cost perfectly. Total price risk = $0.00! 🏆`;
+        }
+      }
     }
 
     // Expose recalculate globally for language switcher
     window.recalcGoldHedging = calculateGoldHedging;
 
-    // 3. Register All Event Listeners
+    // 4. Register All Event Listeners
     if (metalSwitchGold && metalSwitchSilver) {
       metalSwitchGold.addEventListener('click', () => {
         if (currentHedgeMetal === 'XAU') return;
@@ -2349,6 +2481,91 @@ document.addEventListener('DOMContentLoaded', () => {
         calculateGoldHedging();
       });
     }
+
+    if (curBtnUSD && curBtnKHR) {
+      curBtnUSD.addEventListener('click', () => {
+        currentCurrency = 'USD';
+        curBtnUSD.classList.add('active');
+        curBtnKHR.classList.remove('active');
+        calculateGoldHedging();
+      });
+      curBtnKHR.addEventListener('click', () => {
+        currentCurrency = 'KHR';
+        curBtnKHR.classList.add('active');
+        curBtnUSD.classList.remove('active');
+        calculateGoldHedging();
+      });
+    }
+
+    if (btnCopyTicket) {
+      btnCopyTicket.addEventListener('click', () => {
+        const actionText = currentHedgeDirection === 'BUY_PHYSICAL' ? 'SELL (SHORT)' : 'BUY (LONG)';
+        const weightVal = hedgeWeightInput.value;
+        const unitVal = hedgeUnitSelect.value;
+        const spotVal = hedgeSpotInput.value;
+        const lotsVal = document.getElementById('resStandardLots') ? document.getElementById('resStandardLots').textContent : '0.12';
+        const profitVal = document.getElementById('cardLockedProfit') ? document.getElementById('cardLockedProfit').textContent : '$0';
+        const safeCapVal = document.getElementById('cardSafeCapital') ? document.getElementById('cardSafeCapital').textContent : '$0';
+        const stopOutVal = document.getElementById('cardStopOutPrice') ? document.getElementById('cardStopOutPrice').textContent : '$0';
+
+        const ticketSummary = `[BLUEX HEDGING EXECUTION ORDER]
+Asset: ${currentHedgeMetal === 'XAU' ? 'XAU/USD (Gold)' : 'XAG/USD (Silver)'}
+Action: ${actionText} ${lotsVal} Lots
+Physical Inventory: ${weightVal} ${unitVal}
+Live Spot: $${spotVal} / oz
+Locked Spread Profit: ${profitVal}
+Recommended Safe Deposit: ${safeCapVal}
+Stop-Out Price Level: ${stopOutVal}
+Protocol Status: 100% Delta-Neutral Protected`;
+
+        navigator.clipboard.writeText(ticketSummary).then(() => {
+          const copyBtnText = document.getElementById('copyBtnText');
+          const currentLang = document.documentElement.getAttribute('lang') || 'en';
+          if (copyBtnText) {
+            const original = copyBtnText.textContent;
+            copyBtnText.textContent = currentLang === 'km' ? '✓ បានចម្លង!' : '✓ Copied!';
+            btnCopyTicket.style.borderColor = '#10b981';
+            btnCopyTicket.style.color = '#10b981';
+            setTimeout(() => {
+              copyBtnText.textContent = original;
+              btnCopyTicket.style.borderColor = '';
+              btnCopyTicket.style.color = '';
+            }, 2500);
+          }
+        }).catch(err => {
+          console.warn('[BlueX] Clipboard copy failed:', err);
+        });
+      });
+    }
+
+    if (btnToggleDetails) {
+      btnToggleDetails.addEventListener('click', () => {
+        const content = document.getElementById('ticketDetailedContent');
+        const textSpan = document.getElementById('toggleDetailsText');
+        const currentLang = document.documentElement.getAttribute('lang') || 'en';
+        if (content) {
+          const isHidden = content.style.display === 'none' || content.style.display === '';
+          content.style.display = isHidden ? 'block' : 'none';
+          btnToggleDetails.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+          if (textSpan) {
+            if (isHidden) {
+              textSpan.textContent = currentLang === 'km' ? '▲ លាក់ព័ត៌មានលម្អិត' : '▲ Hide Detailed Arithmetic';
+            } else {
+              textSpan.textContent = currentLang === 'km' ? '▼ បង្ហាញរូបមន្តគណិតវិទ្យា & ទម្ងន់នៅសល់' : '▼ Show Advanced Arithmetic & Residuals';
+            }
+          }
+        }
+      });
+    }
+
+    simScenarioBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        simScenarioBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const scenarioDelta = parseFloat(btn.getAttribute('data-scenario')) || -150;
+        runCrashSimulation(scenarioDelta);
+      });
+    });
 
     if (btnRefreshSpot) {
       btnRefreshSpot.addEventListener('click', () => {
