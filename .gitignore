@@ -1,3 +1,6 @@
 *.zip
 *.ps1
+*.log
 scratch/
+__pycache__/
+*.pyc

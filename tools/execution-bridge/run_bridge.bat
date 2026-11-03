@@ -1,37 +1,24 @@
 @echo off
-TITLE BlueX Quantitative Bridge - MT5 / MT4 Execution Gateway
+TITLE BlueX Quantitative Control Terminal & Execution Gateway
 COLOR 0B
 echo ==============================================================================
-echo  BLUEX QUANTITATIVE EXECUTION GATEWAY (XAU/USD)
-echo  LS Trading Academy Institutional Execution System
+echo  BLUEX QUANTITATIVE EXECUTION COCKPIT & BRIDGE (XAU/USD)
+echo  LS Trading Academy - Institutional Market Control System
 echo ==============================================================================
 echo.
 
 cd /d "%~dp0"
 
-where python >nul 2>&1
-if %ERRORLEVEL% NEQ 0 (
-    echo [!] Python is not currently installed or not in PATH.
-    echo [*] Attempting automated installation via winget...
-    winget install Python.Python.3.11 --silent --accept-source-agreements --accept-package-agreements
-    echo [*] Please restart this script once installation completes.
-    pause
-    exit /b 1
+set "PY=C:\Users\Asus ROG\AppData\Local\Programs\Python311\python.exe"
+if not exist "%PY%" (
+    set "PY=python"
 )
 
-if not exist ".venv" (
-    echo [*] Creating isolated Python virtual environment (.venv)...
-    python -m venv .venv
-)
+echo [*] Launching BlueX Interactive Web Cockpit at http://127.0.0.1:8000/terminal ...
+start "" "http://127.0.0.1:8000/terminal"
 
-echo [*] Activating environment and updating dependencies...
-call .venv\Scripts\activate.bat
-python -m pip install --upgrade pip >nul 2>&1
-pip install -r requirements.txt
-
+echo [*] Starting FastAPI Microsecond Execution Server on port 8000...
 echo.
-echo [*] Booting BlueX Execution Server on port 8000...
-echo.
-python server.py
+"%PY%" server.py
 
 pause
