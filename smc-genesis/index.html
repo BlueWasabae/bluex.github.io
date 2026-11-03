@@ -1,0 +1,1286 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script>
+    if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.location.replace('https://' + window.location.host + window.location.pathname + window.location.search + window.location.hash);
+    }
+  </script>
+  <title>SMC Genesis Masterclass â€¢ Learn Institutional Trading | BlueX Academy</title>
+  <meta name="description" content="Master institutional Gold (XAU/USD) trading with BlueX. Learn pure Supply & Demand, mechanical market structure (BOS/CHoCH), liquidity sweeps, and disciplined risk preservation.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.bluexacademy.site/smc-genesis">
+
+    <!-- OpenGraph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BlueX Trading Academy">
+  <meta property="og:url" content="https://www.bluexacademy.site/smc-genesis">
+  <meta property="og:title" content="SMC Genesis Masterclass â€¢ Learn Institutional Trading | BlueX Academy">
+  <meta property="og:description" content="Master institutional Gold (XAU/USD) trading with BlueX. Learn pure Supply &amp; Demand, mechanical market structure, liquidity sweeps, and disciplined risk preservation.">
+  <meta property="og:image" content="https://www.bluexacademy.site/assets/images/bluex-thumbnail.jpg?v=20261102v3">
+  <meta property="og:image:secure_url" content="https://www.bluexacademy.site/assets/images/bluex-thumbnail.jpg?v=20261102v3">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="720">
+  <meta property="og:image:alt" content="SMC Genesis Masterclass - BlueX Trading Academy">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.bluexacademy.site/smc-genesis">
+  <meta name="twitter:title" content="SMC Genesis Masterclass â€¢ Learn Institutional Trading | BlueX Academy">
+  <meta name="twitter:description" content="Master institutional Gold (XAU/USD) trading with BlueX. Learn pure Supply &amp; Demand, mechanical market structure, liquidity sweeps, and disciplined risk preservation.">
+  <meta name="twitter:image" content="https://www.bluexacademy.site/assets/images/bluex-thumbnail.jpg?v=20261102v3">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/images/bluex-3d-logo.png">
+  <link rel="apple-touch-icon" href="../assets/images/bluex-3d-logo.png">
+  <meta name="theme-color" content="#08090d">
+
+  <!-- Google Fonts: Popular Luxury Fonts + Modern Khmer (Noto Sans Khmer, Kantumruy Pro, JetBrains Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600;700&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="../styles.css?v=20261103v19">
+
+  <style>
+    /* Specific Table & Ecosystem Elements for SMC Genesis */
+    .risk-math-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 0.88rem;
+    }
+    .risk-math-table th, .risk-math-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .risk-math-table th {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--color-cyan);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    [data-theme="light"] .risk-math-table th {
+      background: #f1f5f9;
+      color: #0f172a;
+      border-bottom-color: rgba(15, 23, 42, 0.1);
+    }
+    [data-theme="light"] .risk-math-table td {
+      color: #334155;
+      border-bottom-color: rgba(15, 23, 42, 0.08);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 24K Golden Wave Horizon Background -->
+  <div class="site-bg-wrapper">
+    <div class="bg-golden-waves-horizon">
+      <div class="golden-wave-layer"></div>
+    </div>
+    <div class="site-bg-overlay"></div>
+  </div>
+
+  <!-- Ambient Background Atmosphere & Luxury Starlight Beaming Engine -->
+  <div class="bg-glow-orb cyan"></div>
+  <div class="bg-glow-orb amber"></div>
+  <div class="bg-glow-orb blue"></div>
+  <div class="bg-gold-light-sweep"></div>
+  <canvas id="bluexStarlightCanvas" class="bg-starlight-canvas"></canvas>
+
+  <!-- ========================================================
+       SITE HEADER & NAVIGATION
+       ======================================================== -->
+  <header class="site-header" id="top">
+    <div class="container">
+      <nav class="nav-wrapper">
+        <!-- 3D Brand Logo -->
+        <a href="index.html" class="logo" id="brandLogo" aria-label="BlueX Official - Return to Home" title="BlueX Home">
+          <img src="../assets/images/bluex-3d-logo.png" alt="BlueX" class="nav-logo-3d-img">
+        </a>
+
+        <!-- Centered Menu Pills -->
+        <ul class="nav-menu" id="navMenu">
+          <!-- Mobile Drawer Header (Mobile Only) -->
+          <li class="nav-mobile-header nav-mobile-only">
+            <div class="nav-drawer-brand">
+              <span class="nav-drawer-dot"></span>
+              <span data-i18n="nav.drawerBrand">BLUEX TERMINAL</span>
+            </div>
+            <button type="button" class="nav-drawer-close-btn" id="navDrawerCloseBtn" aria-label="Close menu">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </li>
+
+          <!-- Mobile Drawer Feature Spotlight: SMC Genesis (Active Masterclass) -->
+          <li class="nav-mobile-spotlight nav-mobile-only">
+            <a href="./" class="nav-spotlight-card active-card">
+              <div class="nav-spotlight-top">
+                <span class="nav-spotlight-tag"><span class="genesis-pulse-dot"></span> ACTIVE â€¢ V4.0 MASTERCLASS</span>
+                <span class="nav-spotlight-arrow">âž”</span>
+              </div>
+              <div class="nav-spotlight-title">SMC Genesis â€¢ Beyond The Charts</div>
+              <div class="nav-spotlight-sub" data-i18n="nav.spotlightDesc">Institutional Blueprint: 10 Quantitative Modules</div>
+            </a>
+          </li>
+
+          <!-- Navigation Links -->
+          <li class="nav-item-home"><a href="../" class="nav-link" data-i18n="nav.home">Home</a></li>
+          <li><a href="../#about" class="nav-link" data-i18n="nav.about">About</a></li>
+          <li><a href="../#brokers" class="nav-link" data-i18n="nav.brokers">Brokers</a></li>
+          <li><a href="../#courses" class="nav-link" data-i18n="nav.courses">Courses</a></li>
+          <li><a href="./" class="nav-link active nav-link-genesis" data-i18n="nav.genesis"><span class="genesis-pulse-dot"></span>SMC Genesis <span class="nav-new-badge">NEW</span></a></li>
+          <li><a href="../gold-hedging" class="nav-link" data-i18n="nav.hedging"><span class="nav-label-full">Gold </span>Hedging</a></li>
+          <li><a href="../#capital" class="nav-link" data-i18n="nav.capital">Strategy</a></li>
+          <li><a href="../#calculator" class="nav-link" data-i18n="nav.calculator">Calculator</a></li>
+          <li><a href="../knowledge" class="nav-link" data-i18n="nav.knowledge">Knowledge</a></li>
+          <li><a href="../#pillars" class="nav-link" data-i18n="nav.pillars">Pillars</a></li>
+          <li><a href="../#media" class="nav-link" data-i18n="nav.media">Media</a></li>
+          <li><a href="../#faq" class="nav-link" data-i18n="nav.faq">FAQ</a></li>
+          <li class="nav-item-connect"><a href="../#connect" class="nav-link" data-i18n="nav.connect">Connect</a></li>
+
+          <!-- Mobile Drawer Performance / FX Freeze Mode Toggle -->
+          <li class="nav-mobile-settings nav-mobile-only">
+            <button type="button" class="nav-drawer-fx-toggle" id="fxToggleDrawerBtn" aria-label="Toggle Effects / Smooth Mobile Mode">
+              <span class="fx-drawer-icon" id="fxDrawerIcon">âš¡</span>
+              <span class="fx-drawer-text" id="fxDrawerText" data-i18n="nav.fxDrawer">Effects: Active (Tap to Freeze)</span>
+            </button>
+          </li>
+
+          <!-- Mobile Drawer Footer CTA (Mobile Only) -->
+          <li class="nav-mobile-footer nav-mobile-only">
+            <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="nav-drawer-dm-cta" title="Register Now â€” 1-Click Direct DM (@Le_Bluue)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+              </svg>
+              <span data-i18n="nav.drawerDm">Register Now â€” Direct DM (@Le_Bluue)</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Right Header Actions -->
+        <div class="nav-right-actions">
+          <!-- Khmer Language Switcher Button -->
+          <button class="nav-tool-btn" id="langToggleBtn" type="button" aria-label="Switch Language" title="áž”áŸ’ážáž¼ážšáž‡áž¶áž—áž¶ážŸáž¶ážáŸ’áž˜áŸ‚ážš">
+            <span class="lang-flag">ðŸ‡°ðŸ‡­</span>
+            <span id="langBtnText">ážáŸ’áž˜áŸ‚ážš</span>
+          </button>
+
+          <!-- Light / Dark Mode Toggle Button -->
+          <button class="nav-tool-btn nav-theme-btn" id="themeToggleBtn" type="button" aria-label="Toggle Theme" title="Toggle Light / Dark Mode">
+            <svg class="theme-icon sun-icon" id="sunIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="theme-icon moon-icon" id="moonIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <!-- Effects Freeze / Performance Lite Toggle Button -->
+          <button class="nav-tool-btn nav-fx-btn" id="fxToggleBtn" type="button" aria-label="Toggle Effects / Smooth Mobile" title="Effects: ON (Click to Freeze / Smooth Mobile)">
+            <span class="fx-icon" id="fxNavIcon">âš¡</span>
+            <span class="fx-label" id="fxBtnText" data-i18n="nav.fx">FX</span>
+          </button>
+
+          <!-- Register Now CTA Button (1-Click Direct Personal Contact DM) -->
+          <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="nav-cta-btn nav-register-dm-btn" title="Register Now â€” 1-Click Direct DM (@Le_Bluue)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+            </svg>
+            <span data-i18n="nav.register">Register Now</span>
+          </a>
+
+          <!-- Mobile Menu Toggle Button -->
+          <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Toggle Navigation Menu">
+            <span class="hamburger-icon" id="hamburgerIcon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <line x1="4" y1="7" x2="20" y2="7"></line>
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="17" x2="20" y2="17"></line>
+              </svg>
+            </span>
+            <span class="close-icon" id="hamburgerCloseIcon" style="display:none;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================================================
+         HERO SECTION: SMC GENESIS â€¢ BEYOND THE CHARTS
+         ======================================================== -->
+    <section class="genesis-hero smc-beyond-hero" id="hero">
+      <div class="smc-hero-bg-banner" style="background-image: url('../assets/images/smc-genesis-hero-banner.jpg');"></div>
+      <div class="container">
+        <div class="genesis-hero-inner">
+          <!-- Breadcrumb navigation -->
+          <div class="smc-breadcrumb">
+            <a href="../">BlueX Home</a>
+            <span>/</span>
+            <span class="crumb-active">SMC Genesis â€¢ Beyond The Charts</span>
+          </div>
+
+          <!-- Official SMC Genesis Emblem -->
+          <div class="smc-emblem-showcase">
+            <div class="smc-emblem-frame">
+              <img src="../assets/images/smc-genesis-logo.jpg" alt="SMC Genesis â€¢ Beyond The Charts Official Logo" class="smc-emblem-img">
+            </div>
+          </div>
+
+          <!-- Glowing Badge -->
+          <div class="genesis-badge smc-gold-badge">
+            <span class="smc-gold-dot"></span>
+            <span data-i18n="genesis.badge">SMC GENESIS â€¢ BEYOND THE CHARTS â€¢ VERSION 4.0 PRO</span>
+          </div>
+
+          <!-- Main Title -->
+          <h1 class="genesis-title smc-main-title" data-i18n="genesis.heroTitle">
+            SMC GENESIS â€¢ BEYOND THE CHARTS<br>
+            <span class="highlight">Institutional Trading Architecture &amp; Masterclass.</span>
+          </h1>
+
+          <!-- Lead Subtitle -->
+          <p class="genesis-lead smc-lead-intro" data-i18n="genesis.heroSub">
+            An institutional-grade synthesis of Smart Money Concepts 2.0 &amp; 3.0 engineered for Gold (XAU/USD) and major liquid markets. SMC Genesis replaces retail indicator guesswork with a structured 10-Module Quantitative Architectureâ€”teaching you how institutions engineer liquidity, transfer multi-timeframe data, and execute with asymmetric risk precision.
+          </p>
+
+          <!-- Lowkey Institutional System Specifications -->
+          <div class="smc-lowkey-specs-ribbon">
+            <div class="smc-spec-chip">
+              <span class="smc-spec-label" data-i18n="genesis.specAssetLabel">ASSET FOCUS</span>
+              <span class="smc-spec-value" data-i18n="genesis.specAssetVal">XAU/USD (Gold) &amp; Majors</span>
+            </div>
+            <div class="smc-spec-chip">
+              <span class="smc-spec-label" data-i18n="genesis.specStructLabel">STRUCTURE LAW</span>
+              <span class="smc-spec-value" data-i18n="genesis.specStructVal">Body-Close BOS / CHoCH</span>
+            </div>
+            <div class="smc-spec-chip">
+              <span class="smc-spec-label" data-i18n="genesis.specBaseLabel">BASE FORMATIONS</span>
+              <span class="smc-spec-value" data-i18n="genesis.specBaseVal">RBD â€¢ DBR â€¢ RBR â€¢ DBD</span>
+            </div>
+            <div class="smc-spec-chip">
+              <span class="smc-spec-label" data-i18n="genesis.specMtfLabel">TIMEFRAME PIPELINE</span>
+              <span class="smc-spec-value" data-i18n="genesis.specMtfVal">4H Macro â†’ 15M S&amp;D â†’ 1M/3M Entry</span>
+            </div>
+            <div class="smc-spec-chip">
+              <span class="smc-spec-label" data-i18n="genesis.specRiskLabel">CAPITAL DISCIPLINE</span>
+              <span class="smc-spec-value" data-i18n="genesis.specRiskVal">0.5% â€“ 1.0% Risk â€¢ Min 1:3 RR</span>
+            </div>
+          </div>
+
+          <!-- Key Metrics Grid -->
+          <div class="genesis-metrics-grid">
+            <div class="genesis-metric-card">
+              <div class="genesis-metric-value" data-i18n="genesis.metric1Val">10 Modules</div>
+              <div class="genesis-metric-label" data-i18n="genesis.metric1Label">Structured Quantitative Curriculum</div>
+            </div>
+            <div class="genesis-metric-card">
+              <div class="genesis-metric-value" data-i18n="genesis.metric2Val">Zero Indicators</div>
+              <div class="genesis-metric-label" data-i18n="genesis.metric2Label">Pure Structure, S&amp;D &amp; Liquidity</div>
+            </div>
+            <div class="genesis-metric-card">
+              <div class="genesis-metric-value" data-i18n="genesis.metric3Val">0.5% â€“ 1.0%</div>
+              <div class="genesis-metric-label" data-i18n="genesis.metric3Label">Strict Capital Risk Per Setup</div>
+            </div>
+            <div class="genesis-metric-card">
+              <div class="genesis-metric-value" data-i18n="genesis.metric4Val">1:3 to 1:10+</div>
+              <div class="genesis-metric-label" data-i18n="genesis.metric4Label">Asymmetric Risk-to-Reward Profile</div>
+            </div>
+          </div>
+
+          <!-- Hero Action Buttons -->
+          <div class="genesis-cta-row">
+            <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="btn-mentorship btn-mentorship-glow" title="Enroll in Class via Telegram (@Le_Bluue)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="8.5" cy="7" r="4"></circle>
+                <line x1="20" y1="8" x2="20" y2="14"></line>
+                <line x1="23" y1="11" x2="17" y2="11"></line>
+              </svg>
+              <span data-i18n="genesis.heroApplyBtn">âš¡ Register Now â€¢ DM @Le_Bluue</span>
+            </a>
+
+            <a href="https://t.me/moonbluefx" target="_blank" rel="noopener noreferrer" class="btn-secondary smc-btn-cyan" title="Join Community Group (t.me/moonbluefx)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.832.922z"/>
+              </svg>
+              <span data-i18n="genesis.heroCommunityBtn">ðŸ‘¥ Join Community Telegram (t.me/moonbluefx)</span>
+            </a>
+
+            <a href="#topics" class="btn-secondary">
+              <span data-i18n="genesis.heroCurriculumBtn">Explore 10-Module Syllabus â†“</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         EXECUTIVE INTRODUCTION: WHAT IS SMC GENESIS?
+         ======================================================== -->
+    <section class="smc-exec-intro-section">
+      <div class="container">
+        <div class="smc-exec-intro-card">
+          <div class="smc-exec-grid">
+            <!-- Left: Core Philosophy & Curriculum Charter -->
+            <div class="smc-exec-left">
+              <span class="smc-section-tag" data-i18n="genesis.introTag">EXECUTIVE BRIEFING â€¢ BEYOND THE CHARTS</span>
+              <h2 class="smc-exec-heading" data-i18n="genesis.introTitle">
+                A Quantitative Operating System for Institutional Price Delivery
+              </h2>
+              <p class="smc-exec-paragraph" data-i18n="genesis.introP1">
+                Financial markets do not move by random chance or retail chart patterns. Every major price expansion is driven by institutional liquidity engineeringâ€”accumulating orders where retail traders place predictable stop-losses.
+              </p>
+              <p class="smc-exec-paragraph" data-i18n="genesis.introP2">
+                <strong>SMC Genesis (Version 4.0 Pro)</strong> is the proprietary flagship curriculum of BlueX Academy. It synthesizes foundational Smart Money Concepts 2.0 &amp; 3.0 into a clean, rule-based institutional desk frameworkâ€”designed to take a trader from raw structural mapping to surgical lower-timeframe execution without ever relying on lagging indicators.
+              </p>
+
+              <div class="smc-charter-rules">
+                <div class="smc-charter-item">
+                  <span class="smc-charter-dot"></span>
+                  <span data-i18n="genesis.charter1"><strong>Data Collection &amp; Homework Discipline:</strong> Theory alone builds zero skill. Mastery requires structured backtesting, forward-testing, and systematic chart logging.</span>
+                </div>
+                <div class="smc-charter-item">
+                  <span class="smc-charter-dot"></span>
+                  <span data-i18n="genesis.charter2"><strong>Objective Rule Validation:</strong> Every structural break (BOS), internal pullback (IBOS), fractal shift (FTS), and sweep is governed by strict mechanical criteria.</span>
+                </div>
+                <div class="smc-charter-item">
+                  <span class="smc-charter-dot"></span>
+                  <span data-i18n="genesis.charter3"><strong>Protected Intellectual Property:</strong> Complete lesson schematics, proprietary entry checklists, and live chart drills are reserved exclusively for enrolled SMC Genesis students.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Institutional Wisdom & Core Creed (From Slide 02) -->
+            <div class="smc-exec-right">
+              <div class="smc-wisdom-box cyan-accent">
+                <div class="smc-wisdom-label" data-i18n="genesis.wisdom1Tag">INSTITUTIONAL WISDOM</div>
+                <blockquote class="smc-wisdom-quote">â€œA small profit is better than a big loss.â€</blockquote>
+                <div class="smc-wisdom-author">â€” Ron Rash</div>
+              </div>
+
+              <div class="smc-wisdom-box gold-accent">
+                <div class="smc-wisdom-label" data-i18n="genesis.wisdom2Tag">DISCIPLINE OVER EMOTION</div>
+                <blockquote class="smc-wisdom-quote">â€œSuccessful traders are not afraid of losing money, they are afraid of losing their discipline.â€</blockquote>
+                <div class="smc-wisdom-author">â€” Ray Dalio</div>
+              </div>
+
+              <div class="smc-creed-banner">
+                <div class="smc-creed-title" data-i18n="genesis.creedText">
+                  SMC GENESIS: áž’áŸ’ážœáž¾áž‚ážºážŠáž¾áž˜áŸ’áž”áž¸áž‘áž¶áŸ†áž„áž¢ážŸáŸ‹áž‚áŸ’áž“áž¶ áž‘áž¶áŸ†áž„áž¢ážŸáŸ‹áž‚áŸ’áž“áž¶áž‚ážºáž’áŸ’ážœáž¾ážŠáž¾áž˜áŸ’áž”áž¸ážáŸ’áž›áž½áž“áž¯áž„!
+                </div>
+                <div class="smc-creed-sub" data-i18n="genesis.creedSub">
+                  Built for the collective â€¢ Mastered through personal discipline
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         THE PARADIGM SHIFT: RETAIL TRAPS VS SMC GENESIS
+         ======================================================== -->
+    <section class="genesis-shift-section">
+      <div class="container">
+        <div class="genesis-shift-card">
+          <div class="genesis-shift-header">
+            <span class="knowledge-tag-badge" data-i18n="genesis.shiftBadge">The Paradigm Shift â€¢ Institutional vs Retail</span>
+            <h2 class="knowledge-title" data-i18n="genesis.shiftTitle">Why 95% of Retail Traders Are Simply Liquidity</h2>
+            <p class="knowledge-sub-desc" data-i18n="genesis.shiftDesc">
+              Retail technical analysis teaches traders to place stops right where central bank algorithms look to fill massive institutional orders. SMC Genesis teaches you to identify the engineered traps and execute alongside smart money.
+            </p>
+          </div>
+
+          <div class="genesis-compare-grid">
+            <!-- Retail Col -->
+            <div class="genesis-compare-col retail">
+              <div class="compare-col-title">
+                <span>âš ï¸</span>
+                <span data-i18n="genesis.retailColTitle">The Retail Indicator Fallacy</span>
+              </div>
+              <div class="compare-items-list">
+                <div class="compare-item-row">
+                  <div class="compare-icon">âœ•</div>
+                  <div data-i18n="genesis.shiftR1">Trading lagging indicators (RSI, MACD, Stochastics) that react long after moves happened.</div>
+                </div>
+                <div class="compare-item-row">
+                  <div class="compare-icon">âœ•</div>
+                  <div data-i18n="genesis.shiftR2">Buying breakouts above resistance, becoming instant liquidity for institutional sell orders.</div>
+                </div>
+                <div class="compare-item-row">
+                  <div class="compare-icon">âœ•</div>
+                  <div data-i18n="genesis.shiftR3">Poor 1:1 or 1:1.5 risk-to-reward requiring a fragile 70%+ win rate to avoid blowouts.</div>
+                </div>
+                <div class="compare-item-row">
+                  <div class="compare-icon">âœ•</div>
+                  <div data-i18n="genesis.shiftR4">Emotional revenge trading, widening stops, and guessing arbitrary tops and bottoms.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Institutional Col -->
+            <div class="genesis-compare-col institutional">
+              <div class="compare-col-title">
+                <span>âš¡</span>
+                <span data-i18n="genesis.instColTitle">The SMC Genesis Institutional Edge</span>
+              </div>
+              <div class="compare-items-list">
+                <div class="compare-item-row">
+                  <div class="compare-icon">âœ“</div>
+                  <div data-i18n="genesis.shiftI1">Reading institutional liquidity sweeps and high-displacement Supply &amp; Demand base formations.</div>
+                </div>
+                <div class="compare-item-row">
+                  <div class="compare-icon">âœ“</div>
+                  <div data-i18n="genesis.shiftI2">Waiting for Buy-Side Liquidity sweeps (BSL) and entering on structural shifts into fresh displacement zones.</div>
+                </div>
+                <div class="compare-item-row">
+                  <div class="compare-icon">âœ“</div>
+                  <div data-i18n="genesis.shiftI3">Asymmetric 1:3+ to 1:10+ risk architecture where a 40% win rate yields substantial compound growth.</div>
+                </div>
+                <div class="compare-item-row">
+                  <div class="compare-icon">âœ“</div>
+                  <div data-i18n="genesis.shiftI4">Clear institutional invalidation points, predefined risk management, and structured execution routines.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         TIMEFRAME EXECUTION MATRIX: HTF BIAS TO LTF REFINEMENT
+         ======================================================== -->
+    <section class="smc-section-matrix">
+      <div class="container">
+        <div class="timeframe-matrix-box">
+          <div class="smc-section-header" style="margin-bottom: 24px;">
+            <span class="mentorship-tag-badge" data-i18n="genesis.matrixBadge">Multi-Timeframe Synchronization</span>
+            <h2 class="smc-section-heading" data-i18n="genesis.matrixTitle">
+              Timeframe Execution Matrix: HTF Bias to LTF Refinement
+            </h2>
+            <p class="smc-section-sub" data-i18n="genesis.matrixSub">
+              How institutional capital transfers data across timeframes to eliminate retail noise and filter high-conviction entries.
+            </p>
+          </div>
+
+          <div class="matrix-tiers-grid">
+            <!-- HTF -->
+            <div class="matrix-tier-card htf">
+              <span class="matrix-tier-badge" data-i18n="genesis.matrixHtfTier">HTF (H4 / D1)</span>
+              <h3 class="matrix-tier-title" data-i18n="genesis.matrixHtfRole">Macro Directional Bias &amp; Major BOS</h3>
+              <p class="matrix-tier-desc" data-i18n="genesis.matrixHtfDesc">
+                Identifies primary institutional macro structural trend and establishes high-probability macro extreme zones.
+              </p>
+            </div>
+
+            <div class="matrix-arrow-separator">â†’</div>
+
+            <!-- MTF -->
+            <div class="matrix-tier-card mtf">
+              <span class="matrix-tier-badge" data-i18n="genesis.matrixMtfTier">MTF (M15 / H1)</span>
+              <h3 class="matrix-tier-title" data-i18n="genesis.matrixMtfRole">S&amp;D Zones &amp; Pullback IBOS</h3>
+              <p class="matrix-tier-desc" data-i18n="genesis.matrixMtfDesc">
+                Extracts institutional footprint zones and filters internal structural pullbacks to pinpoint real reversal points.
+              </p>
+            </div>
+
+            <div class="matrix-arrow-separator">â†’</div>
+
+            <!-- LTF -->
+            <div class="matrix-tier-card ltf">
+              <span class="matrix-tier-badge" data-i18n="genesis.matrixLtfTier">LTF (M1 / M3)</span>
+              <h3 class="matrix-tier-title" data-i18n="genesis.matrixLtfRole">Surgical Trigger &amp; Tight SL (RR â‰¥ 1:3)</h3>
+              <p class="matrix-tier-desc" data-i18n="genesis.matrixLtfDesc">
+                Confirms micro fractal structural shifts, delivering surgical limit entries with minimal drawdown and maximum yield.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         MASTER TOPICS & CORE INSTITUTIONAL PILLARS
+         ======================================================== -->
+    <section class="smc-section-curriculum" id="topics">
+      <div class="container">
+        <div class="smc-section-header">
+          <span class="mentorship-tag-badge" data-i18n="genesis.curriculumBadge">Institutional Curriculum Topics</span>
+          <h2 class="smc-section-heading" data-i18n="genesis.curriculumTitle">Master Topics &amp; Core Institutional Pillars</h2>
+          <p class="smc-section-sub" data-i18n="genesis.curriculumSub">
+            A comprehensive introduction to the foundational topics taught inside SMC Genesis. Designed to equip serious traders with the algorithmic mechanics needed to navigate financial markets alongside smart money.
+          </p>
+        </div>
+
+      <div class="genesis-modules-grid">
+        <!-- Module 01 -->
+        <div class="genesis-module-card">
+          <span class="module-badge-num" data-i18n="genesis.m1Num">Module 01</span>
+          <h3 class="module-title" data-i18n="genesis.m1Title">Institutional Mindset &amp; TradingView Setup</h3>
+          <p class="module-desc" data-i18n="genesis.m1Desc">
+            The foundational operating philosophy: probabilistic thinking, emotional neutrality, and mechanical checklist discipline. Complete TradingView chart configuration, trendline templates, and zone styling.
+          </p>
+        </div>
+
+        <!-- Module 02 -->
+        <div class="genesis-module-card">
+          <span class="module-badge-num" data-i18n="genesis.m2Num">Module 02</span>
+          <h3 class="module-title" data-i18n="genesis.m2Title">Market Structure Foundations (BOS, IBOS, FTS)</h3>
+          <p class="module-desc" data-i18n="genesis.m2Desc">
+            The mechanical grammar of price action: distinguishing between Major Trend Continuation (BOS), Internal Retracement Pullbacks (IBOS), and Fractal Structural Shifts (FTS) without retail lagging indicators.
+          </p>
+        </div>
+
+        <!-- Module 03 -->
+        <div class="genesis-module-card">
+          <span class="module-badge-num" data-i18n="genesis.m3Num">Module 03</span>
+          <h3 class="module-title" data-i18n="genesis.m3Title">Multi-Timeframe Matrix &amp; Data Transfer Theory</h3>
+          <p class="module-desc" data-i18n="genesis.m3Desc">
+            How institutions transfer data across timeframes: High Timeframe (H4/D1) macro bias synchronized with Middle Timeframe (M15/H1) structural pullbacks and Low Timeframe (M1/M3) surgical execution triggers.
+          </p>
+        </div>
+
+        <!-- Module 04 -->
+        <div class="genesis-module-card">
+          <span class="module-badge-num" data-i18n="genesis.m4Num">Module 04</span>
+          <h3 class="module-title" data-i18n="genesis.m4Title">The 4 Supply &amp; Demand Extraction Models</h3>
+          <p class="module-desc" data-i18n="genesis.m4Desc">
+            Moving beyond basic support/resistance into institutional footprints: Range-Based, Pivot-Based, Single-Candle Extreme Order Block, and Fractal Wick S&amp;D at high-displacement structural origins.
+          </p>
+        </div>
+
+        <!-- Module 05 -->
+        <div class="genesis-module-card">
+          <span class="module-badge-num" data-i18n="genesis.m5Num">Module 05</span>
+          <h3 class="module-title" data-i18n="genesis.m5Title">Mitigation Lifecycle &amp; Last Defender (LDD)</h3>
+          <p class="module-desc" data-i18n="genesis.m5Desc">
+            The 3-phase institutional zone lifecycle: Zone Creation, Continuation Model, and Reversal Shift. Tracking unmitigated fresh zones, break-even settlements, and the Last Defender Demand/Supply protocol.
+          </p>
+        </div>
+
+        <!-- Module 06 -->
+        <div class="genesis-module-card">
+          <span class="module-badge-num" data-i18n="genesis.m6Num">Module 06</span>
+          <h3 class="module-title" data-i18n="genesis.m6Title">Liquidity Anatomy &amp; The 5 Core Retail Traps</h3>
+          <p class="module-desc" data-i18n="genesis.m6Desc">
+            How smart money engineers liquidity pools: Buy-Side &amp; Sell-Side liquidity, the 5 core retail traps (Swing stops, Double tops/bottoms, Trendline traps, Range purges, Inducements), and liquidity runs.
+          </p>
+        </div>
+
+        <!-- Module 07 -->
+        <div class="genesis-module-card">
+          <span class="module-badge-num" data-i18n="genesis.m7Num">Module 07</span>
+          <h3 class="module-title" data-i18n="genesis.m7Title">Sweep Taxonomy, BCC &amp; BIO Theory</h3>
+          <p class="module-desc" data-i18n="genesis.m7Desc">
+            Deep dive into Wick Sweeps vs. Body Candle Closed (BCC) traps. Applying By Independent Objective (BIO) Theory where BOS confirms BOS, IBOS confirms IBOS, and FT confirms FT to prevent false validation.
+          </p>
+        </div>
+
+        <!-- Module 08 -->
+        <div class="genesis-module-card">
+          <span class="module-badge-num" data-i18n="genesis.m8Num">Module 08</span>
+          <h3 class="module-title" data-i18n="genesis.m8Title">Canonical Liquidity Sweeps (Cases 1, 2 &amp; 3)</h3>
+          <p class="module-desc" data-i18n="genesis.m8Desc">
+            Surgical execution rules for Candlestick Closed In (-X-) notation: Case 1 (BOS sweep requiring IBOS shift), Case 2 (IBOS sweep requiring FT shift), and Case 3 (Fractal sweep requiring structural validation).
+          </p>
+        </div>
+
+        <!-- Module 09 -->
+        <div class="genesis-module-card">
+          <span class="module-badge-num" data-i18n="genesis.m9Num">Module 09</span>
+          <h3 class="module-title" data-i18n="genesis.m9Title">The 3 Execution Scenarios (Counter, Pro &amp; Momentum)</h3>
+          <p class="module-desc" data-i18n="genesis.m9Desc">
+            Standard operating procedures: Scenario 1 (Counter-Trend Exhaustion at major zones), Scenario 2 (Pro-Trend Refinement Types 1, 2, 3), and Scenario 3 (Instant Momentum Breakout without deep pullback).
+          </p>
+        </div>
+
+        <!-- Module 10 -->
+        <div class="genesis-module-card">
+          <span class="module-badge-num" data-i18n="genesis.m10Num">Module 10</span>
+          <h3 class="module-title" data-i18n="genesis.m10Title">Institutional Trade &amp; Risk Management</h3>
+          <p class="module-desc" data-i18n="genesis.m10Desc">
+            Defending capital with mathematical rigor: 2-3 Pip Stop Loss Padding against spread spikes, mechanical Break-Even rules, asymmetric 1:3 to 1:10+ RR targets, and strict 0.5%â€“1.0% risk limits.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- ========================================================
+         INTERACTIVE MENTORSHIP & ECOSYSTEM EXPERIENCE
+         ======================================================== -->
+    <section class="smc-section-mentorship">
+      <div class="container">
+        <div class="smc-section-header">
+          <span class="knowledge-tag-badge" data-i18n="genesis.tabPillars">The Mentorship Experience</span>
+          <h2 class="smc-section-heading">Inside the BlueX Course &amp; Community Ecosystem</h2>
+          <p class="smc-section-sub">
+            Discover how SMC Genesis bridges theoretical market logic with live execution discipline, direct personal guidance, and an active trader community.
+          </p>
+        </div>
+
+      <!-- Tab Pill Navigation -->
+      <div class="genesis-tabs-nav">
+        <button class="genesis-concept-tab active" data-concept="liquidity" type="button" data-i18n="genesis.tabLiquidity">1. Direct Guidance</button>
+        <button class="genesis-concept-tab" data-concept="community" type="button" data-i18n="genesis.tabCommunity">2. Community Telegram</button>
+        <button class="genesis-concept-tab" data-concept="ob" type="button" data-i18n="genesis.tabOB">3. Live Chart Sessions</button>
+        <button class="genesis-concept-tab" data-concept="risk" type="button" data-i18n="genesis.tabRisk">4. Asymmetric Capital Edge</button>
+      </div>
+
+      <!-- Card 1: Direct Guidance -->
+      <div class="genesis-concept-card" data-concept="liquidity" style="display: block;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 12px;" data-i18n="genesis.tabLqHeading">
+          Market Structure &amp; Institutional S&amp;D Architecture
+        </h3>
+        <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.65; margin-bottom: 16px;" data-i18n="genesis.tabLqText">
+          Master the foundational grammar of institutional trading: mapping major BOS, internal IBOS pullbacks, and extracting the 4 high-displacement base formations (RBD, DBR, RBR, DBD) with extreme vs. decisional precision.
+        </p>
+
+        <div class="concept-feature-grid">
+          <div class="concept-feature-item">
+            <span class="concept-feature-icon">ðŸ”</span>
+            <div class="concept-feature-title">BOS &amp; IBOS Structural Mapping</div>
+            <div class="concept-feature-desc">Distinguish between true macro trend continuation and internal retracements with zero lagging indicators.</div>
+          </div>
+          <div class="concept-feature-item">
+            <span class="concept-feature-icon">ðŸŽ¯</span>
+            <div class="concept-feature-title">4 Base S&amp;D Formations</div>
+            <div class="concept-feature-desc">Identify high-displacement origins: RBD, DBR, RBR, and DBD at key structural turning points.</div>
+          </div>
+          <div class="concept-feature-item">
+            <span class="concept-feature-icon">âš¡</span>
+            <div class="concept-feature-title">Mitigation Lifecycle</div>
+            <div class="concept-feature-desc">Track unmitigated institutional zones, decisional vs extreme boundaries, and mitigation stepping chains.</div>
+          </div>
+        </div>
+
+        <div class="genesis-insight-box" data-i18n="genesis.tabLqRule">
+          Structure Law: BOS is confirmed ONLY by a full candle-body close past major swing points.
+        </div>
+
+        <div style="margin-top: 20px;">
+          <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="btn-telegram-dm">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="8.5" cy="7" r="4"></circle>
+              <line x1="20" y1="8" x2="20" y2="14"></line>
+              <line x1="23" y1="11" x2="17" y2="11"></line>
+            </svg>
+            <span>Direct DM BlueX: @Le_Bluue â†—</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: Community Telegram -->
+      <div class="genesis-concept-card" data-concept="community" style="display: none;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 12px;" data-i18n="genesis.tabCommunityHeading">
+          The Official BlueX Trader Community (t.me/moonbluefx)
+        </h3>
+        <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.65; margin-bottom: 16px;" data-i18n="genesis.tabCommunityText">
+          Surround yourself with a community of disciplined market operators who speak the same institutional language. Our official Telegram community group (t.me/moonbluefx) provides daily market context, institutional focus zones, and collaborative discussions focused solely on capital preservation and high-conviction setups.
+        </p>
+
+        <div class="concept-feature-grid">
+          <div class="concept-feature-item">
+            <span class="concept-feature-icon">ðŸŒ</span>
+            <div class="concept-feature-title">Daily Market Context</div>
+            <div class="concept-feature-desc">Institutional bias, session liquidity targets, and high-probability directional alignment.</div>
+          </div>
+          <div class="concept-feature-item">
+            <span class="concept-feature-icon">ðŸ¤</span>
+            <div class="concept-feature-title">Disciplined Peer Group</div>
+            <div class="concept-feature-desc">Collaborate with fellow serious students without noise, hype, or toxic gambling culture.</div>
+          </div>
+          <div class="concept-feature-item">
+            <span class="concept-feature-icon">ðŸ“¢</span>
+            <div class="concept-feature-title">Community Announcements</div>
+            <div class="concept-feature-desc">Real-time alerts for live chart sessions, educational breakdowns, and market outlooks.</div>
+          </div>
+        </div>
+
+        <div class="genesis-insight-box" data-i18n="genesis.tabCommunityRule">
+          Community Feature: Open to dedicated traders looking to study institutional Market Structure &amp; S&amp;D alongside BlueX and fellow members.
+        </div>
+
+        <div style="margin-top: 20px;">
+          <a href="https://t.me/moonbluefx" target="_blank" rel="noopener noreferrer" class="btn-telegram-group">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.832.922z"/>
+            </svg>
+            <span>Join Community: t.me/moonbluefx â†—</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: Live Chart Sessions -->
+      <div class="genesis-concept-card" data-concept="ob" style="display: none;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 12px;" data-i18n="genesis.tabObHeading">
+          Live Screen-Sharing Interactive Chart Sessions
+        </h3>
+        <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.65; margin-bottom: 16px;" data-i18n="genesis.tabObText">
+          Theory without execution is useless. We bridge the gap through live, interactive screen-sharing chart sessions where market structure, session liquidity sweeps, and institutional Supply &amp; Demand zones are analyzed live in real time. Experience how an institutional trader reads the market before candles unfold.
+        </p>
+
+        <div class="concept-feature-grid">
+          <div class="concept-feature-item">
+            <span class="concept-feature-icon">ðŸ–¥ï¸</span>
+            <div class="concept-feature-title">Live Screen Sharing</div>
+            <div class="concept-feature-desc">Watch market structure and institutional displacement in live market conditions without hindsight bias.</div>
+          </div>
+          <div class="concept-feature-item">
+            <span class="concept-feature-icon">â±ï¸</span>
+            <div class="concept-feature-title">Session Open Focus</div>
+            <div class="concept-feature-desc">Deep dives into London &amp; New York session liquidity sweeps and institutional volume delivery.</div>
+          </div>
+          <div class="concept-feature-item">
+            <span class="concept-feature-icon">ðŸ›¡ï¸</span>
+            <div class="concept-feature-title">Execution Checklists</div>
+            <div class="concept-feature-desc">Step-by-step mechanical routines to confirm high-probability structural displacement.</div>
+          </div>
+        </div>
+
+        <div class="genesis-insight-box" data-i18n="genesis.tabObRule">
+          Real-Time Chart Sessions: Zero hindsight bias. Real charts, real liquidity, and systematic execution routines.
+        </div>
+      </div>
+
+      <!-- Card 4: Asymmetric Capital Edge -->
+      <div class="genesis-concept-card" data-concept="risk" style="display: none;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 12px;" data-i18n="genesis.tabRiskHeading">
+          Asymmetric Mathematical Edge &amp; Capital Architecture
+        </h3>
+        <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.65; margin-bottom: 16px;" data-i18n="genesis.tabRiskText">
+          We dismantle the retail myth that you need an 80% win rate to become wealthy. In SMC Genesis, you discover how a disciplined 40% win rate combined with a minimum 1:3 to 1:5+ risk-to-reward ratio produces consistent, exponential capital compounding while keeping risk strictly at 0.5%â€“1.0% per trade.
+        </p>
+
+        <div class="concept-feature-grid">
+          <div class="concept-feature-item">
+            <span class="concept-feature-icon">ðŸ“ˆ</span>
+            <div class="concept-feature-title">Asymmetric 1:3+ Ratio Advantage</div>
+            <div class="concept-feature-desc">Engineered so a 40% win rate generates substantial exponential growth without needing 80% accuracy.</div>
+          </div>
+          <div class="concept-feature-item">
+            <span class="concept-feature-icon">ðŸ›¡ï¸</span>
+            <div class="concept-feature-title">0.5%â€“1.0% Capital Preservation</div>
+            <div class="concept-feature-desc">Professional risk sizing designed so consecutive losses never endanger your trading psychological capital.</div>
+          </div>
+          <div class="concept-feature-item">
+            <span class="concept-feature-icon">ðŸ’Ž</span>
+            <div class="concept-feature-title">Long-Term Compounding Architecture</div>
+            <div class="concept-feature-desc">Mathematical longevity that lets statistical edge and patience build sustainable institutional wealth.</div>
+          </div>
+        </div>
+
+        <div class="genesis-insight-box" style="margin-top: 20px;" data-i18n="genesis.tabRiskRule">
+          Capital Philosophy: Keep risk strictly at 0.5%â€“1.0% per trade. Let asymmetric math create long-term compound growth.
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- ========================================================
+         TELEGRAM DESTINATION GATEWAY: DIRECT DM VS COMMUNITY
+         ======================================================== -->
+    <section class="smc-section-gateway">
+      <div class="container">
+        <div class="smc-section-header">
+          <span class="mentorship-tag-badge">Direct Communication Channels</span>
+          <h2 class="smc-section-heading">
+            Connect with BlueX on Telegram
+          </h2>
+          <p class="smc-section-sub">
+            Choose the channel that fits your goals: direct messaging with BlueX on Telegram (@Le_Bluue) for course inquiries and questions, or joining our active community group for daily market collaboration.
+          </p>
+        </div>
+
+      <div class="telegram-gateway-grid">
+        <!-- Card 1: Direct DM BlueX -->
+        <div class="telegram-dest-card dm-card">
+          <span class="telegram-card-badge">âš¡ Personal Telegram Contact</span>
+          <h3 class="telegram-card-title">Direct Telegram DM</h3>
+          <div class="telegram-card-handle">@Le_Bluue</div>
+          <p class="telegram-card-desc">
+            Reach out directly to BlueX on Telegram for course inquiries, setup discussions, chart consultation, and private feedback.
+          </p>
+          <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="btn-telegram-dm">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="8.5" cy="7" r="4"></circle>
+              <line x1="20" y1="8" x2="20" y2="14"></line>
+              <line x1="23" y1="11" x2="17" y2="11"></line>
+            </svg>
+            <span>Direct DM BlueX: @Le_Bluue â†—</span>
+          </a>
+        </div>
+
+        <!-- Card 2: Official Community Group -->
+        <div class="telegram-dest-card group-card">
+          <span class="telegram-card-badge">ðŸ‘¥ Official Trader Community</span>
+          <h3 class="telegram-card-title">BlueX Trading Community Group</h3>
+          <div class="telegram-card-handle">t.me/moonbluefx</div>
+          <p class="telegram-card-desc">
+            Join hundreds of dedicated traders in our public community group. Discuss market structure, observe daily institutional bias breakdowns, and share ideas.
+          </p>
+          <a href="https://t.me/moonbluefx" target="_blank" rel="noopener noreferrer" class="btn-telegram-group">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.832.922z"/>
+            </svg>
+            <span>Join Community: t.me/moonbluefx â†—</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- ========================================================
+         5-PILLAR MASTERY FRAMEWORK â€¢ LIVE INTERACTIVE COURSE
+         ======================================================== -->
+    <section class="smc-section-pillars">
+      <div class="container">
+        <div class="course-standards-box">
+        <div class="standards-title-row">
+          <span class="standards-icon">ðŸ›ï¸</span>
+          <div>
+            <span class="mentorship-tag-badge" data-i18n="genesis.admissionBadge">5-Pillar Mastery Framework â€¢ Live Interactive Course</span>
+            <h2 style="font-size: 1.45rem; font-weight: 800; color: #fff; margin-top: 8px;" data-i18n="genesis.admissionTitle">
+              Study Course with BlueX: The 5-Pillar Mastery Framework
+            </h2>
+            <div style="font-size: 0.92rem; color: #cbd5e1; margin-top: 4px;" data-i18n="genesis.admissionSub">
+              A structured curriculum designed to build professional competence across market structure, supply and demand extraction, liquidity traps, execution scenarios, and capital allocation:
+            </div>
+          </div>
+        </div>
+
+        <div class="standards-grid" style="margin-top: 24px;">
+          <!-- Pillar 01 -->
+          <div class="standard-item">
+            <div class="standard-num">01</div>
+            <div>
+              <div class="standard-heading" data-i18n="genesis.std1Title">Pillar 01: Market Structure (ážšáž…áž“áž¶ážŸáž˜áŸ’áž–áŸáž“áŸ’áž’áž‘áž¸áž•áŸ’ážŸáž¶ážš)</div>
+              <p class="standard-body" data-i18n="genesis.std1Desc">Master Swing High/Low mechanics, distinguishing between Major BOS (continuation), IBOS (internal pullbacks), and Fractal Structural Shifts (FTS).</p>
+              <div class="pillar-outcome-tag" data-i18n="genesis.std1Outcome">Applied Outcome: Map swing flow &amp; synchronized multi-timeframe matrix with clarity.</div>
+            </div>
+          </div>
+
+          <!-- Pillar 02 -->
+          <div class="standard-item">
+            <div class="standard-num">02</div>
+            <div>
+              <div class="standard-heading" data-i18n="genesis.std2Title">Pillar 02: S&amp;D Extraction Architecture (ážáŸ†áž”áž“áŸ‹áž•áŸ’áž‚ážáŸ‹áž•áŸ’áž‚áž„áŸ‹/ážáž˜áŸ’ážšáž¼ážœáž€áž¶ážš)</div>
+              <p class="standard-body" data-i18n="genesis.std2Desc">Learn the 4 core institutional base formations: Rally-Base-Drop (RBD), Drop-Base-Rally (DBR), Rally-Base-Rally (RBR), and Drop-Base-Drop (DBD) with Extreme vs. Decisional mitigation mapping.</p>
+              <div class="pillar-outcome-tag" data-i18n="genesis.std2Outcome">Applied Outcome: Accurately mark Range, Pivot, Single-Candle &amp; Fractal S&amp;D zones.</div>
+            </div>
+          </div>
+
+          <!-- Pillar 03 -->
+          <div class="standard-item">
+            <div class="standard-num">03</div>
+            <div>
+              <div class="standard-heading" data-i18n="genesis.std3Title">Pillar 03: Liquidity Sweeps &amp; Trap Exploitation (áž›áŸ†áž áž¼ážšážŸáž¶áž…áŸ‹áž”áŸ’ážšáž¶áž€áŸ‹áž¢áž“áŸ’áž‘áž¶áž€áŸ‹)</div>
+              <p class="standard-body" data-i18n="genesis.std3Desc">Unpack the 5 core retail liquidity traps: Swing pools, Double structure liquidity, Trendline traps, Range sweeps, and Inducement mechanics.</p>
+              <div class="pillar-outcome-tag" data-i18n="genesis.std3Outcome">Applied Outcome: Detect stop-hunts, liquidity magnets, and inducement traps in advance.</div>
+            </div>
+          </div>
+
+          <!-- Pillar 04 -->
+          <div class="standard-item">
+            <div class="standard-num">04</div>
+            <div>
+              <div class="standard-heading" data-i18n="genesis.std4Title">Pillar 04: Precision Execution Scenarios (ážšáž¼áž”áž˜áž“áŸ’ážáž…áž¼áž›áž•áŸ’ážŸáž¶ážš)</div>
+              <p class="standard-body" data-i18n="genesis.std4Desc">Understand high-probability scenario execution: Counter-Trend Exhaustion, Structure Refinement Pro-Trend, and Instant Momentum Expansion.</p>
+              <div class="pillar-outcome-tag" data-i18n="genesis.std4Outcome">Applied Outcome: Confidently execute order scenarios with refined triggers and tight stops.</div>
+            </div>
+          </div>
+
+          <!-- Pillar 05 -->
+          <div class="standard-item" style="grid-column: 1 / -1;">
+            <div class="standard-num">05</div>
+            <div>
+              <div class="standard-heading" data-i18n="genesis.std5Title">Pillar 05: Asymmetric Capital Allocation (áž€áž¶ážšáž‚áŸ’ážšáž”áŸ‹áž‚áŸ’ážšáž„áž áž¶áž“áž·áž—áŸáž™)</div>
+              <p class="standard-body" data-i18n="genesis.std5Desc">Defend trading capital through disciplined position sizing (0.5%â€“1.0%), dynamic break-even progression, and targeting asymmetric RR â‰¥ 1:3 to 1:5+.</p>
+              <div class="pillar-outcome-tag" data-i18n="genesis.std5Outcome">Applied Outcome: Safeguard capital longevity through mathematical asymmetric expectancy.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Institutional Philosophy Quote Box (from Page 8 of Blueprint) -->
+        <div class="genesis-quote-card">
+          <div class="genesis-quote-text" data-i18n="genesis.quoteText">
+            "Trading success is not built on never taking a loss, but on unwavering discipline and defending your capital at all costs."
+          </div>
+          <div class="genesis-quote-author" data-i18n="genesis.quoteAuthor">
+            â€” SMC Genesis Institutional Blueprint â€¢ BlueX
+          </div>
+        </div>
+
+        <!-- Telegram Action CTA -->
+        <div style="margin-top: 32px; display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;">
+          <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="btn-telegram-dm" style="padding: 14px 28px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="8.5" cy="7" r="4"></circle>
+              <line x1="20" y1="8" x2="20" y2="14"></line>
+              <line x1="23" y1="11" x2="17" y2="11"></line>
+            </svg>
+            <span data-i18n="genesis.applyTelegramBtn">Message BlueX on Telegram (Direct DM: @Le_Bluue)</span>
+          </a>
+          <a href="https://t.me/moonbluefx" target="_blank" rel="noopener noreferrer" class="btn-telegram-group" style="padding: 14px 28px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.832.922z"/>
+            </svg>
+            <span data-i18n="genesis.communityTelegramBtn">Join Official Community Group (t.me/moonbluefx)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- ========================================================
+         SMC GENESIS MASTERCLASS ENROLLMENT
+         ======================================================== -->
+    <section class="smc-section-enrollment" id="enrollment">
+      <div class="container">
+        <div class="genesis-course-spotlight">
+          <div class="spotlight-header-row">
+            <div>
+              <span class="mentorship-tag-badge" data-i18n="genesis.spotlightBadge">ðŸŽ¯ Official SMC Genesis Class</span>
+              <h2 class="smc-section-heading" style="text-align: left; margin-top: 10px;" data-i18n="genesis.spotlightTitle">
+                Learn Direct with BlueX: The SMC Genesis Institutional Class
+              </h2>
+              <p class="smc-section-sub" style="text-align: left; max-width: 680px; margin-top: 6px;" data-i18n="genesis.spotlightSub">
+                We cut through retail illusions to teach you the mechanical precision required to trade institutional markets. Gain the confidence, rules, and execution habits of a professional operator.
+              </p>
+            </div>
+            <div class="spotlight-status-pill">
+              <span class="spotlight-status-dot"></span>
+              <span data-i18n="genesis.spotlightStatus">â— Admissions Active â€¢ Limited Cohort</span>
+            </div>
+          </div>
+
+        <!-- 4 Inclusions Grid -->
+        <div class="spotlight-features-grid">
+          <div class="spotlight-perk-card">
+            <span class="spotlight-perk-icon">ðŸŽ¯</span>
+            <div class="spotlight-perk-title" data-i18n="genesis.spotlightPerk1Title">Structured Class Curriculum</div>
+            <p class="spotlight-perk-desc" data-i18n="genesis.spotlightPerk1Desc">Direct Telegram access to mentor Limeng Sovann (@Le_Bluue) for chart reviews, setup auditing, and psychological calibration.</p>
+          </div>
+          <div class="spotlight-perk-card">
+            <span class="spotlight-perk-icon">ðŸ›¡ï¸</span>
+            <div class="spotlight-perk-title" data-i18n="genesis.spotlightPerk2Title">Pure Mechanical Playbook</div>
+            <p class="spotlight-perk-desc" data-i18n="genesis.spotlightPerk2Desc">Zero subjective guesswork. Definitive rules for body-close BOS, 4 S&amp;D extraction types, and 3 execution scenarios.</p>
+          </div>
+          <div class="spotlight-perk-card">
+            <span class="spotlight-perk-icon">ðŸ“ˆ</span>
+            <div class="spotlight-perk-title" data-i18n="genesis.spotlightPerk3Title">Live Chart Sessions</div>
+            <p class="spotlight-perk-desc" data-i18n="genesis.spotlightPerk3Desc">Analyze live Gold (XAU/USD) market structure before high-volume sessions. See how institutional zones are identified in real time.</p>
+          </div>
+          <div class="spotlight-perk-card">
+            <span class="spotlight-perk-icon">ðŸ’Ž</span>
+            <div class="spotlight-perk-title" data-i18n="genesis.spotlightPerk4Title">VIP Student Community</div>
+            <p class="spotlight-perk-desc" data-i18n="genesis.spotlightPerk4Desc">Lifetime access to the private community group (t.me/moonbluefx) for daily bias sharing, key levels, and ongoing member growth.</p>
+          </div>
+        </div>
+
+        <!-- Action Trigger Strip -->
+        <div class="spotlight-action-box">
+          <div class="spotlight-action-info">
+            <div class="spotlight-action-title" data-i18n="genesis.spotlightActionTitle">Ready to Master Institutional Trading?</div>
+            <div class="spotlight-action-desc" data-i18n="genesis.spotlightActionDesc">Limited seats per cohort to guarantee personalized feedback and rapid skill progression.</div>
+          </div>
+          <div class="spotlight-btn-group">
+            <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="btn-mentorship btn-mentorship-glow" style="padding: 14px 26px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="8.5" cy="7" r="4"></circle>
+                <line x1="20" y1="8" x2="20" y2="14"></line>
+                <line x1="23" y1="11" x2="17" y2="11"></line>
+              </svg>
+              <span data-i18n="genesis.spotlightActionBtn">âš¡ Inquire for Class Admissions: DM @Le_Bluue</span>
+            </a>
+            <a href="https://t.me/moonbluefx" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="padding: 14px 22px;">
+              <span>ðŸ‘¥ Join Community Group</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- ========================================================
+         EXECUTION INFRASTRUCTURE: RECOMMENDED BROKERS
+         ======================================================== -->
+    <section class="smc-section-brokers" id="brokers-genesis">
+      <div class="container">
+        <div class="smc-section-header">
+          <span class="brokers-tag-badge" data-i18n="genesis.brokerBadge">Execution Speed &amp; Raw Liquidity</span>
+          <h2 class="smc-section-heading" data-i18n="genesis.brokerTitle">Recommended Brokers for SMC Execution</h2>
+          <p class="smc-section-sub" data-i18n="genesis.brokerDesc">
+            Smart Money Concepts execution requires ultra-low latency, tightest raw spreads, deep order books, and zero artificial slippage. We recommend the following tier-1 regulated partners:
+          </p>
+        </div>
+
+        <div class="smc-brokers-grid">
+        <!-- #1 Treno Markets (Top Partner) -->
+        <div class="broker-tier-box" style="border: 2px solid var(--color-cyan); position: relative; background: rgba(14, 18, 27, 0.95);">
+          <div style="position: absolute; top: -12px; left: 24px; background: var(--color-cyan); color: #050608; padding: 3px 12px; border-radius: var(--radius-full); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.06em;">
+            â˜… #1 TOP PARTNER
+          </div>
+          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
+            <div class="broker-logo-badge" style="width: 54px; height: 54px;">
+              <img src="../assets/images/treno-logo.svg" alt="Treno Markets Logo" style="width: 38px; height: 38px; object-fit: contain;">
+            </div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff;">Treno Markets</h3>
+              <div style="font-size: 0.8rem; color: var(--color-cyan);" data-i18n="genesis.brokerTrenoNote">Top Partner â€¢ Raw Spreads â€¢ Ultra-Low Latency</div>
+            </div>
+          </div>
+          <p style="font-size: 0.86rem; color: #cbd5e1; line-height: 1.55; margin-bottom: 20px;">
+            Raw spread liquidity, lightning-fast order routing, and institutional trade execution optimal for precise lower-timeframe SMC entries.
+          </p>
+          <a href="https://portal.trenomarkets.com/register?accInf=2c52jco9ij" target="_blank" rel="noopener noreferrer" class="btn-broker-register" style="width: 100%; text-align: center; justify-content: center;">
+            <span>Open Treno Account â†—</span>
+          </a>
+        </div>
+
+        <!-- #2 GTC GO -->
+        <div class="broker-tier-box" style="background: rgba(14, 18, 27, 0.85);">
+          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
+            <div class="broker-logo-badge" style="width: 54px; height: 54px;">
+              <img src="../assets/images/gtc-go-logo.png" alt="GTC GO Logo" style="width: 38px; height: 38px; object-fit: contain;">
+            </div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff;">GTC GO</h3>
+              <div style="font-size: 0.8rem; color: var(--color-gold);" data-i18n="genesis.brokerGtcNote">Global Multi-Regulated â€¢ Institutional Liquidity</div>
+            </div>
+          </div>
+          <p style="font-size: 0.86rem; color: #cbd5e1; line-height: 1.55; margin-bottom: 20px;">
+            Globally regulated STP broker with deep institutional FX and precious metals liquidity, segregated accounts, and ultra-reliable uptime.
+          </p>
+          <a href="https://my.gtcfx.com/portal/register/index?affiliate=GTC-GO" target="_blank" rel="noopener noreferrer" class="btn-broker-register" style="width: 100%; text-align: center; justify-content: center;">
+            <span>Open GTC GO Account â†—</span>
+          </a>
+        </div>
+
+        <!-- #3 Lirunex -->
+        <div class="broker-tier-box" style="background: rgba(14, 18, 27, 0.85);">
+          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
+            <div class="broker-logo-badge" style="width: 54px; height: 54px;">
+              <img src="../assets/images/lirunex-icon.png" alt="Lirunex Logo" style="width: 38px; height: 38px; object-fit: contain;">
+            </div>
+            <div>
+              <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff;">Lirunex</h3>
+              <div style="font-size: 0.8rem; color: #94a3b8;" data-i18n="genesis.brokerLirunexNote">Regulated STP Broker â€¢ Deep Forex &amp; Gold Liquidity</div>
+            </div>
+          </div>
+          <p style="font-size: 0.86rem; color: #cbd5e1; line-height: 1.55; margin-bottom: 20px;">
+            Tier-1 licensed broker with competitive spreads, rapid deposit/withdrawal options, and robust MetaTrader 4/5 infrastructure.
+          </p>
+          <a href="https://social.lirunex.com/register?utm_source=bluex&utm_medium=partner&utm_campaign=education" target="_blank" rel="noopener noreferrer" class="btn-broker-register" style="width: 100%; text-align: center; justify-content: center;">
+            <span>Open Lirunex Account â†—</span>
+          </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SMC GENESIS FAQ ACCORDION
+         ======================================================== -->
+    <section class="smc-section-faq">
+      <div class="container">
+        <div class="smc-section-header">
+          <span class="knowledge-tag-badge" data-i18n="genesis.faqBadge">Frequently Asked Questions</span>
+          <h2 class="smc-section-heading" data-i18n="genesis.faqTitle">Everything You Need to Know About SMC Genesis</h2>
+        </div>
+
+        <div class="faq-accordion" style="max-width: 860px; margin: 0 auto;">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span data-i18n="genesis.faq1Q">What makes SMC Genesis fundamentally different from retail technical analysis?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p data-i18n="genesis.faq1A">
+                Retail analysis relies on lagging indicators (RSI, moving averages) and retail trendlines that smart money routinely sweeps for liquidity. SMC Genesis teaches you how institutions actually move price, where stop loss pools accumulate, and how to execute strictly after liquidity sweeps into refined Supply &amp; Demand zones.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span data-i18n="genesis.faq2Q">Can beginners learn SMC Genesis, or is prior experience required?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p data-i18n="genesis.faq2A">
+                Beginners actually often excel faster because they do not have years of bad retail indicator habits to unlearn. SMC Genesis starts from the absolute bedrock of market liquidity and builds up step-by-step into advanced multi-timeframe execution.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span data-i18n="genesis.faq3Q">Which financial instruments work best with SMC Genesis?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p data-i18n="genesis.faq3A">
+                SMC Genesis is a universal institutional Supply &amp; Demand framework. It applies seamlessly to Gold (XAUUSD), major Forex pairs (EURUSD, GBPUSD, USDJPY), equity indices (US30, NAS100), and liquid cryptocurrencies (BTC, ETH).
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span data-i18n="genesis.faq4Q">What kind of risk-to-reward ratios can I expect from this strategy?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p data-i18n="genesis.faq4A">
+                SMC setups target asymmetric profiles starting from 1:3 up to 1:10+. Because entries are refined on lower timeframes at pristine imbalance zones, stop losses are tight and structural, maximizing your capital efficiency.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span data-i18n="genesis.faq5Q">How can I enroll in the mentorship or contact BlueX directly?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p data-i18n="genesis.faq5A">
+                To apply for mentorship or ask private questions, send a direct Telegram message (DM) to BlueX at @Le_Bluue. To join the public discussion and daily market outlooks, join our official Community Telegram group at t.me/moonbluefx.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         BOTTOM CTA BANNER
+         ======================================================== -->
+    <section class="smc-section-bottom-cta">
+      <div class="container">
+        <div class="course-genesis-banner" style="text-align: center; flex-direction: column; padding: 48px 30px;">
+          <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 900; color: #fff; margin-bottom: 12px;" data-i18n="genesis.ctaTitle">
+            Ready to Step Into the Institutional Flow?
+          </h2>
+          <p style="font-size: 1.05rem; color: #cbd5e1; max-width: 600px; margin: 0 auto 28px;" data-i18n="genesis.ctaSub">
+            Stop donating retail liquidity to algorithms. Connect directly with BlueX or join our growing trader community.
+          </p>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;">
+            <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="btn-telegram-dm" style="padding: 14px 28px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="8.5" cy="7" r="4"></circle>
+                <line x1="20" y1="8" x2="20" y2="14"></line>
+                <line x1="23" y1="11" x2="17" y2="11"></line>
+              </svg>
+              <span>âš¡ DM @Le_Bluue on Telegram â†—</span>
+            </a>
+            <a href="https://t.me/moonbluefx" target="_blank" rel="noopener noreferrer" class="btn-telegram-group" style="padding: 14px 28px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.832.922z"/>
+              </svg>
+              <span>ðŸ‘¥ Join Community (t.me/moonbluefx) â†—</span>
+            </a>
+            <a href="index.html" class="btn-secondary" style="padding: 14px 28px;">
+              <span>Back to Main Website</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================
+       FOOTER
+       ======================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <!-- Clickable logo returning to home -->
+      <a href="index.html" class="logo" id="footerBrandLogo" aria-label="BlueX Official - Return to Home" title="Return to BlueX Home">
+        <img src="../assets/images/bluex-3d-logo.png" alt="BlueX" style="height: 36px; width: auto; filter: drop-shadow(0 0 12px rgba(0, 255, 224, 0.4));">
+      </a>
+
+      <p class="footer-copy" data-i18n="footer.copy">Â© 2026 BlueX. Master Your Ego. Master Your Trades. All rights reserved.</p>
+
+      <div class="footer-socials">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/bluewasabae" target="_blank" rel="noopener noreferrer" class="social-circle-link fb" title="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+
+        <!-- Telegram Direct DM -->
+        <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="social-circle-link tg" style="border-color: rgba(255, 184, 0, 0.4); color: var(--color-gold);" title="Telegram DM (@Le_Bluue)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.832.922z"/>
+          </svg>
+        </a>
+
+        <!-- Telegram Community Group -->
+        <a href="https://t.me/moonbluefx" target="_blank" rel="noopener noreferrer" class="social-circle-link tg" title="Telegram Community Group (t.me/moonbluefx)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.832.922z"/>
+          </svg>
+        </a>
+
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@bluewasabae" target="_blank" rel="noopener noreferrer" class="social-circle-link tt" title="TikTok">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.525.02c1.31 0 2.6.43 3.65 1.22 1.05.8 1.82 1.9 2.18 3.16.89-.01 1.77.16 2.58.5.81.34 1.52.86 2.07 1.51l-2.02 2.02c-.39-.46-.89-.82-1.46-1.04-.57-.23-1.18-.32-1.79-.28v6.95c0 1.9-.75 3.72-2.1 5.07-1.34 1.34-3.17 2.1-5.07 2.1-1.91 0-3.73-.76-5.08-2.1-1.34-1.35-2.1-3.17-2.1-5.07 0-1.91.76-3.73 2.1-5.08 1.35-1.34 3.17-2.1 5.08-2.1.48 0 .96.05 1.43.15v2.85c-.47-.16-.96-.24-1.46-.24-.95 0-1.87.38-2.54 1.05-.67.67-1.05 1.58-1.05 2.53 0 .95.38 1.87 1.05 2.54.67.67 1.59 1.05 2.54 1.05.95 0 1.86-.38 2.53-1.05.67-.67 1.05-1.59 1.05-2.54V.02h2.02z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating 1-Click Register Now Action Pill -->
+  <div class="genesis-floating-cta" id="floatingEnrollBtn">
+    <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="floating-cta-pill" title="Register Now â€” 1-Click Direct DM to BlueX (@Le_Bluue)">
+      <span class="floating-pulse"></span>
+      <span class="floating-icon">âš¡</span>
+      <span data-i18n="genesis.floatingCta">Register Now â€¢ DM @Le_Bluue</span>
+    </a>
+  </div>
+
+  <script src="../script.js?v=20261103v19"></script>
+</body>
+</html>

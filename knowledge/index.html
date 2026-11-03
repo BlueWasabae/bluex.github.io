@@ -1,0 +1,618 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script>
+    if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.location.replace('https://' + window.location.host + window.location.pathname + window.location.search + window.location.hash);
+    }
+  </script>
+  <title>Knowledge &amp; Must-Read Books â€¢ BlueX Academy</title>
+  <meta name="description" content="Core market lessons, institutional insights, and popular must-read books on trading, money, and human psychology curated by BlueX.">
+  <meta name="author" content="BlueX">
+  <link rel="canonical" href="https://www.bluexacademy.site/knowledge">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/images/bluex-3d-logo.png">
+  <link rel="apple-touch-icon" href="../assets/images/bluex-3d-logo.png">
+  <meta name="theme-color" content="#08090d">
+
+    <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="BlueX Trading Academy">
+  <meta property="og:url" content="https://www.bluexacademy.site/knowledge">
+  <meta property="og:title" content="Knowledge &amp; Must-Read Books â€¢ BlueX Academy">
+  <meta property="og:description" content="Core market lessons, institutional insights, and popular must-read books on trading, money, and human psychology curated by BlueX.">
+  <meta property="og:image" content="https://www.bluexacademy.site/assets/images/bluex-thumbnail.jpg">
+  <meta property="og:image:secure_url" content="https://www.bluexacademy.site/assets/images/bluex-thumbnail.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="720">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.bluexacademy.site/knowledge">
+  <meta name="twitter:title" content="Knowledge &amp; Must-Read Books â€¢ BlueX Academy">
+  <meta name="twitter:description" content="Core market lessons, institutional insights, and popular must-read books on trading, money, and human psychology curated by BlueX.">
+  <meta name="twitter:image" content="https://www.bluexacademy.site/assets/images/bluex-thumbnail.jpg">
+
+  <!-- Google Fonts: Luxury & Modern Khmer (Noto Sans Khmer, Kantumruy Pro) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../styles.css?v=20261103v19">
+  <style>
+    .page-hero {
+      padding: 130px 0 60px 0;
+      position: relative;
+    }
+    .back-btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-cyan);
+      background: rgba(0, 255, 224, 0.08);
+      border: 1px solid var(--border-cyan);
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      margin-bottom: 24px;
+      transition: all var(--transition-fast);
+    }
+    .back-btn-pill:hover {
+      background: rgba(0, 255, 224, 0.2);
+      transform: translateX(-3px);
+      color: #fff;
+    }
+    .reading-roadmap-card {
+      background: rgba(14, 18, 28, 0.75);
+      border: 1px solid rgba(255, 184, 0, 0.35);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      margin-top: 48px;
+      position: relative;
+    }
+    .roadmap-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .roadmap-step-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      position: relative;
+    }
+    .roadmap-step-num {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--color-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .roadmap-step-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .roadmap-step-desc {
+      font-size: 0.86rem;
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+    @media (max-width: 1024px) {
+      .roadmap-steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .roadmap-steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .reading-roadmap-card {
+        padding: 28px 20px;
+      }
+    }
+    [data-theme="light"] .reading-roadmap-card {
+      background: #ffffff;
+      border-color: rgba(217, 119, 6, 0.3);
+    }
+    [data-theme="light"] .roadmap-step-box {
+      background: #f8fafc;
+      border-color: rgba(15, 23, 42, 0.08);
+    }
+    [data-theme="light"] .roadmap-step-title {
+      color: #0f172a;
+    }
+    [data-theme="light"] .roadmap-step-desc {
+      color: #334155;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Background Atmosphere -->
+  <div class="bg-glow-orb cyan"></div>
+  <div class="bg-glow-orb amber"></div>
+  <div class="bg-glow-orb blue"></div>
+
+  <!-- ========================================================
+       SITE HEADER & NAVIGATION
+       ======================================================== -->
+  <header class="site-header" id="top">
+    <div class="container">
+      <nav class="nav-wrapper">
+        <!-- 3D Brand Logo -->
+        <a href="index.html" class="logo" id="brandLogo" aria-label="BlueX Official - Return to Home" title="BlueX Home">
+          <img src="../assets/images/bluex-3d-logo.png" alt="BlueX" class="nav-logo-3d-img">
+        </a>
+
+        <!-- Centered Menu Pills -->
+        <ul class="nav-menu" id="navMenu">
+          <!-- Mobile Drawer Header (Mobile Only) -->
+          <li class="nav-mobile-header nav-mobile-only">
+            <div class="nav-drawer-brand">
+              <span class="nav-drawer-dot"></span>
+              <span data-i18n="nav.drawerBrand">BLUEX TERMINAL</span>
+            </div>
+            <button type="button" class="nav-drawer-close-btn" id="navDrawerCloseBtn" aria-label="Close menu">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </li>
+
+          <!-- Mobile Drawer Feature Spotlight: SMC Genesis (Newest Feature) -->
+          <li class="nav-mobile-spotlight nav-mobile-only">
+            <a href="../smc-genesis" class="nav-spotlight-card">
+              <div class="nav-spotlight-top">
+                <span class="nav-spotlight-tag"><span class="genesis-pulse-dot"></span> NEW â€¢ V4.0 MASTERCLASS</span>
+                <span class="nav-spotlight-arrow">âž”</span>
+              </div>
+              <div class="nav-spotlight-title">SMC Genesis â€¢ Beyond The Charts</div>
+              <div class="nav-spotlight-sub" data-i18n="nav.spotlightDesc">Institutional Blueprint: 10 Quantitative Modules</div>
+            </a>
+          </li>
+
+          <!-- Navigation Links -->
+          <li class="nav-item-home"><a href="../" class="nav-link" data-i18n="nav.home">Home</a></li>
+          <li><a href="../#about" class="nav-link" data-i18n="nav.about">About</a></li>
+          <li><a href="../#brokers" class="nav-link" data-i18n="nav.brokers">Brokers</a></li>
+          <li><a href="../#courses" class="nav-link" data-i18n="nav.courses">Courses</a></li>
+          <li><a href="../smc-genesis" class="nav-link nav-link-genesis" data-i18n="nav.genesis"><span class="genesis-pulse-dot"></span>SMC Genesis <span class="nav-new-badge">NEW</span></a></li>
+          <li><a href="../gold-hedging" class="nav-link" data-i18n="nav.hedging"><span class="nav-label-full">Gold </span>Hedging</a></li>
+          <li><a href="../#capital" class="nav-link" data-i18n="nav.capital">Strategy</a></li>
+          <li><a href="../#calculator" class="nav-link" data-i18n="nav.calculator">Calculator</a></li>
+          <li><a href="./" class="nav-link active" data-i18n="nav.knowledge">Knowledge</a></li>
+          <li><a href="../#pillars" class="nav-link" data-i18n="nav.pillars">Pillars</a></li>
+          <li><a href="../#media" class="nav-link" data-i18n="nav.media">Media</a></li>
+          <li><a href="../#faq" class="nav-link" data-i18n="nav.faq">FAQ</a></li>
+          <li class="nav-item-connect"><a href="../#connect" class="nav-link" data-i18n="nav.connect">Connect</a></li>
+
+          <!-- Mobile Drawer Performance / FX Freeze Mode Toggle -->
+          <li class="nav-mobile-settings nav-mobile-only">
+            <button type="button" class="nav-drawer-fx-toggle" id="fxToggleDrawerBtn" aria-label="Toggle Effects / Smooth Mobile Mode">
+              <span class="fx-drawer-icon" id="fxDrawerIcon">âš¡</span>
+              <span class="fx-drawer-text" id="fxDrawerText" data-i18n="nav.fxDrawer">Effects: Active (Tap to Freeze)</span>
+            </button>
+          </li>
+
+          <!-- Mobile Drawer Footer CTA (Mobile Only) -->
+          <li class="nav-mobile-footer nav-mobile-only">
+            <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="nav-drawer-dm-cta" title="Register Now â€” 1-Click Direct DM (@Le_Bluue)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+              </svg>
+              <span data-i18n="nav.drawerDm">Register Now â€” Direct DM (@Le_Bluue)</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Right Header Actions -->
+        <div class="nav-right-actions">
+          <button class="nav-tool-btn" id="langToggleBtn" type="button" aria-label="Switch Language" title="áž”áŸ’ážáž¼ážšáž‡áž¶áž—áž¶ážŸáž¶ážáŸ’áž˜áŸ‚ážš">
+            <span class="lang-flag">ðŸ‡°ðŸ‡­</span>
+            <span id="langBtnText">ážáŸ’áž˜áŸ‚ážš</span>
+          </button>
+
+          <button class="nav-tool-btn nav-theme-btn" id="themeToggleBtn" type="button" aria-label="Toggle Theme" title="Toggle Light / Dark Mode">
+            <svg class="theme-icon sun-icon" id="sunIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="theme-icon moon-icon" id="moonIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <!-- Effects Freeze / Performance Lite Toggle Button -->
+          <button class="nav-tool-btn nav-fx-btn" id="fxToggleBtn" type="button" aria-label="Toggle Effects / Smooth Mobile" title="Effects: ON (Click to Freeze / Smooth Mobile)">
+            <span class="fx-icon" id="fxNavIcon">âš¡</span>
+            <span class="fx-label" id="fxBtnText" data-i18n="nav.fx">FX</span>
+          </button>
+
+          <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="nav-cta-btn nav-register-dm-btn" title="Register Now â€” 1-Click Direct DM (@Le_Bluue)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+            </svg>
+            <span data-i18n="nav.register">Register Now</span>
+          </a>
+
+          <!-- Mobile Menu Toggle Button -->
+          <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Toggle Navigation Menu">
+            <span class="hamburger-icon" id="hamburgerIcon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <line x1="4" y1="7" x2="20" y2="7"></line>
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="17" x2="20" y2="17"></line>
+              </svg>
+            </span>
+            <span class="close-icon" id="hamburgerCloseIcon" style="display:none;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Page Header / Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <a href="index.html#knowledge" class="back-btn-pill">
+          <span>â†</span>
+          <span>Back to Home</span>
+        </a>
+        <div class="knowledge-header">
+          <span class="knowledge-tag-badge" data-i18n="knowledge.badge">Proven Market Wisdom â€¢ Curated Library</span>
+          <h1 class="knowledge-title" data-i18n="knowledge.title" style="font-size:clamp(2.4rem, 5vw, 3.5rem);">
+            Knowledge I Learned &amp; <span class="gold-accent">Must-Read Books</span>
+          </h1>
+          <p class="knowledge-sub-desc" data-i18n="knowledge.subDesc" style="font-size:1.15rem; max-width:860px;">
+            Hard-earned market principles, psychological truths, and timeless books on trading, money, and emotional mastery that shaped my disciplined edge.
+          </p>
+
+          <!-- Navigation Filter Tabs -->
+          <div class="knowledge-nav-tabs">
+            <button type="button" class="knowledge-tab-btn active" data-filter="all">
+              <span>ðŸ“š</span>
+              <span data-i18n="knowledge.tabAll">All Resources</span>
+            </button>
+            <button type="button" class="knowledge-tab-btn" data-filter="lessons">
+              <span>ðŸ§ </span>
+              <span data-i18n="knowledge.tabLessons">Lessons Learned</span>
+            </button>
+            <button type="button" class="knowledge-tab-btn" data-filter="books">
+              <span>ðŸ“–</span>
+              <span data-i18n="knowledge.tabBooks">Popular Books</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Module 1: Lessons Learned -->
+        <div id="knowledgeLessonsBlock">
+          <div class="knowledge-block-title">
+            <h3>
+              <span data-i18n="knowledge.lessonsHeading">Core Lessons Learned in the Real Market</span>
+              <span class="badge-num">4 Foundations</span>
+            </h3>
+          </div>
+
+          <div class="knowledge-lessons-grid">
+            <!-- Lesson 1 -->
+            <div class="lesson-card">
+              <div class="lesson-card-header">
+                <span class="lesson-number">01</span>
+                <span class="lesson-category-tag" data-i18n="knowledge.l1Tag">Market Structure &amp; Liquidity</span>
+              </div>
+              <h3 class="lesson-title" data-i18n="knowledge.l1Title">Liquidity Sweeps Over Blind Patterns</h3>
+              <p class="lesson-text" data-i18n="knowledge.l1Text">
+                Retail traders memorize static chart patterns like double tops and trendlines. Institutions view these exact patterns as liquidity pools to sweep before moving price. Never enter until retail stops have been triggered and market structure confirms order flow alignment.
+              </p>
+              <div class="lesson-rule-box" data-i18n="knowledge.l1Rule">
+                â€œWait for the liquidity sweep before committing capital. Without a sweep, you are the liquidity.â€
+              </div>
+            </div>
+
+            <!-- Lesson 2 -->
+            <div class="lesson-card">
+              <div class="lesson-card-header">
+                <span class="lesson-number">02</span>
+                <span class="lesson-category-tag" data-i18n="knowledge.l2Tag">Risk &amp; Survival Math</span>
+              </div>
+              <h3 class="lesson-title" data-i18n="knowledge.l2Title">Capital Preservation is Your Only Lifeline</h3>
+              <p class="lesson-text" data-i18n="knowledge.l2Text">
+                A trader with a 40% win rate and a 1:3 Risk-to-Reward ratio will exponentially outperform a 90% scalper with no stop loss. Always calculate your exact lot size based on dollar risk (1% to 2% max per trade) and the distance to invalidationâ€”never on emotion.
+              </p>
+              <div class="lesson-rule-box" data-i18n="knowledge.l2Rule">
+                â€œDefine your dollar risk before you even consider potential reward. Survive first, compound second.â€
+              </div>
+            </div>
+
+            <!-- Lesson 3 -->
+            <div class="lesson-card">
+              <div class="lesson-card-header">
+                <span class="lesson-number">03</span>
+                <span class="lesson-category-tag" data-i18n="knowledge.l3Tag">Trading Psychology &amp; Ego</span>
+              </div>
+              <h3 class="lesson-title" data-i18n="knowledge.l3Title">Ego is the Greatest Account Destroyer</h3>
+              <p class="lesson-text" data-i18n="knowledge.l3Text">
+                The market has no memory and zero personal interest in you. Losses are operating business expenses, not personal insults. Revenge trading is ego demanding to be right. Elite trading is executing a probabilistic edge with complete emotional detachment.
+              </p>
+              <div class="lesson-rule-box" data-i18n="knowledge.l3Rule">
+                â€œMaster your ego. If a loss makes you angry, your position size was too big for your nervous system.â€
+              </div>
+            </div>
+
+            <!-- Lesson 4 -->
+            <div class="lesson-card">
+              <div class="lesson-card-header">
+                <span class="lesson-number">04</span>
+                <span class="lesson-category-tag" data-i18n="knowledge.l4Tag">Process &amp; Daily Routine</span>
+              </div>
+              <h3 class="lesson-title" data-i18n="knowledge.l4Title">Consistency is Built in the Unseen Habits</h3>
+              <p class="lesson-text" data-i18n="knowledge.l4Text">
+                Professional trading is a high-performance mental sport. Consistency is not created during the trade; it is forged through pre-market session reviews, trade journaling, emotional check-ins, and strict adherence to personal non-negotiables.
+              </p>
+              <div class="lesson-rule-box" data-i18n="knowledge.l4Rule">
+                â€œA trade outside your rules is a losing trade, even if it ended in profit. Process is everything.â€
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 2: Recommended Books -->
+        <div id="knowledgeBooksBlock">
+          <div class="knowledge-block-title">
+            <h3>
+              <span data-i18n="knowledge.booksHeading">Must-Read Books: Trading, Money &amp; Psychology</span>
+              <span class="badge-num">8 Curated Classics</span>
+            </h3>
+          </div>
+
+          <div class="books-grid">
+            <!-- Book 1: Trading in the Zone -->
+            <div class="book-card">
+              <div class="book-card-top">
+                <span class="book-genre-pill" data-i18n="knowledge.b1Genre">Psychology &amp; Probabilities</span>
+                <div class="book-icon-badge">ðŸŽ¯</div>
+              </div>
+              <h3 class="book-title" data-i18n="knowledge.b1Title">Trading in the Zone</h3>
+              <div class="book-author" data-i18n="knowledge.b1Author">By Mark Douglas</div>
+              <p class="book-desc" data-i18n="knowledge.b1Desc">
+                The definitive masterwork on eliminating fear, accepting unavoidable market risk, and thinking in statistical probabilities.
+              </p>
+              <div class="book-quote-box" data-i18n="knowledge.b1Quote">
+                â€œWhen you genuinely accept the risks, you will be at peace with any outcome.â€
+              </div>
+              <div class="book-why-read">
+                <span class="check-icon">âœ“</span>
+                <span data-i18n="knowledge.b1Why">Essential for: Overcoming fear of losing &amp; trade execution paralysis.</span>
+              </div>
+            </div>
+
+            <!-- Book 2: The Psychology of Money -->
+            <div class="book-card">
+              <div class="book-card-top">
+                <span class="book-genre-pill" data-i18n="knowledge.b2Genre">Money &amp; Wealth Mindset</span>
+                <div class="book-icon-badge">ðŸ’Ž</div>
+              </div>
+              <h3 class="book-title" data-i18n="knowledge.b2Title">The Psychology of Money</h3>
+              <div class="book-author" data-i18n="knowledge.b2Author">By Morgan Housel</div>
+              <p class="book-desc" data-i18n="knowledge.b2Desc">
+                Timeless lessons on how behavioral discipline, staying humble, and long-term compounding surpass raw technical intelligence.
+              </p>
+              <div class="book-quote-box" data-i18n="knowledge.b2Quote">
+                â€œDoing well with money has a little to do with how smart you are and a lot to do with how you behave.â€
+              </div>
+              <div class="book-why-read">
+                <span class="check-icon">âœ“</span>
+                <span data-i18n="knowledge.b2Why">Essential for: Capital longevity &amp; managing wealth without reckless greed.</span>
+              </div>
+            </div>
+
+            <!-- Book 3: The Disciplined Trader -->
+            <div class="book-card">
+              <div class="book-card-top">
+                <span class="book-genre-pill" data-i18n="knowledge.b3Genre">Emotional Discipline</span>
+                <div class="book-icon-badge">ðŸ§ </div>
+              </div>
+              <h3 class="book-title" data-i18n="knowledge.b3Title">The Disciplined Trader</h3>
+              <div class="book-author" data-i18n="knowledge.b3Author">By Mark Douglas</div>
+              <p class="book-desc" data-i18n="knowledge.b3Desc">
+                Deep psychological roadmap detailing how internal beliefs and fear of being wrong sabotage traders, and how to construct rigid mental boundaries.
+              </p>
+              <div class="book-quote-box" data-i18n="knowledge.b3Quote">
+                â€œNinety-five percent of trading errors stem from fearâ€”fear of being wrong, losing money, and missing out.â€
+              </div>
+              <div class="book-why-read">
+                <span class="check-icon">âœ“</span>
+                <span data-i18n="knowledge.b3Why">Essential for: Eradicating emotional tilt and impulsive overtrading.</span>
+              </div>
+            </div>
+
+            <!-- Book 4: Reminiscences of a Stock Operator -->
+            <div class="book-card">
+              <div class="book-card-top">
+                <span class="book-genre-pill" data-i18n="knowledge.b4Genre">Market History &amp; Tape</span>
+                <div class="book-icon-badge">ðŸ“œ</div>
+              </div>
+              <h3 class="book-title" data-i18n="knowledge.b4Title">Reminiscences of a Stock Operator</h3>
+              <div class="book-author" data-i18n="knowledge.b4Author">By Edwin LefÃ¨vre</div>
+              <p class="book-desc" data-i18n="knowledge.b4Desc">
+                The legendary fictionalized biography of Jesse Livermore. Unmatched insights on sitting through winning trends and respecting price action.
+              </p>
+              <div class="book-quote-box" data-i18n="knowledge.b4Quote">
+                â€œIt was never my thinking that made the big money for me. It was always my sitting.â€
+              </div>
+              <div class="book-why-read">
+                <span class="check-icon">âœ“</span>
+                <span data-i18n="knowledge.b4Why">Essential for: Developing immense patience &amp; letting winning trades run.</span>
+              </div>
+            </div>
+
+            <!-- Book 5: Market Wizards -->
+            <div class="book-card">
+              <div class="book-card-top">
+                <span class="book-genre-pill" data-i18n="knowledge.b5Genre">Master Strategies</span>
+                <div class="book-icon-badge">ðŸ†</div>
+              </div>
+              <h3 class="book-title" data-i18n="knowledge.b5Title">Market Wizards</h3>
+              <div class="book-author" data-i18n="knowledge.b5Author">By Jack D. Schwager</div>
+              <p class="book-desc" data-i18n="knowledge.b5Desc">
+                Legendary interviews with top institutional traders proving that divergent methodologies all share one bedrock: ruthless risk management.
+              </p>
+              <div class="book-quote-box" data-i18n="knowledge.b5Quote">
+                â€œRisk control is the single most important factor shared by all great traders.â€
+              </div>
+              <div class="book-why-read">
+                <span class="check-icon">âœ“</span>
+                <span data-i18n="knowledge.b5Why">Essential for: Understanding how real institutional winners think and operate.</span>
+              </div>
+            </div>
+
+            <!-- Book 6: Atomic Habits -->
+            <div class="book-card">
+              <div class="book-card-top">
+                <span class="book-genre-pill" data-i18n="knowledge.b6Genre">Habits &amp; Routine</span>
+                <div class="book-icon-badge">âš¡</div>
+              </div>
+              <h3 class="book-title" data-i18n="knowledge.b6Title">Atomic Habits</h3>
+              <div class="book-author" data-i18n="knowledge.b6Author">By James Clear</div>
+              <p class="book-desc" data-i18n="knowledge.b6Desc">
+                Practical guide to building systematic routines, eliminating friction in positive habits, and compounding 1% daily process improvements.
+              </p>
+              <div class="book-quote-box" data-i18n="knowledge.b6Quote">
+                â€œYou do not rise to the level of your goals. You fall to the level of your systems.â€
+              </div>
+              <div class="book-why-read">
+                <span class="check-icon">âœ“</span>
+                <span data-i18n="knowledge.b6Why">Essential for: Creating daily pre-market preparation &amp; journaling discipline.</span>
+              </div>
+            </div>
+
+            <!-- Book 7: Thinking, Fast and Slow -->
+            <div class="book-card">
+              <div class="book-card-top">
+                <span class="book-genre-pill" data-i18n="knowledge.b7Genre">Decision Under Pressure</span>
+                <div class="book-icon-badge">ðŸ’¡</div>
+              </div>
+              <h3 class="book-title" data-i18n="knowledge.b7Title">Thinking, Fast and Slow</h3>
+              <div class="book-author" data-i18n="knowledge.b7Author">By Daniel Kahneman</div>
+              <p class="book-desc" data-i18n="knowledge.b7Desc">
+                Nobel laureate breakdown of System 1 (emotional intuition) vs System 2 (analytical logic), exposing dangerous cognitive biases.
+              </p>
+              <div class="book-quote-box" data-i18n="knowledge.b7Quote">
+                â€œWe are prone to overestimate how much we understand and underestimate the role of chance.â€
+              </div>
+              <div class="book-why-read">
+                <span class="check-icon">âœ“</span>
+                <span data-i18n="knowledge.b7Why">Essential for: Recognizing cognitive bias and eliminating impulsive gambling.</span>
+              </div>
+            </div>
+
+            <!-- Book 8: The Intelligent Investor -->
+            <div class="book-card">
+              <div class="book-card-top">
+                <span class="book-genre-pill" data-i18n="knowledge.b8Genre">Margin of Safety</span>
+                <div class="book-icon-badge">ðŸ›¡ï¸</div>
+              </div>
+              <h3 class="book-title" data-i18n="knowledge.b8Title">The Intelligent Investor</h3>
+              <div class="book-author" data-i18n="knowledge.b8Author">By Benjamin Graham</div>
+              <p class="book-desc" data-i18n="knowledge.b8Desc">
+                The foundational bible of investment discipline. Teaches emotional detachment from market swings and the vital concept of risk margins.
+              </p>
+              <div class="book-quote-box" data-i18n="knowledge.b8Quote">
+                â€œThe essence of investment management is the management of risks, not returns.â€
+              </div>
+              <div class="book-why-read">
+                <span class="check-icon">âœ“</span>
+                <span data-i18n="knowledge.b8Why">Essential for: High-level risk valuation &amp; swing trading perspective.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recommended Roadmap Card -->
+        <div class="reading-roadmap-card">
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+            <div>
+              <span class="knowledge-tag-badge" style="margin-bottom:10px;">Recommended Sequence</span>
+              <h2 style="font-size:1.4rem; font-weight:800; color:#fff;">BlueX Suggested Reading Order</h2>
+              <p style="font-size:0.9rem; color:#cbd5e1; margin-top:4px;">How to structure your reading for maximum psychological transformation.</p>
+            </div>
+            <a href="index.html#courses" class="btn-mentorship" style="padding:10px 22px; font-size:0.88rem;">
+              <span>Study Course Live Coaching â†—</span>
+            </a>
+          </div>
+
+          <div class="roadmap-steps-grid">
+            <div class="roadmap-step-box">
+              <div class="roadmap-step-num">Step 01 â€¢ Foundation</div>
+              <div class="roadmap-step-title">Psychology &amp; Risk</div>
+              <p class="roadmap-step-desc">Start with <strong>Trading in the Zone</strong> and <strong>The Psychology of Money</strong> to conquer ego and internalize risk neutrality.</p>
+            </div>
+            <div class="roadmap-step-box">
+              <div class="roadmap-step-num">Step 02 â€¢ Habit Loop</div>
+              <div class="roadmap-step-title">Daily Execution Routine</div>
+              <p class="roadmap-step-desc">Read <strong>Atomic Habits</strong> to construct a bulletproof daily journaling, chart review, and pre-market preparation routine.</p>
+            </div>
+            <div class="roadmap-step-box">
+              <div class="roadmap-step-num">Step 03 â€¢ Market Wisdom</div>
+              <div class="roadmap-step-title">Tape &amp; History</div>
+              <p class="roadmap-step-desc">Study <strong>Reminiscences of a Stock Operator</strong> to master the patience of sitting with winning positions.</p>
+            </div>
+            <div class="roadmap-step-box">
+              <div class="roadmap-step-num">Step 04 â€¢ Mastery</div>
+              <div class="roadmap-step-title">Master Mindsets</div>
+              <p class="roadmap-step-desc">Dive into <strong>Market Wizards</strong> and <strong>Thinking, Fast and Slow</strong> to think with the statistical precision of top hedge funds.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================
+       FOOTER
+       ======================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-content" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+      <p class="footer-copy" data-i18n="footer.copy">
+        Â© 2026 BlueX. Master Your Ego. Master Your Trades. All rights reserved.
+      </p>
+      <div style="display:flex; align-items:center; gap:16px;">
+        <a href="../" style="color:var(--color-cyan); font-size:0.85rem; font-weight:700; text-decoration:none;">Back to Home</a>
+        <a href="../smc-genesis" style="color:var(--color-cyan); font-size:0.85rem; font-weight:700; text-decoration:none;">SMC Genesis</a>
+        <a href="../gold-hedging" style="color:var(--color-gold); font-size:0.85rem; font-weight:700; text-decoration:none;">Gold Hedging</a>
+        <a href="../#brokers" style="color:var(--color-gold); font-size:0.85rem; font-weight:700; text-decoration:none;">Partner Brokers</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js?v=20261103v19"></script>
+</body>
+</html>

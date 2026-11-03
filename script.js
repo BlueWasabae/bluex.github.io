@@ -14,6 +14,14 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ========================================================
+  // 0. CLEAN URL NORMALIZATION: Strip .html without reloading
+  // ========================================================
+  if (window.history && window.history.replaceState && window.location.pathname.endsWith('.html')) {
+    const cleanPath = window.location.pathname.replace(/\.html$/, '');
+    window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+  }
+
+  // ========================================================
   // 1. NAVIGATION ACTIVE STATE & SMOOTH SCROLLING (ZERO REFLOW)
   // ========================================================
   const navLinks = document.querySelectorAll('.nav-link');
@@ -34,13 +42,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let navScrollTicking = false;
   function updateActiveNavLink() {
     const currentPath = window.location.pathname.replace(/\/$/, '');
-    const subpages = ['smc-genesis.html', 'knowledge.html', 'gold-hedging.html'];
-    const activeSubpage = subpages.find(page => currentPath.endsWith(page));
+    const isSmcGenesis = currentPath.endsWith('smc-genesis') || currentPath.endsWith('smc-genesis.html');
+    const isGoldHedging = currentPath.endsWith('gold-hedging') || currentPath.endsWith('gold-hedging.html');
+    const isKnowledge = currentPath.endsWith('knowledge') || currentPath.endsWith('knowledge.html');
 
-    if (activeSubpage) {
+    if (isSmcGenesis || isGoldHedging || isKnowledge) {
       navLinks.forEach(link => {
-        const href = link.getAttribute('href') || '';
-        if (href === activeSubpage || href.startsWith(activeSubpage + '#')) {
+        const href = (link.getAttribute('href') || '').replace(/\/$/, '');
+        if (
+          (isSmcGenesis && (href.includes('smc-genesis') || href.endsWith('smc-genesis'))) ||
+          (isGoldHedging && (href.includes('gold-hedging') || href.endsWith('gold-hedging'))) ||
+          (isKnowledge && (href.includes('knowledge') || href.endsWith('knowledge')))
+        ) {
           link.classList.add('active');
         } else {
           link.classList.remove('active');
@@ -843,6 +856,16 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.tenet2Desc': '100% mechanical checklist discipline — no confirmation, no execution',
       'genesis.tenet3Title': 'CONSISTENT',
       'genesis.tenet3Desc': 'Long-term durability where Profit = Knowledge + Repeatable Skill',
+      'genesis.specAssetLabel': 'ASSET FOCUS',
+      'genesis.specAssetVal': 'XAU/USD (Gold) & Majors',
+      'genesis.specStructLabel': 'STRUCTURE LAW',
+      'genesis.specStructVal': 'Body-Close BOS / CHoCH',
+      'genesis.specBaseLabel': 'BASE FORMATIONS',
+      'genesis.specBaseVal': 'RBD • DBR • RBR • DBD',
+      'genesis.specMtfLabel': 'TIMEFRAME PIPELINE',
+      'genesis.specMtfVal': '4H Macro → 15M S&D → 1M/3M Entry',
+      'genesis.specRiskLabel': 'CAPITAL DISCIPLINE',
+      'genesis.specRiskVal': '0.5% – 1.0% Risk • Min 1:3 RR',
       'genesis.introTag': 'EXECUTIVE BRIEFING • BEYOND THE CHARTS',
       'genesis.introTitle': 'A Quantitative Operating System for Institutional Price Delivery',
       'genesis.introP1': 'Financial markets do not move by random chance or retail chart patterns. Every major price expansion is driven by institutional liquidity engineering—accumulating orders where retail traders place predictable stop-losses.',
@@ -1515,6 +1538,16 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.tenet2Desc': 'គោរពច្បាប់ Checklists 100% — គ្មាន Confirmation គឺមិនចុច Order ដាច់ខាត',
       'genesis.tenet3Title': 'ស្ថិរភាព (CONSISTENT)',
       'genesis.tenet3Desc': 'ស្ថិរភាពយូរអង្វែងដែល ចំណេញ = ចំណេះ + ជំនាញអនុវត្តដដែលៗ',
+      'genesis.specAssetLabel': 'ទ្រព្យសកម្មចម្បង',
+      'genesis.specAssetVal': 'XAU/USD (មាស) & រូបិយប័ណ្ណសំខាន់ៗ',
+      'genesis.specStructLabel': 'ច្បាប់រចនាសម្ព័ន្ធ',
+      'genesis.specStructVal': 'ការបិទទ្រង់ទ្រាយទៀនពេញ (Body Close)',
+      'genesis.specBaseLabel': 'ទម្រង់មូលដ្ឋាន (S&D)',
+      'genesis.specBaseVal': 'RBD • DBR • RBR • DBD',
+      'genesis.specMtfLabel': 'លំហូរពេលវេលា (Multi-TF)',
+      'genesis.specMtfVal': '4H និន្នាការធំ → 15M តំបន់ S&D → 1M/3M ចូលផ្សារ',
+      'genesis.specRiskLabel': 'ការគ្រប់គ្រងដើមទុន',
+      'genesis.specRiskVal': 'ហានិភ័យ 0.5% – 1.0% • អប្បបរមា 1:3 RR',
       'genesis.introTag': 'សេចក្តីសង្ខេបស្ថាប័ន • BEYOND THE CHARTS',
       'genesis.introTitle': 'ប្រព័ន្ធប្រតិបត្តិការ Quantitative សម្រាប់ការជួញដូរកម្រិតស្ថាប័ន',
       'genesis.introP1': 'ទីផ្សារហិរញ្ញវត្ថុមិនមែនដើរតាមភាពចៃដន្យ ឬទម្រង់ក្រាបរបស់ Retail ឡើយ។ រាល់ការរុញតម្លៃធំៗសុទ្ធតែត្រូវបានជំរុញដោយការរៀបចំ Liquidity របស់ស្ថាប័ន តាមរយៈការស្រូបយក Stop Loss របស់ Trader រាយ។',
