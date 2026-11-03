@@ -562,7 +562,7 @@ button {
 
 .hero-card {
   position: relative;
-  background: radial-gradient(circle at 75% 30%, #151a28 0%, #0c0e16 65%, #07080d 100%);
+  background: radial-gradient(circle at 75% 30%, #05243b 0%, #071624 40%, #0a0d17 70%, #07080d 100%);
   border: 1px solid rgba(255, 184, 0, 0.15);
   border-radius: var(--radius-xl);
   padding: 64px 54px;
@@ -7711,7 +7711,7 @@ html.effects-frozen .nav-drawer-backdrop {
 }
 
 html.effects-frozen .hero-card {
-  background: radial-gradient(circle at 75% 30%, #151a28 0%, #0c0e16 65%, #07080d 100%) !important;
+  background: radial-gradient(circle at 75% 30%, #05243b 0%, #071624 40%, #0a0d17 70%, #07080d 100%) !important;
 }
 
 html.effects-frozen .mentorship-card-main,
