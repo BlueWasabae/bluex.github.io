@@ -1,9 +1,9 @@
-@echo off
+﻿@echo off
 title BlueX Academy - 1-Click Publisher
 color 0b
 echo ========================================================
 echo       BlueX Academy - Automatic GitHub Publisher
-echo       Target: www.bluexacedamy.space & bluex.github.io
+echo       Target: www.bluexacademy.site & bluex.github.io
 echo ========================================================
 echo.
 
@@ -18,7 +18,7 @@ cd /d "d:\My Website"
 git push -u origin main
 
 echo.
-echo [3/3] Uploading all website files to bluexacedamy (www.bluexacedamy.space)...
+echo [3/3] Uploading all website files to bluexacedamy (www.bluexacademy.site)...
 git push -u bluexacedamy main
 
 echo.
@@ -26,7 +26,7 @@ echo ========================================================
 echo   SUCCESS! ALL FILES HAVE BEEN PUBLISHED TO GITHUB!
 echo ========================================================
 echo.
-echo Live at: https://www.bluexacedamy.space
+echo Live at: https://www.bluexacademy.site
 echo Mirror at: https://bluewasabae.github.io/bluex.github.io/
 echo.
 pause
