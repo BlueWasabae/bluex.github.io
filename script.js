@@ -835,7 +835,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'compliance.exactDisclaimer': '<strong>Official Disclaimer:</strong> Disclaimer: This content is for educational purposes only and does not constitute financial or investment advice. Trading in financial markets involves risk. Always conduct your own research and trade responsibly.',
 
       // SMC Genesis Institutional Portal
-      'genesis.badge': 'SMC GENESIS • BEYOND THE CHARTS • VERSION 4.0 PRO',
+      'genesis.badge': 'SMC GENESIS • BEYOND THE CHARTS',
       'genesis.heroTitle': 'SMC GENESIS • BEYOND THE CHARTS<br><span class="highlight">Institutional Trading Architecture & Masterclass.</span>',
       'genesis.heroSub': 'An institutional-grade synthesis of Smart Money Concepts 2.0 & 3.0 engineered for Gold (XAU/USD) and major liquid markets. SMC Genesis replaces retail indicator guesswork with a structured 10-Module Quantitative Architecture—teaching you how institutions engineer liquidity, transfer multi-timeframe data, and execute with asymmetric risk precision.',
       'genesis.metric1Val': '10 Modules',
@@ -869,7 +869,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.introTag': 'EXECUTIVE BRIEFING • BEYOND THE CHARTS',
       'genesis.introTitle': 'A Quantitative Operating System for Institutional Price Delivery',
       'genesis.introP1': 'Financial markets do not move by random chance or retail chart patterns. Every major price expansion is driven by institutional liquidity engineering—accumulating orders where retail traders place predictable stop-losses.',
-      'genesis.introP2': 'SMC Genesis (Version 4.0 Pro) is the proprietary flagship curriculum of BlueX Academy. It synthesizes foundational Smart Money Concepts 2.0 & 3.0 into a clean, rule-based institutional desk framework—designed to take a trader from raw structural mapping to surgical lower-timeframe execution without ever relying on lagging indicators.',
+      'genesis.introP2': 'SMC Genesis is the proprietary flagship curriculum of BlueX Academy. It synthesizes foundational Smart Money Concepts into a clean, rule-based institutional desk framework—designed to take a trader from raw structural mapping to surgical lower-timeframe execution without ever relying on lagging indicators.',
       'genesis.charter1': 'Data Collection & Homework Discipline: Theory alone builds zero skill. Mastery requires structured backtesting, forward-testing, and systematic chart logging.',
       'genesis.charter2': 'Objective Rule Validation: Every structural break (BOS), internal pullback (IBOS), fractal shift (FTS), and sweep is governed by strict mechanical criteria.',
       'genesis.charter3': 'Protected Intellectual Property: Complete lesson schematics, proprietary entry checklists, and live chart drills are reserved exclusively for enrolled SMC Genesis students.',
@@ -1550,7 +1550,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'compliance.exactDisclaimer': '<strong>សេចក្តីប្រកាសបដិសេធជាផ្លូវការ៖</strong> មាតិកានេះគឺសម្រាប់គោលបំណងអប់រំតែប៉ុណ្ណោះ ហើយមិនមែនជាការណែនាំផ្នែកហិរញ្ញវត្ថុ ឬការវិនិយោគឡើយ។ ការជួញដូរក្នុងទីផ្សារហិរញ្ញវត្ថុមានហានិភ័យ។ សូមស្រាវជ្រាវដោយខ្លួនឯង និងជួញដូរប្រកបដោយការទទួលខុសត្រូវជានិច្ច។',
 
       // SMC Genesis Institutional Portal
-      'genesis.badge': 'SMC GENESIS • BEYOND THE CHARTS • ជំនាន់ 4.0 PRO',
+      'genesis.badge': 'SMC GENESIS • BEYOND THE CHARTS',
       'genesis.heroTitle': 'SMC GENESIS • BEYOND THE CHARTS<br><span class="highlight">ស្ថាបត្យកម្មជួញដូរកម្រិតស្ថាប័ន & ថ្នាក់បង្រៀនផ្លូវការ។</span>',
       'genesis.heroSub': 'ការរួមបញ្ចូលគ្នានៃទ្រឹស្តីគ្រឹះ Smart Money Concepts 2.0 & 3.0 រៀបចំឡើងសម្រាប់មាស (XAU/USD) និងទីផ្សារហិរញ្ញវត្ថុចម្បង។ SMC Genesis លុបបំបាត់ការស្មានតាម Indicator ជំនួសដោយប្រព័ន្ធមេរៀន Quantitative ទាំង ១០ ម៉ូឌុលច្បាស់លាស់ — បង្រៀនអ្នកពីរបៀបស្ថាប័នរៀបចំ Liquidity, ការផ្ទេរទិន្នន័យពហុកាលវេលា និងការចូល Trade ជាមួយហានិភ័យទាបបំផុត។',
       'genesis.metric1Val': '១០ ម៉ូឌុល',
@@ -1584,7 +1584,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.introTag': 'សេចក្តីសង្ខេបស្ថាប័ន • BEYOND THE CHARTS',
       'genesis.introTitle': 'ប្រព័ន្ធប្រតិបត្តិការ Quantitative សម្រាប់ការជួញដូរកម្រិតស្ថាប័ន',
       'genesis.introP1': 'ទីផ្សារហិរញ្ញវត្ថុមិនមែនដើរតាមភាពចៃដន្យ ឬទម្រង់ក្រាបរបស់ Retail ឡើយ។ រាល់ការរុញតម្លៃធំៗសុទ្ធតែត្រូវបានជំរុញដោយការរៀបចំ Liquidity របស់ស្ថាប័ន តាមរយៈការស្រូបយក Stop Loss របស់ Trader រាយ។',
-      'genesis.introP2': 'SMC Genesis (ជំនាន់ 4.0 Pro) គឺជាកម្មវិធីសិក្សាផ្លូវការផ្តាច់មុខរបស់ BlueX Academy។ វាបានច្របាច់បញ្ចូលទ្រឹស្តី Smart Money Concepts 2.0 & 3.0 ទៅជាក្បួនប្រតិបត្តិការជាក់ស្តែងកម្រិតស្ថាប័ន — នាំអ្នកសិក្សាពីការគូសរចនាសម្ព័ន្ធរហូតដល់ចំណុចចូល Trade ដ៏មុតស្រួចលើ Timeframe តូច ដោយមិនពឹងផ្អែកលើ Indicator យឺតយ៉ាវឡើយ។',
+      'genesis.introP2': 'SMC Genesis គឺជាកម្មវិធីសិក្សាផ្លូវការផ្តាច់មុខរបស់ BlueX Academy។ វាបានច្របាច់បញ្ចូលទ្រឹស្តី Smart Money Concepts ទៅជាក្បួនប្រតិបត្តិការជាក់ស្តែងកម្រិតស្ថាប័ន — នាំអ្នកសិក្សាពីការគូសរចនាសម្ព័ន្ធរហូតដល់ចំណុចចូល Trade ដ៏មុតស្រួចលើ Timeframe តូច ដោយមិនពឹងផ្អែកលើ Indicator យឺតយ៉ាវឡើយ។',
       'genesis.charter1': '<strong>ការប្រមូលទិន្នន័យ & កិច្ចការផ្ទះ:</strong> ទ្រឹស្តីតែមួយមុខមិនអាចបង្កើតជំនាញបានឡើយ។ ភាពស្ទាត់ជំនាញទាមទារការ Backtest, Forward-test និងកត់ត្រា Chart យ៉ាងខ្ជាប់ខ្ជួន។',
       'genesis.charter2': '<strong>ការផ្ទៀងផ្ទាត់ច្បាប់ច្បាស់លាស់:</strong> រាល់ការបំបែករចនាសម្ព័ន្ធ (BOS), រលកទាញថយ (IBOS), ការប្តូរទិស Fractal (FTS), និង Sweep សុទ្ធតែមានលក្ខខណ្ឌមេកានិចសុក្រឹត។',
       'genesis.charter3': '<strong>ការការពារកម្មសិទ្ធិបញ្ញា:</strong> គំនូរប្លង់មេរៀនពេញលេញ, បញ្ជីត្រួតពិនិត្យ Entry, និងការហ្វឹកហាត់លើ Chart ផ្ទាល់ ត្រូវបានរក្សាទុកសម្រាប់តែសិស្សផ្លូវការរបស់ SMC Genesis ប៉ុណ្ណោះ។',

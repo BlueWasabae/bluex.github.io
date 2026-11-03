@@ -3267,18 +3267,18 @@ button {
   line-height: 1.6;
 }
 
-/* Books Grid: 4 columns */
+/* Books Grid: 2 columns for spacious luxury layout & uncompromised badges */
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
 }
 
 .book-card {
   background: rgba(14, 18, 28, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
-  padding: 24px 20px;
+  padding: 26px 24px;
   display: flex;
   flex-direction: column;
   transition: all var(--transition-smooth);
@@ -3295,19 +3295,23 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   margin-bottom: 14px;
 }
 
 .book-genre-pill {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 3px 8px;
+  letter-spacing: 0.04em;
+  padding: 4px 12px;
   border-radius: var(--radius-pill);
   background: rgba(0, 255, 224, 0.12);
   color: var(--color-cyan);
   border: 1px solid var(--border-cyan);
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1.3;
 }
 
 .book-icon-badge {
@@ -6117,45 +6121,45 @@ html.menu-open #floatingEnrollBtn {
 /* Floating Action Pill (FAB) */
 .genesis-floating-cta {
   position: fixed;
-  bottom: 26px;
-  right: 26px;
+  bottom: 20px;
+  right: 20px;
   z-index: 9999;
   animation: fadeInUp 0.8s ease-out;
 }
 .floating-cta-pill {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   background: rgba(10, 15, 26, 0.94);
   border: 1.5px solid rgba(0, 255, 236, 0.5);
   color: #ffffff;
   text-decoration: none;
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.02em;
-  padding: 12px 22px;
+  padding: 8px 16px;
   border-radius: 50px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 255, 236, 0.3);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.6), 0 0 18px rgba(0, 255, 236, 0.25);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .floating-cta-pill:hover {
-  transform: translateY(-4px) scale(1.04);
+  transform: translateY(-3px) scale(1.02);
   border-color: #00ffec;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 35px rgba(0, 255, 236, 0.55);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 255, 236, 0.45);
   color: #00ffec;
 }
 .floating-pulse {
-  width: 9px;
-  height: 9px;
+  width: 7px;
+  height: 7px;
   background: #00ffec;
   border-radius: 50%;
-  box-shadow: 0 0 10px #00ffec;
+  box-shadow: 0 0 8px #00ffec;
   animation: pulse-dot 1.5s infinite;
 }
 .floating-icon {
-  font-size: 1rem;
+  font-size: 0.85rem;
 }
 
 /* Responsive adjustments */
@@ -6185,13 +6189,16 @@ html.menu-open #floatingEnrollBtn {
     align-items: stretch;
   }
   .genesis-floating-cta {
-    bottom: 18px;
-    right: 18px;
-    left: 18px;
+    bottom: 16px;
+    right: 16px;
+    left: auto;
+    max-width: fit-content;
   }
   .floating-cta-pill {
-    width: 100%;
-    justify-content: center;
+    width: auto;
+    padding: 7px 14px;
+    font-size: 0.75rem;
+    gap: 6px;
   }
 }
 
