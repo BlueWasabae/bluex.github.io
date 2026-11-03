@@ -1,4 +1,4 @@
-﻿// ========================================================
+// ========================================================
 // BlueX Portfolio & Trading Ecosystem - Core Engine
 // Features:
 // 1. Navigation & Smooth Scroll
@@ -481,7 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.brokers': 'Brokers',
       'nav.courses': 'Courses',
       'nav.genesis': '<span class="genesis-pulse-dot"></span> SMC Genesis <span class="nav-new-badge">NEW</span>',
-      'nav.hedging': '<span class="nav-label-full">Gold </span>Hedging',
+      'nav.hedging': '<span class="nav-label-full">Gold</span>&nbsp;Hedging',
       'nav.drawerBrand': 'BLUEX TERMINAL',
       'nav.spotlightDesc': 'Institutional Blueprint: 10 Quantitative Modules',
       'nav.drawerDm': 'Register Now â€” Direct DM (@Le_Bluue)',
