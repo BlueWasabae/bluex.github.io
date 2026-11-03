@@ -754,9 +754,9 @@ button {
   height: 100%;
   object-fit: contain;
   object-position: bottom right;
-  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.9));
-  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.9));
+  mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
@@ -3925,8 +3925,8 @@ html.menu-open #floatingEnrollBtn {
 
   .hero-portrait-img {
     object-position: bottom center;
-    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
   }
   
   .hero-bottom-row {
@@ -9566,48 +9566,7 @@ html[lang="km"] .brokers-title {
   margin: 0;
 }
 
-@media (max-width: 1024px) {
-  .calc-workflow-ribbon {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-  }
-  .workflow-ribbon-arrow {
-    display: none;
-  }
-  .calc-main-grid {
-    grid-template-columns: 1fr;
-    padding: 20px 16px;
-  }
-  .simulator-scenarios-bar {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .sim-comparison-grid {
-    grid-template-columns: 1fr;
-  }
-  .casestudy-grid {
-    grid-template-columns: 1fr;
-  }
-}
 
-@media (max-width: 640px) {
-  .calc-top-command-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .calc-dual-row {
-    flex-direction: column;
-  }
-  .direction-segmented-control {
-    grid-template-columns: 1fr;
-  }
-  .buffer-chips-row {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .simulator-scenarios-bar {
-    grid-template-columns: 1fr;
-  }
-}
 
 /* Comparison Section */
 .hedging-architecture-section,
@@ -10309,45 +10268,421 @@ html[lang="km"] .brokers-title {
 }
 
 /* ========================================================
-   RESPONSIVE BREAKPOINTS FOR GOLD HEDGING
+   EXECUTIVE RESPONSIVE SYSTEM FOR GOLD HEDGING (1024px, 768px, 480px)
    ======================================================== */
 @media (max-width: 1024px) {
-  .hedging-calc-wrapper {
+  .hedging-hero-card {
+    padding: 44px 32px;
+  }
+  .calc-workflow-ribbon {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 18px 20px;
+  }
+  .workflow-ribbon-arrow {
+    display: none;
+  }
+  .calc-main-grid {
     grid-template-columns: 1fr;
+    padding: 24px 20px;
+    gap: 24px;
+  }
+  .hedging-compare-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
   .protocol-steps-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
   }
   .hedging-broker-card {
     grid-template-columns: 1fr;
     padding: 36px 28px;
+    gap: 28px;
+  }
+  .simulator-scenarios-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sim-comparison-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .casestudy-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .hedging-faq-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 }
 
 @media (max-width: 768px) {
+  .hedging-hero-card {
+    padding: 32px 18px;
+    min-height: auto;
+  }
+  .hedging-hero-card .hero-title {
+    font-size: clamp(1.8rem, 6.5vw, 2.4rem);
+  }
+  .hedging-hero-desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+  .hedging-hero-card .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .hedging-hero-card .hero-cta-group a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
   .hedging-metrics-ribbon {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 16px 14px;
+    margin-top: 24px;
+  }
+  .hedging-metric-item {
+    text-align: center;
+  }
+  .calc-workflow-ribbon {
+    padding: 14px 14px;
+    margin: 20px 0;
+    border-radius: var(--radius-md);
+  }
+  .workflow-ribbon-step {
+    width: 100%;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .step-badge {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+    flex-shrink: 0;
+  }
+  .step-text strong {
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
+  .step-text span {
+    font-size: 0.74rem;
+    line-height: 1.35;
+  }
+  .hedging-calculator-card {
+    border-radius: var(--radius-lg);
+    margin-bottom: 28px;
+  }
+  .calc-top-command-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 14px;
+    gap: 12px;
+  }
+  .calc-metal-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 8px;
+  }
+  .calc-metal-tab {
+    padding: 8px 10px;
+    justify-content: center;
+    font-size: 0.82rem;
+  }
+  .tab-metal-sub {
+    display: none;
+  }
+  .calc-live-spot-pill {
+    width: 100%;
+    justify-content: space-between;
+    padding: 6px 12px;
+  }
+  .calc-currency-toggle {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .calc-main-grid {
+    padding: 16px 12px;
+    gap: 20px;
+  }
+  .calc-card-section {
+    padding: 16px 14px;
+  }
+  .section-step-title {
+    font-size: 0.88rem;
+  }
+  .section-step-desc {
+    font-size: 0.74rem;
+  }
+  .direction-segmented-control {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .dir-segment-btn {
+    padding: 10px 12px;
+  }
+  .dir-btn-text strong {
+    font-size: 0.82rem;
+  }
+  .calc-presets-bar {
+    gap: 6px;
+  }
+  .presets-chips-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 100%;
+  }
+  .chip-preset {
+    flex: 1 1 auto;
+    text-align: center;
+    padding: 6px 8px;
+    font-size: 0.72rem;
+  }
+  .calc-dual-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .currency-adornment .clean-number-input {
+    padding-left: 24px;
+    padding-right: 80px;
+  }
+  .currency-adornment .cur-suffix {
+    font-size: 0.7rem;
+    right: 8px;
+  }
+  .calc-balance-group .balance-label-row {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .currency-adornment.highlight-balance .clean-number-input {
+    padding-right: 105px;
+  }
+  .currency-adornment.highlight-balance .cur-suffix {
+    font-size: 0.7rem;
+    right: 8px;
+  }
+  .buffer-chips-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .chip-buffer {
+    padding: 7px 4px;
+    font-size: 0.72rem;
+  }
+  .calc-advanced-params-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .adv-param-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .calc-ticket-card {
+    padding: 18px 14px;
+  }
+  .ticket-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ticket-hero-action {
+    padding: 16px 14px;
+  }
+  .ticket-command-headline {
+    font-size: clamp(1.2rem, 5.5vw, 1.55rem);
+  }
+  .ticket-command-explanation {
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+  .ticket-key-metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .ticket-metric-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 10px 12px;
+  }
+  .metric-box-title {
+    font-size: 0.75rem;
+  }
+  .metric-box-number {
+    font-size: 1.15rem;
+  }
+  .metric-box-sub {
+    font-size: 0.72rem;
+    text-align: left;
+  }
+  .ticket-account-health-bar {
+    padding: 10px 12px;
+  }
+  .health-status-row {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .health-explanation-text {
+    font-size: 0.75rem;
+  }
+  .ticket-cashier-checklist {
+    padding: 10px 12px;
+  }
+  .checklist-step {
+    font-size: 0.75rem;
+  }
+  .detailed-metrics-table .detail-row {
+    font-size: 0.76rem;
+    padding: 6px 0;
+  }
+  .simulator-card {
+    padding: 20px 14px;
+    border-radius: var(--radius-lg);
+  }
+  .simulator-title {
+    font-size: 1.25rem;
+  }
+  .simulator-desc {
+    font-size: 0.78rem;
+  }
+  .simulator-scenarios-bar {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .sim-scenario-btn {
+    padding: 10px 10px;
+    font-size: 0.78rem;
+  }
+  .sim-comparison-grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  .direction-toggle-grid {
-    grid-template-columns: 1fr;
+  .sim-result-card {
+    padding: 16px 14px;
   }
-  .calc-params-grid {
-    grid-template-columns: 1fr;
+  .sim-card-badge {
+    font-size: 0.66rem;
   }
-  .buffer-presets-row {
-    grid-template-columns: repeat(2, 1fr);
+  .sim-card-title {
+    font-size: 1rem;
   }
-  .hedging-compare-grid {
+  .sim-metric-row {
+    font-size: 0.8rem;
+  }
+  .sim-verdict {
+    padding: 10px 12px;
+    font-size: 0.78rem;
+  }
+  .casestudy-card {
+    padding: 20px 14px;
+    border-radius: var(--radius-lg);
+  }
+  .casestudy-title {
+    font-size: 1.2rem;
+  }
+  .casestudy-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .casestudy-col {
+    padding: 14px 12px;
+  }
+  .col-title {
+    font-size: 0.9rem;
+  }
+  .casestudy-col p {
+    font-size: 0.76rem;
+    line-height: 1.5;
   }
   .protocol-steps-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
-  .hedging-faq-grid {
-    grid-template-columns: 1fr;
+  .protocol-step-card {
+    padding: 20px 16px;
   }
-  .hedge-results-grid {
-    grid-template-columns: 1fr;
+  .step-card-num {
+    font-size: 1.7rem;
+    margin-bottom: 8px;
+  }
+  .step-card-title {
+    font-size: 1rem;
+  }
+  .step-card-desc {
+    font-size: 0.82rem;
+  }
+  .hedging-broker-card {
+    padding: 24px 16px;
+    border-radius: var(--radius-lg);
+  }
+  .hedging-broker-title {
+    font-size: 1.45rem;
+  }
+  .hedging-broker-desc {
+    font-size: 0.86rem;
+  }
+  .broker-highlights-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .broker-highlight-pill {
+    width: 100%;
+  }
+  .hedging-broker-cta-col {
+    width: 100%;
+  }
+  .btn-broker-register {
+    width: 100%;
+    justify-content: center;
+  }
+  .hedging-table-card {
+    border-radius: var(--radius-lg);
+  }
+  .hedging-table {
+    min-width: 560px;
+  }
+  .hedging-table th,
+  .hedging-table td {
+    padding: 10px 12px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .calc-main-grid {
+    padding: 12px 8px;
+  }
+  .calc-card-section {
+    padding: 14px 10px;
+  }
+  .calc-ticket-card {
+    padding: 14px 10px;
+  }
+  .ticket-hero-action {
+    padding: 14px 10px;
+  }
+  .calc-top-command-bar {
+    padding: 12px 10px;
+  }
+  .currency-btn {
+    padding: 4px 8px;
+    font-size: 0.72rem;
+  }
+  .currency-adornment .clean-number-input {
+    padding-left: 20px;
+    padding-right: 70px;
+    font-size: 0.86rem;
+  }
+  .currency-adornment.highlight-balance .clean-number-input {
+    padding-right: 90px;
+    font-size: 0.86rem;
   }
 }
