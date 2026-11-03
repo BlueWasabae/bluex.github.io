@@ -250,7 +250,7 @@ button {
 }
 
 .site-header .container {
-  max-width: 1560px;
+  max-width: 1320px;
 }
 
 .nav-wrapper {
@@ -317,27 +317,29 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2.5px;
+  gap: 2px;
   list-style: none;
   margin: 0;
   padding: 0;
   background: transparent;
   border: none;
-  flex: 1;
+  flex: 1 1 auto;
   min-width: 0;
 }
 
-/* Compact "Hedging" label on narrow desktop toolbars; full "Gold Hedging" in drawer & wide screens */
-@media (min-width: 1401px) and (max-width: 1560px) {
-  .nav-menu .nav-label-full {
-    display: none;
-  }
+/* Hide duplicate Connect link from desktop single-line bar (anchored by Register CTA; available in drawer) */
+.nav-item-connect {
+  display: none !important;
+}
+
+.nav-menu.mobile-open .nav-item-connect {
+  display: block !important;
 }
 
 .nav-link {
-  font-size: 12.8px;
+  font-size: 11.8px;
   font-weight: 600;
-  padding: 5px 8px;
+  padding: 4px 7px;
   border-radius: var(--radius-pill);
   color: var(--text-secondary);
   white-space: nowrap;
@@ -3606,16 +3608,13 @@ body.menu-drawer-locked .site-header .nav-wrapper {
   }
 }
 
-@media (min-width: 1401px) and (max-width: 1560px) {
+@media (min-width: 1240px) and (max-width: 1340px) {
   .nav-link {
-    font-size: 11.5px !important;
+    font-size: 11.2px !important;
     padding: 3.5px 5px !important;
   }
   .nav-menu {
     gap: 1.5px !important;
-  }
-  .nav-item-connect {
-    display: none !important;
   }
   .nav-logo-3d-img {
     height: 30px !important;
@@ -3630,12 +3629,12 @@ body.menu-drawer-locked .site-header .nav-wrapper {
   }
   .nav-cta-btn,
   .nav-register-dm-btn {
-    padding: 5px 9px !important;
+    padding: 5px 8px !important;
     font-size: 0.72rem !important;
   }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1240px) {
   .nav-menu {
     display: none !important;
   }
@@ -6385,7 +6384,7 @@ html[lang="km"] .nav-register-dm-btn {
   flex-shrink: 0 !important;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1240px) {
   html[lang="km"] .nav-menu {
     display: none !important;
   }
