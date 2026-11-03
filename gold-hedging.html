@@ -335,12 +335,28 @@
             </div>
           </div>
 
+          <!-- Progressive Step Workflow Navigation (PC & Mobile) -->
+          <div class="calc-workflow-nav" id="calcWorkflowNav" role="tablist">
+            <button type="button" class="workflow-tab active" data-step="1" role="tab" aria-selected="true">
+              <span class="tab-badge-num">1</span>
+              <span class="tab-label" data-i18n="hedging.tab1">1. Physical Counter Inflow</span>
+            </button>
+            <button type="button" class="workflow-tab" data-step="2" role="tab" aria-selected="false">
+              <span class="tab-badge-num">2</span>
+              <span class="tab-label" data-i18n="hedging.tab2">2. Broker Safety & Capital</span>
+            </button>
+            <button type="button" class="workflow-tab" data-step="3" role="tab" aria-selected="false">
+              <span class="tab-badge-num">3</span>
+              <span class="tab-label" data-i18n="hedging.tab3">3. Execution Ticket</span>
+            </button>
+          </div>
+
           <!-- 2-Column Responsive Body -->
           <div class="calc-main-grid">
             <!-- Left Column: Inputs in 2 Clean Groups -->
             <div class="calc-col-inputs">
               <!-- Block 1: Physical Shop Counter Transaction -->
-              <div class="calc-card-section">
+              <div class="calc-card-section" data-calc-step="1">
                 <div class="card-section-header">
                   <span class="section-step-num">1</span>
                   <div class="section-step-info">
@@ -423,10 +439,17 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- Next Button to Step 2 -->
+                <div class="calc-step-action-row">
+                  <button type="button" class="btn-step-next" data-next-step="2">
+                    <span data-i18n="hedging.btnNextStep2">Next: Safety Buffer & Capital ➔</span>
+                  </button>
+                </div>
               </div>
 
               <!-- Block 2: Broker Account & Volatility Buffer -->
-              <div class="calc-card-section">
+              <div class="calc-card-section" data-calc-step="2">
                 <div class="card-section-header">
                   <span class="section-step-num">2</span>
                   <div class="section-step-info">
@@ -484,11 +507,21 @@
                     </select>
                   </div>
                 </div>
+
+                <!-- Dual Action Row (Back or View Ticket) -->
+                <div class="calc-step-action-row dual-action">
+                  <button type="button" class="btn-step-back" data-prev-step="1">
+                    <span data-i18n="hedging.btnBackStep1">← Back to Counter Inflow</span>
+                  </button>
+                  <button type="button" class="btn-step-next" data-next-step="3">
+                    <span data-i18n="hedging.btnNextStep3">View Execution Ticket ➔</span>
+                  </button>
+                </div>
               </div>
             </div>
 
             <!-- Right Column: Clean Institutional Execution Ticket -->
-            <div class="calc-col-results">
+            <div class="calc-col-results" data-calc-step="3">
               <div class="calc-ticket-card" id="calcTicketCard">
                 <!-- Ticket Top Header -->
                 <div class="ticket-header">
@@ -628,6 +661,15 @@
               </div>
             </div>
           </div>
+
+          <!-- Mobile Sticky Quick-Jump Pill -->
+          <div class="calc-mobile-quick-action" id="mobileQuickAction">
+            <button type="button" class="btn-mobile-jump-ticket" data-next-step="3">
+              <span class="jump-pill">MT5</span>
+              <span class="jump-lots" id="mobileJumpLots">Sell 0.12 Lots</span>
+              <span class="jump-arrow">View Ticket ➔</span>
+            </button>
+          </div>
         </div>
 
         <!-- ========================================================
@@ -636,7 +678,7 @@
         <div class="hedging-simulator-section" id="simulator">
           <div class="simulator-card">
             <div class="simulator-header">
-              <div class="simulator-tag">🧪 INTERACTIVE STRESS TEST</div>
+              <div class="simulator-tag" data-i18n="hedging.simBadge">🧪 INTERACTIVE STRESS TEST</div>
               <h3 class="simulator-title" data-i18n="hedging.simTitle">
                 Market Crash Simulator: <span class="gold-accent">See How Hedging Protects Your Money</span>
               </h3>
@@ -674,20 +716,20 @@
               <!-- Left: Traditional Unhedged Shop -->
               <div class="sim-result-card unhedged">
                 <div class="sim-card-header">
-                  <span class="sim-card-badge danger">TRADITIONAL UNHEDGED SHOP (ហាងគ្មាន HEDGING)</span>
-                  <h4 class="sim-card-title">Naked Exposure Result</h4>
+                  <span class="sim-card-badge danger" data-i18n="hedging.simUnhedgedBadge">TRADITIONAL UNHEDGED SHOP (ហាងគ្មាន HEDGING)</span>
+                  <h4 class="sim-card-title" data-i18n="hedging.simUnhedgedTitle">Naked Exposure Result</h4>
                 </div>
                 <div class="sim-metrics-list">
                   <div class="sim-metric-row">
-                    <span>Physical Stock Devaluation:</span>
+                    <span data-i18n="hedging.simRowStockDeval">Physical Stock Devaluation:</span>
                     <strong class="text-danger" id="simUnhedgedPhysicalDiff">-$1,808.48 USD</strong>
                   </div>
                   <div class="sim-metric-row">
-                    <span>Broker Digital Protection:</span>
+                    <span data-i18n="hedging.simRowDigitalProtect">Broker Digital Protection:</span>
                     <strong>$0.00 (None)</strong>
                   </div>
                   <div class="sim-metric-row highlight-net">
-                    <span>Net Market P&L:</span>
+                    <span data-i18n="hedging.simRowNetLoss">Net Market P&L:</span>
                     <strong class="text-danger" id="simUnhedgedNet">-$1,808.48 Capital Loss</strong>
                   </div>
                 </div>
@@ -702,20 +744,20 @@
               <!-- Right: BlueX Delta-Neutral Hedged Shop -->
               <div class="sim-result-card hedged">
                 <div class="sim-card-header">
-                  <span class="sim-card-badge success">BLUEX DELTA-NEUTRAL PROTOCOL (ហាងមាន HEDGING)</span>
-                  <h4 class="sim-card-title">Protected Equilibrium Result</h4>
+                  <span class="sim-card-badge success" data-i18n="hedging.simHedgedBadge">BLUEX DELTA-NEUTRAL PROTOCOL (ហាងមាន HEDGING)</span>
+                  <h4 class="sim-card-title" data-i18n="hedging.simHedgedTitle">Protected Equilibrium Result</h4>
                 </div>
                 <div class="sim-metrics-list">
                   <div class="sim-metric-row">
-                    <span>Physical Stock Devaluation:</span>
+                    <span data-i18n="hedging.simRowStockDeval">Physical Stock Devaluation:</span>
                     <strong class="text-danger" id="simHedgedPhysicalDiff">-$1,808.48 USD</strong>
                   </div>
                   <div class="sim-metric-row">
-                    <span>MT5 Short Hedge Gain:</span>
+                    <span data-i18n="hedging.simRowDigitalGain">MT5 Short Hedge Gain:</span>
                     <strong class="text-success" id="simHedgedDigitalDiff">+$1,800.00 USD</strong>
                   </div>
                   <div class="sim-metric-row highlight-net">
-                    <span>Net Market Fluctuation:</span>
+                    <span data-i18n="hedging.simRowNetFluct">Net Market Fluctuation:</span>
                     <strong class="text-success" id="simHedgedNet">$0.00 Net Loss (Protected)</strong>
                   </div>
                 </div>
@@ -735,26 +777,26 @@
              ======================================================== -->
         <div class="hedging-casestudy-section">
           <div class="casestudy-card">
-            <div class="casestudy-badge">📍 REAL PHNOM PENH CASE STUDY</div>
-            <h3 class="casestudy-title">
+            <div class="casestudy-badge" data-i18n="hedging.caseBadge">📍 REAL PHNOM PENH CASE STUDY</div>
+            <h3 class="casestudy-title" data-i18n="hedging.caseTitle">
               How Heng Dara Jewelry (Phsar Thmey) Saved <span class="gold-accent">$3,375.00</span> Over a Weekend
             </h3>
             <div class="casestudy-grid">
               <div class="casestudy-col">
-                <h4 class="col-title">The Saturday Inflow</h4>
-                <p>
+                <h4 class="col-title" data-i18n="hedging.caseCol1Title">The Saturday Inflow</h4>
+                <p data-i18n="hedging.caseCol1Desc">
                   On Saturday afternoon, retail clients sold <strong>20 Damlung (750.00g)</strong> of gold jewelry to the shop. The cashier paid <strong>$96,000 USD</strong> physical cash at $4,800/Damlung. Spot was $3,948/oz.
                 </p>
               </div>
               <div class="casestudy-col">
-                <h4 class="col-title">The 10-Second Action</h4>
-                <p>
+                <h4 class="col-title" data-i18n="hedging.caseCol2Title">The 10-Second Action</h4>
+                <p data-i18n="hedging.caseCol2Desc">
                   Instead of praying gold wouldn't crash over Sunday, the treasurer opened BlueX Terminal and placed a <strong>0.24 Lot XAU/USD Short</strong> on MT5, locking in a $789.80 counter spread profit.
                 </p>
               </div>
               <div class="casestudy-col highlight">
-                <h4 class="col-title">The Monday Market Shock</h4>
-                <p>
+                <h4 class="col-title" data-i18n="hedging.caseCol3Title">The Monday Market Shock</h4>
+                <p data-i18n="hedging.caseCol3Desc">
                   Monday 6:00 AM: Global geopolitical news breaks, gold plunges <strong>-$140.00/oz</strong>. An unhedged shop lost $3,375 on inventory. Heng Dara shop's MT5 position gained +$3,360, neutralizing the drop completely. Net loss: <strong>$0.00</strong>.
                 </p>
               </div>

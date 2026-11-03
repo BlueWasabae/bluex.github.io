@@ -1152,6 +1152,39 @@ document.addEventListener('DOMContentLoaded', () => {
       'hedging.q4Answer': 'Yes. The mathematical delta-neutral principles remain identical across Silver (XAG/USD) and Platinum (XPT/USD), adjusting only for standard contract sizes (5,000 oz per standard Silver lot). BlueX Terminal provides custom formulas for multi-metal treasury desks.',
       'hedging.floatingCta': 'Consult Treasury Setup • DM @Le_Bluue',
 
+      // Real Phnom Penh Case Study (English)
+      'hedging.caseBadge': '📍 REAL PHNOM PENH CASE STUDY',
+      'hedging.caseTitle': 'How Heng Dara Jewelry (Phsar Thmey) Saved <span class="gold-accent">$3,375.00</span> Over a Weekend',
+      'hedging.caseCol1Title': 'The Saturday Inflow',
+      'hedging.caseCol1Desc': 'On Saturday afternoon, retail clients sold <strong>20 Damlung (750.00g)</strong> of gold jewelry to the shop. The cashier paid <strong>$96,000 USD</strong> physical cash at $4,800/Damlung. Spot was $3,948/oz.',
+      'hedging.caseCol2Title': 'The 10-Second Action',
+      'hedging.caseCol2Desc': 'Instead of praying gold wouldn\'t crash over Sunday, the treasurer opened BlueX Terminal and placed a <strong>0.24 Lot XAU/USD Short</strong> on MT5, locking in a $789.80 counter spread profit.',
+      'hedging.caseCol3Title': 'The Monday Market Shock',
+      'hedging.caseCol3Desc': 'Monday 6:00 AM: Global geopolitical news breaks, gold plunges <strong>-$140.00/oz</strong>. An unhedged shop lost $3,375 on inventory. Heng Dara shop\'s MT5 position gained +$3,360, neutralizing the drop completely. Net loss: <strong>$0.00</strong>.',
+
+      // Crash & Rally Simulator (English)
+      'hedging.simBadge': 'CRASH & RALLY SCENARIO SIMULATOR',
+      'hedging.simTitle': 'Stress-Test Inventory vs. Digital Short',
+      'hedging.simSubtitle': 'See what happens to a 10 Damlung jewelry purchase if market crashes -$100/oz vs surges +$100/oz.',
+      'hedging.simShockLabel': 'Select Market Shock Move:',
+      'hedging.simUnhedgedBadge': 'TRADITIONAL UNHEDGED SHOP (ហាងគ្មាន HEDGING)',
+      'hedging.simUnhedgedTitle': 'Exposed Directional Loss',
+      'hedging.simRowStockDeval': 'Physical Stock Devaluation:',
+      'hedging.simRowDigitalProtect': 'Broker Digital Protection:',
+      'hedging.simRowNetLoss': 'Net Market P&L:',
+      'hedging.simHedgedBadge': 'BLUEX DELTA-NEUTRAL PROTOCOL (ហាងមាន HEDGING)',
+      'hedging.simHedgedTitle': 'Protected Equilibrium Result',
+      'hedging.simRowDigitalGain': 'MT5 Short Hedge Gain:',
+      'hedging.simRowNetFluct': 'Net Market Fluctuation:',
+
+      // Progressive 3-Step Navigation (English)
+      'hedging.tab1': '1. Physical Counter Inflow',
+      'hedging.tab2': '2. Broker Safety & Capital',
+      'hedging.tab3': '3. Execution Ticket',
+      'hedging.btnNextStep2': 'Next: Safety Buffer & Capital ➔',
+      'hedging.btnBackStep1': '← Back to Counter Inflow',
+      'hedging.btnNextStep3': 'View Execution Ticket ➔',
+
       // Footer
       'footer.copy': '© 2026 BlueX. Master Your Ego. Master Your Trades. All rights reserved.'
     },
@@ -1834,6 +1867,39 @@ document.addEventListener('DOMContentLoaded', () => {
       'hedging.q4Answer': 'បាន។ គោលការណ៍គណិតវិទ្យា Delta-Neutral គឺដូចគ្នាសម្រាប់ប្រាក់ (XAG/USD) និងប្លាទីន (XPT/USD) ដោយគ្រាន់តែកែសម្រួលទំហំកិច្ចសន្យាស្តង់ដារ (៥,០០០ oz ក្នុងមួយ Lot ប្រាក់)។ BlueX Terminal ផ្តល់រូបមន្តជាក់លាក់សម្រាប់តុរតនាគារពហុលោហៈ។',
       'hedging.floatingCta': 'ពិគ្រោះយោបល់រៀបចំរតនាគារ • DM @Le_Bluue',
 
+      // Real Phnom Penh Case Study (Khmer)
+      'hedging.caseBadge': '📍 ឧទាហរណ៍ជាក់ស្តែងនៅភ្នំពេញ',
+      'hedging.caseTitle': 'របៀបដែលហាងមាស ហេង ដារ៉ា (ផ្សារធំថ្មី) ការពារមិនឱ្យខាត <span class="gold-accent">$3,375.00</span> ក្នុងចុងសប្តាហ៍',
+      'hedging.caseCol1Title': 'លំហូរចូលថ្ងៃសៅរ៍ (ទិញមាសចូល)',
+      'hedging.caseCol1Desc': 'នៅរសៀលថ្ងៃសៅរ៍ អតិថិជនបានលក់មាសគ្រឿងចំនួន <strong>២០ តម្លឹង (៧៥០.០០ ក្រាម)</strong> មកឱ្យហាង។ បេឡាករបានទូទាត់ប្រាក់សុទ្ធ <strong>$96,000 USD</strong> ក្នុងតម្លៃ $4,800/តម្លឹង (Spot ពិភពលោក $3,948/oz)។',
+      'hedging.caseCol2Title': 'សកម្មភាព ១០ វិនាទី (Hedging)',
+      'hedging.caseCol2Desc': 'ជំនួសឱ្យការបារម្ភខ្លាចមាសធ្លាក់ថ្លៃថ្ងៃអាទិត្យ ម្ចាស់ហាងបានបើក BlueX Terminal ហើយចុច <strong>Sell 0.24 Lot XAU/USD</strong> លើ MT5 ដើម្បីចាក់សោប្រាក់ចំណេញកម្រៃជើងសារ $789.80។',
+      'hedging.caseCol3Title': 'ទីផ្សារធ្លាក់ចុះថ្ងៃចន្ទ (ការពារ ១០០%)',
+      'hedging.caseCol3Desc': 'ព្រឹកថ្ងៃចន្ទ ម៉ោង ៦:០០៖ ព័ត៌មានអន្តរជាតិផ្ទុះឡើង តម្លៃមាសពិភពលោកធ្លាក់ចុះយ៉ាងគំហុក <strong>-$140.00/oz</strong>។ ហាងដែលមិនបាន Hedge ខាតបង់លើស្តុក $3,375។ ចំណែកហាង ហេង ដារ៉ា ទទួលបានប្រាក់ចំណេញពី MT5 +$3,360 ដែលទូទាត់ការខាតបង់ស្មើគ្នាទាំងស្រុង។ ការខាតបង់សុទ្ធ៖ <strong>$0.00</strong>។',
+
+      // Crash & Rally Simulator (Khmer)
+      'hedging.simBadge': 'ម៉ាស៊ីនពិសោធន៍ការប្រែប្រួលទីផ្សារគំហុក',
+      'hedging.simTitle': 'ពិសោធន៍ស្តុកមាសជាក់ស្តែងធៀបនឹងកិច្ចសន្យាឌីជីថល',
+      'hedging.simSubtitle': 'ពិនិត្យមើលផលប៉ះពាល់លើការទិញមាស ១០ តម្លឹង ប្រសិនបើតម្លៃមាសពិភពលោកធ្លាក់ចុះ -$100/oz ឬហក់ឡើង +$100/oz',
+      'hedging.simShockLabel': 'ជ្រើសរើសទំហំរលាក់ទីផ្សារ:',
+      'hedging.simUnhedgedBadge': 'ហាងបុរាណដែលមិនបាន HEDGE (រងហានិភ័យពេញលេញ)',
+      'hedging.simUnhedgedTitle': 'ការខាតបង់លើស្តុកជាក់ស្តែង',
+      'hedging.simRowStockDeval': 'ការថយចុះតម្លៃស្តុកមាសរូបវន្ត:',
+      'hedging.simRowDigitalProtect': 'ការការពារពីកិច្ចសន្យាឌីជីថល:',
+      'hedging.simRowNetLoss': 'លទ្ធផលចំណេញ/ខាតសុទ្ធ:',
+      'hedging.simHedgedBadge': 'ពិធីការ BLUEX DELTA-NEUTRAL (ហាងមាន HEDGING)',
+      'hedging.simHedgedTitle': 'លទ្ធផលមានលំនឹងសុវត្ថិភាព ១០០%',
+      'hedging.simRowDigitalGain': 'ប្រាក់ចំណេញពី MT5 Short Hedge:',
+      'hedging.simRowNetFluct': 'ការប្រែប្រួលសុទ្ធ:',
+
+      // Progressive 3-Step Navigation (Khmer)
+      'hedging.tab1': '១. លំហូរទិញ-លក់នៅតុហាង',
+      'hedging.tab2': '២. ដើមទុន & ទុនបម្រុងសុវត្ថិភាព',
+      'hedging.tab3': '៣. សំបុត្របញ្ជា MT4/MT5',
+      'hedging.btnNextStep2': 'បន្ទាប់៖ ទុនបម្រុងសុវត្ថិភាព ➔',
+      'hedging.btnBackStep1': '← ត្រឡប់ទៅលំហូរទិញ-លក់',
+      'hedging.btnNextStep3': 'មើលសំបុត្របញ្ជា MT5 ➔',
+
       // Footer
       'footer.copy': '© 2026 BlueX. គ្រប់គ្រងអហំការរបស់អ្នក។ គ្រប់គ្រងការជួញដូររបស់អ្នក។ រក្សាសិទ្ធិគ្រប់យ៉ាង។'
     }
@@ -2265,6 +2331,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (quickLotsText) quickLotsText.textContent = `${brokerLots.toFixed(2)} Lots ${metalSymbol}`;
       if (quickCashTotal) quickCashTotal.textContent = `$${physicalCashTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
+      const mobileJumpLots = document.getElementById('mobileJumpLots');
+      if (mobileJumpLots) {
+        mobileJumpLots.textContent = (isBuy ? (currentLang === 'km' ? 'លក់ ' : 'Sell ') : (currentLang === 'km' ? 'ទិញ ' : 'Buy ')) + `${brokerLots.toFixed(2)} Lots`;
+      }
+
       if (banner && headline && reason) {
         if (isBuy) {
           banner.classList.remove('action-buy');
@@ -2664,6 +2735,81 @@ Protocol Status: 100% Delta-Neutral Protected`;
     if (hedgeAccountBalanceInput) {
       hedgeAccountBalanceInput.addEventListener('input', calculateGoldHedging);
     }
+
+    // Progressive Step Navigation (PC & Mobile)
+    const workflowTabs = document.querySelectorAll('.workflow-tab');
+    const stepBlocks = document.querySelectorAll('[data-calc-step]');
+    const nextButtons = document.querySelectorAll('[data-next-step]');
+    const backButtons = document.querySelectorAll('[data-prev-step]');
+
+    function switchWorkflowStep(stepNum) {
+      const stepStr = String(stepNum);
+      workflowTabs.forEach(t => {
+        const isMatch = t.getAttribute('data-step') === stepStr;
+        t.classList.toggle('active', isMatch);
+        t.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+      });
+
+      const isMobile = window.innerWidth <= 992;
+      stepBlocks.forEach(b => {
+        const bStep = b.getAttribute('data-calc-step');
+        if (isMobile) {
+          // On mobile, show only selected step
+          b.style.display = (bStep === stepStr) ? 'block' : 'none';
+        } else {
+          // On desktop:
+          // Step 1: Show Step 1 in left column, ticket in right column
+          // Step 2: Show Step 2 in left column, ticket in right column
+          // Step 3: Show both Step 1 & 2 in left column, highlight ticket and scroll to it
+          if (bStep === '1') {
+            b.style.display = (stepStr === '1' || stepStr === '3') ? 'block' : 'none';
+          } else if (bStep === '2') {
+            b.style.display = (stepStr === '2' || stepStr === '3') ? 'block' : 'none';
+          } else if (bStep === '3') {
+            b.style.display = 'block';
+            if (stepStr === '3') {
+              const ticketEl = document.getElementById('calcTicketCard');
+              if (ticketEl) {
+                ticketEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                ticketEl.classList.add('ticket-highlight-pulse');
+                setTimeout(() => ticketEl.classList.remove('ticket-highlight-pulse'), 1500);
+              }
+            }
+          }
+        }
+      });
+    }
+
+    workflowTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const step = tab.getAttribute('data-step');
+        if (step) switchWorkflowStep(step);
+      });
+    });
+
+    nextButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const step = btn.getAttribute('data-next-step');
+        if (step) switchWorkflowStep(step);
+      });
+    });
+
+    backButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const step = btn.getAttribute('data-prev-step');
+        if (step) switchWorkflowStep(step);
+      });
+    });
+
+    // Handle responsive resize layout
+    window.addEventListener('resize', () => {
+      const activeTab = document.querySelector('.workflow-tab.active');
+      const step = activeTab ? activeTab.getAttribute('data-step') : '1';
+      switchWorkflowStep(step || '1');
+    });
+
+    // Default to Step 1
+    switchWorkflowStep('1');
 
     // Initial spot fetch & execution
     fetchLiveSpotPrice(currentHedgeMetal, false);
