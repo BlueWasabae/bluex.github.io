@@ -249,7 +249,7 @@ button {
 .site-header {
   position: sticky;
   top: 16px;
-  z-index: 100;
+  z-index: 1000;
   padding-top: 8px;
   padding-bottom: 8px;
 }
@@ -468,9 +468,38 @@ button {
 
 .mobile-menu-toggle {
   display: none;
-  color: #fff;
-  font-size: 1.5rem;
-  padding: 6px;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  min-height: 42px;
+  padding: 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 1005;
+}
+
+.mobile-menu-toggle:hover,
+.mobile-menu-toggle:active,
+.mobile-menu-toggle.active {
+  background: rgba(0, 255, 224, 0.14) !important;
+  border-color: rgba(0, 255, 224, 0.45) !important;
+  color: #00ffe0 !important;
+  box-shadow: 0 0 14px rgba(0, 255, 224, 0.25);
+}
+
+.mobile-menu-toggle .hamburger-icon,
+.mobile-menu-toggle .close-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 
 /* ========================================================
@@ -3474,22 +3503,43 @@ button {
 .nav-drawer-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(4, 6, 12, 0.72);
+  background: rgba(4, 6, 12, 0.78);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.28s ease;
-  z-index: 998;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease;
+  z-index: 999;
+  pointer-events: none;
 }
 
 .nav-drawer-backdrop.active {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 body.menu-drawer-locked {
   overflow: hidden !important;
+  touch-action: none;
+}
+
+/* Ensure site-header stays stable, in front of backdrop, and does NOT clip drawer */
+.site-header.menu-open,
+body.menu-drawer-locked .site-header {
+  z-index: 1005 !important;
+  transform: none !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  will-change: auto !important;
+}
+
+.site-header.menu-open .nav-wrapper,
+body.menu-drawer-locked .site-header .nav-wrapper {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  transform: none !important;
 }
 
 @media (max-width: 1120px) {
@@ -3498,31 +3548,32 @@ body.menu-drawer-locked {
   }
   
   .mobile-menu-toggle {
-    display: block;
+    display: inline-flex !important;
   }
 
   .nav-menu.mobile-open {
     display: flex !important;
     flex-direction: column !important;
     position: fixed !important;
-    top: 70px !important;
-    left: 14px !important;
-    right: 14px !important;
+    top: 68px !important;
+    left: 12px !important;
+    right: 12px !important;
     max-width: 480px !important;
     margin: 0 auto !important;
-    max-height: calc(100vh - 86px) !important;
+    max-height: calc(100vh - 84px) !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
     background: linear-gradient(180deg, rgba(14, 18, 28, 0.98) 0%, rgba(8, 11, 18, 0.99) 100%) !important;
     backdrop-filter: blur(28px) saturate(190%) !important;
     -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
-    border: 1px solid rgba(212, 175, 55, 0.32) !important;
+    border: 1px solid rgba(212, 175, 55, 0.35) !important;
     border-radius: 22px !important;
     padding: 16px 14px 20px !important;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.88), 0 0 35px rgba(0, 255, 224, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
-    z-index: 1000 !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.92), 0 0 35px rgba(0, 255, 224, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    z-index: 1010 !important;
     gap: 5px !important;
-    animation: navDrawerEntry 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+    animation: navDrawerEntry 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
   }
 
   .nav-menu.mobile-open .nav-mobile-only {
@@ -6163,7 +6214,7 @@ html[lang="km"] .nav-register-dm-btn {
     display: none;
   }
   html[lang="km"] .mobile-menu-toggle {
-    display: block;
+    display: inline-flex !important;
   }
   html[lang="km"] .nav-menu.mobile-open {
     display: flex !important;
@@ -6177,10 +6228,9 @@ html[lang="km"] .nav-register-dm-btn {
 /* 3. Smart Toolbar: Disappears on Scroll Down, Appears Immediately on Scroll Up */
 .site-header {
   transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.26s ease !important;
-  will-change: transform, opacity;
 }
 
-.site-header.header-hidden {
+.site-header.header-hidden:not(.menu-open) {
   transform: translateY(-135%) !important;
   opacity: 0 !important;
   pointer-events: none !important;
@@ -6412,6 +6462,13 @@ body {
     top: 8px !important;
     padding-top: 4px !important;
     padding-bottom: 4px !important;
+  }
+
+  .nav-menu.mobile-open {
+    top: 60px !important;
+    left: 10px !important;
+    right: 10px !important;
+    max-height: calc(100vh - 74px) !important;
   }
 
   .nav-wrapper {

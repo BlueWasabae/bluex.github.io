@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ========================================================
   // 1A. LUXURY MOBILE NAVIGATION DRAWER & BACKDROP
   // ========================================================
+  const siteHeader = document.querySelector('.site-header');
   const mobileToggle = document.getElementById('mobileMenuToggle');
   const navMenu = document.getElementById('navMenu');
 
@@ -55,24 +56,41 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(navBackdrop);
   }
 
+  function updateHamburgerIcon(isOpen) {
+    const hbIcon = document.getElementById('hamburgerIcon');
+    const closeIcon = document.getElementById('hamburgerCloseIcon');
+    if (hbIcon && closeIcon) {
+      hbIcon.style.display = isOpen ? 'none' : 'block';
+      closeIcon.style.display = isOpen ? 'block' : 'none';
+    }
+  }
+
   function openMobileMenu() {
     if (!navMenu) return;
+    if (siteHeader) {
+      siteHeader.classList.remove('header-hidden');
+      siteHeader.classList.add('menu-open');
+    }
     navMenu.classList.add('mobile-open');
     if (mobileToggle) mobileToggle.classList.add('active');
     if (navBackdrop) navBackdrop.classList.add('active');
     document.body.classList.add('menu-drawer-locked');
+    updateHamburgerIcon(true);
   }
 
   function closeMobileMenu() {
     if (!navMenu) return;
     navMenu.classList.remove('mobile-open');
+    if (siteHeader) siteHeader.classList.remove('menu-open');
     if (mobileToggle) mobileToggle.classList.remove('active');
     if (navBackdrop) navBackdrop.classList.remove('active');
     document.body.classList.remove('menu-drawer-locked');
+    updateHamburgerIcon(false);
   }
 
   if (mobileToggle && navMenu) {
     mobileToggle.addEventListener('click', (e) => {
+      e.preventDefault();
       e.stopPropagation();
       if (navMenu.classList.contains('mobile-open')) {
         closeMobileMenu();
@@ -82,7 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (navBackdrop) {
-      navBackdrop.addEventListener('click', closeMobileMenu);
+      navBackdrop.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeMobileMenu();
+      });
     }
 
     document.addEventListener('click', (e) => {
@@ -2042,23 +2064,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // ========================================================
   // 12. SMART TOOLBAR: HIDE ON SCROLL DOWN, SHOW ON SCROLL UP
   // ========================================================
-  const siteHeader = document.querySelector('.site-header');
   let lastScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
   let scrollTicking = false;
 
   function handleHeaderScrollDirection() {
     if (!siteHeader) return;
+    // CRITICAL: NEVER hide header or close menu while mobile menu is open
+    if (navMenu && navMenu.classList.contains('mobile-open')) {
+      siteHeader.classList.remove('header-hidden');
+      return;
+    }
     const currentScrollY = Math.max(0, window.pageYOffset || document.documentElement.scrollTop || 0);
     const delta = currentScrollY - lastScrollY;
 
     if (currentScrollY <= 55) {
       siteHeader.classList.remove('header-hidden');
       lastScrollY = currentScrollY;
-    } else if (delta > 5 && currentScrollY > 70) {
+    } else if (delta > 8 && currentScrollY > 70) {
       siteHeader.classList.add('header-hidden');
-      closeMobileMenu();
       lastScrollY = currentScrollY;
-    } else if (delta < -3) {
+    } else if (delta < -4) {
       siteHeader.classList.remove('header-hidden');
       lastScrollY = currentScrollY;
     }
