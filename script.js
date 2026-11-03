@@ -76,6 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (navBackdrop) navBackdrop.classList.add('active');
     document.body.classList.add('menu-drawer-locked');
     updateHamburgerIcon(true);
+    // CRITICAL: Pause background canvas immediately to guarantee zero lag in menu
+    if (window.pauseBluexCanvas) {
+      window.pauseBluexCanvas();
+    }
   }
 
   function closeMobileMenu() {
@@ -86,6 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (navBackdrop) navBackdrop.classList.remove('active');
     document.body.classList.remove('menu-drawer-locked');
     updateHamburgerIcon(false);
+    // Resume background canvas smoothly
+    if (window.resumeBluexCanvas) {
+      window.resumeBluexCanvas();
+    }
   }
 
   if (mobileToggle && navMenu) {
@@ -115,8 +123,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        closeMobileMenu();
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (!href) {
+          closeMobileMenu();
+          return;
+        }
+
+        const currentPath = window.location.pathname.replace(/\/$/, '');
+        const isCurrentIndex = currentPath === '' || currentPath.endsWith('index.html');
+        const targetsIndex = href === 'index.html' || href.startsWith('index.html#') || href === '/index.html' || href.startsWith('/index.html#');
+
+        // Navigating from a subpage (e.g. smc-genesis.html) to index.html
+        if (!isCurrentIndex && targetsIndex) {
+          // NEVER preventDefault! Allow normal navigation to index.html!
+          setTimeout(() => {
+            closeMobileMenu();
+          }, 80);
+          return;
+        }
+
+        // On index page with hash link
+        if (isCurrentIndex && href.startsWith('#')) {
+          const targetEl = document.querySelector(href);
+          if (targetEl) {
+            e.preventDefault();
+            closeMobileMenu();
+            setTimeout(() => {
+              targetEl.scrollIntoView({ behavior: 'smooth' });
+            }, 60);
+            return;
+          }
+        }
+
+        // Standard link close with small delay so click event finishes dispatch
+        setTimeout(() => {
+          closeMobileMenu();
+        }, 80);
       });
     });
 
@@ -128,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================
-  // 1B. CLICK LOGO TO SMOOTH SCROLL TO TOP EVERY TIME
+  // 1B. CLICK LOGO TO SMOOTH SCROLL TO TOP OR NAVIGATE HOME
   // ========================================================
   const logoTriggers = document.querySelectorAll('.logo, .nav-logo-3d-img, a[href="#top"], a[href="#hero"]');
   logoTriggers.forEach(el => {
@@ -139,27 +182,33 @@ document.addEventListener('DOMContentLoaded', () => {
       const isIndex = currentPath === '' || currentPath.endsWith('index.html');
 
       // If on index (or root) and link points to top/hero or has no href
-      if (isIndex && (!href || href === '#top' || href === '#hero' || href === '#' || href === 'index.html' || href === 'index.html#top' || href === 'index.html#hero')) {
-        e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-        if (window.history && window.history.replaceState) {
-          window.history.replaceState(null, null, window.location.pathname + window.location.search);
+      if (isIndex) {
+        if (!href || href === '#top' || href === '#hero' || href === '#' || href === 'index.html' || href === 'index.html#top' || href === 'index.html#hero') {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname + window.location.search);
+          }
+          closeMobileMenu();
         }
-        closeMobileMenu();
-      } else if (href === '#top' || href === '#' || (!href && el.classList.contains('logo'))) {
-        // Subpages scrolling to top of current page
-        e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-        if (window.history && window.history.replaceState) {
-          window.history.replaceState(null, null, window.location.pathname + window.location.search);
+      } else {
+        // On subpage (smc-genesis.html, knowledge.html)
+        // If the anchor links to index.html, ALLOW DEFAULT NAVIGATION! NEVER PREVENT DEFAULT!
+        if (href && (href === 'index.html' || href.startsWith('index.html') || href === '/' || href.startsWith('/index.html'))) {
+          closeMobileMenu();
+          return;
         }
-        closeMobileMenu();
+        if (href === '#top' || href === '#') {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+          closeMobileMenu();
+        }
       }
     });
   });
@@ -1815,20 +1864,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
-    const particleCount = 65;
+    const isMobile = window.innerWidth <= 768;
+    const particleCount = isMobile ? 22 : 48;
     let shootingStar = null;
     let mouse = { x: -1000, y: -1000 };
     let animFrameId = null;
+    let isPaused = false;
 
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
-    });
+    }, { passive: true });
 
     function drawStaticStarfield() {
       ctx.clearRect(0, 0, width, height);
       const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      for (let i = 0; i < Math.min(particles.length, 32); i++) {
+      for (let i = 0; i < Math.min(particles.length, 24); i++) {
         const p = particles[i];
         ctx.save();
         ctx.translate(p.x, p.y);
@@ -1846,11 +1897,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function resize() {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      if (document.documentElement.classList.contains('effects-frozen')) {
+      if (document.documentElement.classList.contains('effects-frozen') || isPaused) {
         drawStaticStarfield();
       }
     }
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', resize, { passive: true });
     resize();
 
     class CosmicParticle {
@@ -1860,30 +1911,32 @@ document.addEventListener('DOMContentLoaded', () => {
       reset(initial = false) {
         this.x = Math.random() * width;
         this.y = initial ? Math.random() * height : height + 10;
-        this.vy = -(Math.random() * 0.45 + 0.12);
-        this.vx = (Math.random() - 0.5) * 0.25;
-        this.size = Math.random() * 2.2 + 0.7;
-        this.baseAlpha = Math.random() * 0.5 + 0.25;
+        this.vy = -(Math.random() * 0.40 + 0.10);
+        this.vx = (Math.random() - 0.5) * 0.20;
+        this.size = Math.random() * 2.0 + 0.6;
+        this.baseAlpha = Math.random() * 0.45 + 0.20;
         this.alpha = this.baseAlpha;
         this.phase = Math.random() * Math.PI * 2;
-        this.speed = Math.random() * 0.03 + 0.012;
+        this.speed = Math.random() * 0.025 + 0.010;
         const rand = Math.random();
         this.colorType = rand > 0.55 ? 'gold' : (rand > 0.20 ? 'cyan' : 'white');
-        this.isStar = Math.random() > 0.65;
+        this.isStar = Math.random() > 0.70;
       }
       update() {
         this.y += this.vy;
         this.x += this.vx;
         this.phase += this.speed;
-        this.alpha = this.baseAlpha + Math.sin(this.phase) * 0.25;
+        this.alpha = this.baseAlpha + Math.sin(this.phase) * 0.20;
 
-        const dx = this.x - mouse.x;
-        const dy = this.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          const force = (120 - dist) / 120;
-          this.x += (dx / dist) * force * 1.5;
-          this.y += (dy / dist) * force * 1.5;
+        if (!isMobile) {
+          const dx = this.x - mouse.x;
+          const dy = this.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            const force = (100 - dist) / 100;
+            this.x += (dx / dist) * force * 1.2;
+            this.y += (dy / dist) * force * 1.2;
+          }
         }
 
         if (this.y < -15 || this.x < -15 || this.x > width + 15) {
@@ -1892,28 +1945,28 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       draw() {
         const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-        const currentAlpha = Math.max(0.10, Math.min(0.85, this.alpha * (isLight ? 1.3 : 0.9)));
+        const currentAlpha = Math.max(0.10, Math.min(0.85, this.alpha * (isLight ? 1.2 : 0.85)));
         ctx.save();
         ctx.translate(this.x, this.y);
 
         let color = isLight
           ? "rgba(180, 83, 9, " + currentAlpha + ")"
           : "rgba(255, 184, 0, " + currentAlpha + ")";
-        let shadowColor = isLight ? 'rgba(180, 83, 9, 0.5)' : 'rgba(255, 184, 0, 0.6)';
+        let haloColor = isLight ? 'rgba(180, 83, 9, 0.18)' : 'rgba(255, 184, 0, 0.22)';
         if (this.colorType === 'cyan') {
           color = isLight
             ? "rgba(2, 132, 199, " + (currentAlpha * 0.95) + ")"
             : "rgba(0, 255, 224, " + (currentAlpha * 0.85) + ")";
-          shadowColor = isLight ? 'rgba(2, 132, 199, 0.5)' : 'rgba(0, 255, 224, 0.55)';
+          haloColor = isLight ? 'rgba(2, 132, 199, 0.18)' : 'rgba(0, 255, 224, 0.22)';
         } else if (this.colorType === 'white') {
           color = isLight
             ? "rgba(15, 23, 42, " + (currentAlpha * 0.65) + ")"
             : "rgba(255, 255, 255, " + currentAlpha + ")";
-          shadowColor = isLight ? 'rgba(180, 83, 9, 0.4)' : 'rgba(255, 255, 255, 0.65)';
+          haloColor = isLight ? 'rgba(180, 83, 9, 0.15)' : 'rgba(255, 255, 255, 0.25)';
         }
 
         if (this.isStar) {
-          const s = this.size * 2.0;
+          const s = this.size * 1.8;
           ctx.fillStyle = color;
           ctx.beginPath();
           ctx.moveTo(0, -s);
@@ -1922,21 +1975,16 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.quadraticCurveTo(0, 0, -s, 0);
           ctx.quadraticCurveTo(0, 0, 0, -s);
           ctx.fill();
-
-          ctx.strokeStyle = color;
-          ctx.lineWidth = 0.5;
-          ctx.beginPath();
-          ctx.moveTo(-s * 1.5, 0);
-          ctx.lineTo(s * 1.5, 0);
-          ctx.moveTo(0, -s * 1.5);
-          ctx.lineTo(0, s * 1.5);
-          ctx.stroke();
         } else {
+          // Hardware-accelerated dual-circle glow (no expensive shadowBlur)
+          ctx.beginPath();
+          ctx.arc(0, 0, this.size * 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = haloColor;
+          ctx.fill();
+
           ctx.beginPath();
           ctx.arc(0, 0, this.size, 0, Math.PI * 2);
           ctx.fillStyle = color;
-          ctx.shadowColor = shadowColor;
-          ctx.shadowBlur = this.size * 3.2;
           ctx.fill();
         }
         ctx.restore();
@@ -1948,7 +1996,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function spawnShootingStar() {
-      if (document.documentElement.classList.contains('effects-frozen')) return;
+      if (document.documentElement.classList.contains('effects-frozen') || isPaused) return;
       if (shootingStar) return;
       const startX = Math.random() * (width * 0.7);
       const startY = Math.random() * (height * 0.3);
@@ -1961,10 +2009,10 @@ document.addEventListener('DOMContentLoaded', () => {
         decay: 0.022
       };
     }
-    setInterval(spawnShootingStar, 6500);
+    setInterval(spawnShootingStar, 7500);
 
     function render() {
-      if (document.documentElement.classList.contains('effects-frozen')) {
+      if (document.documentElement.classList.contains('effects-frozen') || isPaused) {
         drawStaticStarfield();
         animFrameId = null;
         return;
@@ -1976,22 +2024,26 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.clearRect(0, 0, width, height);
 
       const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 105) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            const beamAlpha = (isLight ? 0.16 : 0.10) * (1 - dist / 105);
-            const beamColor = particles[i].colorType === 'cyan' 
-              ? (isLight ? "rgba(2, 132, 199, " + beamAlpha + ")" : "rgba(0, 255, 224, " + beamAlpha + ")")
-              : (isLight ? "rgba(180, 83, 9, " + beamAlpha + ")" : "rgba(255, 184, 0, " + beamAlpha + ")");
-            ctx.strokeStyle = beamColor;
-            ctx.lineWidth = isLight ? 0.7 : 0.55;
-            ctx.stroke();
+
+      // Desktop only: Connecting constellation beams
+      if (!isMobile) {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 92) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              const beamAlpha = (isLight ? 0.14 : 0.08) * (1 - dist / 92);
+              const beamColor = particles[i].colorType === 'cyan' 
+                ? (isLight ? "rgba(2, 132, 199, " + beamAlpha + ")" : "rgba(0, 255, 224, " + beamAlpha + ")")
+                : (isLight ? "rgba(180, 83, 9, " + beamAlpha + ")" : "rgba(255, 184, 0, " + beamAlpha + ")");
+              ctx.strokeStyle = beamColor;
+              ctx.lineWidth = isLight ? 0.6 : 0.5;
+              ctx.stroke();
+            }
           }
         }
       }
@@ -2004,25 +2056,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (shootingStar) {
         const grad = ctx.createLinearGradient(
           shootingStar.x, shootingStar.y,
-          shootingStar.x - shootingStar.vx * 14, shootingStar.y - shootingStar.vy * 14
+          shootingStar.x - shootingStar.vx * 12, shootingStar.y - shootingStar.vy * 12
         );
         grad.addColorStop(0, "rgba(255, 255, 255, " + shootingStar.life + ")");
-        grad.addColorStop(0.3, "rgba(255, 184, 0, " + (shootingStar.life * 0.8) + ")");
-        grad.addColorStop(0.6, "rgba(0, 255, 224, " + (shootingStar.life * 0.5) + ")");
+        grad.addColorStop(0.3, "rgba(255, 184, 0, " + (shootingStar.life * 0.7) + ")");
+        grad.addColorStop(0.6, "rgba(0, 255, 224, " + (shootingStar.life * 0.4) + ")");
         grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
         ctx.beginPath();
         ctx.moveTo(shootingStar.x, shootingStar.y);
-        ctx.lineTo(shootingStar.x - shootingStar.vx * 14, shootingStar.y - shootingStar.vy * 14);
+        ctx.lineTo(shootingStar.x - shootingStar.vx * 12, shootingStar.y - shootingStar.vy * 12);
         ctx.strokeStyle = grad;
-        ctx.lineWidth = 1.6;
+        ctx.lineWidth = 1.5;
         ctx.stroke();
 
         ctx.beginPath();
         ctx.arc(shootingStar.x, shootingStar.y, 2.0, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(226, 232, 240, " + shootingStar.life + ")";
-        ctx.shadowColor = 'rgba(0, 255, 224, 0.85)';
-        ctx.shadowBlur = 8;
+        ctx.fillStyle = "rgba(255, 255, 255, " + shootingStar.life + ")";
         ctx.fill();
 
         shootingStar.x += shootingStar.vx;
@@ -2038,9 +2088,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     render();
 
+    window.pauseBluexCanvas = function() {
+      isPaused = true;
+    };
+
     window.resumeBluexCanvas = function() {
-      if (!animFrameId && !document.documentElement.classList.contains('effects-frozen')) {
-        animFrameId = requestAnimationFrame(render);
+      if (isPaused) {
+        isPaused = false;
+        if (!animFrameId && !document.documentElement.classList.contains('effects-frozen')) {
+          animFrameId = requestAnimationFrame(render);
+        }
       }
     };
   }

@@ -3509,12 +3509,12 @@ button {
 .nav-drawer-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(4, 6, 12, 0.78);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(4, 6, 12, 0.82);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
   z-index: 999;
   pointer-events: none;
 }
@@ -3527,7 +3527,7 @@ button {
 
 body.menu-drawer-locked {
   overflow: hidden !important;
-  touch-action: none;
+  overscroll-behavior: contain;
 }
 
 /* Ensure site-header stays stable, in front of backdrop, and does NOT clip drawer */
@@ -3572,8 +3572,6 @@ body.menu-drawer-locked .site-header .nav-wrapper {
     -webkit-overflow-scrolling: touch !important;
     touch-action: pan-y !important;
     background: linear-gradient(180deg, rgba(12, 15, 24, 0.98) 0%, rgba(6, 8, 14, 0.99) 100%) !important;
-    backdrop-filter: blur(28px) saturate(190%) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
     border: 1px solid rgba(212, 175, 55, 0.28) !important;
     border-radius: 20px !important;
     padding: 14px 14px 18px !important;
@@ -6212,8 +6210,9 @@ html.menu-open .genesis-floating-cta {
   background-repeat: repeat-x;
   background-position: bottom center;
   background-size: auto 85%;
-  opacity: 0.55;
-  filter: drop-shadow(0 0 18px rgba(255, 208, 75, 0.80));
+  opacity: 0.58;
+  will-change: transform;
+  transform: translateZ(0);
   animation: goldWaveDriftSingle 24s ease-in-out infinite alternate;
   pointer-events: none;
 }
@@ -6633,7 +6632,35 @@ body {
   }
 
   .golden-wave-layer {
-    background-size: auto 135px !important;
+    width: 100% !important;
+    left: 0 !important;
+    animation: none !important;
+    will-change: auto !important;
+    background-size: cover !important;
+  }
+
+  .nav-drawer-backdrop {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(4, 6, 12, 0.88) !important;
+  }
+
+  .smc-exec-card,
+  .smc-mrc-card,
+  .genesis-tenet-card,
+  .genesis-module-card,
+  .genesis-concept-card,
+  .genesis-compare-col,
+  .genesis-course-spotlight,
+  .smc-charter-box,
+  .broker-tier-box {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(13, 17, 27, 0.96) !important;
+  }
+
+  .genesis-floating-cta .floating-cta-pill {
+    animation: none !important;
   }
 
   .site-bg-video {
@@ -7448,4 +7475,121 @@ html.effects-frozen .nav-drawer-fx-toggle {
   background: rgba(2, 132, 199, 0.1) !important;
   border-color: rgba(2, 132, 199, 0.4) !important;
   color: #0284c7 !important;
+}
+
+/* ==============================================================================
+   LUXURY MODERN SECTION TITLES & ILLUMINATION EFFECTS
+   ============================================================================== */
+
+.section-title,
+.genesis-title,
+.smc-exec-heading,
+.mentorship-title,
+.capital-title,
+.calc-title,
+.broker-main-title,
+.knowledge-title,
+.brokers-title,
+.connect-heading {
+  position: relative;
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 45%, #e2e8f0 70%, #d4af37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hairline indicator accent below titles */
+.section-title::after,
+.mentorship-title::after,
+.capital-title::after,
+.calc-title::after,
+.knowledge-title::after,
+.brokers-title::after,
+.smc-exec-heading::after {
+  content: '';
+  display: block;
+  width: 58px;
+  height: 2px;
+  margin: 14px auto 0;
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.2) 0%, #d4af37 50%, rgba(0, 255, 224, 0.9) 85%, transparent 100%);
+  border-radius: 2px;
+  box-shadow: 0 0 12px rgba(0, 255, 224, 0.45);
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+
+.capital-title::after,
+.calc-title::after,
+.mentorship-title::after {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* Radiant metallic accent words inside headings */
+.section-title span.italic,
+.hero-title span.serif-accent,
+.mentorship-title span.italic,
+.capital-title span.gold-accent,
+.calc-title span.gold-accent,
+.knowledge-title span.gold-accent,
+.connect-heading span.gold {
+  background: linear-gradient(135deg, #d4af37 0%, #f5e08b 50%, #b8860b 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-style: italic;
+  filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.35));
+}
+
+.broker-main-title span.cyan-accent,
+.section-title span.cyan-accent,
+.genesis-title span.cyan-accent {
+  background: linear-gradient(135deg, #00ffe0 0%, #38bdf8 60%, #0284c7 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 0 16px rgba(0, 255, 224, 0.45));
+}
+
+/* Light Theme Precision Overrides */
+[data-theme="light"] .section-title,
+[data-theme="light"] .genesis-title,
+[data-theme="light"] .smc-exec-heading,
+[data-theme="light"] .mentorship-title,
+[data-theme="light"] .capital-title,
+[data-theme="light"] .calc-title,
+[data-theme="light"] .broker-main-title,
+[data-theme="light"] .knowledge-title,
+[data-theme="light"] .brokers-title,
+[data-theme="light"] .connect-heading {
+  background: linear-gradient(135deg, #0b0f19 0%, #1e293b 55%, #92400e 95%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+[data-theme="light"] .section-title::after,
+[data-theme="light"] .mentorship-title::after,
+[data-theme="light"] .capital-title::after,
+[data-theme="light"] .calc-title::after,
+[data-theme="light"] .knowledge-title::after,
+[data-theme="light"] .brokers-title::after,
+[data-theme="light"] .smc-exec-heading::after {
+  background: linear-gradient(90deg, rgba(180, 130, 40, 0.2) 0%, #d4af37 50%, #0284c7 85%, transparent 100%) !important;
+  box-shadow: 0 0 8px rgba(180, 130, 40, 0.35) !important;
+}
+
+/* Modern Khmer Section Headings Spacing */
+html[lang="km"] .section-title,
+html[lang="km"] .genesis-title,
+html[lang="km"] .smc-exec-heading,
+html[lang="km"] .mentorship-title,
+html[lang="km"] .capital-title,
+html[lang="km"] .calc-title,
+html[lang="km"] .broker-main-title,
+html[lang="km"] .knowledge-title,
+html[lang="km"] .brokers-title {
+  letter-spacing: 0.01em !important;
+  line-height: 1.35 !important;
 }
