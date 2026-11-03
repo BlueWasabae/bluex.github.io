@@ -158,6 +158,42 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) {}
   }
 
+  let currentLang = safeGetStorage('bluex_lang', 'en');
+
+  // ========================================================
+  // GLOBAL TOAST NOTIFICATION ENGINE
+  // ========================================================
+  let toastNoticeEl = null;
+  let toastMsgEl = null;
+  let toastTimer = null;
+
+  function showToast(message) {
+    if (!toastNoticeEl) {
+      toastNoticeEl = document.getElementById('toastNotice');
+      if (!toastNoticeEl) {
+        toastNoticeEl = document.createElement('div');
+        toastNoticeEl.id = 'toastNotice';
+        toastNoticeEl.className = 'toast-notice';
+        toastMsgEl = document.createElement('span');
+        toastMsgEl.id = 'toastMessage';
+        toastNoticeEl.appendChild(toastMsgEl);
+        document.body.appendChild(toastNoticeEl);
+      } else {
+        toastMsgEl = document.getElementById('toastMessage') || toastNoticeEl;
+      }
+    }
+    if (!toastMsgEl) {
+      toastMsgEl = document.getElementById('toastMessage') || toastNoticeEl;
+    }
+    toastMsgEl.textContent = message;
+    toastNoticeEl.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toastNoticeEl.classList.remove('show');
+    }, 4000);
+  }
+  window.showToast = showToast;
+
   // ========================================================
   // 2. LIGHT & DARK MODE THEME TOGGLE
   // ========================================================
@@ -189,6 +225,85 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ========================================================
+  // 2B. EFFECTS FREEZE & PERFORMANCE LITE ENGINE (SMOOTH MOBILE 60FPS)
+  // ========================================================
+  const fxToggleBtn = document.getElementById('fxToggleBtn');
+  const fxToggleDrawerBtn = document.getElementById('fxToggleDrawerBtn');
+  const fxNavIcon = document.getElementById('fxNavIcon');
+  const fxBtnText = document.getElementById('fxBtnText');
+  const fxDrawerIcon = document.getElementById('fxDrawerIcon');
+  const fxDrawerText = document.getElementById('fxDrawerText');
+
+  function updateFxButtonTexts() {
+    const isFrozen = document.documentElement.classList.contains('effects-frozen');
+    if (isFrozen) {
+      if (fxNavIcon) fxNavIcon.textContent = '❄️';
+      if (fxBtnText) fxBtnText.textContent = 'OFF';
+      if (fxToggleBtn) {
+        fxToggleBtn.classList.add('fx-frozen');
+        fxToggleBtn.setAttribute('title', currentLang === 'km' ? 'ចលនា: ផ្អាក (ចុចដើម្បីបើក)' : 'Effects: Frozen (Click to Resume)');
+      }
+      if (fxDrawerIcon) fxDrawerIcon.textContent = '❄️';
+      if (fxDrawerText) {
+        fxDrawerText.textContent = currentLang === 'km' ? 'ចលនា: ផ្អាក (ចុចដើម្បីបើក)' : 'Effects: Frozen (Tap to Resume)';
+      }
+      if (fxToggleDrawerBtn) fxToggleDrawerBtn.classList.add('fx-frozen');
+    } else {
+      if (fxNavIcon) fxNavIcon.textContent = '⚡';
+      if (fxBtnText) fxBtnText.textContent = 'FX';
+      if (fxToggleBtn) {
+        fxToggleBtn.classList.remove('fx-frozen');
+        fxToggleBtn.setAttribute('title', currentLang === 'km' ? 'ចលនា: បើក (ចុចដើម្បីផ្អាក)' : 'Effects: Active (Click to Freeze)');
+      }
+      if (fxDrawerIcon) fxDrawerIcon.textContent = '⚡';
+      if (fxDrawerText) {
+        fxDrawerText.textContent = currentLang === 'km' ? 'ចលនា: បើក (ចុចដើម្បីផ្អាក)' : 'Effects: Active (Tap to Freeze)';
+      }
+      if (fxToggleDrawerBtn) fxToggleDrawerBtn.classList.remove('fx-frozen');
+    }
+  }
+
+  function applyFxMode(isFrozen, triggerToast = false) {
+    if (isFrozen) {
+      document.documentElement.classList.add('effects-frozen');
+      safeSetStorage('bluex_fx_mode', 'off');
+      updateFxButtonTexts();
+      if (triggerToast) {
+        showToast(currentLang === 'km' ? '❄️ បានផ្អាកចលនា — ដំណើរការលឿនរលូន (Smooth 60FPS)' : '❄️ Effects Frozen — Smooth Performance Mode');
+      }
+    } else {
+      document.documentElement.classList.remove('effects-frozen');
+      safeSetStorage('bluex_fx_mode', 'on');
+      updateFxButtonTexts();
+      if (triggerToast) {
+        showToast(currentLang === 'km' ? '⚡ ចលនាត្រូវបានបើកដំណើរការឡើងវិញ' : '⚡ Visual Effects Resumed');
+      }
+      if (typeof window.resumeBluexCanvas === 'function') {
+        window.resumeBluexCanvas();
+      }
+    }
+  }
+
+  function toggleFxMode() {
+    const isCurrentlyFrozen = document.documentElement.classList.contains('effects-frozen');
+    applyFxMode(!isCurrentlyFrozen, true);
+  }
+
+  if (fxToggleBtn) {
+    fxToggleBtn.addEventListener('click', toggleFxMode);
+  }
+  if (fxToggleDrawerBtn) {
+    fxToggleDrawerBtn.addEventListener('click', toggleFxMode);
+  }
+
+  const savedFxMode = safeGetStorage('bluex_fx_mode', 'on');
+  if (savedFxMode === 'off') {
+    applyFxMode(true, false);
+  } else {
+    applyFxMode(false, false);
+  }
+
 
   // ========================================================
   // 3. COMPLETE KHMER (ខ្មែរ) & ENGLISH I18N DICTIONARY & ENGINE
@@ -214,6 +329,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.telegram': 'Telegram',
       'nav.register': 'Register Now',
       'nav.registerNow': 'Register Now',
+      'nav.fx': 'FX',
+      'nav.fxDrawer': 'Effects: Active (Tap to Freeze)',
+      'nav.fxDrawerOff': 'Effects: Frozen (Tap to Resume)',
 
       // Hero
       'hero.hey': 'Hey',
@@ -744,6 +862,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.telegram': 'តេឡេក្រាម',
       'nav.register': 'ចុះឈ្មោះ',
       'nav.registerNow': 'ចុះឈ្មោះ',
+      'nav.fx': 'FX',
+      'nav.fxDrawer': 'ចលនា: បើក (ចុចដើម្បីផ្អាក)',
+      'nav.fxDrawerOff': 'ចលនា: ផ្អាក (ចុចដើម្បីបើក)',
 
       // Hero
       'hero.hey': 'សួស្តី',
@@ -1287,7 +1408,7 @@ document.addEventListener('DOMContentLoaded', () => {
     BTCUSD: { name: 'Bitcoin', unitName: 'BTC', slUnit: '$ move', pipValPerLot: 1, contractSize: 1, defaultSL: 500 }
   };
 
-  let currentLang = safeGetStorage('bluex_lang', 'en');
+  currentLang = safeGetStorage('bluex_lang', 'en');
   const langToggleBtn = document.getElementById('langToggleBtn');
   const langBtnText = document.getElementById('langBtnText');
 
@@ -1399,6 +1520,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (langBtnText) {
       langBtnText.textContent = lang === 'km' ? 'English' : 'ខ្មែរ';
+    }
+
+    if (typeof updateFxButtonTexts === 'function') {
+      updateFxButtonTexts();
     }
 
     // Update calculator dynamic labels/status
@@ -1570,17 +1695,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 8. CONTACT FORM SUBMISSION & TOAST NOTIFICATION
   // ========================================================
   const contactForm = document.getElementById('contactForm');
-  const toast = document.getElementById('toastNotice');
-  const toastMessage = document.getElementById('toastMessage');
-
-  function showToast(message) {
-    if (!toast) return;
-    toastMessage.textContent = message;
-    toast.classList.add('show');
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 4500);
-  }
 
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -1682,15 +1796,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const particleCount = 65;
     let shootingStar = null;
     let mouse = { x: -1000, y: -1000 };
+    let animFrameId = null;
 
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     });
 
+    function drawStaticStarfield() {
+      ctx.clearRect(0, 0, width, height);
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      for (let i = 0; i < Math.min(particles.length, 32); i++) {
+        const p = particles[i];
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        const col = p.colorType === 'cyan' 
+          ? (isLight ? "rgba(2, 132, 199, 0.45)" : "rgba(0, 255, 224, 0.4)")
+          : (isLight ? "rgba(180, 83, 9, 0.45)" : "rgba(255, 184, 0, 0.4)");
+        ctx.beginPath();
+        ctx.arc(0, 0, Math.min(p.size, 1.4), 0, Math.PI * 2);
+        ctx.fillStyle = col;
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
     function resize() {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
+      if (document.documentElement.classList.contains('effects-frozen')) {
+        drawStaticStarfield();
+      }
     }
     window.addEventListener('resize', resize);
     resize();
@@ -1790,6 +1926,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function spawnShootingStar() {
+      if (document.documentElement.classList.contains('effects-frozen')) return;
       if (shootingStar) return;
       const startX = Math.random() * (width * 0.7);
       const startY = Math.random() * (height * 0.3);
@@ -1805,8 +1942,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(spawnShootingStar, 6500);
 
     function render() {
+      if (document.documentElement.classList.contains('effects-frozen')) {
+        drawStaticStarfield();
+        animFrameId = null;
+        return;
+      }
       if (document.hidden) {
-        requestAnimationFrame(render);
+        animFrameId = requestAnimationFrame(render);
         return;
       }
       ctx.clearRect(0, 0, width, height);
@@ -1870,9 +2012,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      requestAnimationFrame(render);
+      animFrameId = requestAnimationFrame(render);
     }
     render();
+
+    window.resumeBluexCanvas = function() {
+      if (!animFrameId && !document.documentElement.classList.contains('effects-frozen')) {
+        animFrameId = requestAnimationFrame(render);
+      }
+    };
   }
   initBluexStarlightCanvas();
 

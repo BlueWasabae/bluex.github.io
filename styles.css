@@ -7113,3 +7113,209 @@ html[lang="km"] .faq-answer p {
 [data-theme="light"] .course-genesis-banner-desc {
   color: #475569 !important;
 }
+
+/* ========================================================
+   EFFECTS FREEZE & PERFORMANCE LITE ENGINE (SMOOTH MOBILE 60FPS)
+   ======================================================== */
+html.effects-frozen {
+  --fx-state: paused;
+}
+
+/* 1. Freeze Golden Wave Horizon at majestic static posture */
+html.effects-frozen .golden-wave-layer {
+  animation: none !important;
+  transform: translateY(-4px) scale(1.02) !important;
+  opacity: 0.82 !important;
+  will-change: auto !important;
+}
+
+/* 2. Pause and dim canvas embers */
+html.effects-frozen #bluexStarlightCanvas,
+html.effects-frozen .bg-starlight-canvas {
+  opacity: 0.22 !important;
+  pointer-events: none !important;
+}
+
+/* 3. Freeze all continuous ambient pulses & keyframes */
+html.effects-frozen .genesis-pulse-dot,
+html.effects-frozen .live-dot-pulse,
+html.effects-frozen .live-dot-pulse::after,
+html.effects-frozen .floating-pulse,
+html.effects-frozen .radar-ring,
+html.effects-frozen .pulse-dot {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* 4. Eliminate expensive backdrop-filter calculations on scroll (zero mobile lag) */
+html.effects-frozen .site-header .nav-wrapper,
+html.effects-frozen .nav-menu.mobile-open,
+html.effects-frozen .nav-drawer-backdrop,
+html.effects-frozen .hero-card,
+html.effects-frozen .mentorship-card-main,
+html.effects-frozen .capital-card-main,
+html.effects-frozen .calculator-card-main,
+html.effects-frozen .brokers-card-main,
+html.effects-frozen .pillar-card,
+html.effects-frozen .youtube-featured-card,
+html.effects-frozen .tiktok-showcase-box,
+html.effects-frozen .facebook-showcase-box,
+html.effects-frozen .social-connect-card,
+html.effects-frozen .compliance-card,
+html.effects-frozen .faq-item,
+html.effects-frozen .knowledge-card-main,
+html.effects-frozen .direct-dm-register-card,
+html.effects-frozen .genesis-course-spotlight,
+html.effects-frozen .genesis-module-card,
+html.effects-frozen .genesis-compare-col,
+html.effects-frozen .genesis-concept-card,
+html.effects-frozen .genesis-metric-card,
+html.effects-frozen .about-portrait-card,
+html.effects-frozen .capital-governance-card,
+html.effects-frozen .calc-form-pane,
+html.effects-frozen .calc-results-pane,
+html.effects-frozen .broker-tier-box {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 5. Solid Luxury Dark Backgrounds in Frozen Mode */
+html.effects-frozen .site-header .nav-wrapper {
+  background: rgba(11, 14, 23, 0.98) !important;
+  border-color: rgba(212, 175, 55, 0.32) !important;
+}
+
+html.effects-frozen .nav-menu.mobile-open {
+  background: #0c101c !important;
+  border-color: rgba(212, 175, 55, 0.38) !important;
+}
+
+html.effects-frozen .nav-drawer-backdrop {
+  background: rgba(3, 5, 10, 0.88) !important;
+}
+
+html.effects-frozen .hero-card {
+  background: radial-gradient(circle at 75% 30%, #151a28 0%, #0c0e16 65%, #07080d 100%) !important;
+}
+
+html.effects-frozen .mentorship-card-main,
+html.effects-frozen .capital-card-main,
+html.effects-frozen .calculator-card-main,
+html.effects-frozen .brokers-card-main,
+html.effects-frozen .pillar-card,
+html.effects-frozen .knowledge-card-main,
+html.effects-frozen .youtube-featured-card {
+  background: #0c0f18 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 6. Light Mode Solid Luxury Backgrounds in Frozen Mode */
+html[data-theme="light"].effects-frozen .site-header .nav-wrapper {
+  background: #faf7f0 !important;
+  border-color: rgba(180, 130, 40, 0.32) !important;
+}
+
+html[data-theme="light"].effects-frozen .nav-menu.mobile-open {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.16) !important;
+}
+
+html[data-theme="light"].effects-frozen .nav-drawer-backdrop {
+  background: rgba(15, 23, 42, 0.55) !important;
+}
+
+html[data-theme="light"].effects-frozen .hero-card,
+html[data-theme="light"].effects-frozen .mentorship-card-main,
+html[data-theme="light"].effects-frozen .capital-card-main,
+html[data-theme="light"].effects-frozen .calculator-card-main,
+html[data-theme="light"].effects-frozen .brokers-card-main,
+html[data-theme="light"].effects-frozen .pillar-card,
+html[data-theme="light"].effects-frozen .knowledge-card-main {
+  background: #ffffff !important;
+  border-color: rgba(180, 130, 40, 0.24) !important;
+}
+
+/* 7. FX Toggle Buttons Styling */
+.nav-tool-btn.nav-fx-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-tool-btn.nav-fx-btn:hover {
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 10px rgba(0, 255, 224, 0.25);
+  color: #ffffff;
+}
+
+.nav-fx-btn .fx-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+html.effects-frozen .nav-tool-btn.nav-fx-btn {
+  background: rgba(0, 255, 224, 0.12) !important;
+  border-color: rgba(0, 255, 224, 0.45) !important;
+  color: #00ffe0 !important;
+  box-shadow: 0 0 12px rgba(0, 255, 224, 0.2) !important;
+}
+
+[data-theme="light"] .nav-tool-btn.nav-fx-btn:hover {
+  border-color: #0284c7;
+  color: #0284c7;
+}
+
+[data-theme="light"].effects-frozen .nav-tool-btn.nav-fx-btn {
+  background: rgba(2, 132, 199, 0.12) !important;
+  border-color: rgba(2, 132, 199, 0.5) !important;
+  color: #0284c7 !important;
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.18) !important;
+}
+
+/* Mobile Drawer Dedicated FX Toggle */
+.nav-drawer-fx-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  margin: 4px 0 6px 0;
+}
+
+.nav-drawer-fx-toggle:hover {
+  background: rgba(0, 255, 224, 0.08);
+  border-color: rgba(0, 255, 224, 0.3);
+  color: #ffffff;
+}
+
+html.effects-frozen .nav-drawer-fx-toggle {
+  background: rgba(0, 255, 224, 0.12) !important;
+  border-color: rgba(0, 255, 224, 0.45) !important;
+  color: #00ffe0 !important;
+  box-shadow: 0 0 14px rgba(0, 255, 224, 0.2) !important;
+}
+
+[data-theme="light"] .nav-drawer-fx-toggle {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #1e293b;
+}
+
+[data-theme="light"].effects-frozen .nav-drawer-fx-toggle {
+  background: rgba(2, 132, 199, 0.1) !important;
+  border-color: rgba(2, 132, 199, 0.4) !important;
+  color: #0284c7 !important;
+}
