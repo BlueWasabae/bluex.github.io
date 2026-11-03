@@ -33,6 +33,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let navScrollTicking = false;
   function updateActiveNavLink() {
+    const currentPath = window.location.pathname.replace(/\/$/, '');
+    const isGenesis = currentPath.endsWith('smc-genesis.html');
+    const isKnowledge = currentPath.endsWith('knowledge.html');
+
+    if (isGenesis) {
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href') || '';
+        if (href === 'smc-genesis.html' || href.includes('smc-genesis.html')) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+      navScrollTicking = false;
+      return;
+    }
+
+    if (isKnowledge) {
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href') || '';
+        if (href === 'knowledge.html' || href.includes('knowledge.html')) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+      navScrollTicking = false;
+      return;
+    }
+
     const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
     for (let i = 0; i < sectionPositions.length; i++) {
       const s = sectionPositions[i];
@@ -202,10 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Navigating from a subpage (e.g. smc-genesis.html) to index.html
         if (!isCurrentIndex && targetsIndex) {
-          // NEVER preventDefault! Allow normal navigation to index.html!
-          setTimeout(() => {
-            closeMobileMenu();
-          }, 80);
+          closeMobileMenu();
+          window.location.href = href;
           return;
         }
 
@@ -262,9 +290,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } else {
         // On subpage (smc-genesis.html, knowledge.html)
-        // If the anchor links to index.html, ALLOW DEFAULT NAVIGATION! NEVER PREVENT DEFAULT!
         if (href && (href === 'index.html' || href.startsWith('index.html') || href === '/' || href.startsWith('/index.html'))) {
           closeMobileMenu();
+          window.location.href = href;
           return;
         }
         if (href === '#top' || href === '#') {
@@ -1906,23 +1934,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 10. SUBTLE AMBIENT CARD SPOTLIGHT GLOW
+  // 10. SUBTLE AMBIENT CARD SPOTLIGHT GLOW (R-A-F THROTTLED)
   // ========================================================
   const cards = document.querySelectorAll('.pillar-card, .mentorship-card-main, .about-portrait-card, .capital-card-main, .calculator-card-main, .brokers-card-main, .broker-tier-box, .course-standards-box, .compliance-card, .social-direct-box, .knowledge-card-main, .lesson-card, .book-card, .genesis-module-card, .genesis-compare-col, .genesis-concept-card, .genesis-metric-card, .course-genesis-banner');
+  let cardHoverFrame = null;
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
-    });
+      if (cardHoverFrame) return;
+      cardHoverFrame = requestAnimationFrame(() => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+        cardHoverFrame = null;
+      });
+    }, { passive: true });
   });
 
 
 
   // ========================================================
-  // 11. LUXURY STARLIGHT BEAMING & GOLDEN EMBER CANVAS ENGINE (CHILLED 60FPS)
+  // 11. LUXURY STARLIGHT BEAMING & TWILIGHT CONSTELLATION ENGINE (SILKY 60FPS)
   // ========================================================
   function initBluexStarlightCanvas() {
     const canvas = document.getElementById('bluexStarlightCanvas');
@@ -1931,11 +1964,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let width, height;
     let particles = [];
     const isMobile = window.innerWidth <= 768;
-    const particleCount = isMobile ? 6 : 14;
+    const particleCount = isMobile ? 10 : 26;
+    let shootingStar = null;
     let animFrameId = null;
     let isPaused = false;
     let isScrolling = false;
     let scrollStopTimer = null;
+    let mouse = { x: -1000, y: -1000 };
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    }, { passive: true });
+
+    window.addEventListener('mouseleave', () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    }, { passive: true });
 
     function resize() {
       width = canvas.width = window.innerWidth;
@@ -1951,33 +1996,100 @@ document.addEventListener('DOMContentLoaded', () => {
       reset(initial = false) {
         this.x = Math.random() * width;
         this.y = initial ? Math.random() * height : height + 10;
-        this.vy = -(Math.random() * 0.25 + 0.08);
-        this.vx = (Math.random() - 0.5) * 0.12;
-        this.size = Math.random() * 1.5 + 0.6;
-        this.baseAlpha = Math.random() * 0.35 + 0.15;
-        this.colorType = Math.random() > 0.5 ? 'gold' : 'cyan';
+        this.vy = -(Math.random() * 0.35 + 0.1);
+        this.vx = (Math.random() - 0.5) * 0.16;
+        this.size = Math.random() * 1.8 + 0.7;
+        this.baseAlpha = Math.random() * 0.45 + 0.2;
+        this.alpha = this.baseAlpha;
+        this.phase = Math.random() * Math.PI * 2;
+        this.twinkleSpeed = Math.random() * 0.025 + 0.01;
+        const rand = Math.random();
+        this.colorType = rand > 0.52 ? 'gold' : (rand > 0.22 ? 'cyan' : 'white');
+        this.isStar = Math.random() > 0.72;
       }
       update() {
         this.y += this.vy;
         this.x += this.vx;
-        if (this.y < -10 || this.x < -10 || this.x > width + 10) {
+        this.phase += this.twinkleSpeed;
+        this.alpha = this.baseAlpha + Math.sin(this.phase) * 0.16;
+
+        // Interactive Starlight Cursor Physics (Squared distance optimization for 0ms CPU cost)
+        if (!isMobile && mouse.x > 0 && mouse.y > 0) {
+          const dx = this.x - mouse.x;
+          const dy = this.y - mouse.y;
+          const distSq = dx * dx + dy * dy;
+          if (distSq < 10000 && distSq > 0) { // 100px deflection halo
+            const dist = Math.sqrt(distSq);
+            const force = (100 - dist) / 100;
+            this.x += (dx / dist) * force * 1.6;
+            this.y += (dy / dist) * force * 1.6;
+          }
+        }
+
+        if (this.y < -15 || this.x < -15 || this.x > width + 15) {
           this.reset();
         }
       }
-      draw() {
-        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.colorType === 'cyan'
-          ? (isLight ? 'rgba(2, 132, 199, ' + this.baseAlpha + ')' : 'rgba(0, 255, 224, ' + this.baseAlpha + ')')
-          : (isLight ? 'rgba(180, 83, 9, ' + this.baseAlpha + ')' : 'rgba(255, 184, 0, ' + this.baseAlpha + ')');
-        ctx.fill();
+      draw(isLight) {
+        const currentAlpha = Math.max(0.08, Math.min(0.9, this.alpha));
+        const color = this.colorType === 'cyan'
+          ? (isLight ? `rgba(2, 132, 199, ${currentAlpha * 0.85})` : `rgba(0, 255, 224, ${currentAlpha * 0.9})`)
+          : (this.colorType === 'white'
+            ? (isLight ? `rgba(15, 23, 42, ${currentAlpha * 0.75})` : `rgba(255, 255, 255, ${currentAlpha})`)
+            : (isLight ? `rgba(180, 83, 9, ${currentAlpha})` : `rgba(255, 184, 0, ${currentAlpha})`));
+
+        if (this.isStar) {
+          // Sleek 4-point diamond star sparkle
+          const s = this.size * 2.1;
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.moveTo(0, -s);
+          ctx.quadraticCurveTo(0, 0, s, 0);
+          ctx.quadraticCurveTo(0, 0, 0, s);
+          ctx.quadraticCurveTo(0, 0, -s, 0);
+          ctx.quadraticCurveTo(0, 0, 0, -s);
+          ctx.fill();
+
+          ctx.strokeStyle = color;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(-s * 1.5, 0);
+          ctx.lineTo(s * 1.5, 0);
+          ctx.moveTo(0, -s * 1.5);
+          ctx.lineTo(0, s * 1.5);
+          ctx.stroke();
+          ctx.restore();
+        } else {
+          // Circular stardust ember
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = color;
+          ctx.fill();
+        }
       }
     }
 
     for (let i = 0; i < particleCount; i++) {
       particles.push(new CosmicParticle());
     }
+
+    // Periodic Twilight Shooting Star / Meteor Spawner
+    function spawnShootingStar() {
+      if (shootingStar || isPaused || isScrolling || document.documentElement.classList.contains('effects-frozen')) return;
+      const startX = Math.random() * (width * 0.7);
+      const startY = Math.random() * (height * 0.35);
+      shootingStar = {
+        x: startX,
+        y: startY,
+        vx: 7 + Math.random() * 4,
+        vy: 3.5 + Math.random() * 2.5,
+        life: 1.0,
+        decay: 0.022
+      };
+    }
+    const meteorInterval = setInterval(spawnShootingStar, 7500);
 
     function render() {
       if (document.documentElement.classList.contains('effects-frozen') || isPaused || isScrolling) {
@@ -1989,10 +2101,68 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       ctx.clearRect(0, 0, width, height);
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
+      // Constellation Connecting Beams (Twilight Celestial Web)
+      if (!isMobile) {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const distSq = dx * dx + dy * dy;
+            if (distSq < 7225) { // 85px max link distance
+              const dist = Math.sqrt(distSq);
+              const beamAlpha = (isLight ? 0.11 : 0.075) * (1 - dist / 85);
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = particles[i].colorType === 'cyan'
+                ? (isLight ? `rgba(2, 132, 199, ${beamAlpha})` : `rgba(0, 255, 224, ${beamAlpha})`)
+                : (isLight ? `rgba(180, 83, 9, ${beamAlpha})` : `rgba(255, 184, 0, ${beamAlpha})`);
+              ctx.lineWidth = 0.55;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      // Draw and update celestial particles
       for (let i = 0; i < particles.length; i++) {
         particles[i].update();
-        particles[i].draw();
+        particles[i].draw(isLight);
       }
+
+      // Draw Twilight Meteor Streak
+      if (shootingStar) {
+        const tailX = shootingStar.x - shootingStar.vx * 13;
+        const tailY = shootingStar.y - shootingStar.vy * 13;
+        const grad = ctx.createLinearGradient(shootingStar.x, shootingStar.y, tailX, tailY);
+        grad.addColorStop(0, isLight ? `rgba(15, 23, 42, ${shootingStar.life})` : `rgba(255, 255, 255, ${shootingStar.life})`);
+        grad.addColorStop(0.35, isLight ? `rgba(180, 83, 9, ${shootingStar.life * 0.75})` : `rgba(255, 184, 0, ${shootingStar.life * 0.8})`);
+        grad.addColorStop(0.7, isLight ? `rgba(2, 132, 199, ${shootingStar.life * 0.4})` : `rgba(0, 255, 224, ${shootingStar.life * 0.5})`);
+        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        ctx.beginPath();
+        ctx.moveTo(shootingStar.x, shootingStar.y);
+        ctx.lineTo(tailX, tailY);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.6;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(shootingStar.x, shootingStar.y, 1.8, 0, Math.PI * 2);
+        ctx.fillStyle = isLight ? `rgba(15, 23, 42, ${shootingStar.life})` : `rgba(255, 255, 255, ${shootingStar.life})`;
+        ctx.fill();
+
+        shootingStar.x += shootingStar.vx;
+        shootingStar.y += shootingStar.vy;
+        shootingStar.life -= shootingStar.decay;
+
+        if (shootingStar.life <= 0 || shootingStar.x > width + 40 || shootingStar.y > height + 40) {
+          shootingStar = null;
+        }
+      }
+
       animFrameId = requestAnimationFrame(render);
     }
     render();

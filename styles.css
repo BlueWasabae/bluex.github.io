@@ -6995,7 +6995,7 @@ html[lang="km"] .faq-answer p {
 
 .smc-beyond-hero {
   position: relative;
-  padding: 130px 0 70px;
+  padding: 130px 0 60px;
   overflow: hidden;
 }
 
@@ -7004,8 +7004,7 @@ html[lang="km"] .faq-answer p {
   inset: 0;
   background-size: cover;
   background-position: center;
-  opacity: 0.12;
-  filter: blur(1.5px);
+  opacity: 0.08;
   pointer-events: none;
   z-index: 0;
 }
@@ -7016,7 +7015,7 @@ html[lang="km"] .faq-answer p {
   gap: 8px;
   font-size: 0.85rem;
   color: var(--text-muted);
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
 .smc-breadcrumb a {
@@ -7030,76 +7029,92 @@ html[lang="km"] .faq-answer p {
 }
 
 .smc-breadcrumb .crumb-active {
-  color: var(--color-cyan);
+  color: var(--color-gold);
   font-weight: 600;
 }
 
 .smc-emblem-showcase {
   display: flex;
   justify-content: center;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .smc-emblem-frame {
-  padding: 6px;
-  background: radial-gradient(circle, rgba(255, 59, 87, 0.3) 0%, transparent 70%);
+  padding: 4px;
+  background: linear-gradient(135deg, rgba(255, 184, 0, 0.45) 0%, rgba(0, 255, 224, 0.25) 50%, rgba(255, 255, 255, 0.12) 100%);
   border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55), 0 0 20px rgba(255, 184, 0, 0.15);
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.smc-emblem-frame:hover {
+  transform: translateY(-2px);
 }
 
 .smc-emblem-img {
-  width: 104px;
-  height: 104px;
+  width: 96px;
+  height: 96px;
   object-fit: cover;
   border-radius: 16px;
-  box-shadow: 0 0 32px rgba(255, 59, 87, 0.45);
-  border: 1px solid rgba(255, 59, 87, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: block;
 }
 
-.smc-crimson-badge {
-  background: rgba(255, 59, 87, 0.12) !important;
-  border-color: rgba(255, 59, 87, 0.45) !important;
-  color: #ff3b57 !important;
+.smc-gold-badge {
+  background: rgba(255, 184, 0, 0.08) !important;
+  border: 1px solid rgba(255, 184, 0, 0.3) !important;
+  color: var(--color-gold) !important;
   font-weight: 800 !important;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  margin-bottom: 20px;
 }
 
-.smc-crimson-dot {
-  width: 8px;
-  height: 8px;
+.smc-gold-dot {
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: #ff3b57;
-  box-shadow: 0 0 10px #ff3b57;
-  display: inline-block;
-  margin-right: 6px;
+  background: var(--color-gold);
+  box-shadow: 0 0 8px var(--color-gold);
 }
 
 .smc-mrc-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  max-width: 900px;
-  margin: 32px auto 0;
+  max-width: 860px;
+  margin: 28px auto 0;
 }
 
 .smc-mrc-card {
-  background: rgba(14, 18, 28, 0.88);
-  border: 1px solid rgba(255, 59, 87, 0.28);
-  border-radius: var(--radius-md);
-  padding: 20px 18px;
+  background: rgba(14, 18, 28, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 2px solid var(--color-gold);
+  border-radius: 14px;
+  padding: 22px 18px;
   text-align: center;
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .smc-mrc-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255, 59, 87, 0.6);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 0 0 22px rgba(255, 59, 87, 0.22);
+  transform: translateY(-2px);
+  border-color: rgba(255, 184, 0, 0.45);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
 }
 
 .smc-mrc-letter {
-  font-size: 1.15rem;
-  font-weight: 900;
-  color: #ff3b57;
-  letter-spacing: 0.15em;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--color-gold);
+  letter-spacing: 0.18em;
   margin-bottom: 6px;
 }
 
@@ -7113,7 +7128,7 @@ html[lang="km"] .faq-answer p {
 
 .smc-mrc-desc {
   font-size: 0.84rem;
-  color: var(--text-muted);
+  color: #94a3b8;
   line-height: 1.55;
 }
 
@@ -7122,11 +7137,13 @@ html[lang="km"] .faq-answer p {
 }
 
 .smc-exec-intro-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-medium);
+  background: rgba(14, 18, 28, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-xl);
   padding: 44px 40px;
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .smc-exec-grid {
@@ -7195,8 +7212,8 @@ html[lang="km"] .faq-answer p {
   margin-bottom: 14px;
 }
 
-.smc-wisdom-box.emerald-accent {
-  border-left-color: #10b981;
+.smc-wisdom-box.gold-accent {
+  border-left-color: var(--color-gold);
 }
 
 .smc-wisdom-label {
@@ -7207,8 +7224,8 @@ html[lang="km"] .faq-answer p {
   margin-bottom: 6px;
 }
 
-.smc-wisdom-box.emerald-accent .smc-wisdom-label {
-  color: #10b981;
+.smc-wisdom-box.gold-accent .smc-wisdom-label {
+  color: var(--color-gold);
 }
 
 .smc-wisdom-quote {
@@ -7225,25 +7242,81 @@ html[lang="km"] .faq-answer p {
 }
 
 .smc-creed-banner {
-  background: linear-gradient(135deg, rgba(255, 59, 87, 0.15) 0%, rgba(14, 18, 28, 0.9) 100%);
-  border: 1px solid rgba(255, 59, 87, 0.35);
+  background: linear-gradient(135deg, rgba(255, 184, 0, 0.08) 0%, rgba(14, 18, 28, 0.85) 100%);
+  border: 1px solid rgba(255, 184, 0, 0.28);
   border-radius: var(--radius-md);
-  padding: 18px 20px;
+  padding: 20px 22px;
   text-align: center;
 }
 
 .smc-creed-title {
   font-family: 'Noto Sans Khmer', 'Kantumruy Pro', sans-serif;
-  font-size: 1rem;
+  font-size: 1.02rem;
   font-weight: 800;
   color: #ffffff;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 .smc-creed-sub {
   font-size: 0.78rem;
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
+  color: var(--color-gold);
+  letter-spacing: 0.05em;
+}
+
+/* Reusable Semantic Section Classes for SMC Genesis */
+.smc-section-matrix {
+  padding: 24px 0 44px;
+}
+.smc-section-curriculum {
+  padding: 56px 0;
+}
+.smc-section-mentorship {
+  padding: 56px 0;
+}
+.smc-section-gateway {
+  padding: 24px 0 56px;
+}
+.smc-section-pillars {
+  padding: 56px 0;
+}
+.smc-section-enrollment {
+  padding: 40px 0 60px;
+}
+.smc-section-brokers {
+  padding: 56px 0;
+}
+.smc-section-faq {
+  padding: 56px 0;
+}
+.smc-section-bottom-cta {
+  padding: 40px 0 80px;
+}
+.smc-section-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 32px;
+}
+.smc-section-heading {
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-top: 10px;
+  line-height: 1.25;
+}
+.smc-section-sub {
+  color: #94a3b8;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  margin-top: 10px;
+}
+.smc-brokers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.smc-btn-cyan {
+  border-color: rgba(56, 189, 248, 0.45) !important;
+  color: var(--color-cyan) !important;
 }
 
 @media (max-width: 900px) {
@@ -7321,7 +7394,7 @@ html[lang="km"] .faq-answer p {
 
 [data-theme="light"] .smc-mrc-card {
   background: #ffffff !important;
-  border-color: rgba(225, 29, 72, 0.25) !important;
+  border-color: rgba(180, 83, 9, 0.25) !important;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05) !important;
 }
 
@@ -7339,8 +7412,8 @@ html[lang="km"] .faq-answer p {
   border-left-color: #0284c7 !important;
 }
 
-[data-theme="light"] .smc-wisdom-box.emerald-accent {
-  border-left-color: #059669 !important;
+[data-theme="light"] .smc-wisdom-box.gold-accent {
+  border-left-color: #b45309 !important;
 }
 
 [data-theme="light"] .smc-wisdom-quote {
@@ -7348,17 +7421,45 @@ html[lang="km"] .faq-answer p {
 }
 
 [data-theme="light"] .smc-creed-banner {
-  background: linear-gradient(135deg, rgba(225, 29, 72, 0.08) 0%, #ffffff 100%) !important;
-  border-color: rgba(225, 29, 72, 0.25) !important;
+  background: linear-gradient(135deg, rgba(180, 83, 9, 0.08) 0%, #ffffff 100%) !important;
+  border-color: rgba(180, 83, 9, 0.25) !important;
 }
 
 [data-theme="light"] .smc-creed-title {
   color: #090e17 !important;
 }
 
+[data-theme="light"] .smc-section-heading {
+  color: #090e17 !important;
+}
+
+[data-theme="light"] .smc-section-sub {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .smc-gold-badge {
+  background: rgba(180, 83, 9, 0.08) !important;
+  border-color: rgba(180, 83, 9, 0.3) !important;
+  color: #b45309 !important;
+}
+
+[data-theme="light"] .telegram-dest-card {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] .telegram-card-title {
+  color: #090e17 !important;
+}
+
+[data-theme="light"] .telegram-card-desc {
+  color: #475569 !important;
+}
+
 [data-theme="light"] .course-genesis-banner {
   background: #ffffff !important;
-  border-color: rgba(225, 29, 72, 0.28) !important;
+  border-color: rgba(180, 83, 9, 0.28) !important;
   box-shadow: 0 12px 36px rgba(15, 23, 42, 0.06) !important;
 }
 
