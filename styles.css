@@ -470,32 +470,44 @@ button {
   display: none;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
-  min-height: 36px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
   padding: 0;
+  margin: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(212, 175, 55, 0.28);
-  color: #ffffff;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
   cursor: pointer;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: color 0.18s ease, transform 0.18s ease;
   position: relative;
-  z-index: 1005;
+  z-index: 100020;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
-.mobile-menu-toggle:hover,
+.mobile-menu-toggle:hover {
+  color: #00ffe0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
 .mobile-menu-toggle:active,
 .mobile-menu-toggle.active {
-  background: rgba(0, 255, 224, 0.12) !important;
-  border-color: rgba(0, 255, 224, 0.5) !important;
   color: #00ffe0 !important;
-  box-shadow: 0 0 12px rgba(0, 255, 224, 0.3) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: scale(0.94);
+}
+
+.mobile-menu-toggle * {
+  pointer-events: none !important;
 }
 
 .mobile-menu-toggle .hamburger-icon,
@@ -506,6 +518,28 @@ button {
   pointer-events: none;
   width: 100%;
   height: 100%;
+}
+
+.mobile-menu-toggle svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  display: block;
+}
+
+[data-theme="light"] .mobile-menu-toggle {
+  color: #0f172a !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[data-theme="light"] .mobile-menu-toggle:hover,
+[data-theme="light"] .mobile-menu-toggle:active,
+[data-theme="light"] .mobile-menu-toggle.active {
+  color: #0284c7 !important;
+  background: transparent !important;
 }
 
 /* ========================================================
@@ -3507,22 +3541,22 @@ button {
    LUXURY MOBILE NAVIGATION DRAWER & SPOTLIGHT ARCHITECTURE
    ======================================================== */
 .nav-drawer-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(4, 6, 12, 0.82);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(4, 6, 12, 0.82) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.22s ease, visibility 0.22s ease;
-  z-index: 999;
+  z-index: 99990 !important;
   pointer-events: none;
 }
 
 .nav-drawer-backdrop.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
 
 body.menu-drawer-locked {
@@ -3533,11 +3567,13 @@ body.menu-drawer-locked {
 /* Ensure site-header stays stable, in front of backdrop, and does NOT clip drawer */
 .site-header.menu-open,
 body.menu-drawer-locked .site-header {
-  z-index: 1005 !important;
+  z-index: 100005 !important;
   transform: none !important;
   opacity: 1 !important;
   pointer-events: auto !important;
   will-change: auto !important;
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 .site-header.menu-open .nav-wrapper,
@@ -3546,6 +3582,13 @@ body.menu-drawer-locked .site-header .nav-wrapper {
   -webkit-backdrop-filter: none !important;
   filter: none !important;
   transform: none !important;
+}
+
+@media (max-width: 768px) {
+  /* Hide crowded duplicate register button from top header on mobile */
+  .nav-right-actions .nav-register-dm-btn {
+    display: none !important;
+  }
 }
 
 @media (max-width: 1120px) {
@@ -3575,10 +3618,16 @@ body.menu-drawer-locked .site-header .nav-wrapper {
     border: 1px solid rgba(212, 175, 55, 0.28) !important;
     border-radius: 20px !important;
     padding: 14px 14px 18px !important;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.92), 0 0 35px rgba(0, 255, 224, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-    z-index: 1010 !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(0, 255, 224, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    z-index: 100010 !important;
     gap: 3px !important;
     animation: navDrawerEntry 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  }
+
+  [data-theme="light"] .nav-menu.mobile-open {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+    border-color: rgba(180, 130, 40, 0.35) !important;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.16), 0 0 25px rgba(212, 175, 55, 0.12) !important;
   }
 
   .nav-menu.mobile-open > li {
@@ -3656,8 +3705,10 @@ body.menu-drawer-locked .site-header .nav-wrapper {
 
 /* Hide floating action pill when mobile menu is open so it NEVER overlaps */
 body.menu-drawer-locked .genesis-floating-cta,
+body.menu-drawer-locked #floatingEnrollBtn,
 .site-header.menu-open ~ .genesis-floating-cta,
-html.menu-open .genesis-floating-cta {
+html.menu-open .genesis-floating-cta,
+html.menu-open #floatingEnrollBtn {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
@@ -6555,7 +6606,15 @@ body {
   }
 
   .nav-right-actions {
-    gap: 5px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    margin-right: -2px !important;
+  }
+
+  .nav-right-actions .nav-register-dm-btn,
+  .nav-right-actions .nav-cta-btn {
+    display: none !important;
   }
 
   .nav-tool-btn {
@@ -6563,11 +6622,18 @@ body {
     font-size: 0.72rem !important;
   }
 
-  .nav-cta-btn,
-  .nav-register-dm-btn {
-    padding: 5px 10px !important;
-    font-size: 0.72rem !important;
-    white-space: nowrap !important;
+  .mobile-menu-toggle {
+    display: inline-flex !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
   .hero-card,

@@ -75,6 +75,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileToggle) mobileToggle.classList.add('active');
     if (navBackdrop) navBackdrop.classList.add('active');
     document.body.classList.add('menu-drawer-locked');
+    document.documentElement.classList.add('menu-open');
+    
+    // Explicitly hide floating action CTA so it NEVER collides with drawer buttons
+    const floatingCta = document.querySelector('.genesis-floating-cta');
+    if (floatingCta) {
+      floatingCta.style.setProperty('display', 'none', 'important');
+    }
+
     updateHamburgerIcon(true);
     // CRITICAL: Pause background canvas immediately to guarantee zero lag in menu
     if (window.pauseBluexCanvas) {
@@ -89,6 +97,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileToggle) mobileToggle.classList.remove('active');
     if (navBackdrop) navBackdrop.classList.remove('active');
     document.body.classList.remove('menu-drawer-locked');
+    document.documentElement.classList.remove('menu-open');
+
+    // Restore floating action CTA
+    const floatingCta = document.querySelector('.genesis-floating-cta');
+    if (floatingCta) {
+      floatingCta.style.removeProperty('display');
+    }
+
     updateHamburgerIcon(false);
     // Resume background canvas smoothly
     if (window.resumeBluexCanvas) {
@@ -97,17 +113,44 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
+    let lastToggleTime = 0;
+    function handleMenuToggle(e) {
+      const now = Date.now();
+      if (now - lastToggleTime < 300) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        return;
+      }
+      lastToggleTime = now;
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       if (navMenu.classList.contains('mobile-open')) {
         closeMobileMenu();
       } else {
         openMobileMenu();
       }
-    });
+    }
+
+    // Bind pointerup, touchend, and click with debounce for instant response on all mobile engines
+    mobileToggle.addEventListener('pointerup', handleMenuToggle);
+    mobileToggle.addEventListener('touchend', handleMenuToggle, { passive: false });
+    mobileToggle.addEventListener('click', handleMenuToggle);
 
     if (navBackdrop) {
+      navBackdrop.addEventListener('pointerup', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeMobileMenu();
+      });
+      navBackdrop.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeMobileMenu();
+      }, { passive: false });
       navBackdrop.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -121,6 +164,12 @@ document.addEventListener('DOMContentLoaded', () => {
         closeMobileMenu();
       }
     });
+    document.addEventListener('touchend', (e) => {
+      if (e.target.closest('#navDrawerCloseBtn')) {
+        e.preventDefault();
+        closeMobileMenu();
+      }
+    }, { passive: false });
 
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
