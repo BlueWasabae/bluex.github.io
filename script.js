@@ -1,4 +1,4 @@
-// ========================================================
+﻿// ========================================================
 // BlueX Portfolio & Trading Ecosystem - Core Engine
 // Features:
 // 1. Navigation & Smooth Scroll
@@ -2165,11 +2165,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const unitNamesKhmer = {
-      damlung: 'ážáž˜áŸ’áž›áž¹áž„',
-      chi: 'áž‡áž¸',
-      grams: 'áž€áŸ’ážšáž¶áž˜',
+      damlung: 'តម្លឹង',
+      chi: 'ជី',
+      grams: 'ក្រាម',
       ounces: 'Troy Ounces',
-      kilograms: 'áž‚áž¸áž¡áž¼'
+      kilograms: 'គីឡូ'
     };
 
     // 1. Live Market Spot Price Fetcher
@@ -2213,7 +2213,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hedgeSpotInput.value = spotPrice.toFixed(2);
             const livePriceDisplay = document.getElementById('liveSpotPriceDisplay');
             if (livePriceDisplay) {
-              livePriceDisplay.textContent = `${spotPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+              livePriceDisplay.textContent = `$${spotPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             }
           }
         }
@@ -2239,7 +2239,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const isXAU = currentHedgeMetal === 'XAU';
       const contractSize = isXAU ? 100 : 5000;
       const metalSymbol = isXAU ? 'XAU/USD' : 'XAG/USD';
-      const metalLabelKhmer = isXAU ? 'áž˜áž¶ážŸ' : 'áž”áŸ’ážšáž¶áž€áŸ‹';
+      const metalLabelKhmer = isXAU ? 'មាស' : 'ប្រាក់';
       const metalLabelEn = isXAU ? 'Gold' : 'Silver';
       const isBuy = currentHedgeDirection === 'BUY_PHYSICAL';
 
@@ -2266,10 +2266,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const elTroyOunces = document.getElementById('dispTroyOunces');
       const elTotalPhysicalValue = document.getElementById('dispTotalPhysicalValue');
 
-      if (elPricePerDamlung) elPricePerDamlung.textContent = `${pricePerDamlung.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-      if (elPricePerChi) elPricePerChi.textContent = `${pricePerChi.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      if (elPricePerDamlung) elPricePerDamlung.textContent = `$${pricePerDamlung.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      if (elPricePerChi) elPricePerChi.textContent = `$${pricePerChi.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
       if (elTroyOunces) elTroyOunces.textContent = `${troyOunces.toFixed(2)} oz`;
-      if (elTotalPhysicalValue) elTotalPhysicalValue.textContent = `${totalShopPhysicalValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      if (elTotalPhysicalValue) elTotalPhysicalValue.textContent = `$${totalShopPhysicalValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
       // Financial Valuations
       const marginUSD = brokerLots > 0 ? ((brokerLots * contractSize * spot) / leverage) : 0;
@@ -2326,13 +2326,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (elLots) elLots.textContent = `${brokerLots.toFixed(2)} Lots`;
-      if (elMargin) elMargin.textContent = `${marginUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-      if (elSafeCap) elSafeCap.textContent = `${safeCapitalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      if (elMargin) elMargin.textContent = `$${marginUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      if (elSafeCap) elSafeCap.textContent = `$${safeCapitalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
       if (elWeight) elWeight.textContent = `${totalGrams.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} g / ${troyOunces.toFixed(2)} oz`;
 
       if (elMathProof) {
         const damlungDivisor = (contractSize / damlungMultiplier).toFixed(2);
-        elMathProof.textContent = `Lots = ${weight} ${unit.charAt(0).toUpperCase() + unit.slice(1)} Ã· ${damlungDivisor} = ${exactLots.toFixed(4)} Lots â†’ ${brokerLots.toFixed(2)} Lots MT4/MT5 (${metalSymbol})`;
+        elMathProof.textContent = `Lots = ${weight} ${unit.charAt(0).toUpperCase() + unit.slice(1)} ÷ ${damlungDivisor} = ${exactLots.toFixed(4)} Lots → ${brokerLots.toFixed(2)} Lots MT4/MT5 (${metalSymbol})`;
       }
 
       if (btnTicket) {
@@ -2346,23 +2346,23 @@ document.addEventListener('DOMContentLoaded', () => {
       const elDiagText = document.getElementById('diagnosticExplanationText');
 
       if (elRecDeposit) {
-        elRecDeposit.textContent = `${safeCapitalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        elRecDeposit.textContent = `$${safeCapitalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
       }
 
       if (elDiagPill && elDiagText) {
         if (userBalance >= safeCapitalUSD) {
           elDiagPill.className = 'account-diagnostic-pill';
           elDiagPill.textContent = 'CAPITAL FULLY PROTECTED';
-          elDiagText.textContent = `ðŸŸ¢ Safe Capital: Your balance safely covers required margin plus more than ${buffer}/oz market swing against your hedge. Zero liquidation risk.`;
+          elDiagText.textContent = `🟢 Safe Capital: Your balance safely covers required margin plus more than $${buffer}/oz market swing against your hedge. Zero liquidation risk.`;
         } else if (userBalance >= marginUSD) {
           const shortfall = safeCapitalUSD - userBalance;
           elDiagPill.className = 'account-diagnostic-pill status-tight';
           elDiagPill.textContent = 'TIGHT MARGIN BUFFER';
-          elDiagText.textContent = `ðŸŸ¡ Tight Buffer: Position can open, but buffer is slim. Deposit ${shortfall.toFixed(2)} more to reach full Â±${buffer}/oz protection.`;
+          elDiagText.textContent = `🟡 Tight Buffer: Position can open, but buffer is slim. Deposit $${shortfall.toFixed(2)} more to reach full ±$${buffer}/oz protection.`;
         } else {
           elDiagPill.className = 'account-diagnostic-pill status-danger';
           elDiagPill.textContent = 'INSUFFICIENT BALANCE';
-          elDiagText.textContent = `ðŸ”´ Insufficient Capital: Cannot execute ${brokerLots.toFixed(2)} Lots. Minimum initial margin required is ${marginUSD.toFixed(2)} USD.`;
+          elDiagText.textContent = `🔴 Insufficient Capital: Cannot execute ${brokerLots.toFixed(2)} Lots. Minimum initial margin required is $${marginUSD.toFixed(2)} USD.`;
         }
       }
 
@@ -2405,742 +2405,49 @@ document.addEventListener('DOMContentLoaded', () => {
       const elSimHedgedVerdict = document.getElementById('simHedgedVerdict');
 
       if (elSimUnhedgedPhysical) {
-        elSimUnhedgedPhysical.textContent = (physicalDiff >= 0 ? '+' : '-') + `${Math.abs(physicalDiff).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
+        elSimUnhedgedPhysical.textContent = (physicalDiff >= 0 ? '+' : '-') + `$${Math.abs(physicalDiff).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        elSimUnhedgedPhysical.className = physicalDiff >= 0 ? 'text-success' : 'text-danger';
       }
+
       if (elSimUnhedgedNet) {
-        elSimUnhedgedNet.textContent = (unhedgedNet >= 0 ? '+' : '-') + `${Math.abs(unhedgedNet).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${unhedgedNet >= 0 ? 'Gain' : 'Capital Loss'}`;
+        elSimUnhedgedNet.textContent = (unhedgedNet >= 0 ? '+' : '-') + `$${Math.abs(unhedgedNet).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        elSimUnhedgedNet.className = unhedgedNet >= 0 ? 'text-success' : 'text-danger';
       }
+
       if (elSimHedgedPhysical) {
-        elSimHedgedPhysical.textContent = (physicalDiff >= 0 ? '+' : '-') + `${Math.abs(physicalDiff).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
+        elSimHedgedPhysical.textContent = (physicalDiff >= 0 ? '+' : '-') + `$${Math.abs(physicalDiff).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
       }
+
       if (elSimHedgedDigital) {
-        elSimHedgedDigital.textContent = (digitalDiff >= 0 ? '+' : '-') + `${Math.abs(digitalDiff).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
+        elSimHedgedDigital.textContent = (digitalDiff >= 0 ? '+' : '-') + `$${Math.abs(digitalDiff).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        elSimHedgedDigital.className = digitalDiff >= 0 ? 'text-success' : 'text-danger';
       }
+
       if (elSimHedgedNet) {
-        elSimHedgedNet.textContent = `${Math.abs(hedgedNet).toFixed(2)} Net Difference (${currentLang === 'km' ? 'áž€áž¶ážšáž–áž¶ážš áŸ¡áŸ áŸ %' : '100% Protected'})`;
+        elSimHedgedNet.textContent = `$${Math.abs(hedgedNet).toFixed(2)} Net Difference (${currentLang === 'km' ? 'ការពារ ១០០%' : '100% Protected'})`;
       }
 
       if (elSimUnhedgedVerdict && elSimHedgedVerdict) {
         if (deltaPrice < 0) {
           elSimUnhedgedVerdict.textContent = currentLang === 'km'
-            ? `áž€áž¶ážšáž’áŸ’áž›áž¶áž€áŸ‹áž…áž»áŸ‡ ${Math.abs(deltaPrice)}/oz áž”áž¶áž“áž›áŸáž”ážáŸ’ážšáž”áž¶áž€áŸ‹áž™áž€áž”áŸ’ážšáž¶áž€áŸ‹áž…áŸ†ážŽáŸáž‰ áž“áž·áž„áž”áž¶áž“áž”áŸ†áž•áŸ’áž›áž¶áž‰ážŠáž¾áž˜áž‘áž»áž“áž¢áž¶áž‡áž¸ážœáž€áž˜áŸ’áž˜ážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€áž¢ážŸáŸ‹ ${Math.abs(unhedgedNet).toFixed(2)} USD áž—áŸ’áž›áž¶áž˜áŸ—!`
-            : `The ${Math.abs(deltaPrice)}/oz drop wiped out your retail spread profit and destroyed ${Math.abs(unhedgedNet).toFixed(2)} USD of core business capital!`;
-          elSimHedgedVerdict.innerHTML = currentLang === 'km'
-            ? `áž‚áŸ’áž˜áž¶áž“áž€áž¶ážšážáž¶ážáž”áž„áŸ‹áž¡áž¾áž™! áž”áž‰áŸ’áž‡áž¶ MT5 Short áž”áž¶áž“áž•áŸ’ážáž›áŸ‹áž•áž›áž…áŸ†ážŽáŸáž‰áž˜áž€ážœáž·áž‰áž…áŸ†áž“áž½áž“ <strong>+${Math.abs(digitalDiff).toFixed(2)} USD</strong> ážŸáŸ’áž˜áž¾áž“áž¹áž„áž€áž¶ážšážáž¶ážážšáž¼áž”ážœáž“áŸ’ážáž”áŸáŸ‡áž”áž·áž‘áŸ” áž”áŸ’ážšáž¶áž€áŸ‹áž…áŸ†ážŽáŸáž‰áž áž¶áž„ážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€ážáŸ’ážšáž¼ážœáž”áž¶áž“áž€áž¶ážšáž–áž¶ážš áŸ¡áŸ áŸ %! ðŸ†`
-            : `Zero loss! The digital short generated <strong>+${Math.abs(digitalDiff).toFixed(2)} USD</strong> to offset the physical drop dollar-for-dollar. Your counter profit is 100% secure in your bank account! ðŸ†`;
-        } else {
-          elSimUnhedgedVerdict.textContent = currentLang === 'km'
-            ? `áž˜áž¶ážŸáž¡áž¾áž„ážáŸ’áž›áŸƒ ${deltaPrice}/oz áž”áŸ‰áž»áž“áŸ’ážáŸ‚áž€áž¶ážšážšáž„áŸ‹áž…áž¶áŸ†áž‘áž·áž‰áž”áŸ†áž–áŸáž‰ážŸáŸ’ážáž»áž€áž¡áž¾áž„ážœáž·áž‰áž“áž¹áž„ážáŸ’ážšáž¼ážœáž…áŸ†ážŽáž¶áž™ážáŸ’áž›áŸƒážŠáž¾áž˜ážáŸ’áž–ážŸáŸ‹áž‡áž¶áž„áž˜áž»áž“ ${Math.abs(physicalDiff).toFixed(2)} USD!`
-            : `Gold gained ${deltaPrice}/oz, but replenishing sold inventory now costs ${Math.abs(physicalDiff).toFixed(2)} USD more out of pocket!`;
-          elSimHedgedVerdict.innerHTML = currentLang === 'km'
-            ? `ážáž»áž›áŸ’áž™áž—áž¶áž– Delta-Neutral ážšáž€áŸ’ážŸáž¶ážŠáž¾áž˜áž‘áž»áž“áž”áŸ†áž–áŸáž‰ážŸáŸ’ážáž»áž€áž”áž¶áž“ážŸáŸ’áž˜áž¾ áŸ¡áŸ áŸ % ážŠáŸ„áž™áž‚áŸ’áž˜áž¶áž“áž€áž¶ážšáž”áŸ’ážšáŸ‚áž”áŸ’ážšáž½áž›áž¡áž¾áž™áŸ” ðŸ†`
-            : `Delta-Neutral balance neutralized replenishment cost perfectly. Total price risk =   // ========================================================
-  // 4B. GOLD & SILVER HEDGING PROTOCOL REAL-TIME CALCULATOR ENGINE
-  // ========================================================
-  function initGoldHedgingCalculator() {
-    const hedgeWeightInput = document.getElementById('hedgeWeightInput');
-    const hedgeUnitSelect = document.getElementById('hedgeUnitSelect');
-    const hedgeSpotInput = document.getElementById('hedgeSpotInput');
-    const hedgeLeverageSelect = document.getElementById('hedgeLeverageSelect');
-    const hedgeLocalDamlungInput = document.getElementById('hedgeLocalDamlungInput');
-    const hedgeAccountBalanceInput = document.getElementById('hedgeAccountBalanceInput');
-    const dirBuyGold = document.getElementById('dirBuyGold');
-    const dirSellGold = document.getElementById('dirSellGold');
-    const metalSwitchGold = document.getElementById('metalSwitchGold');
-    const metalSwitchSilver = document.getElementById('metalSwitchSilver');
-    const btnRefreshSpot = document.getElementById('btnRefreshSpot');
-    const btnSyncLocalRate = document.getElementById('btnSyncLocalRate');
-    const btnAutoFillSafeBalance = document.getElementById('btnAutoFillSafeBalance');
-    const btnCopyTicket = document.getElementById('btnCopyTicket');
-    const btnToggleDetails = document.getElementById('btnToggleDetails');
-    const curBtnUSD = document.getElementById('curBtnUSD');
-    const curBtnKHR = document.getElementById('curBtnKHR');
-    const bufferChips = document.querySelectorAll('.chip-buffer, .btn-buffer-chip');
-    const shopPresetChips = document.querySelectorAll('.chip-preset, .btn-shop-preset');
-    const simScenarioBtns = document.querySelectorAll('.sim-scenario-btn');
-
-    if (!hedgeWeightInput || !hedgeUnitSelect || !hedgeSpotInput || !hedgeLeverageSelect) return;
-
-    let currentHedgeMetal = 'XAU';
-    let currentHedgeDirection = 'BUY_PHYSICAL';
-    let currentHedgeBuffer = 100;
-    let currentCurrency = 'USD';
-    let currentSimDelta = -150;
-    const KHR_RATE = 4080;
-
-    const cachedLivePrices = {
-      XAU: 3948.50,
-      XAG: 50.15
-    };
-
-    // Gram conversion factors
-    const gramsPerUnit = {
-      damlung: 37.5,
-      chi: 3.75,
-      grams: 1.0,
-      ounces: 31.1034768,
-      kilograms: 1000.0
-    };
-
-    const unitNamesKhmer = {
-      damlung: 'ážáž˜áŸ’áž›áž¹áž„',
-      chi: 'áž‡áž¸',
-      grams: 'áž€áŸ’ážšáž¶áž˜',
-      ounces: 'Troy Ounces',
-      kilograms: 'áž‚áž¸áž¡áž¼áž€áŸ’ážšáž¶áž˜'
-    };
-
-    // 1. Live Market Spot Price Fetcher
-    async function fetchLiveSpotPrice(metal = currentHedgeMetal, isUserClick = false) {
-      if (btnRefreshSpot && isUserClick) btnRefreshSpot.classList.add('loading');
-
-      try {
-        let spotPrice = null;
-        const apiUrl = `https://api.gold-api.com/price/${metal}`;
-        
-        try {
-          const res = await fetch(apiUrl, { cache: 'no-store' });
-          if (res.ok) {
-            const data = await res.json();
-            if (data && typeof data.price === 'number') {
-              spotPrice = data.price;
-            }
-          }
-        } catch (apiErr) {
-          console.warn('[BlueX Hedging] Primary gold-api failed, testing fallback...', apiErr);
-        }
-
-        // Fallback for Gold: Binance PAXGUSDT
-        if (!spotPrice && metal === 'XAU') {
-          try {
-            const binanceRes = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=PAXGUSDT', { cache: 'no-store' });
-            if (binanceRes.ok) {
-              const binanceData = await binanceRes.json();
-              if (binanceData && binanceData.price) {
-                spotPrice = parseFloat(binanceData.price);
-              }
-            }
-          } catch (binanceErr) {
-            console.warn('[BlueX Hedging] Binance fallback failed:', binanceErr);
-          }
-        }
-
-        if (spotPrice && !isNaN(spotPrice) && spotPrice > 0) {
-          cachedLivePrices[metal] = spotPrice;
-          if (currentHedgeMetal === metal) {
-            hedgeSpotInput.value = spotPrice.toFixed(2);
-            const livePriceDisplay = document.getElementById('liveSpotPriceDisplay');
-            if (livePriceDisplay) {
-              livePriceDisplay.textContent = `$${spotPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-            }
-            const liveTimestamp = document.getElementById('liveFeedTimestamp');
-            if (liveTimestamp) {
-              const now = new Date();
-              liveTimestamp.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            }
-            if (hedgeLocalDamlungInput && (!hedgeLocalDamlungInput.value || isUserClick)) {
-              syncLocalRateWithSpot();
-            }
-          }
-        }
-      } catch (err) {
-        console.error('[BlueX Hedging] Spot fetch error:', err);
-      } finally {
-        if (btnRefreshSpot) btnRefreshSpot.classList.remove('loading');
-        calculateGoldHedging();
-      }
-    }
-
-    function syncLocalRateWithSpot() {
-      if (!hedgeLocalDamlungInput) return;
-      const spot = parseFloat(hedgeSpotInput.value) || cachedLivePrices[currentHedgeMetal];
-      const pureDamlungValue = spot * 1.205653;
-      const retailMarkup = currentHedgeMetal === 'XAU' ? 40 : 2;
-      const localQuote = pureDamlungValue + retailMarkup;
-      hedgeLocalDamlungInput.value = localQuote.toFixed(2);
-      updateChiDisplay();
-    }
-
-    function updateChiDisplay() {
-      const dispChi = document.getElementById('dispPricePerChi');
-      if (dispChi && hedgeLocalDamlungInput) {
-        const localDamlung = parseFloat(hedgeLocalDamlungInput.value) || 0;
-        dispChi.textContent = (localDamlung / 10).toFixed(2);
-      }
-    }
-
-    // 2. Main Institutional Hedging Math Execution Engine
-    function calculateGoldHedging() {
-      const weight = parseFloat(hedgeWeightInput.value) || 0;
-      const unit = hedgeUnitSelect.value || 'damlung';
-      const spot = parseFloat(hedgeSpotInput.value) || cachedLivePrices[currentHedgeMetal];
-      const leverage = parseFloat(hedgeLeverageSelect.value) || 200;
-      const buffer = currentHedgeBuffer;
-      const localDamlungPrice = hedgeLocalDamlungInput ? (parseFloat(hedgeLocalDamlungInput.value) || 0) : 0;
-      const userBalance = hedgeAccountBalanceInput ? (parseFloat(hedgeAccountBalanceInput.value) || 0) : 0;
-
-      updateChiDisplay();
-
-      // Metal specifications
-      const isXAU = currentHedgeMetal === 'XAU';
-      const contractSize = isXAU ? 100 : 5000;
-      const metalSymbol = isXAU ? 'XAU/USD' : 'XAG/USD';
-      const metalLabelKhmer = isXAU ? 'áž˜áž¶ážŸ' : 'áž”áŸ’ážšáž¶áž€áŸ‹';
-      const metalLabelEn = isXAU ? 'Gold' : 'Silver';
-
-      const totalGrams = weight * (gramsPerUnit[unit] || 37.5);
-      const troyOunces = totalGrams / 31.1034768;
-      const exactLots = troyOunces / contractSize;
-      let brokerLots = Math.round(exactLots * 100) / 100;
-      if (brokerLots === 0 && exactLots > (isXAU ? 0.005 : 0.0002)) {
-        brokerLots = 0.01;
-      }
-
-      // Financial Valuation
-      const notionalUSD = troyOunces * spot;
-      const marginUSD = brokerLots > 0 ? ((brokerLots * contractSize * spot) / leverage) : 0;
-      const bufferUSD = brokerLots * contractSize * buffer;
-      const safeCapitalUSD = marginUSD + bufferUSD;
-
-      // Residual calculation
-      const hedgedGrams = brokerLots * contractSize * 31.1034768;
-      const residualGrams = Math.abs(totalGrams - hedgedGrams);
-      const residualDamlung = residualGrams / 37.5;
-      const residualChi = residualGrams / 3.75;
-
-      // Local Cambodian Cash vs Digital Hedge Margin
-      const totalDamlungCount = totalGrams / 37.5;
-      const physicalCashTotal = totalDamlungCount * localDamlungPrice;
-      const digitalSpotTotal = notionalUSD;
-      const isBuy = currentHedgeDirection === 'BUY_PHYSICAL';
-      const lockedProfit = Math.abs(physicalCashTotal - digitalSpotTotal);
-
-      // Stop-Out Liquidation Calculation
-      let stopOutSpot = 0;
-      let stopOutDistance = 0;
-      if (brokerLots > 0 && userBalance > 0) {
-        const availableLossUSD = userBalance - (0.5 * marginUSD);
-        stopOutDistance = availableLossUSD / (brokerLots * contractSize);
-        if (isBuy) {
-          stopOutSpot = spot + stopOutDistance;
-        } else {
-          stopOutSpot = Math.max(0, spot - stopOutDistance);
-        }
-      }
-
-      // DOM Updates
-      const currentLang = document.documentElement.getAttribute('lang') || 'en';
-
-      // Action Recommendation Banner
-      const banner = document.getElementById('hedgeActionBanner');
-      const actionPill = document.getElementById('ticketActionType');
-      const headline = document.getElementById('hedgeActionHeadline');
-      const reason = document.getElementById('hedgeActionReason');
-      const resStandardLots = document.getElementById('resStandardLots');
-      const quickLotsText = document.getElementById('quickLotsText');
-      const quickCashTotal = document.getElementById('quickCashTotal');
-
-      if (resStandardLots) resStandardLots.textContent = brokerLots.toFixed(2);
-      if (quickLotsText) quickLotsText.textContent = `${brokerLots.toFixed(2)} Lots ${metalSymbol}`;
-      if (quickCashTotal) quickCashTotal.textContent = `$${physicalCashTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
-      const mobileJumpLots = document.getElementById('mobileJumpLots');
-      if (mobileJumpLots) {
-        mobileJumpLots.textContent = (isBuy ? (currentLang === 'km' ? 'áž›áž€áŸ‹ ' : 'Sell ') : (currentLang === 'km' ? 'áž‘áž·áž‰ ' : 'Buy ')) + `${brokerLots.toFixed(2)} Lots`;
-      }
-
-      if (banner && headline && reason) {
-        if (isBuy) {
-          banner.classList.remove('action-buy');
-          if (actionPill) actionPill.textContent = currentLang === 'km' ? 'áž”áž‰áŸ’áž‡áž¶áž›áž€áŸ‹ / SHORT HEDGE' : 'SHORT HEDGE EXECUTION';
-          headline.innerHTML = currentLang === 'km'
-            ? `áž›áž€áŸ‹ <span class="gold-accent">${brokerLots.toFixed(2)}</span> LOTS ${metalSymbol}`
-            : `SELL <span class="gold-accent">${brokerLots.toFixed(2)}</span> LOTS ${metalSymbol}`;
-          reason.textContent = currentLang === 'km'
-            ? `ážŸáŸ’ážáž»áž€${metalLabelKhmer}áž€áŸ’áž“áž»áž„áž áž¶áž„áž€áž¾áž“áž¡áž¾áž„ ${totalGrams.toFixed(2)}g (${weight} ${unitNamesKhmer[unit] || unit})áŸ” áž”áž¾áž€ Digital SHORT ážŠáž¾áž˜áŸ’áž”áž¸áž€áž¶ážšáž–áž¶ážšáž€áž¶ážšáž’áŸ’áž›áž¶áž€áŸ‹ážáŸ’áž›áŸƒáž“áŸƒážŸáŸ’ážáž»áž€áŸ”`
-            : `Physical ${metalLabelEn} inventory increased by ${totalGrams.toFixed(2)}g (${weight} ${unit}). Open a ${brokerLots.toFixed(2)} digital short to eliminate spot drop risk.`;
-        } else {
-          banner.classList.add('action-buy');
-          if (actionPill) actionPill.textContent = currentLang === 'km' ? 'áž”áž‰áŸ’áž‡áž¶áž‘áž·áž‰ / LONG HEDGE' : 'LONG HEDGE EXECUTION';
-          headline.innerHTML = currentLang === 'km'
-            ? `áž‘áž·áž‰ <span class="cyan-accent">${brokerLots.toFixed(2)}</span> LOTS ${metalSymbol}`
-            : `BUY <span class="cyan-accent">${brokerLots.toFixed(2)}</span> LOTS ${metalSymbol}`;
-          reason.textContent = currentLang === 'km'
-            ? `ážŸáŸ’ážáž»áž€${metalLabelKhmer}áž€áŸ’áž“áž»áž„áž áž¶áž„ážáž™áž…áž»áŸ‡ ${totalGrams.toFixed(2)}g (${weight} ${unitNamesKhmer[unit] || unit})áŸ” áž”áž¾áž€ Digital LONG ážŠáž¾áž˜áŸ’áž”áž¸áž€áž¶ážšáž–áž¶ážšážáŸ’áž›áŸƒáž‘áž·áž‰áž”áŸ†áž–áŸáž‰ážŸáŸ’ážáž»áž€áž¡áž¾áž„ážáŸ’áž›áŸƒáŸ”`
-            : `Physical ${metalLabelEn} inventory decreased by ${totalGrams.toFixed(2)}g (${weight} ${unit}). Open a ${brokerLots.toFixed(2)} digital long to hedge inventory replenishment.`;
-        }
-      }
-
-      // Currency Equivalents & Metrics
-      const elLockedProfit = document.getElementById('cardLockedProfit');
-      const elLockedProfitKhr = document.getElementById('cardLockedProfitKhr');
-      if (elLockedProfit) {
-        elLockedProfit.textContent = `+$${lockedProfit.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
-      }
-      if (elLockedProfitKhr) {
-        const khrVal = Math.round(lockedProfit * KHR_RATE);
-        elLockedProfitKhr.textContent = `â‰ˆ ${khrVal.toLocaleString('en-US')} áŸ› (${currentLang === 'km' ? 'áž€áž¶ážšáž–áž¶ážš áŸ¡áŸ áŸ %' : '100% Protected'})`;
-      }
-
-      const elSafeCapital = document.getElementById('cardSafeCapital');
-      const elSafeCapitalKhr = document.getElementById('cardSafeCapitalKhr');
-      if (elSafeCapital) {
-        elSafeCapital.textContent = `$${safeCapitalUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
-      }
-      if (elSafeCapitalKhr) {
-        const khrCap = Math.round(safeCapitalUSD * KHR_RATE);
-        elSafeCapitalKhr.textContent = `â‰ˆ ${khrCap.toLocaleString('en-US')} áŸ› (${currentLang === 'km' ? 'áž‚áŸ’áž˜áž¶áž“ Stop-Out' : 'Zero Stop-Out'})`;
-      }
-
-      const elBalanceKhr = document.getElementById('balanceKhrEquivalent');
-      if (elBalanceKhr) {
-        const khrUserBal = Math.round(userBalance * KHR_RATE);
-        elBalanceKhr.textContent = `â‰ˆ ${khrUserBal.toLocaleString('en-US')} áŸ›`;
-      }
-
-      // Stop-Out Price Card
-      const elStopOutPrice = document.getElementById('cardStopOutPrice');
-      const elStopOutDistance = document.getElementById('cardStopOutDistance');
-      if (elStopOutPrice && elStopOutDistance) {
-        if (userBalance > 0 && brokerLots > 0) {
-          elStopOutPrice.textContent = `$${stopOutSpot.toFixed(2)}`;
-          elStopOutDistance.textContent = (isBuy ? '+' : '-') + `$${Math.abs(stopOutDistance).toFixed(2)} / oz distance`;
-        } else {
-          elStopOutPrice.textContent = currentLang === 'km' ? 'ážŸáž¼áž˜áž”áž‰áŸ’áž…áž¼áž›áž‘áž»áž“' : 'Input Balance';
-          elStopOutDistance.textContent = currentLang === 'km' ? 'ážŠáž¾áž˜áŸ’áž”áž¸áž‚ážŽáž“áž¶áž áž¶áž“áž·áž—áŸáž™' : 'to view stop-out level';
-        }
-      }
-
-      // Account Health & Capital Safety Box
-      const elDiagPill = document.getElementById('cardAccountDiagPill');
-      const elDiagText = document.getElementById('diagnosticExplanationText');
-      const elBreakdownSurplus = document.getElementById('breakdownSurplus');
-      const elBreakdownUserBalance = document.getElementById('breakdownUserBalance');
-      const elBreakdownMargin = document.getElementById('breakdownMargin');
-      const elBreakdownBuffer = document.getElementById('breakdownBuffer');
-      const elBufferValText = document.getElementById('hedgeBufferValText');
-
-      if (elBreakdownUserBalance) elBreakdownUserBalance.textContent = `$${userBalance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
-      if (elBreakdownMargin) elBreakdownMargin.textContent = `$${marginUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
-      if (elBreakdownBuffer) elBreakdownBuffer.textContent = `$${bufferUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
-      if (elBufferValText) elBufferValText.textContent = `Â±$${buffer.toFixed(2)} / oz`;
-
-      const surplus = userBalance - safeCapitalUSD;
-      if (elBreakdownSurplus && elDiagPill && elDiagText) {
-        if (userBalance >= safeCapitalUSD) {
-          elDiagPill.className = 'account-diagnostic-pill';
-          elDiagPill.textContent = currentLang === 'km' ? 'áž‘áž»áž“ážŸáž»ážœážáŸ’ážáž·áž—áž¶áž–áž–áŸáž‰áž›áŸáž‰ (100%)' : 'CAPITAL FULLY PROTECTED';
-          elBreakdownSurplus.className = 'text-success';
-          elBreakdownSurplus.textContent = `+$${surplus.toFixed(2)} Surplus`;
-          elDiagText.className = 'health-explanation-text';
-          elDiagText.textContent = currentLang === 'km'
-            ? `ðŸŸ¢ ážŸáž»ážœážáŸ’ážáž·áž—áž¶áž–ážáŸ’áž–ážŸáŸ‹áž”áŸ†áž•áž»ážáŸ– ážŠáž¾áž˜áž‘áž»áž“ážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€áž‚áŸ’ážšáž”ážŠážŽáŸ’ážáž”áŸ‹áž‘áž¶áŸ†áž„ Margin áž“áž·áž„áž‘áž»áž“áž”áž˜áŸ’ážšáž»áž„áž›áž¾ážŸáž–áž¸ $${buffer}/ozáŸ” áž‚áŸ’áž˜áž¶áž“áž áž¶áž“áž·áž—áŸáž™ Stop-Out áž¡áž¾áž™áŸ”`
-            : `ðŸŸ¢ Capital Protected: Your balance safely covers required margin plus more than $${buffer}/oz market swing against your hedge. Zero liquidation risk.`;
-        } else if (userBalance >= marginUSD) {
-          elDiagPill.className = 'account-diagnostic-pill status-tight';
-          elDiagPill.textContent = currentLang === 'km' ? 'áž‘áž»áž“áž”áž˜áŸ’ážšáž»áž„áž“áŸ…áž˜áž¶áž“áž€áž˜áŸ’ážšáž·áž' : 'TIGHT MARGIN BUFFER';
-          elBreakdownSurplus.className = 'text-danger';
-          elBreakdownSurplus.textContent = `-$${Math.abs(surplus).toFixed(2)} Shortfall`;
-          elDiagText.className = 'health-explanation-text';
-          elDiagText.textContent = currentLang === 'km'
-            ? `ðŸŸ¡ áž‘áž»áž“áž”áž˜áŸ’ážšáž»áž„áž“áŸ…ážŸáŸ’ážáž¾áž„áŸ– áž‚ážŽáž“áž¸áž¢áž¶áž…áž”áž¾áž€áž”áž‰áŸ’áž‡áž¶áž”áž¶áž“ áž”áŸ‰áž»áž“áŸ’ážáŸ‚ážŠáž¾áž˜áŸ’áž”áž¸áž€áž¶ážšáž–áž¶ážšáž€áž¶ážš Stop-Out áž“áŸ…áž–áŸáž›áž‘áž¸áž•áŸ’ážŸáž¶ážšážšáž›áž¶áž€áŸ‹ ážŸáž¼áž˜áž”áž“áŸ’ážáŸ‚áž˜ $${Math.abs(surplus).toFixed(2)} áž‘áŸ€ážáŸ”`
-            : `ðŸŸ¡ Tight Buffer: Position can open, but buffer is slim. Deposit $${Math.abs(surplus).toFixed(2)} more to reach full Â±$${buffer}/oz protection.`;
-        } else {
-          elDiagPill.className = 'account-diagnostic-pill status-danger';
-          elDiagPill.textContent = currentLang === 'km' ? 'áž‘áž»áž“áž˜áž·áž“áž‘áž¶áž“áŸ‹áž‚áŸ’ážšáž”áŸ‹áž‚áŸ’ážšáž¶áž“áŸ‹' : 'INSUFFICIENT BALANCE';
-          elBreakdownSurplus.className = 'text-danger';
-          elBreakdownSurplus.textContent = `-$${Math.abs(surplus).toFixed(2)} Under Margin`;
-          elDiagText.className = 'health-explanation-text';
-          elDiagText.textContent = currentLang === 'km'
-            ? `ðŸ”´ áž‘áž»áž“áž˜áž·áž“áž‚áŸ’ážšáž”áŸ‹áŸ– áž¢áŸ’áž“áž€áž˜áž·áž“áž¢áž¶áž…áž”áž¾áž€ ${brokerLots.toFixed(2)} Lots áž”áž¶áž“áž¡áž¾áž™áŸ” ážáž˜áŸ’ážšáž¼ážœáž€áž¶ážš Margin áž¢áž”áŸ’áž”áž”ážšáž˜áž¶áž‚ážº $${marginUSD.toFixed(2)} USDáŸ”`
-            : `ðŸ”´ Insufficient Capital: Cannot execute ${brokerLots.toFixed(2)} Lots. Minimum initial margin required is $${marginUSD.toFixed(2)} USD.`;
-        }
-      }
-
-      // Detailed Table Metrics
-      const elBrokerLots = document.getElementById('cardBrokerLots');
-      if (elBrokerLots) elBrokerLots.textContent = `${brokerLots.toFixed(2)} Lots`;
-
-      const elExactLots = document.getElementById('cardExactLots');
-      if (elExactLots) elExactLots.textContent = `${exactLots.toFixed(5)} Lots`;
-
-      const elResidualWeight = document.getElementById('cardResidualWeight');
-      if (elResidualWeight) {
-        elResidualWeight.textContent = `${residualGrams.toFixed(2)}g (â‰ˆ ${residualDamlung.toFixed(2)} ${currentLang === 'km' ? 'ážáž˜áŸ’áž›áž¹áž„' : 'Damlung'})`;
-      }
-
-      const elPhysicalCashTotal = document.getElementById('cardPhysicalCashTotal');
-      if (elPhysicalCashTotal) elPhysicalCashTotal.textContent = `$${physicalCashTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
-
-      const elDigitalSpotTotal = document.getElementById('cardDigitalSpotTotal');
-      if (elDigitalSpotTotal) elDigitalSpotTotal.textContent = `$${digitalSpotTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
-
-      // Mathematical Proof Step Breakdown
-      const elMathProofSteps = document.getElementById('mathProofSteps');
-      if (elMathProofSteps) {
-        elMathProofSteps.innerHTML = currentLang === 'km'
-          ? `${weight} ${unitNamesKhmer[unit] || unit} Ã— ${(gramsPerUnit[unit] || 37.5).toFixed(2)}g = ${totalGrams.toFixed(2)}g ${metalLabelKhmer}ážšáž¼áž”ážœáž“áŸ’áž<br>${totalGrams.toFixed(2)}g Ã· 31.1035g/oz = ${troyOunces.toFixed(4)} Troy Ounces<br>${troyOunces.toFixed(4)} oz Ã· ${contractSize} oz/Lot = <strong>${exactLots.toFixed(5)} Digital Lots</strong>`
-          : `${weight} ${unit} Ã— ${(gramsPerUnit[unit] || 37.5).toFixed(2)}g = ${totalGrams.toFixed(2)}g Physical ${metalLabelEn}<br>${totalGrams.toFixed(2)}g Ã· 31.1035g/oz = ${troyOunces.toFixed(4)} Troy Ounces<br>${troyOunces.toFixed(4)} oz Ã· ${contractSize} oz/Lot = <strong>${exactLots.toFixed(5)} Digital Lots</strong>`;
-      }
-
-      // Re-run simulator with current parameters
-      runCrashSimulation(currentSimDelta);
-    }
-
-    // 3. Dynamic Market Volatility Stress-Test Simulator Engine
-    function runCrashSimulation(deltaPrice) {
-      currentSimDelta = deltaPrice;
-      const weight = parseFloat(hedgeWeightInput.value) || 0;
-      const unit = hedgeUnitSelect.value || 'damlung';
-      const isXAU = currentHedgeMetal === 'XAU';
-      const contractSize = isXAU ? 100 : 5000;
-      const isBuy = currentHedgeDirection === 'BUY_PHYSICAL';
-      const currentLang = document.documentElement.getAttribute('lang') || 'en';
-
-      const totalGrams = weight * (gramsPerUnit[unit] || 37.5);
-      const troyOunces = totalGrams / 31.1034768;
-      const exactLots = troyOunces / contractSize;
-      let brokerLots = Math.round(exactLots * 100) / 100;
-      if (brokerLots === 0 && exactLots > (isXAU ? 0.005 : 0.0002)) brokerLots = 0.01;
-
-      // Physical gold value delta
-      const physicalDiff = troyOunces * deltaPrice;
-
-      // Digital hedge trade delta
-      // When shop buys physical gold, it opens SHORT. If price drops (deltaPrice < 0), Short makes profit (+).
-      const digitalDiff = isBuy ? (brokerLots * contractSize * (-deltaPrice)) : (brokerLots * contractSize * deltaPrice);
-
-      // Net impact
-      const unhedgedNet = physicalDiff;
-      const hedgedNet = physicalDiff + digitalDiff;
-
-      const elSimUnhedgedPhysical = document.getElementById('simUnhedgedPhysicalDiff');
-      const elSimUnhedgedNet = document.getElementById('simUnhedgedNet');
-      const elSimHedgedPhysical = document.getElementById('simHedgedPhysicalDiff');
-      const elSimHedgedDigital = document.getElementById('simHedgedDigitalDiff');
-      const elSimHedgedNet = document.getElementById('simHedgedNet');
-      const elSimUnhedgedVerdict = document.getElementById('simUnhedgedVerdict');
-      const elSimHedgedVerdict = document.getElementById('simHedgedVerdict');
-
-      if (elSimUnhedgedPhysical) {
-        elSimUnhedgedPhysical.textContent = (physicalDiff >= 0 ? '+' : '-') + `$${Math.abs(physicalDiff).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
-      }
-      if (elSimUnhedgedNet) {
-        elSimUnhedgedNet.textContent = (unhedgedNet >= 0 ? '+' : '-') + `$${Math.abs(unhedgedNet).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${unhedgedNet >= 0 ? 'Gain' : 'Capital Loss'}`;
-      }
-      if (elSimHedgedPhysical) {
-        elSimHedgedPhysical.textContent = (physicalDiff >= 0 ? '+' : '-') + `$${Math.abs(physicalDiff).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
-      }
-      if (elSimHedgedDigital) {
-        elSimHedgedDigital.textContent = (digitalDiff >= 0 ? '+' : '-') + `$${Math.abs(digitalDiff).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD`;
-      }
-      if (elSimHedgedNet) {
-        const sign = hedgedNet >= 0 ? '+' : '-';
-        elSimHedgedNet.textContent = `$${Math.abs(hedgedNet).toFixed(2)} Net Difference (${currentLang === 'km' ? 'áž€áž¶ážšáž–áž¶ážš áŸ¡áŸ áŸ %' : '100% Protected'})`;
-      }
-
-      if (elSimUnhedgedVerdict && elSimHedgedVerdict) {
-        if (deltaPrice < 0) {
-          elSimUnhedgedVerdict.textContent = currentLang === 'km'
-            ? `áž€áž¶ážšáž’áŸ’áž›áž¶áž€áŸ‹áž…áž»áŸ‡ $${Math.abs(deltaPrice)}/oz áž”áž¶áž“áž›áŸáž”ážáŸ’ážšáž”áž¶áž€áŸ‹áž™áž€áž”áŸ’ážšáž¶áž€áŸ‹áž…áŸ†ážŽáŸáž‰ áž“áž·áž„áž”áž¶áž“áž”áŸ†áž•áŸ’áž›áž¶áž‰ážŠáž¾áž˜áž‘áž»áž“áž¢áž¶áž‡áž¸ážœáž€áž˜áŸ’áž˜ážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€áž¢ážŸáŸ‹ $${Math.abs(unhedgedNet).toFixed(2)} USD áž—áŸ’áž›áž¶áž˜áŸ—!`
+            ? `ការធ្លាក់ចុះ ${Math.abs(deltaPrice)}/oz បានលេបត្របាក់ប្រាក់ចំណេញ Counter Spread និងធ្វើឱ្យខាតបង់ដើមទុនស្នូលចំនួន ${Math.abs(unhedgedNet).toFixed(2)} USD របស់ហាង!`
             : `The $${Math.abs(deltaPrice)}/oz drop wiped out your retail spread profit and destroyed $${Math.abs(unhedgedNet).toFixed(2)} USD of core business capital!`;
           elSimHedgedVerdict.innerHTML = currentLang === 'km'
-            ? `áž‚áŸ’áž˜áž¶áž“áž€áž¶ážšážáž¶ážáž”áž„áŸ‹áž¡áž¾áž™! áž”áž‰áŸ’áž‡áž¶ MT5 Short áž”áž¶áž“áž•áŸ’ážáž›áŸ‹áž•áž›áž…áŸ†ážŽáŸáž‰áž˜áž€ážœáž·áž‰áž…áŸ†áž“áž½áž“ <strong>+$${Math.abs(digitalDiff).toFixed(2)} USD</strong> ážŸáŸ’áž˜áž¾áž“áž¹áž„áž€áž¶ážšážáž¶ážážšáž¼áž”ážœáž“áŸ’ážáž”áŸáŸ‡áž”áž·áž‘áŸ” áž”áŸ’ážšáž¶áž€áŸ‹áž…áŸ†ážŽáŸáž‰áž áž¶áž„ážšáž”ážŸáŸ‹áž¢áŸ’áž“áž€ážáŸ’ážšáž¼ážœáž”áž¶áž“áž€áž¶ážšáž–áž¶ážš áŸ¡áŸ áŸ %! ðŸ†`
-            : `Zero loss! The digital short generated <strong>+$${Math.abs(digitalDiff).toFixed(2)} USD</strong> to offset the physical drop dollar-for-dollar. Your counter profit is 100% secure in your bank account! ðŸ†`;
+            ? `គ្មានការខាតបង់! ការបើក MT5 Short បានបង្កើតប្រាក់ចំណេញ <strong>+$${Math.abs(digitalDiff).toFixed(2)} USD</strong> ដើម្បីទូទាត់ការធ្លាក់ចុះនៃតម្លៃមាស។ ប្រាក់ចំណេញ Counter របស់អ្នកមានសុវត្ថិភាព ១០០% ក្នុងគណនីធនាគារ! 🏆`
+            : `Zero loss! The digital short generated <strong>+$${Math.abs(digitalDiff).toFixed(2)} USD</strong> to offset the physical drop dollar-for-dollar. Your counter profit is 100% secure in your bank account! 🏆`;
         } else {
           elSimUnhedgedVerdict.textContent = currentLang === 'km'
-            ? `áž˜áž¶ážŸáž¡áž¾áž„ážáŸ’áž›áŸƒ $${deltaPrice}/oz áž”áŸ‰áž»áž“áŸ’ážáŸ‚áž€áž¶ážšážšáž„áŸ‹áž…áž¶áŸ†áž‘áž·áž‰áž”áŸ†áž–áŸáž‰ážŸáŸ’ážáž»áž€áž¡áž¾áž„ážœáž·áž‰áž“áž¹áž„ážáŸ’ážšáž¼ážœáž…áŸ†ážŽáž¶áž™ážáŸ’áž›áŸƒážŠáž¾áž˜ážáŸ’áž–ážŸáŸ‹áž‡áž¶áž„áž˜áž»áž“ $${Math.abs(physicalDiff).toFixed(2)} USD!`
+            ? `មាសឡើងថ្លៃ ${deltaPrice}/oz ប៉ុន្តែការទិញមាសបំពេញស្តុកត្រូវចំណាយប្រាក់ច្រើនជាងមុន ${Math.abs(physicalDiff).toFixed(2)} USD!`
             : `Gold gained $${deltaPrice}/oz, but replenishing sold inventory now costs $${Math.abs(physicalDiff).toFixed(2)} USD more out of pocket!`;
           elSimHedgedVerdict.innerHTML = currentLang === 'km'
-            ? `ážáž»áž›áŸ’áž™áž—áž¶áž– Delta-Neutral ážšáž€áŸ’ážŸáž¶ážŠáž¾áž˜áž‘áž»áž“áž”áŸ†áž–áŸáž‰ážŸáŸ’ážáž»áž€áž”áž¶áž“ážŸáŸ’áž˜áž¾ áŸ¡áŸ áŸ % ážŠáŸ„áž™áž‚áŸ’áž˜áž¶áž“áž€áž¶ážšáž”áŸ’ážšáŸ‚áž”áŸ’ážšáž½áž›áž¡áž¾áž™áŸ” ðŸ†`
-            : `Delta-Neutral balance neutralized replenishment cost perfectly. Total price risk = $0.00! ðŸ†`;
+            ? `តុល្យភាព Delta-Neutral បានទូទាត់ថ្លៃទិញបំពេញស្តុក ១០០% ដោយគ្មានហានិភ័យប្រែប្រួលថ្លៃ! 🏆`
+            : `Delta-Neutral balance neutralized replenishment cost perfectly. Total price risk = $0.00! 🏆`;
         }
       }
     }
 
-    // Expose recalculate globally for language switcher
-    window.recalcGoldHedging = calculateGoldHedging;
-
-    // 4. Register All Event Listeners
-    if (metalSwitchGold && metalSwitchSilver) {
-      metalSwitchGold.addEventListener('click', () => {
-        if (currentHedgeMetal === 'XAU') return;
-        currentHedgeMetal = 'XAU';
-        metalSwitchGold.classList.add('active');
-        metalSwitchSilver.classList.remove('active');
-        const symbolEl = document.getElementById('liveSpotSymbol');
-        if (symbolEl) symbolEl.textContent = 'XAU/USD:';
-        fetchLiveSpotPrice('XAU', true);
-      });
-
-      metalSwitchSilver.addEventListener('click', () => {
-        if (currentHedgeMetal === 'XAG') return;
-        currentHedgeMetal = 'XAG';
-        metalSwitchSilver.classList.add('active');
-        metalSwitchGold.classList.remove('active');
-        const symbolEl = document.getElementById('liveSpotSymbol');
-        if (symbolEl) symbolEl.textContent = 'XAG/USD:';
-        fetchLiveSpotPrice('XAG', true);
-      });
-    }
-
-    if (dirBuyGold && dirSellGold) {
-      dirBuyGold.addEventListener('click', () => {
-        currentHedgeDirection = 'BUY_PHYSICAL';
-        dirBuyGold.classList.add('active');
-        dirSellGold.classList.remove('active');
-        calculateGoldHedging();
-      });
-      dirSellGold.addEventListener('click', () => {
-        currentHedgeDirection = 'SELL_PHYSICAL';
-        dirSellGold.classList.add('active');
-        dirBuyGold.classList.remove('active');
-        calculateGoldHedging();
-      });
-    }
-
-    if (curBtnUSD && curBtnKHR) {
-      curBtnUSD.addEventListener('click', () => {
-        currentCurrency = 'USD';
-        curBtnUSD.classList.add('active');
-        curBtnKHR.classList.remove('active');
-        calculateGoldHedging();
-      });
-      curBtnKHR.addEventListener('click', () => {
-        currentCurrency = 'KHR';
-        curBtnKHR.classList.add('active');
-        curBtnUSD.classList.remove('active');
-        calculateGoldHedging();
-      });
-    }
-
-    if (btnCopyTicket) {
-      btnCopyTicket.addEventListener('click', () => {
-        const actionText = currentHedgeDirection === 'BUY_PHYSICAL' ? 'SELL (SHORT)' : 'BUY (LONG)';
-        const weightVal = hedgeWeightInput.value;
-        const unitVal = hedgeUnitSelect.value;
-        const spotVal = hedgeSpotInput.value;
-        const lotsVal = document.getElementById('resStandardLots') ? document.getElementById('resStandardLots').textContent : '0.12';
-        const profitVal = document.getElementById('cardLockedProfit') ? document.getElementById('cardLockedProfit').textContent : '$0';
-        const safeCapVal = document.getElementById('cardSafeCapital') ? document.getElementById('cardSafeCapital').textContent : '$0';
-        const stopOutVal = document.getElementById('cardStopOutPrice') ? document.getElementById('cardStopOutPrice').textContent : '$0';
-
-        const ticketSummary = `[BLUEX HEDGING EXECUTION ORDER]
-Asset: ${currentHedgeMetal === 'XAU' ? 'XAU/USD (Gold)' : 'XAG/USD (Silver)'}
-Action: ${actionText} ${lotsVal} Lots
-Physical Inventory: ${weightVal} ${unitVal}
-Live Spot: $${spotVal} / oz
-Locked Spread Profit: ${profitVal}
-Recommended Safe Deposit: ${safeCapVal}
-Stop-Out Price Level: ${stopOutVal}
-Protocol Status: 100% Delta-Neutral Protected`;
-
-        navigator.clipboard.writeText(ticketSummary).then(() => {
-          const copyBtnText = document.getElementById('copyBtnText');
-          const currentLang = document.documentElement.getAttribute('lang') || 'en';
-          if (copyBtnText) {
-            const original = copyBtnText.textContent;
-            copyBtnText.textContent = currentLang === 'km' ? 'âœ“ áž”áž¶áž“áž…áž˜áŸ’áž›áž„!' : 'âœ“ Copied!';
-            btnCopyTicket.style.borderColor = '#10b981';
-            btnCopyTicket.style.color = '#10b981';
-            setTimeout(() => {
-              copyBtnText.textContent = original;
-              btnCopyTicket.style.borderColor = '';
-              btnCopyTicket.style.color = '';
-            }, 2500);
-          }
-        }).catch(err => {
-          console.warn('[BlueX] Clipboard copy failed:', err);
-        });
-      });
-    }
-
-    if (btnToggleDetails) {
-      btnToggleDetails.addEventListener('click', () => {
-        const content = document.getElementById('ticketDetailedContent');
-        const textSpan = document.getElementById('toggleDetailsText');
-        const currentLang = document.documentElement.getAttribute('lang') || 'en';
-        if (content) {
-          const isHidden = content.style.display === 'none' || content.style.display === '';
-          content.style.display = isHidden ? 'block' : 'none';
-          btnToggleDetails.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
-          if (textSpan) {
-            if (isHidden) {
-              textSpan.textContent = currentLang === 'km' ? 'â–² áž›áž¶áž€áŸ‹áž–áŸážáŸŒáž˜áž¶áž“áž›áž˜áŸ’áž¢áž·áž' : 'â–² Hide Detailed Arithmetic';
-            } else {
-              textSpan.textContent = currentLang === 'km' ? 'â–¼ áž”áž„áŸ’áž áž¶áž‰ážšáž¼áž”áž˜áž“áŸ’ážáž‚ážŽáž·ážážœáž·áž‘áŸ’áž™áž¶ & áž‘áž˜áŸ’áž„áž“áŸ‹áž“áŸ…ážŸáž›áŸ‹' : 'â–¼ Show Advanced Arithmetic & Residuals';
-            }
-          }
-        }
-      });
-    }
-
-    simScenarioBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        simScenarioBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const scenarioDelta = parseFloat(btn.getAttribute('data-scenario')) || -150;
-        runCrashSimulation(scenarioDelta);
-      });
-    });
-
-    if (btnRefreshSpot) {
-      btnRefreshSpot.addEventListener('click', () => {
-        fetchLiveSpotPrice(currentHedgeMetal, true);
-      });
-    }
-
-    if (btnSyncLocalRate) {
-      btnSyncLocalRate.addEventListener('click', () => {
-        syncLocalRateWithSpot();
-        calculateGoldHedging();
-      });
-    }
-
-    if (btnAutoFillSafeBalance) {
-      btnAutoFillSafeBalance.addEventListener('click', () => {
-        const spot = parseFloat(hedgeSpotInput.value) || cachedLivePrices[currentHedgeMetal];
-        const leverage = parseFloat(hedgeLeverageSelect.value) || 200;
-        const weight = parseFloat(hedgeWeightInput.value) || 0;
-        const unit = hedgeUnitSelect.value || 'damlung';
-        const isXAU = currentHedgeMetal === 'XAU';
-        const contractSize = isXAU ? 100 : 5000;
-        const totalGrams = weight * (gramsPerUnit[unit] || 37.5);
-        const troyOunces = totalGrams / 31.1034768;
-        let lots = Math.round((troyOunces / contractSize) * 100) / 100;
-        if (lots === 0 && troyOunces > 0) lots = 0.01;
-        const marginUSD = (lots * contractSize * spot) / leverage;
-        const bufferUSD = lots * contractSize * currentHedgeBuffer;
-        const target = Math.ceil((marginUSD + bufferUSD) / 50) * 50;
-        hedgeAccountBalanceInput.value = target.toFixed(2);
-        calculateGoldHedging();
-      });
-    }
-
-    bufferChips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        bufferChips.forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        currentHedgeBuffer = parseFloat(chip.getAttribute('data-buffer')) || 100;
-        calculateGoldHedging();
-      });
-    });
-
-    shopPresetChips.forEach(presetBtn => {
-      presetBtn.addEventListener('click', () => {
-        shopPresetChips.forEach(p => p.classList.remove('active'));
-        presetBtn.classList.add('active');
-        const weightVal = presetBtn.getAttribute('data-weight');
-        const unitVal = presetBtn.getAttribute('data-unit');
-        if (weightVal) hedgeWeightInput.value = weightVal;
-        if (unitVal) hedgeUnitSelect.value = unitVal;
-        calculateGoldHedging();
-      });
-    });
-
-    hedgeWeightInput.addEventListener('input', calculateGoldHedging);
-    hedgeUnitSelect.addEventListener('change', calculateGoldHedging);
-    hedgeSpotInput.addEventListener('input', calculateGoldHedging);
-    hedgeLeverageSelect.addEventListener('change', calculateGoldHedging);
-    if (hedgeLocalDamlungInput) {
-      hedgeLocalDamlungInput.addEventListener('input', calculateGoldHedging);
-    }
-    if (hedgeAccountBalanceInput) {
-      hedgeAccountBalanceInput.addEventListener('input', calculateGoldHedging);
-    }
-
-    // Progressive Step Navigation (PC & Mobile)
-    const workflowTabs = document.querySelectorAll('.workflow-tab');
-    const stepBlocks = document.querySelectorAll('[data-calc-step]');
-    const nextButtons = document.querySelectorAll('[data-next-step]');
-    const backButtons = document.querySelectorAll('[data-prev-step]');
-
-    function switchWorkflowStep(stepNum) {
-      const stepStr = String(stepNum);
-      workflowTabs.forEach(t => {
-        const isMatch = t.getAttribute('data-step') === stepStr;
-        t.classList.toggle('active', isMatch);
-        t.setAttribute('aria-selected', isMatch ? 'true' : 'false');
-      });
-
-      const isMobile = window.innerWidth <= 992;
-      stepBlocks.forEach(b => {
-        const bStep = b.getAttribute('data-calc-step');
-        if (isMobile) {
-          // On mobile, show only selected step
-          b.style.display = (bStep === stepStr) ? 'block' : 'none';
-        } else {
-          // On desktop:
-          // Step 1: Show Step 1 in left column, ticket in right column
-          // Step 2: Show Step 2 in left column, ticket in right column
-          // Step 3: Show both Step 1 & 2 in left column, highlight ticket and scroll to it
-          if (bStep === '1') {
-            b.style.display = (stepStr === '1' || stepStr === '3') ? 'block' : 'none';
-          } else if (bStep === '2') {
-            b.style.display = (stepStr === '2' || stepStr === '3') ? 'block' : 'none';
-          } else if (bStep === '3') {
-            b.style.display = 'block';
-            if (stepStr === '3') {
-              const ticketEl = document.getElementById('calcTicketCard');
-              if (ticketEl) {
-                ticketEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                ticketEl.classList.add('ticket-highlight-pulse');
-                setTimeout(() => ticketEl.classList.remove('ticket-highlight-pulse'), 1500);
-              }
-            }
-          }
-        }
-      });
-    }
-
-    workflowTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const step = tab.getAttribute('data-step');
-        if (step) switchWorkflowStep(step);
-      });
-    });
-
-    nextButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const step = btn.getAttribute('data-next-step');
-        if (step) switchWorkflowStep(step);
-      });
-    });
-
-    backButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const step = btn.getAttribute('data-prev-step');
-        if (step) switchWorkflowStep(step);
-      });
-    });
-
-    // Handle responsive resize layout
-    window.addEventListener('resize', () => {
-      const activeTab = document.querySelector('.workflow-tab.active');
-      const step = activeTab ? activeTab.getAttribute('data-step') : '1';
-      switchWorkflowStep(step || '1');
-    });
-
-    // Default to Step 1
-    switchWorkflowStep('1');
-
-    // Initial spot fetch & execution
-    fetchLiveSpotPrice(currentHedgeMetal, false);
-
-    // Auto-refresh spot every 60 seconds
-    setInterval(() => {
-      if (!document.hidden) {
-        fetchLiveSpotPrice(currentHedgeMetal, false);
-      }
-    }, 60000);
-  }.00! ðŸ†`;
-        }
-      }
-    }
-
-    // 4. Register All Event Listeners
-    // Slider & Input Sync
-    if (hedgeWeightInput && hedgeWeightSlider) {
+    // 4. Bind Interactive Event Listeners
+    if (hedgeWeightSlider && hedgeWeightInput) {
       hedgeWeightInput.addEventListener('input', () => {
         hedgeWeightSlider.value = hedgeWeightInput.value;
         calculateGoldHedging();
@@ -3151,108 +2458,79 @@ Protocol Status: 100% Delta-Neutral Protected`;
       });
     }
 
-    // Unit Buttons
+    if (dirBuyGold) {
+      dirBuyGold.addEventListener('click', () => {
+        currentHedgeDirection = 'BUY_PHYSICAL';
+        dirBuyGold.classList.add('active');
+        if (dirSellGold) dirSellGold.classList.remove('active');
+        calculateGoldHedging();
+      });
+    }
+
+    if (dirSellGold) {
+      dirSellGold.addEventListener('click', () => {
+        currentHedgeDirection = 'SELL_PHYSICAL';
+        dirSellGold.classList.add('active');
+        if (dirBuyGold) dirBuyGold.classList.remove('active');
+        calculateGoldHedging();
+      });
+    }
+
+    if (metalSwitchGold) {
+      metalSwitchGold.addEventListener('click', () => {
+        currentHedgeMetal = 'XAU';
+        metalSwitchGold.classList.add('active');
+        if (metalSwitchSilver) metalSwitchSilver.classList.remove('active');
+        const liveSpotSymbol = document.getElementById('liveSpotSymbol');
+        if (liveSpotSymbol) liveSpotSymbol.textContent = 'XAU/USD';
+        fetchLiveSpotPrice('XAU', true);
+      });
+    }
+
+    if (metalSwitchSilver) {
+      metalSwitchSilver.addEventListener('click', () => {
+        currentHedgeMetal = 'XAG';
+        metalSwitchSilver.classList.add('active');
+        if (metalSwitchGold) metalSwitchGold.classList.remove('active');
+        const liveSpotSymbol = document.getElementById('liveSpotSymbol');
+        if (liveSpotSymbol) liveSpotSymbol.textContent = 'XAG/USD';
+        fetchLiveSpotPrice('XAG', true);
+      });
+    }
+
     deskUnitBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         deskUnitBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const unit = btn.getAttribute('data-unit');
-        if (hedgeUnitSelect && unit) {
-          hedgeUnitSelect.value = unit;
-        }
+        if (hedgeUnitSelect) hedgeUnitSelect.value = unit;
         calculateGoldHedging();
       });
     });
 
-    // Preset Chips
     deskChipPresets.forEach(chip => {
       chip.addEventListener('click', () => {
-        deskChipPresets.forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        const weight = chip.getAttribute('data-weight');
-        if (weight && hedgeWeightInput) {
-          hedgeWeightInput.value = weight;
-          if (hedgeWeightSlider) hedgeWeightSlider.value = weight;
-        }
+        const val = parseFloat(chip.getAttribute('data-val')) || 10;
+        hedgeWeightInput.value = val;
+        if (hedgeWeightSlider) hedgeWeightSlider.value = val;
         calculateGoldHedging();
       });
     });
 
-    // Direction Toggle
-    if (dirBuyGold && dirSellGold) {
-      dirBuyGold.addEventListener('click', () => {
-        currentHedgeDirection = 'BUY_PHYSICAL';
-        dirBuyGold.classList.add('active');
-        dirSellGold.classList.remove('active');
-        calculateGoldHedging();
-      });
-      dirSellGold.addEventListener('click', () => {
-        currentHedgeDirection = 'SELL_PHYSICAL';
-        dirSellGold.classList.add('active');
-        dirBuyGold.classList.remove('active');
-        calculateGoldHedging();
-      });
-    }
-
-    // Metal Switcher
-    if (metalSwitchGold && metalSwitchSilver) {
-      metalSwitchGold.addEventListener('click', () => {
-        if (currentHedgeMetal === 'XAU') return;
-        currentHedgeMetal = 'XAU';
-        metalSwitchGold.classList.add('active');
-        metalSwitchSilver.classList.remove('active');
-        const symEl = document.getElementById('liveSpotSymbol');
-        if (symEl) symEl.textContent = 'XAU/USD LIVE SPOT:';
-        fetchLiveSpotPrice('XAU', true);
-      });
-      metalSwitchSilver.addEventListener('click', () => {
-        if (currentHedgeMetal === 'XAG') return;
-        currentHedgeMetal = 'XAG';
-        metalSwitchSilver.classList.add('active');
-        metalSwitchGold.classList.remove('active');
-        const symEl = document.getElementById('liveSpotSymbol');
-        if (symEl) symEl.textContent = 'XAG/USD LIVE SPOT:';
-        fetchLiveSpotPrice('XAG', true);
-      });
-    }
-
-    // Inputs & Selects
+    if (localPremiumInput) localPremiumInput.addEventListener('input', calculateGoldHedging);
     if (hedgeSpotInput) hedgeSpotInput.addEventListener('input', calculateGoldHedging);
     if (hedgeLeverageSelect) hedgeLeverageSelect.addEventListener('change', calculateGoldHedging);
-    if (hedgeBufferSelect) {
-      hedgeBufferSelect.addEventListener('change', () => {
-        currentHedgeBuffer = parseFloat(hedgeBufferSelect.value) || 100;
-        calculateGoldHedging();
-      });
-    }
-    if (localPremiumInput) localPremiumInput.addEventListener('input', calculateGoldHedging);
+    if (hedgeBufferSelect) hedgeBufferSelect.addEventListener('change', calculateGoldHedging);
     if (hedgeAccountBalanceInput) hedgeAccountBalanceInput.addEventListener('input', calculateGoldHedging);
 
     if (btnRefreshSpot) {
-      btnRefreshSpot.addEventListener('click', () => {
-        fetchLiveSpotPrice(currentHedgeMetal, true);
-      });
+      btnRefreshSpot.addEventListener('click', () => fetchLiveSpotPrice(currentHedgeMetal, true));
     }
 
     if (btnDepositGuide) {
       btnDepositGuide.addEventListener('click', () => {
-        const spot = parseFloat(hedgeSpotInput.value) || cachedLivePrices[currentHedgeMetal];
-        const leverage = parseFloat(hedgeLeverageSelect.value) || 100;
-        const weight = parseFloat(hedgeWeightInput.value) || 0;
-        const unit = (hedgeUnitSelect ? hedgeUnitSelect.value : 'damlung') || 'damlung';
-        const isXAU = currentHedgeMetal === 'XAU';
-        const contractSize = isXAU ? 100 : 5000;
-        const totalGrams = weight * (gramsPerUnit[unit] || 37.5);
-        const troyOunces = totalGrams / 31.1034768;
-        let lots = Math.round((troyOunces / contractSize) * 100) / 100;
-        if (lots === 0 && troyOunces > 0) lots = 0.01;
-        const marginUSD = (lots * contractSize * spot) / leverage;
-        const bufferUSD = lots * contractSize * currentHedgeBuffer;
-        const target = Math.ceil((marginUSD + bufferUSD) / 100) * 100;
-        if (hedgeAccountBalanceInput) {
-          hedgeAccountBalanceInput.value = target.toFixed(0);
-          calculateGoldHedging();
-        }
+        const el = document.getElementById('hedgeAccountBalanceInput');
+        if (el) { el.focus(); el.select(); }
       });
     }
 
@@ -3282,8 +2560,8 @@ Protocol Status: 100% Delta-Neutral Protected`;
   // Initialize Hedging Calculator
   initGoldHedgingCalculator();
 
+  
 
-  // ========================================================
   // 5. YOUTUBE VIDEO SHOWCASE SWITCHER
   // ========================================================
   const mainYouTubeIframe = document.getElementById('mainYouTubeIframe');
