@@ -713,6 +713,8 @@ button {
   border-radius: var(--radius-pill);
   box-shadow: 0 4px 20px var(--color-lime-glow);
   transition: all var(--transition-fast);
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .btn-mentorship:hover {
@@ -724,6 +726,7 @@ button {
 .btn-secondary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-medium);
@@ -734,6 +737,8 @@ button {
   border-radius: var(--radius-pill);
   backdrop-filter: blur(10px);
   transition: all var(--transition-fast);
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .btn-secondary:hover {
@@ -3924,6 +3929,28 @@ html.menu-open #floatingEnrollBtn {
     flex-direction: column;
   }
   
+  .hero-cta-group {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 12px !important;
+    align-items: stretch !important;
+    margin-bottom: 28px !important;
+  }
+
+  .hero-cta-group > a,
+  .hero-cta-group .btn-mentorship,
+  .hero-cta-group .btn-register-direct,
+  .hero-cta-group .btn-secondary {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+  
   .hero-portrait-stage {
     position: relative;
     right: auto;
@@ -6757,6 +6784,8 @@ body {
 
   .btn-primary,
   .btn-secondary,
+  .btn-mentorship,
+  .btn-register-direct,
   .btn-oneclick-dm,
   .btn-community-secondary,
   .btn-capital-inquire,
