@@ -7912,31 +7912,7 @@ html.effects-frozen .nav-drawer-fx-toggle {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Hairline indicator accent below titles */
-.section-title::after,
-.mentorship-title::after,
-.capital-title::after,
-.calc-title::after,
-.knowledge-title::after,
-.brokers-title::after,
-.smc-exec-heading::after {
-  content: '';
-  display: block;
-  width: 58px;
-  height: 2px;
-  margin: 14px auto 0;
-  background: linear-gradient(90deg, rgba(212, 175, 55, 0.2) 0%, #d4af37 50%, rgba(0, 255, 224, 0.9) 85%, transparent 100%);
-  border-radius: 2px;
-  box-shadow: 0 0 12px rgba(0, 255, 224, 0.45);
-  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
-}
 
-.capital-title::after,
-.calc-title::after,
-.mentorship-title::after {
-  margin-left: 0;
-  margin-right: auto;
-}
 
 /* Radiant metallic accent words inside headings */
 .section-title span.italic,
@@ -7981,16 +7957,7 @@ html.effects-frozen .nav-drawer-fx-toggle {
   background-clip: text !important;
 }
 
-[data-theme="light"] .section-title::after,
-[data-theme="light"] .mentorship-title::after,
-[data-theme="light"] .capital-title::after,
-[data-theme="light"] .calc-title::after,
-[data-theme="light"] .knowledge-title::after,
-[data-theme="light"] .brokers-title::after,
-[data-theme="light"] .smc-exec-heading::after {
-  background: linear-gradient(90deg, rgba(180, 130, 40, 0.2) 0%, #d4af37 50%, #0284c7 85%, transparent 100%) !important;
-  box-shadow: 0 0 8px rgba(180, 130, 40, 0.35) !important;
-}
+
 
 /* Modern Khmer Section Headings Spacing */
 html[lang="km"] .section-title,
