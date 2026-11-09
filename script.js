@@ -453,6 +453,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function toggleFxMode() {
+    if (fxToggleBtn) {
+      fxToggleBtn.classList.add('fx-clicked');
+      setTimeout(() => fxToggleBtn.classList.remove('fx-clicked'), 500);
+    }
+
     const isCurrentlyFrozen = document.documentElement.classList.contains('effects-frozen');
     applyFxMode(!isCurrentlyFrozen, true);
   }
@@ -939,7 +944,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.specBaseLabel': 'BASE FORMATION',
       'genesis.specBaseVal': 'Supply & Demand',
       'genesis.specMtfLabel': 'TIMEFRAME',
-      'genesis.specMtfVal': '3M',
+      'genesis.specMtfVal': '3M no M1',
       'genesis.specRiskLabel': 'CAPITAL DISCIPLINE',
       'genesis.specRiskVal': '0.5% – 1.0% Risk • Min 1:3 RR',
       'genesis.introTag': 'THE TRADING APPROACH • KEEP IT SIMPLE',
@@ -961,7 +966,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.shiftR1': 'Chasing late breakout signals after the displacement move has already occurred.',
       'genesis.shiftI1': 'Reading institutional liquidity sweeps and high-displacement Supply & Demand base formations.',
       'genesis.shiftR2': 'Buying breakouts above resistance, becoming instant liquidity for institutional sell orders.',
-      'genesis.shiftI2': 'Waiting for Buy-Side Liquidity sweeps (BSL) and entering on structural shifts into fresh displacement zones.',
+      'genesis.shiftI2': 'Waiting for liquidity sweeps and entering on structural shifts into fresh Supply & Demand zones.',
       'genesis.shiftR3': 'Poor 1:1 or 1:1.5 risk-to-reward requiring a fragile 70%+ win rate to avoid blowouts.',
       'genesis.shiftI3': 'Asymmetric 1:3+ to 1:5+ risk architecture where a 40% win rate yields substantial compound growth.',
       'genesis.shiftR4': 'Emotional revenge trading, widening stops, and guessing arbitrary tops and bottoms.',
@@ -1728,7 +1733,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.specBaseLabel': 'BASE FORMATION',
       'genesis.specBaseVal': 'Supply & Demand',
       'genesis.specMtfLabel': 'TIMEFRAME',
-      'genesis.specMtfVal': '3M',
+      'genesis.specMtfVal': '3M no M1',
       'genesis.specRiskLabel': 'ការគ្រប់គ្រងដើមទុន',
       'genesis.specRiskVal': 'ហានិភ័យ 0.5% – 1.0% • អប្បបរមា 1:3 RR',
       'genesis.introTag': 'វិធីសាស្ត្រជួញដូរ • សាមញ្ញ & ច្បាស់លាស់',
@@ -1750,7 +1755,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.shiftR1': 'ដេញតាម Signal បំបែកធ្លាយ (Breakout) យឺតយ៉ាវ ក្រោយពេលចលនាតម្លៃរត់ផុតទៅហើយ។',
       'genesis.shiftI1': 'វិភាគការបោសសម្អាត Liquidity និងទម្រង់បង្កើតតំបន់ Supply & Demand ស្ថាប័នពិតប្រាកដ។',
       'genesis.shiftR2': 'ទិញតាម Breakout លើ Resistance ក្លាយជា Liquidity ឱ្យការ Sell របស់ស្ថាប័នភ្លាមៗ។',
-      'genesis.shiftI2': 'រង់ចាំការបោសសម្អាត Buy-Side Liquidity (BSL) និងចូល Trade ពេលរចនាសម្ព័ន្ធបញ្ជាក់ទិសដៅ។',
+      'genesis.shiftI2': 'រង់ចាំការសម្អាត Liquidity និងចូល Trade នៅពេលរចនាសម្ព័ន្ធផ្លាស់ប្តូរចូលក្នុងតំបន់ Supply & Demand ស្រស់ៗ។',
       'genesis.shiftR3': 'សមាមាត្រ R:R ទាបត្រឹម 1:1 ឬ 1:1.5 ដែលទាមទារ Win Rate ខ្ពស់ពេកដើម្បីរស់។',
       'genesis.shiftI3': 'សមាមាត្រ Asymmetric 1:3+ ដល់ 1:5+ ដែល Win Rate ត្រឹម 40% ក៏បង្កើតប្រាក់ចំណេញនិរន្តរភាពបាន។',
       'genesis.shiftR4': 'ជួញដូរតាមអារម្មណ៍ខឹងខ្នាញ់ ពង្រីក Stop Loss និងស្មានកំពូលបាតដោយគ្មានមូលដ្ឋាន។',
