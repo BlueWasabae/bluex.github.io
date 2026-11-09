@@ -11353,16 +11353,7 @@ section,
 }
 
 .smc-cyber-grid-bg {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(0, 255, 224, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 224, 0.035) 1px, transparent 1px);
-  background-size: 50px 50px;
-  mask-image: radial-gradient(circle at 50% 35%, black 45%, transparent 80%);
-  -webkit-mask-image: radial-gradient(circle at 50% 35%, black 45%, transparent 80%);
-  pointer-events: none;
-  z-index: 1;
+  display: none !important;
 }
 
 /* Shimmering Animated Hero Headline */
