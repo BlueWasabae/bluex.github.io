@@ -50,7 +50,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600;700&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="/styles.css?v=20261109v1">
+  <link rel="stylesheet" href="/styles.css?v=20261109v3">
 
   <style>
     /* Specific Table & Ecosystem Elements for SMC Genesis */
@@ -207,7 +207,7 @@
           </button>
 
           <!-- Effects Freeze / Performance Lite Toggle Button -->
-          <button class="nav-tool-btn nav-fx-btn" id="fxToggleBtn" type="button" role="switch" aria-checked="true" aria-label="Toggle Visual Effects (Art Mode)" title="Art Mode: ON (Click to Freeze / Smooth Mobile)">
+          <button class="nav-tool-btn nav-fx-btn" id="fxToggleBtn" type="button" role="switch" aria-checked="true" aria-label="Toggle Visual Effects (Art Mode)" title="Art Mode: ON (Click to Freeze / Smooth Performance)">
             <span class="fx-art-track" id="fxArtTrack" aria-hidden="true">
               <span class="fx-art-glow-left"></span>
               <span class="fx-art-glow-right"></span>
@@ -215,7 +215,6 @@
                 <span class="fx-art-ring"></span>
               </span>
             </span>
-            <span class="fx-label" id="fxBtnText" data-i18n="nav.fx">FX</span>
           </button>
 
           <!-- Register Now CTA Button (1-Click Direct Personal Contact DM) -->
@@ -253,6 +252,17 @@
          ======================================================== -->
     <section class="genesis-hero smc-beyond-hero" id="hero">
       <div class="smc-hero-bg-banner" style="background-image: url('./assets/images/smc-genesis-hero-banner.jpg');"></div>
+      <!-- Floating Quant Math Formula Particles (Pinterest 935482153865056813) -->
+      <div class="smc-math-particles" aria-hidden="true">
+        <span class="math-particle p1">(12+12)</span>
+        <span class="math-particle p2">-15+6</span>
+        <span class="math-particle p3">17+6-4</span>
+        <span class="math-particle p4">5x9/8</span>
+        <span class="math-particle p5">24</span>
+        <span class="math-particle p6">3y</span>
+        <span class="math-particle p7">RR 1:3+</span>
+        <span class="math-particle p8">BOS</span>
+      </div>
       <div class="container">
         <div class="genesis-hero-inner">
           <!-- Breadcrumb navigation -->
@@ -324,7 +334,7 @@
 
           <!-- Hero Action Buttons -->
           <div class="genesis-cta-row">
-            <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="btn-mentorship btn-mentorship-glow" title="Enroll in Class via Telegram (@Le_Bluue)">
+            <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="btn-mentorship btn-lime-neon-glow" title="Enroll in Class via Telegram (@Le_Bluue)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="8.5" cy="7" r="4"></circle>
@@ -344,6 +354,28 @@
             <a href="#enrollment" class="btn-secondary">
               <span data-i18n="genesis.heroCurriculumBtn">Institutional Admissions ➔</span>
             </a>
+          </div>
+
+          <!-- Featured Showcase Card from Pinterest 935482153865056813 -->
+          <div class="smc-showcase-desk-wrap">
+            <div class="smc-showcase-desk-card">
+              <div class="smc-desk-header">
+                <div class="smc-desk-badge">
+                  <span class="smc-desk-dot"></span>
+                  <span>QUANTITATIVE PROP ARCHITECTURE</span>
+                </div>
+                <div class="smc-desk-tag">NO TIME LIMIT EXECUTION • CONQUER THE MARKET</div>
+              </div>
+              <div class="smc-desk-img-frame">
+                <img src="/assets/images/prop-firm-showcase.jpg" alt="SMC Genesis Quantitative Trading Showcase" class="smc-desk-img" loading="lazy" width="736" height="552">
+                <div class="smc-desk-glow-overlay"></div>
+              </div>
+              <div class="smc-desk-footer">
+                <span class="smc-desk-chip">⚡ 4H Macro Bias</span>
+                <span class="smc-desk-chip">🛡️ 15M S&amp;D Zones</span>
+                <span class="smc-desk-chip">🎯 3M Surgical Execution</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -640,7 +672,7 @@
             <div class="spotlight-action-desc" data-i18n="genesis.spotlightActionDesc">Limited seats per cohort to guarantee personalized feedback and rapid skill progression.</div>
           </div>
           <div class="spotlight-btn-group">
-            <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="btn-mentorship btn-mentorship-glow" style="padding: 14px 26px;">
+            <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="btn-mentorship btn-lime-neon-glow" style="padding: 14px 26px;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="8.5" cy="7" r="4"></circle>
@@ -672,25 +704,25 @@
         </div>
 
         <div class="smc-brokers-grid">
-        <!-- #1 Treno Markets (Top Partner) -->
+        <!-- #1 Mega Fusion (Top Partner) -->
         <div class="broker-tier-box" style="border: 2px solid var(--color-cyan); position: relative; background: rgba(14, 18, 27, 0.95);">
           <div style="position: absolute; top: -12px; left: 24px; background: var(--color-cyan); color: #050608; padding: 3px 12px; border-radius: var(--radius-full); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.06em;">
             ★ #1 TOP PARTNER
           </div>
           <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
             <div class="broker-logo-badge" style="width: 54px; height: 54px;">
-              <img src="/assets/images/treno-logo.svg" alt="Treno Markets Logo" style="width: 38px; height: 38px; object-fit: contain;">
+              <img src="/assets/images/treno-logo.svg" alt="Mega Fusion Logo" style="width: 38px; height: 38px; object-fit: contain;">
             </div>
             <div>
-              <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff;">Treno Markets</h3>
+              <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff;">Mega Fusion</h3>
               <div style="font-size: 0.8rem; color: var(--color-cyan);" data-i18n="genesis.brokerTrenoNote">Top Partner • Raw Spreads • Ultra-Low Latency</div>
             </div>
           </div>
           <p style="font-size: 0.86rem; color: #cbd5e1; line-height: 1.55; margin-bottom: 20px;">
             Raw spread liquidity, lightning-fast order routing, and institutional trade execution optimal for precise lower-timeframe SMC entries.
           </p>
-          <a href="https://portal.trenomarkets.com/register?accInf=2c52jco9ij" target="_blank" rel="noopener noreferrer" class="btn-broker-register" style="width: 100%; text-align: center; justify-content: center;">
-            <span data-i18n="genesis.brokerTrenoBtn">Open Treno Account â†—</span>
+          <a href="https://crmuser.crm-mega-fusion.com/regist-real?invitid=95GF56-FNZQL32854" target="_blank" rel="noopener noreferrer" class="btn-broker-register" style="width: 100%; text-align: center; justify-content: center;">
+            <span data-i18n="genesis.brokerTrenoBtn">Open Mega Fusion Account â†—</span>
           </a>
         </div>
 
@@ -711,106 +743,7 @@
           <a href="https://my.gtcfx.com/portal/register/index?affiliate=GTC-GO" target="_blank" rel="noopener noreferrer" class="btn-broker-register" style="width: 100%; text-align: center; justify-content: center;">
             <span data-i18n="genesis.brokerGtcBtn">Open GTC GO Account â†—</span>
           </a>
-        </div>
-
-        <!-- #3 Lirunex -->
-        <div class="broker-tier-box" style="background: rgba(14, 18, 27, 0.85);">
-          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
-            <div class="broker-logo-badge" style="width: 54px; height: 54px;">
-              <img src="/assets/images/lirunex-icon.png" alt="Lirunex Logo" style="width: 38px; height: 38px; object-fit: contain;">
-            </div>
-            <div>
-              <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff;">Lirunex</h3>
-              <div style="font-size: 0.8rem; color: #94a3b8;" data-i18n="genesis.brokerLirunexNote">Regulated STP Broker • Deep Forex &amp; Gold Liquidity</div>
-            </div>
-          </div>
-          <p style="font-size: 0.86rem; color: #cbd5e1; line-height: 1.55; margin-bottom: 20px;">
-            Tier-1 licensed broker with competitive spreads, rapid deposit/withdrawal options, and robust MetaTrader 4/5 infrastructure.
-          </p>
-          <a href="https://social.lirunex.com/register?utm_source=bluex&utm_medium=partner&utm_campaign=education" target="_blank" rel="noopener noreferrer" class="btn-broker-register" style="width: 100%; text-align: center; justify-content: center;">
-            <span data-i18n="genesis.brokerLirunexBtn">Open Lirunex Account â†—</span>
-          </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================
-         SMC GENESIS FAQ ACCORDION
-         ======================================================== -->
-    <section class="smc-section-faq">
-      <div class="container">
-        <div class="smc-section-header">
-          <span class="knowledge-tag-badge" data-i18n="genesis.faqBadge">Frequently Asked Questions</span>
-          <h2 class="smc-section-heading" data-i18n="genesis.faqTitle">Everything You Need to Know About SMC Genesis</h2>
-        </div>
-
-        <div class="faq-accordion" style="max-width: 860px; margin: 0 auto;">
-          <!-- FAQ 1 -->
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <span data-i18n="genesis.faq1Q">What makes SMC Genesis fundamentally different from retail technical analysis?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="genesis.faq1A">
-                Retail analysis relies on arbitrary chart patterns and retail trendlines that smart money routinely sweeps for liquidity. SMC Genesis teaches you how institutions actually move price, where stop loss pools accumulate, and how to execute strictly after liquidity sweeps into refined Supply &amp; Demand zones.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ 2 -->
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <span data-i18n="genesis.faq2Q">Can beginners learn SMC Genesis, or is prior experience required?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="genesis.faq2A">
-                Beginners actually often excel faster because they start directly with clean institutional principles. SMC Genesis starts from the absolute bedrock of market liquidity and builds up step-by-step into advanced multi-timeframe execution.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ 3 -->
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <span data-i18n="genesis.faq3Q">Which financial instruments work best with SMC Genesis?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="genesis.faq3A">
-                SMC Genesis is a universal institutional Supply &amp; Demand framework. It applies seamlessly to Gold (XAUUSD), major Forex pairs (EURUSD, GBPUSD, USDJPY), equity indices (US30, NAS100), and liquid cryptocurrencies (BTC, ETH).
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ 4 -->
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <span data-i18n="genesis.faq4Q">What kind of risk-to-reward ratios can I expect from this strategy?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="genesis.faq4A">
-                SMC setups target asymmetric profiles starting from 1:3 up to 1:10+. Because entries are refined on lower timeframes at pristine imbalance zones, stop losses are tight and structural, maximizing your capital efficiency.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ 5 -->
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <span data-i18n="genesis.faq5Q">How can I enroll in the mentorship or contact BlueX directly?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="genesis.faq5A">
-                To apply for mentorship or ask private questions, send a direct Telegram message (DM) to BlueX at @Le_Bluue. To join the public discussion and daily market outlooks, join our official Community Telegram group at t.me/bluexacademy.
-              </p>
-            </div>
-          </div>
-        </div>
+        </div></div>
       </div>
     </section>
 
@@ -904,6 +837,6 @@
     </a>
   </div>
 
-  <script src="/script.js?v=20261109v1"></script>
+  <script src="/script.js?v=20261109v3"></script>
 </body>
 </html>

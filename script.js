@@ -403,32 +403,26 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateFxButtonTexts() {
     const isFrozen = document.documentElement.classList.contains('effects-frozen');
     if (isFrozen) {
-      if (fxNavIcon) fxNavIcon.textContent = '❄️';
-      if (fxBtnText) fxBtnText.textContent = 'OFF';
       if (fxToggleBtn) {
         fxToggleBtn.classList.add('fx-frozen');
         fxToggleBtn.setAttribute('aria-checked', 'false');
-        fxToggleBtn.setAttribute('title', currentLang === 'km' ? 'ចលនា: ផ្អាក (ចុចដើម្បីបើក)' : 'Art Mode: Frozen (Click to Resume)');
+        fxToggleBtn.setAttribute('title', currentLang === 'km' ? 'ចលនា: ផ្អាក (ចុចដើម្បីបើក)' : 'Art Mode: OFF (Click to Resume)');
       }
-      if (fxDrawerIcon) fxDrawerIcon.textContent = '❄️';
       if (fxDrawerText) {
-        fxDrawerText.textContent = currentLang === 'km' ? 'ចលនា: ផ្អាក (ចុចដើម្បីបើក)' : 'Art Mode: Frozen (Tap to Resume)';
+        fxDrawerText.textContent = currentLang === 'km' ? 'ចលនា: ផ្អាក (ចុចដើម្បីបើក)' : 'Art Mode: OFF (Tap to Resume)';
       }
       if (fxToggleDrawerBtn) {
         fxToggleDrawerBtn.classList.add('fx-frozen');
         fxToggleDrawerBtn.setAttribute('aria-checked', 'false');
       }
     } else {
-      if (fxNavIcon) fxNavIcon.textContent = '⚡';
-      if (fxBtnText) fxBtnText.textContent = 'FX';
       if (fxToggleBtn) {
         fxToggleBtn.classList.remove('fx-frozen');
         fxToggleBtn.setAttribute('aria-checked', 'true');
-        fxToggleBtn.setAttribute('title', currentLang === 'km' ? 'ចលនា: បើក (ចុចដើម្បីផ្អាក)' : 'Art Mode: Active (Click to Freeze)');
+        fxToggleBtn.setAttribute('title', currentLang === 'km' ? 'ចលនា: បើក (ចុចដើម្បីផ្អាក)' : 'Art Mode: ON (Click to Freeze)');
       }
-      if (fxDrawerIcon) fxDrawerIcon.textContent = '⚡';
       if (fxDrawerText) {
-        fxDrawerText.textContent = currentLang === 'km' ? 'ចលនា: បើក (ចុចដើម្បីផ្អាក)' : 'Art Mode: Active (Tap to Freeze)';
+        fxDrawerText.textContent = currentLang === 'km' ? 'ចលនា: បើក (ចុចដើម្បីផ្អាក)' : 'Art Mode: ON (Tap to Freeze)';
       }
       if (fxToggleDrawerBtn) {
         fxToggleDrawerBtn.classList.remove('fx-frozen');
@@ -521,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'hero.offeringsTitle': 'Core Offerings',
       'hero.offering1': 'Study Course & Live Teaching',
       'hero.offering2': 'Private Portfolio Strategy',
-      'hero.offering3': 'Treno Markets, GTC GO & Lirunex',
+      'hero.offering3': 'Mega Fusion & GTC GO',
       'hero.offering4': 'Institutional Liquidity',
       'hero.offering5': 'Strategic Risk Control',
       'hero.offering6': 'Trading Psychology & Ego',
@@ -665,9 +659,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'lirunex.tier2Check2': 'Direct ECN liquidity & depth of market',
       'lirunex.tier2Check3': 'Maximum precision for institutional setups',
 
-      // Treno Markets Broker
+      // Mega Fusion Broker
       'treno.tag': 'Recommended Broker Platform',
-      'treno.title': 'Trade with <span class="cyan-accent">TRENO MARKETS</span>',
+      'treno.title': 'Trade with <span class="cyan-accent">MEGA FUSION</span>',
       'treno.subDesc': 'Next-generation multi-asset brokerage powered by MetaTrader 5 (MT5), ultra-fast market routing, tight interbank spreads, and instant deposit/withdrawal execution.',
       'treno.trust1': '✓ MetaTrader 5 (MT5)',
       'treno.trust2': '✓ Fast Deposit & Withdrawal',
@@ -811,7 +805,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.groupDesc': 'Join hundreds of dedicated traders in our public community group. Discuss market structure, observe daily institutional bias breakdowns, and share ideas.',
       'genesis.groupBtn': 'Join Community: t.me/bluexacademy ↗',
       'genesis.brokerTrenoDesc': 'Raw spread liquidity, lightning-fast order routing, and institutional trade execution optimal for precise lower-timeframe SMC entries.',
-      'genesis.brokerTrenoBtn': 'Open Treno Account ↗',
+      'genesis.brokerTrenoBtn': 'Open Mega Fusion Account ↗',
       'genesis.brokerGtcDesc': 'Globally regulated STP broker with deep institutional FX and precious metals liquidity, segregated accounts, and ultra-reliable uptime.',
       'genesis.brokerGtcBtn': 'Open GTC GO Account ↗',
       'genesis.brokerLirunexDesc': 'Tier-1 licensed broker with competitive spreads, rapid deposit/withdrawal options, and robust MetaTrader 4/5 infrastructure.',
@@ -1219,9 +1213,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'hedging.colLots': 'MT4/MT5 Standard Lots',
       'hedging.colEquiv': 'Equivalence',
       'hedging.brokerBadge': 'Institutional Infrastructure Partner',
-      'hedging.brokerTitle': 'Zero-Spread Execution via <span class="cyan-accent">Treno Markets</span>',
-      'hedging.brokerDesc': 'Hedging thin physical margins requires ultra-tight institutional conditions. Treno Markets provides raw liquidity spreads (0.0 pips on XAU/USD), swap-free holding accounts, and sub-millisecond execution to ensure zero basis slippage on counter-orders.',
-      'hedging.brokerCta': 'Open Institutional Account on Treno Markets ➔',
+      'hedging.brokerTitle': 'Zero-Spread Execution via <span class="cyan-accent">Mega Fusion</span>',
+      'hedging.brokerDesc': 'Hedging thin physical margins requires ultra-tight institutional conditions. Mega Fusion provides raw liquidity spreads (0.0 pips on XAU/USD), swap-free holding accounts, and sub-millisecond execution to ensure zero basis slippage on counter-orders.',
+      'hedging.brokerCta': 'Open Institutional Account on Mega Fusion ➔',
       'hedging.faqBadge': 'Frequently Answered',
       'hedging.faqTitle': 'Institutional <span class="gold-accent">Hedging FAQ</span>',
       'hedging.q1Title': 'Why should our shop hedge when gold generally rises in the long term?',
@@ -1310,7 +1304,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'hero.offeringsTitle': 'សេវាកម្មចម្បង',
       'hero.offering1': 'វគ្គសិក្សា & ការបង្រៀនផ្ទាល់',
       'hero.offering2': 'យុទ្ធសាស្ត្រផលប័ត្រឯកជន (ចរចាលក្ខខណ្ឌបាន)',
-      'hero.offering3': 'ឈ្មួញកណ្តាលដៃគូ Treno Markets, GTC GO & Lirunex',
+      'hero.offering3': 'ឈ្មួញកណ្តាលដៃគូ Mega Fusion & GTC GO',
       'hero.offering4': 'ស្វែងយល់ពី Liquidity ស្ថាប័ន',
       'hero.offering5': 'យុទ្ធសាស្ត្រគ្រប់គ្រងហានិភ័យ',
       'hero.offering6': 'ចិត្តវិទ្យាជួញដូរ & ការគ្រប់គ្រង Ego',
@@ -1454,9 +1448,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'lirunex.tier2Check2': 'សន្ទុះសាច់ប្រាក់ ECN ផ្ទាល់ & ជម្រៅទីផ្សារជ្រៅ',
       'lirunex.tier2Check3': 'ភាពជាក់លាក់ខ្ពស់បំផុតសម្រាប់ Setup ស្ថាប័ន',
 
-      // Treno Markets Broker
+      // Mega Fusion Broker
       'treno.tag': 'ឈ្មួញកណ្តាលដែលបានណែនាំ',
-      'treno.title': 'ជួញដូរជាមួយ <span class="cyan-accent">TRENO MARKETS</span>',
+      'treno.title': 'ជួញដូរជាមួយ <span class="cyan-accent">MEGA FUSION</span>',
       'treno.subDesc': 'ឈ្មួញកណ្តាលពហុទ្រព្យសកម្មជំនាន់ថ្មី ដំណើរការលើ MetaTrader 5 (MT5) ជាមួយល្បឿនបញ្ជូនបញ្ជាលឿនបំផុត Spread ស្តើងពីទីផ្សារ និងការដាក់/ដកប្រាក់រហ័សទាន់ចិត្ត។',
       'treno.trust1': '✓ ដំណើរការលើ MetaTrader 5 (MT5)',
       'treno.trust2': '✓ ដាក់ & ដកប្រាក់រហ័សទាន់ចិត្ត',
@@ -1600,7 +1594,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.groupDesc': 'ចូលរួមជាមួយពាណិជ្ជកររាប់រយនាក់ក្នុងក្រុមសាធារណៈរបស់យើង។ ពិភាក្សាអំពីរចនាសម្ព័ន្ធទីផ្សារ តាមដានការវិភាគទិសដៅស្ថាប័នប្រចាំថ្ងៃ និងចែករំលែកបទពិសោធន៍។',
       'genesis.groupBtn': 'ចូលរួមសហគមន៍: t.me/bluexacademy ↗',
       'genesis.brokerTrenoDesc': 'សន្ទនីយភាព Spread ដើម ដំណើរការបញ្ជាល្បឿនលឿន និងការប្រតិបត្តិការជួញដូរកម្រិតស្ថាប័ន ស័ក្តិសមបំផុតសម្រាប់ចំណុចចូល SMC លើ Timeframe តូចៗ។',
-      'genesis.brokerTrenoBtn': 'បើកគណនី Treno ↗',
+      'genesis.brokerTrenoBtn': 'បើកគណនី Mega Fusion ↗',
       'genesis.brokerGtcDesc': 'ឈ្មួញកណ្តាល STP លំដាប់សកល ជាមួយនឹងសន្ទនីយភាព FX និងលោហៈធាតុមានតម្លៃកម្រិតស្ថាប័ន គណនីដាច់ដោយឡែក និងស្ថេរភាពខ្ពស់បំផុត។',
       'genesis.brokerGtcBtn': 'បើកគណនី GTC GO ↗',
       'genesis.brokerLirunexDesc': 'ឈ្មួញកណ្តាលមានអាជ្ញាប័ណ្ណ Tier-1 ជាមួយ Spread ប្រកួតប្រជែង ការដាក់/ដកប្រាក់រហ័ស និងហេដ្ឋារចនាសម្ព័ន្ធ MetaTrader 4/5 ដ៏រឹងមាំ។',
@@ -2008,9 +2002,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'hedging.colLots': 'Lots ស្តង់ដារ MT4/MT5',
       'hedging.colEquiv': 'សមមូល',
       'hedging.brokerBadge': 'ដៃគូហេដ្ឋារចនាសម្ព័ន្ធស្ថាប័ន',
-      'hedging.brokerTitle': 'ការអនុវត្តបញ្ជាគ្មាន Spread ជាមួយ <span class="cyan-accent">Treno Markets</span>',
-      'hedging.brokerDesc': 'ការការពារហានិភ័យលើស្តុកមាសទាមទារលក្ខខណ្ឌស្ថាប័នយ៉ាងតឹងរ៉ឹង។ Treno Markets ផ្តល់ Raw Spread (0.0 pips លើ XAU/USD), គណនី Swap-Free និងល្បឿនបញ្ជូនបញ្ជាលឿនបំផុតក្រោម ១៥ មិល្លីវិនាទី។',
-      'hedging.brokerCta': 'បើកគណនីស្ថាប័នលើ Treno Markets ➔',
+      'hedging.brokerTitle': 'ការអនុវត្តបញ្ជាគ្មាន Spread ជាមួយ <span class="cyan-accent">Mega Fusion</span>',
+      'hedging.brokerDesc': 'ការការពារហានិភ័យលើស្តុកមាសទាមទារលក្ខខណ្ឌស្ថាប័នយ៉ាងតឹងរ៉ឹង។ Mega Fusion ផ្តល់ Raw Spread (0.0 pips លើ XAU/USD), គណនី Swap-Free និងល្បឿនបញ្ជូនបញ្ជាលឿនបំផុតក្រោម ១៥ មិល្លីវិនាទី។',
+      'hedging.brokerCta': 'បើកគណនីស្ថាប័នលើ Mega Fusion ➔',
       'hedging.faqBadge': 'សំណួរដែលសួរញឹកញាប់',
       'hedging.faqTitle': 'សំណួរ-ចម្លើយអំពី <span class="gold-accent">Gold Hedging</span>',
       'hedging.q1Title': 'ហេតុអ្វីបានជាហាងយើងខ្ញុំត្រូវ Hedging បើមាសឡើងថ្លៃជានិច្ចក្នុងរយៈពេលវែង?',
