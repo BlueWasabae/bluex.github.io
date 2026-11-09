@@ -15019,3 +15019,547 @@ section,
   color: #475569 !important;
 }
 
+
+
+/* ==============================================================================
+   EXECUTIVE REFINEMENT SUITE:
+   1. REGISTER BUTTON LIQUID CAPSULE GEOMETRY & ALIGNMENT FIX
+   2. STRATEGY MOTION THEATER WIDESCREEN & ZERO-OVERLAP UPGRADE
+   3. SMC GENESIS LOWKEY HUMBLE TITLE TYPOGRAPHY
+   4. COMPACT KNOWLEDGE SLIT ACCORDION ARCHITECTURE
+   ============================================================================== */
+
+/* --- 1. REGISTER BUTTON FULL-BLEED LIQUID CAPSULE FIX (No Skewed Inner Blob) --- */
+.nav-register-dm-btn,
+.btn-register-direct,
+.btn-oneclick-dm,
+.floating-cta-pill,
+.nav-drawer-dm-cta {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 9px !important;
+  border-radius: 9999px !important;
+  background: linear-gradient(135deg, #06182c 0%, #0a2d4d 48%, #041222 100%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.48) !important;
+  color: #ffffff !important;
+  font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif) !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.01em !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.65),
+    0 0 24px rgba(0, 255, 224, 0.28),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.45),
+    inset 0 -2px 8px rgba(0, 255, 224, 0.25) !important;
+  transform: none !important;
+}
+
+/* Override any legacy skewX(-24deg) or width:90% on ::before */
+.nav-register-dm-btn::before,
+.btn-register-direct::before,
+.btn-oneclick-dm::before,
+.floating-cta-pill::before,
+.nav-drawer-dm-cta::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  transform: none !important;
+  border-radius: inherit !important;
+  background:
+    radial-gradient(85% 95% at 86% 88%, rgba(0, 255, 224, 0.55) 0%, rgba(56, 189, 248, 0.22) 42%, transparent 72%),
+    radial-gradient(75% 85% at 14% 20%, rgba(56, 189, 248, 0.42) 0%, transparent 65%) !important;
+  pointer-events: none !important;
+  opacity: 0.95 !important;
+  z-index: -1 !important;
+  transition: opacity 0.28s ease !important;
+}
+
+.nav-register-dm-btn:hover::before,
+.btn-register-direct:hover::before,
+.btn-oneclick-dm:hover::before,
+.floating-cta-pill:hover::before,
+.nav-drawer-dm-cta:hover::before {
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+/* Override any legacy rotate(25deg) on ::after */
+.nav-register-dm-btn::after,
+.btn-register-direct::after,
+.btn-oneclick-dm::after,
+.floating-cta-pill::after,
+.nav-drawer-dm-cta::after {
+  content: '' !important;
+  position: absolute !important;
+  top: auto !important;
+  bottom: 0px !important;
+  left: 16% !important;
+  right: 16% !important;
+  width: auto !important;
+  height: 1.5px !important;
+  transform: none !important;
+  animation: none !important;
+  opacity: 1 !important;
+  background: linear-gradient(90deg, transparent 0%, #00ffe0 50%, transparent 100%) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+.nav-register-dm-btn span,
+.btn-register-direct span,
+.btn-oneclick-dm span,
+.floating-cta-pill span,
+.nav-drawer-dm-cta span {
+  color: #ffffff !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* --- 2. STRATEGY MOTION THEATER WIDESCREEN & ZERO-OVERLAP REFINEMENT --- */
+.prop-showcase-card {
+  padding: 14px 16px 16px !important;
+  border-radius: 18px !important;
+}
+
+.cockpit-top-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+  gap: 8px !important;
+  padding-bottom: 10px !important;
+  margin-bottom: 12px !important;
+}
+
+.cockpit-header-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  min-width: 0 !important;
+  flex: 1 !important;
+}
+
+.cockpit-dots {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  flex-shrink: 0 !important;
+}
+
+.cockpit-title-text {
+  font-size: 0.74rem !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.cockpit-sub-asset {
+  color: #00ffe0;
+  font-weight: 800;
+}
+
+.cockpit-live-feed-pill {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+  padding: 3px 9px !important;
+  font-size: 0.64rem !important;
+}
+
+.theater-stage-viewport {
+  min-height: 244px !important;
+}
+
+.theater-scene {
+  padding: 16px 18px !important;
+}
+
+.scene-heading-anim {
+  margin-bottom: 10px !important;
+}
+
+.scene-sub-phrase {
+  font-size: 0.8rem !important;
+  margin-bottom: 2px !important;
+}
+
+.scene-main-phrase {
+  font-size: clamp(1.25rem, 2.1vw, 1.65rem) !important;
+  line-height: 1.15 !important;
+}
+
+/* Scene 01 Crowd SVG */
+.scene-crowd-svg-wrap {
+  width: 100%;
+  max-width: 260px;
+  height: 88px;
+  margin: 2px auto 6px;
+}
+
+.scene-crowd-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.crowd-fig {
+  animation: floatAvatar 3s ease-in-out infinite;
+}
+.crowd-fig.fig-left  { animation-delay: 0.2s; }
+.crowd-fig.fig-right { animation-delay: 0.5s; }
+
+/* Scene 02 Compact Dice */
+.scene-dice-container {
+  height: 96px !important;
+  gap: 28px !important;
+}
+
+.isometric-die,
+.die-face {
+  width: 48px !important;
+  height: 48px !important;
+}
+.die-front  { transform: translateZ(24px) !important; }
+.die-back   { transform: rotateY(180deg) translateZ(24px) !important; }
+.die-top    { transform: rotateX(90deg)  translateZ(24px) !important; }
+.die-bottom { transform: rotateX(-90deg) translateZ(24px) !important; }
+.die-left   { transform: rotateY(-90deg) translateZ(24px) !important; }
+.die-right  { transform: rotateY(90deg)  translateZ(24px) !important; }
+.pip-center { top: 19.5px !important; left: 19.5px !important; }
+
+/* Scene 03 Balance Card with Sparkline */
+.scene-balance-card {
+  width: 100%;
+  max-width: 270px;
+  background: rgba(10, 16, 28, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px 14px 8px;
+  margin-bottom: 8px;
+}
+
+.scene-balance-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.balance-amount {
+  font-size: 1.65rem !important;
+  line-height: 1 !important;
+}
+
+.balance-ticker {
+  margin-top: 0 !important;
+  font-size: 0.66rem !important;
+  padding: 2px 8px !important;
+}
+
+.balance-sparkline-svg {
+  width: 100%;
+  height: 34px;
+  display: block;
+}
+
+/* Scene 05 Chart Card & Single-Line Verdict Pill */
+.scene-chart-card-glass {
+  max-width: 100% !important;
+  padding: 8px 12px !important;
+  margin-bottom: 8px !important;
+}
+
+.chart-candlestick-svg {
+  height: 74px !important;
+}
+
+.verdict-rule-pill {
+  font-size: 0.66rem !important;
+  padding: 3px 10px !important;
+  white-space: nowrap !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Single-Row 5-Column Scrubber Bar */
+.theater-scrubber-bar {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 5px !important;
+  padding: 8px 10px 6px !important;
+  margin-top: 4px !important;
+}
+
+.theater-scene-chip {
+  padding: 5px 4px !important;
+  font-size: 0.64rem !important;
+  text-align: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Symmetrical 2x2 Footer Institutional Tags */
+.prop-showcase-footer {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 7px !important;
+  margin-top: 10px !important;
+}
+
+.prop-showcase-chip {
+  font-size: 0.68rem !important;
+  padding: 6px 10px !important;
+  text-align: left !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* --- 3. SMC GENESIS LOWKEY HUMBLE TITLE TYPOGRAPHY --- */
+.smc-main-title {
+  font-size: clamp(1.6rem, 2.7vw, 2.25rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.28 !important;
+  letter-spacing: -0.02em !important;
+  color: #f8fafc !important;
+  margin-bottom: 14px !important;
+}
+
+.smc-main-title .highlight {
+  font-size: 0.84em !important;
+  font-weight: 500 !important;
+  background: linear-gradient(135deg, #cbd5e1 0%, #f1f5f9 55%, #d4af37 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-shadow: none !important;
+  filter: none !important;
+  animation: none !important;
+}
+
+[data-theme="light"] .smc-main-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .smc-main-title .highlight {
+  background: linear-gradient(135deg, #334155 0%, #475569 55%, #b45309 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* --- 4. COMPACT KNOWLEDGE SLIT ACCORDION ARCHITECTURE --- */
+.knowledge-card-main {
+  padding: 28px 30px !important;
+}
+
+.knowledge-title {
+  font-size: clamp(1.55rem, 2.4vw, 2.05rem) !important;
+  margin-bottom: 8px !important;
+}
+
+.knowledge-sub-desc {
+  font-size: 0.88rem !important;
+  margin-bottom: 14px !important;
+}
+
+.fey-slit-deck-container {
+  margin-top: 14px !important;
+}
+
+.fey-slit-deck-header {
+  margin-bottom: 14px !important;
+}
+
+.fey-filter-btn {
+  padding: 6px 14px !important;
+  font-size: 0.78rem !important;
+}
+
+.fey-slits-track {
+  min-height: 280px !important;
+  padding: 10px !important;
+  gap: 10px !important;
+  border-radius: 20px !important;
+}
+
+.fey-slit-card:not(.active) {
+  flex: 0 0 54px !important;
+  min-width: 54px !important;
+  max-width: 58px !important;
+}
+
+/* Eliminate hidden content height expansion on inactive slits */
+.fey-slit-card:not(.active) .fey-slit-content {
+  display: none !important;
+}
+
+.fey-slit-card.active {
+  flex: 1 1 auto !important;
+}
+
+.fey-slit-collapsed-bar {
+  padding: 14px 6px !important;
+  justify-content: space-between !important;
+}
+
+.fey-slit-num {
+  width: 26px !important;
+  height: 26px !important;
+  font-size: 0.74rem !important;
+}
+
+.fey-slit-vtitle {
+  font-size: 0.76rem !important;
+  max-height: 160px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.fey-slit-icon-bottom {
+  font-size: 1.05rem !important;
+}
+
+.fey-slit-content {
+  padding: 20px 24px !important;
+  min-width: 0 !important;
+}
+
+.fey-content-top {
+  margin-bottom: 10px !important;
+}
+
+.fey-content-title {
+  font-size: clamp(1.1rem, 1.55vw, 1.32rem) !important;
+  margin-bottom: 8px !important;
+}
+
+.fey-content-desc {
+  font-size: 0.84rem !important;
+  line-height: 1.52 !important;
+  margin-bottom: 12px !important;
+}
+
+.fey-rule-quote-box {
+  padding: 9px 14px !important;
+  margin-bottom: 12px !important;
+  font-size: 0.8rem !important;
+}
+
+.fey-key-metrics-grid {
+  gap: 8px !important;
+  margin-bottom: 12px !important;
+}
+
+.fey-metric-pill {
+  padding: 7px 11px !important;
+}
+
+.fey-metric-label {
+  font-size: 0.64rem !important;
+  margin-bottom: 2px !important;
+}
+
+.fey-metric-val {
+  font-size: 0.8rem !important;
+}
+
+.fey-card-action-row {
+  padding-top: 6px !important;
+}
+
+.fey-liquid-chrome-wave {
+  height: 32px !important;
+  margin-top: -6px !important;
+}
+
+@media (max-width: 840px) {
+  .fey-slit-card:not(.active) {
+    flex: none !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    min-height: 52px !important;
+  }
+  .fey-slit-vtitle {
+    max-height: none !important;
+  }
+  .fey-slit-card.active {
+    min-height: auto !important;
+  }
+}
+
+/* Light Mode Support for Fey Knowledge Slits & Balance Card */
+[data-theme="light"] .fey-category-filter {
+  background: #f1f5f9 !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+[data-theme="light"] .fey-filter-btn {
+  color: #475569 !important;
+}
+[data-theme="light"] .fey-filter-btn.active {
+  background: #ffffff !important;
+  color: #0284c7 !important;
+  border-color: rgba(2, 132, 199, 0.35) !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06) !important;
+}
+[data-theme="light"] .fey-slits-track {
+  background: #f8fafc !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.04) !important;
+}
+[data-theme="light"] .fey-slit-card {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04) !important;
+}
+[data-theme="light"] .fey-slit-card.active {
+  background: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 12px 30px rgba(2, 132, 199, 0.12) !important;
+}
+[data-theme="light"] .fey-slit-vtitle,
+[data-theme="light"] .fey-content-title,
+[data-theme="light"] .fey-metric-val {
+  color: #0f172a !important;
+}
+[data-theme="light"] .fey-content-desc {
+  color: #334155 !important;
+}
+[data-theme="light"] .fey-rule-quote-box {
+  background: #f1f5f9 !important;
+  color: #1e293b !important;
+  border-left-color: #0284c7 !important;
+}
+[data-theme="light"] .fey-metric-pill {
+  background: #f8fafc !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+[data-theme="light"] .scene-balance-card {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important;
+}
+

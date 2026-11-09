@@ -917,7 +917,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // SMC Genesis Institutional Portal
       'genesis.badge': 'SMC GENESIS • BEYOND THE CHARTS',
-      'genesis.heroTitle': 'SMC GENESIS • BEYOND THE CHARTS<br><span class="highlight">Institutional Trading Architecture & Masterclass.</span>',
+      'genesis.heroTitle': 'SMC Genesis • Beyond The Charts<br><span class="highlight">Simple Supply & Demand & Market Structure.</span>',
       'genesis.heroSub': 'A clean, mechanical approach to Gold (XAU/USD) using pure Supply & Demand (S&D)—built on clear market structure, liquidity sweeps, and disciplined capital management.',
       'genesis.metric1Val': 'Pure S&D',
       'genesis.metric1Label': 'Supply & Demand Base Formations',
@@ -927,7 +927,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'genesis.metric3Label': 'Strict Capital Risk Per Setup',
       'genesis.metric4Val': '1:3 to 1:10+',
       'genesis.metric4Label': 'Asymmetric Risk-to-Reward Profile',
-      'genesis.heroApplyBtn': '⚡ Register Now • DM @Le_Bluue',
+      'genesis.heroApplyBtn': 'Register Now • DM @Le_Bluue',
       'genesis.heroCurriculumBtn': 'Class Details & Telegram ➔',
       'genesis.heroCommunityBtn': '👥 Join Community Telegram (t.me/bluexacademy)',
       'genesis.heroBrokerBtn': 'Execute on Low-Latency Raw Spreads →',
@@ -1706,7 +1706,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // SMC Genesis Institutional Portal
       'genesis.badge': 'SMC GENESIS • BEYOND THE CHARTS',
-      'genesis.heroTitle': 'SMC GENESIS • BEYOND THE CHARTS<br><span class="highlight">ស្ថាបត្យកម្មជួញដូរកម្រិតស្ថាប័ន & ថ្នាក់បង្រៀនផ្លូវការ។</span>',
+      'genesis.heroTitle': 'SMC Genesis • Beyond The Charts<br><span class="highlight">ការជួញដូរតាមតំបន់ Supply & Demand និងរចនាសម្ព័ន្ធទីផ្សារសាមញ្ញ។</span>',
       'genesis.heroSub': 'វិធីសាស្ត្រជួញដូរមាស (XAU/USD) បែបសាមញ្ញ និងមានវិន័យច្បាស់លាស់ ដោយប្រើប្រាស់ Supply & Demand (S&D) សុទ្ធសាធ — ផ្តោតលើរចនាសម្ព័ន្ធទីផ្សារពិតប្រាកដ, Liquidity Sweeps និងការគ្រប់គ្រងដើមទុនយ៉ាងម៉ឺងម៉ាត់។',
       'genesis.metric1Val': 'Pure S&D',
       'genesis.metric1Label': 'ទម្រង់មូលដ្ឋាន Supply & Demand (S&D)',
@@ -3434,7 +3434,10 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (c.z < 120) {
           alpha = (c.z + 100) / 220;
         }
-        alpha = Math.max(0, Math.min(1, alpha)) * 0.85;
+        alpha = Math.max(0, Math.min(1, alpha)) * 0.65;
+        if (posX > width * 0.22 && posX < width * 0.78 && posY < height * 0.42) {
+          alpha *= 0.12;
+        }
         if (alpha <= 0.02) continue;
 
         const cw = c.w * scale;

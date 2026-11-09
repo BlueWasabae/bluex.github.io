@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles.css?v=20261109v19">
+  <link rel="stylesheet" href="/styles.css?v=20261110v20">
 </head>
 <body>
 
@@ -730,23 +730,25 @@
                 </div>
               </div>
 
-              <!-- Prop Firm & Quantitative Execution Showcase (Pinterest Pin 935482153865056813) -->
+              <!-- Prop Firm & Quantitative Execution Showcase (Pinterest Pin 143PauHRM) -->
               <div class="prop-showcase-card">
-                <!-- Cockpit Top Bar -->
+                <!-- Cockpit Top Bar (Single-Line Executive Header) -->
                 <div class="cockpit-top-bar">
-                  <div class="cockpit-dots">
-                    <span class="cockpit-dot cdot-red"></span>
-                    <span class="cockpit-dot cdot-yellow"></span>
-                    <span class="cockpit-dot cdot-green"></span>
-                  </div>
-                  <div class="cockpit-title-text">
-                    <span>BlueX Quantitative Cockpit</span>
-                    <span class="cockpit-sep">•</span>
-                    <span>XAU/USD (Gold) Execution Desk</span>
+                  <div class="cockpit-header-left">
+                    <div class="cockpit-dots">
+                      <span class="cockpit-dot cdot-red"></span>
+                      <span class="cockpit-dot cdot-yellow"></span>
+                      <span class="cockpit-dot cdot-green"></span>
+                    </div>
+                    <div class="cockpit-title-text">
+                      <span>BlueX Execution Desk</span>
+                      <span class="cockpit-sep">•</span>
+                      <span class="cockpit-sub-asset">XAU/USD</span>
+                    </div>
                   </div>
                   <div class="cockpit-live-feed-pill">
                     <span class="theater-pulse-dot"></span>
-                    <span>Live 3M Feed</span>
+                    <span>LIVE 3M</span>
                   </div>
                 </div>
 
@@ -754,16 +756,16 @@
                 <div class="discipline-motion-theater" id="disciplineMotionTheater" aria-label="Trading vs Gambling Strategy Motion Theater">
                   <!-- Control Bar -->
                   <div class="theater-control-bar">
-                    <div class="theater-stage-label" id="theaterStageLabel">01 // The Crowd</div>
+                    <div class="theater-stage-label" id="theaterStageLabel">01 // THE CROWD</div>
                     <div class="theater-progress-track">
                       <div class="theater-progress-bar" id="theaterProgressBar"></div>
                     </div>
                     <button type="button" class="theater-btn-toggle" id="theaterPlayPauseBtn" aria-label="Toggle Play/Pause" title="Play / Pause Animation">
-                      <svg id="theaterPauseIcon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                      <svg id="theaterPauseIcon" width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
                         <rect x="5" y="4" width="4" height="16" rx="1" />
                         <rect x="15" y="4" width="4" height="16" rx="1" />
                       </svg>
-                      <svg id="theaterPlayIcon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+                      <svg id="theaterPlayIcon" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
                         <polygon points="6,4 20,12 6,20" />
                       </svg>
                     </button>
@@ -776,42 +778,59 @@
                     <!-- Scene 0: The Crowd Illusion -->
                     <div class="theater-scene active" data-scene="0">
                       <div class="scene-heading-anim">
-                        <span class="scene-sub-phrase">Most people aren’t trading,</span>
+                        <span class="scene-sub-phrase">Most people aren’t trading —</span>
                         <h3 class="scene-main-phrase">They Follow The Crowd.</h3>
                       </div>
-                      <div class="scene-avatars-cluster">
-                        <div class="glowing-avatar-orb orb-left">
-                          <div class="avatar-head">
-                            <span class="avatar-smile">⌣</span>
-                          </div>
-                          <div class="avatar-body"></div>
-                        </div>
-                        <div class="glowing-avatar-orb orb-center">
-                          <div class="avatar-head">
-                            <span class="avatar-smile">⌣</span>
-                          </div>
-                          <div class="avatar-body"></div>
-                        </div>
-                        <div class="glowing-avatar-orb orb-right">
-                          <div class="avatar-head">
-                            <span class="avatar-smile">⌣</span>
-                          </div>
-                          <div class="avatar-body"></div>
-                        </div>
+                      <div class="scene-crowd-svg-wrap">
+                        <svg class="scene-crowd-svg" viewBox="0 0 280 96" fill="none">
+                          <defs>
+                            <radialGradient id="orbHeadCyan" cx="35%" cy="30%" r="70%">
+                              <stop offset="0%" stop-color="#e0f2fe" />
+                              <stop offset="45%" stop-color="#38bdf8" />
+                              <stop offset="100%" stop-color="#0369a1" />
+                            </radialGradient>
+                            <linearGradient id="orbBodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" stop-color="rgba(56, 189, 248, 0.55)" />
+                              <stop offset="100%" stop-color="rgba(3, 105, 161, 0.05)" />
+                            </linearGradient>
+                          </defs>
+                          <!-- Retail FOMO Spike Line -->
+                          <path d="M16 78 Q 75 74, 115 62 T 195 22 L 235 48 L 264 76" stroke="rgba(248, 113, 113, 0.45)" stroke-width="1.8" stroke-dasharray="3 3" fill="none" />
+                          <circle cx="195" cy="22" r="3.5" fill="#f87171" />
+                          <text x="195" y="13" text-anchor="middle" fill="#f87171" font-size="7.5" font-family="monospace" font-weight="700">LATE FOMO BUY</text>
+                          <!-- Left Silhouette -->
+                          <g class="crowd-fig fig-left">
+                            <path d="M58 92 C58 72 94 72 94 92 Z" fill="url(#orbBodyGrad)" stroke="rgba(56, 189, 248, 0.35)" stroke-width="1" />
+                            <circle cx="76" cy="54" r="14" fill="url(#orbHeadCyan)" />
+                          </g>
+                          <!-- Right Silhouette -->
+                          <g class="crowd-fig fig-right">
+                            <path d="M186 92 C186 72 222 72 222 92 Z" fill="url(#orbBodyGrad)" stroke="rgba(56, 189, 248, 0.35)" stroke-width="1" />
+                            <circle cx="204" cy="54" r="14" fill="url(#orbHeadCyan)" />
+                          </g>
+                          <!-- Center Lead Silhouette -->
+                          <g class="crowd-fig fig-center">
+                            <path d="M112 94 C112 66 168 66 168 94 Z" fill="url(#orbBodyGrad)" stroke="rgba(0, 255, 224, 0.55)" stroke-width="1.2" />
+                            <circle cx="140" cy="44" r="18" fill="url(#orbHeadCyan)" />
+                            <circle cx="134" cy="42" r="1.8" fill="#ffffff" />
+                            <circle cx="146" cy="42" r="1.8" fill="#ffffff" />
+                            <path d="M135 49 Q140 53 145 49" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" fill="none" />
+                          </g>
+                        </svg>
                       </div>
-                      <span class="scene-naive-badge">95% Retail Herd • No Structural Edge</span>
+                      <span class="scene-naive-badge">95% Retail Herd • Chasing Late Breakouts</span>
                     </div>
 
                     <!-- Scene 1: The Gamble (3D Isometric Rolling Dice) -->
                     <div class="theater-scene" data-scene="1">
                       <div class="scene-heading-anim">
                         <span class="scene-sub-phrase">Without rules &amp; risk discipline,</span>
-                        <h3 class="scene-main-phrase warning-glow">they’re gambling.</h3>
+                        <h3 class="scene-main-phrase warning-glow">They’re Gambling.</h3>
                       </div>
                       <div class="scene-dice-container">
                         <div class="isometric-die die-1">
                           <div class="die-face die-front"><span class="pip pip-center"></span></div>
-                          <div class="die-face die-back"><span class="pip pip-tl"></span><span class="pip pip-tr"></span><span class="pip pip-bl"></span><span class="pip pip-br"></span><span class="pip pip-center"></span><span class="pip" style="top:24.5px;left:10px"></span></div>
+                          <div class="die-face die-back"><span class="pip pip-tl"></span><span class="pip pip-tr"></span><span class="pip pip-bl"></span><span class="pip pip-br"></span><span class="pip pip-center"></span><span class="pip" style="top:21px;left:9px"></span></div>
                           <div class="die-face die-top"><span class="pip pip-tl"></span><span class="pip pip-br"></span></div>
                           <div class="die-face die-bottom"><span class="pip pip-tl"></span><span class="pip pip-tr"></span><span class="pip pip-bl"></span><span class="pip pip-br"></span><span class="pip pip-center"></span></div>
                           <div class="die-face die-left"><span class="pip pip-tl"></span><span class="pip pip-center"></span><span class="pip pip-br"></span></div>
@@ -823,56 +842,58 @@
                           <div class="die-face die-top"><span class="pip pip-tl"></span><span class="pip pip-tr"></span><span class="pip pip-bl"></span><span class="pip pip-br"></span><span class="pip pip-center"></span></div>
                           <div class="die-face die-bottom"><span class="pip pip-center"></span></div>
                           <div class="die-face die-left"><span class="pip pip-tl"></span><span class="pip pip-br"></span></div>
-                          <div class="die-face die-right"><span class="pip pip-tl"></span><span class="pip pip-tr"></span><span class="pip pip-bl"></span><span class="pip pip-br"></span><span class="pip pip-center"></span><span class="pip" style="top:24.5px;left:10px"></span></div>
+                          <div class="die-face die-right"><span class="pip pip-tl"></span><span class="pip pip-tr"></span><span class="pip pip-bl"></span><span class="pip pip-br"></span><span class="pip pip-center"></span><span class="pip" style="top:21px;left:9px"></span></div>
                         </div>
                       </div>
-                      <span class="scene-gamble-badge">⚠️ Random Entries • No Invalidation Gate</span>
+                      <span class="scene-gamble-badge">⚠️ Emotional Impulse • Zero Invalidation Gate</span>
                     </div>
 
                     <!-- Scene 2: The Collapse ($9,297 -> $2,776 Crash & Hoping) -->
                     <div class="theater-scene" data-scene="2">
                       <div class="scene-heading-anim">
-                        <span class="scene-sub-phrase" id="scene2Caption">with no plan,</span>
-                        <h3 class="scene-main-phrase" id="scene2Sub">and hoping.</h3>
+                        <span class="scene-sub-phrase" id="scene2Caption">Entering with no plan,</span>
+                        <h3 class="scene-main-phrase" id="scene2Sub">And Hoping.</h3>
                       </div>
-                      <div class="scene-balance-display">
-                        <div class="balance-amount" id="theaterBalanceAmount">$9,297</div>
-                        <div class="balance-ticker" id="theaterBalanceTicker">+34.2% Peak Surge</div>
+                      <div class="scene-balance-card">
+                        <div class="scene-balance-top">
+                          <div class="balance-amount" id="theaterBalanceAmount">$9,297</div>
+                          <div class="balance-ticker" id="theaterBalanceTicker">+34.2% Unprotected</div>
+                        </div>
+                        <svg class="balance-sparkline-svg" viewBox="0 0 240 42" fill="none">
+                          <path d="M6 34 L48 26 L88 18 L128 8 L162 28 L198 36 L234 39" stroke="#ef4444" stroke-width="2" stroke-linecap="round" />
+                          <circle cx="128" cy="8" r="3" fill="#38bdf8" />
+                          <circle cx="234" cy="39" r="3.5" fill="#ef4444" />
+                        </svg>
                       </div>
                       <div class="scene-asset-cards-floating">
-                        <span class="floating-asset-card" style="animation-delay: 0s;">🪙 BTC $94.2k</span>
-                        <span class="floating-asset-card" style="animation-delay: 0.2s;">⚡ XAU/USD Gold</span>
-                        <span class="floating-asset-card" style="animation-delay: 0.4s;">💠 SOL $182</span>
-                        <span class="floating-asset-card" style="animation-delay: 0.6s;">💎 ETH $3.4k</span>
+                        <span class="floating-asset-card">⚡ XAU/USD</span>
+                        <span class="floating-asset-card">🪙 BTC/USD</span>
+                        <span class="floating-asset-card">📉 No Stop-Loss</span>
                       </div>
-                      <div class="collapse-avatar-face" id="collapseAvatarWrap" style="display:none; margin-top:10px;">
-                        <div class="avatar-head sad">
-                          <span class="avatar-frown">⌢</span>
-                        </div>
-                      </div>
+                      <div class="collapse-avatar-face" id="collapseAvatarWrap" style="display:none;"></div>
                     </div>
 
                     <!-- Scene 3: The Fulcrum Seesaw (Structured Execution vs Impulse) -->
                     <div class="theater-scene" data-scene="3">
                       <div class="scene-heading-anim">
                         <span class="scene-sub-phrase">Mechanical Execution</span>
-                        <h3 class="scene-main-phrase cyan-glow">is your only edge.</h3>
+                        <h3 class="scene-main-phrase cyan-glow">Is Your Only Edge.</h3>
                       </div>
                       <div class="scene-fulcrum-scale-wrapper">
                         <div class="scale-seesaw-beam" id="theaterSeesawBeam">
                           <div class="scale-pan left-pan">
-                            <span class="pan-title">Institutional Rule</span>
-                            <span class="pan-metric">0.5% - 1.0% Risk</span>
+                            <span class="pan-title">Defined Risk</span>
+                            <span class="pan-metric">0.5% – 1.0%</span>
                             <span class="pan-sub">1:3+ Asymmetric RR</span>
                           </div>
                           <div class="scale-pan right-pan">
                             <div class="scale-buy-pill">
-                              <span>BUY</span>
-                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                              <span>3M BUY</span>
+                              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
                               </svg>
                             </div>
-                            <span class="pan-sub">3M Confirmation</span>
+                            <span class="pan-sub">Body-Close Trigger</span>
                           </div>
                         </div>
                         <div class="scale-fulcrum-pivot">
@@ -882,58 +903,73 @@
                       </div>
                     </div>
 
-                    <!-- Scene 4: The Market Law (The Chart Doesn't Care • It Only Rewards Discipline) -->
+                    <!-- Scene 4: The Market Law (Zero-Overlap Institutional 3M Chart) -->
                     <div class="theater-scene" data-scene="4">
                       <div class="scene-chart-card-glass">
                         <div class="chart-header-row">
-                          <span class="chart-tag">XAU/USD 3M EXECUTION</span>
+                          <span class="chart-tag">XAU/USD • 3M EXECUTION</span>
                           <span class="chart-tag-rule">BOS BODY-CLOSE</span>
                         </div>
-                        <svg class="chart-candlestick-svg" viewBox="0 0 320 60" preserveAspectRatio="none">
-                          <!-- Supply Demand Zone -->
-                          <rect x="20" y="8" width="80" height="28" fill="rgba(0, 255, 224, 0.12)" stroke="rgba(0, 255, 224, 0.4)" stroke-dasharray="3 3" rx="4" />
-                          <text x="24" y="22" fill="#00ffe0" font-size="8" font-family="monospace" font-weight="bold">15M S&D ZONE</text>
-                          <!-- Bearish candles -->
-                          <line x1="45" y1="4" x2="45" y2="44" stroke="#ef4444" stroke-width="1.5" />
-                          <rect x="41" y="14" width="8" height="22" fill="#ef4444" rx="1.5" />
-                          <line x1="75" y1="12" x2="75" y2="48" stroke="#ef4444" stroke-width="1.5" />
-                          <rect x="71" y="20" width="8" height="20" fill="#ef4444" rx="1.5" />
-                          <!-- Sweep Wick & Reversal Candlesticks -->
-                          <line x1="105" y1="18" x2="105" y2="56" stroke="#00ffe0" stroke-width="1.5" />
-                          <rect x="101" y="26" width="8" height="18" fill="#00ffe0" rx="1.5" />
-                          <line x1="140" y1="16" x2="140" y2="46" stroke="#00ffe0" stroke-width="1.5" />
-                          <rect x="136" y="22" width="8" height="18" fill="#00ffe0" rx="1.5" />
-                          <!-- BOS Body Close Line -->
-                          <line x1="140" y1="20" x2="300" y2="20" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4 4" />
-                          <text x="200" y="15" fill="#f59e0b" font-size="8" font-family="monospace" font-weight="bold">BOS BODY-CLOSE CONFIRMED</text>
-                          <!-- Strong displacement candle -->
-                          <line x1="180" y1="8" x2="180" y2="38" stroke="#00ffe0" stroke-width="1.5" />
-                          <rect x="176" y="10" width="8" height="22" fill="#00ffe0" rx="1.5" />
-                          <line x1="220" y1="4" x2="220" y2="30" stroke="#00ffe0" stroke-width="1.5" />
-                          <rect x="216" y="6" width="8" height="18" fill="#00ffe0" rx="1.5" />
+                        <svg class="chart-candlestick-svg" viewBox="0 0 360 82" preserveAspectRatio="xMidYMid meet">
+                          <!-- 15M Demand Zone Box at Bottom Left (Zero Text Overlap) -->
+                          <rect x="10" y="48" width="118" height="28" fill="rgba(0, 255, 224, 0.09)" stroke="rgba(0, 255, 224, 0.45)" stroke-dasharray="3 3" rx="4" />
+                          <text x="16" y="71" fill="#00ffe0" font-size="7.5" font-family="monospace" font-weight="700" letter-spacing="0.04em">15M DEMAND ZONE</text>
+
+                          <!-- Bearish Pullback into Demand -->
+                          <line x1="38" y1="18" x2="38" y2="54" stroke="#ef4444" stroke-width="1.5" />
+                          <rect x="34" y="24" width="8" height="22" fill="#ef4444" rx="1.5" />
+
+                          <line x1="70" y1="26" x2="70" y2="60" stroke="#ef4444" stroke-width="1.5" />
+                          <rect x="66" y="32" width="8" height="22" fill="#ef4444" rx="1.5" />
+
+                          <!-- Swing High Level & BOS Dashed Line -->
+                          <line x1="92" y1="28" x2="348" y2="28" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="4 3" />
+                          <rect x="208" y="4" width="138" height="15" rx="4" fill="rgba(245, 158, 11, 0.14)" stroke="rgba(245, 158, 11, 0.45)" stroke-width="0.8" />
+                          <text x="277" y="14" text-anchor="middle" fill="#fbbf24" font-size="7.5" font-family="monospace" font-weight="700">BOS BODY-CLOSE CONFIRMED</text>
+
+                          <!-- Bullish Displacement & Body-Close Break -->
+                          <line x1="104" y1="30" x2="104" y2="62" stroke="#00ffe0" stroke-width="1.5" />
+                          <rect x="100" y="36" width="8" height="20" fill="#00ffe0" rx="1.5" />
+
+                          <line x1="142" y1="22" x2="142" y2="50" stroke="#00ffe0" stroke-width="1.5" />
+                          <rect x="138" y="29" width="8" height="16" fill="#00ffe0" rx="1.5" />
+
+                          <!-- BOS Breakout Candle (Full Body Close Above y=28) -->
+                          <line x1="180" y1="12" x2="180" y2="42" stroke="#00ffe0" stroke-width="1.6" />
+                          <rect x="175" y="16" width="10" height="20" fill="#00ffe0" rx="1.5" />
+
+                          <!-- Continuation Expansion Candles -->
+                          <line x1="222" y1="20" x2="222" y2="38" stroke="#ef4444" stroke-width="1.4" />
+                          <rect x="218" y="23" width="8" height="10" fill="#ef4444" rx="1.5" />
+
+                          <line x1="264" y1="18" x2="264" y2="36" stroke="#00ffe0" stroke-width="1.5" />
+                          <rect x="260" y="21" width="8" height="12" fill="#00ffe0" rx="1.5" />
+
+                          <line x1="308" y1="8" x2="308" y2="28" stroke="#00ffe0" stroke-width="1.6" />
+                          <rect x="303" y="11" width="10" height="14" fill="#00ffe0" rx="1.5" />
                         </svg>
                       </div>
                       <div class="discipline-verdict-banner">
                         <span class="scene-sub-phrase">The chart doesn’t care how confident you feel.</span>
                         <h3 class="scene-main-phrase gold-glow">IT ONLY REWARDS DISCIPLINE.</h3>
-                        <span class="verdict-rule-pill">Pure Mechanical Rules • 4H Bias → 15M S&amp;D → 3M BOS</span>
+                        <span class="verdict-rule-pill">4H Macro Bias → 15M S&amp;D → 3M BOS</span>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Scrubber Chips -->
+                  <!-- Single-Row 5-Step Scrubber Bar -->
                   <div class="theater-scrubber-bar" id="theaterScrubberBar">
-                    <button type="button" class="theater-scene-chip active" data-scene="0">01 The Crowd</button>
-                    <button type="button" class="theater-scene-chip" data-scene="1">02 The Gamble</button>
-                    <button type="button" class="theater-scene-chip" data-scene="2">03 The Collapse</button>
-                    <button type="button" class="theater-scene-chip" data-scene="3">04 The Fulcrum</button>
+                    <button type="button" class="theater-scene-chip active" data-scene="0">01 Crowd</button>
+                    <button type="button" class="theater-scene-chip" data-scene="1">02 Gamble</button>
+                    <button type="button" class="theater-scene-chip" data-scene="2">03 Collapse</button>
+                    <button type="button" class="theater-scene-chip" data-scene="3">04 Edge</button>
                     <button type="button" class="theater-scene-chip" data-scene="4">05 The Law</button>
                   </div>
                 </div>
 
-                <!-- Footer Institutional Tags -->
+                <!-- Symmetrical 2x2 Footer Institutional Tags -->
                 <div class="prop-showcase-footer">
-                  <span class="prop-showcase-chip">⚡ Pure Mechanical Execution • 0.5% - 1.0% Risk</span>
+                  <span class="prop-showcase-chip">⚡ 0.5% – 1.0% Risk / Setup</span>
                   <span class="prop-showcase-chip">📐 Bos iBos (Body-Close)</span>
                   <span class="prop-showcase-chip">⏱️ 4H → 15M → 3M (No M1)</span>
                   <span class="prop-showcase-chip">🛡️ Min 1:3+ RR Mandate</span>
@@ -2187,6 +2223,6 @@
     <span id="toastMessage">Notification message</span>
   </div>
 
-  <script src="/script.js?v=20261109v19"></script>
+  <script src="/script.js?v=20261110v20"></script>
 </body>
 </html>
