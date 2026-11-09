@@ -3533,6 +3533,236 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+  
+  // ========================================================
+  // 9E. PINTEREST mbMf2q6ku (GATESFX) DICHOTOMY BACKGROUND ENGINE
+  // ========================================================
+  const gatesfxCanvas = document.getElementById('gatesfxShiftCanvas');
+  if (gatesfxCanvas) {
+    const ctx = gatesfxCanvas.getContext('2d');
+    let width = 0;
+    let height = 0;
+    let animId = null;
+    let isPaused = false;
+    let mouseX = 0;
+    let mouseY = 0;
+
+    function resizeGatesfx() {
+      const parent = gatesfxCanvas.parentElement;
+      if (!parent) return;
+      width = parent.offsetWidth;
+      height = parent.offsetHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      gatesfxCanvas.width = width * dpr;
+      gatesfxCanvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+    }
+
+    resizeGatesfx();
+    window.addEventListener('resize', resizeGatesfx, { passive: true });
+
+    // Track mouse over parent card for volumetric light tilt
+    const cardParent = gatesfxCanvas.parentElement;
+    if (cardParent) {
+      cardParent.addEventListener('mousemove', (e) => {
+        const rect = cardParent.getBoundingClientRect();
+        mouseX = (e.clientX - rect.left) / rect.width;
+        mouseY = (e.clientY - rect.top) / rect.height;
+      }, { passive: true });
+    }
+
+    // Profit ticker value rotation (matching GatesFX numbers)
+    const profitValEl = document.getElementById('gatesfxProfitVal');
+    const profitSequence = ['+457,951', '+553,357', '+648,763', '+744,170'];
+    let profitIndex = 0;
+    setInterval(() => {
+      if (document.documentElement.classList.contains('effects-frozen') || isPaused) return;
+      profitIndex = (profitIndex + 1) % profitSequence.length;
+      if (profitValEl) {
+        profitValEl.textContent = profitSequence[profitIndex];
+      }
+    }, 2400);
+
+    // Draw lens star flare
+    function drawLensStar(cx, cy, r, color) {
+      ctx.save();
+      ctx.fillStyle = color;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 18;
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, r * 0.35, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Horizontal ray
+      ctx.beginPath();
+      ctx.moveTo(cx - r * 2.2, cy);
+      ctx.lineTo(cx + r * 2.2, cy);
+      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = color;
+      ctx.stroke();
+
+      // Vertical ray
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - r * 2.2);
+      ctx.lineTo(cx, cy + r * 2.2);
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    let frameCount = 0;
+
+    function renderGatesfx() {
+      if (document.documentElement.classList.contains('effects-frozen') || isPaused) {
+        animId = null;
+        return;
+      }
+
+      frameCount++;
+      const time = frameCount * 0.02;
+
+      ctx.clearRect(0, 0, width, height);
+
+      // 1. LEFT SIDE: Retail Ominous Crimson Aura & Jagged Drawdown Line
+      const leftCenterX = width * 0.25;
+      const leftCenterY = height * 0.55;
+
+      const crimsonAura = ctx.createRadialGradient(
+        leftCenterX, leftCenterY, 20,
+        leftCenterX, leftCenterY, width * 0.35
+      );
+      crimsonAura.addColorStop(0, 'rgba(239, 68, 68, 0.08)');
+      crimsonAura.addColorStop(0.6, 'rgba(239, 68, 68, 0.02)');
+      crimsonAura.addColorStop(1, 'transparent');
+      ctx.fillStyle = crimsonAura;
+      ctx.fillRect(0, 0, width * 0.5, height);
+
+      // Jagged descending drawdown line
+      ctx.save();
+      ctx.strokeStyle = 'rgba(239, 68, 68, 0.28)';
+      ctx.lineWidth = 1.5;
+      ctx.shadowColor = 'rgba(239, 68, 68, 0.6)';
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      const points = 7;
+      const lineStartX = width * 0.08;
+      const lineEndX = width * 0.44;
+      const lineYBase = height * 0.35;
+      ctx.moveTo(lineStartX, lineYBase);
+      for (let p = 1; p <= points; p++) {
+        const px = lineStartX + (lineEndX - lineStartX) * (p / points);
+        const py = lineYBase + (p * 22) + Math.sin(time + p) * 12;
+        ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+
+      // 2. RIGHT SIDE: Volumetric Emerald Laser Pyramid & Apex Flare (GatesFX Scene 3)
+      const rightApexX = width * 0.75 + (mouseX - 0.5) * 30;
+      const rightApexY = height * 0.22;
+      const baseLeftX = width * 0.58;
+      const baseRightX = width * 0.92;
+      const baseY = height * 0.98;
+
+      ctx.save();
+      const laserGrad = ctx.createLinearGradient(rightApexX, rightApexY, rightApexX, baseY);
+      laserGrad.addColorStop(0, 'rgba(0, 255, 224, 0.45)');
+      laserGrad.addColorStop(0.3, 'rgba(16, 185, 129, 0.22)');
+      laserGrad.addColorStop(0.7, 'rgba(0, 255, 224, 0.08)');
+      laserGrad.addColorStop(1, 'transparent');
+
+      ctx.fillStyle = laserGrad;
+      ctx.beginPath();
+      ctx.moveTo(rightApexX, rightApexY);
+      ctx.lineTo(baseLeftX, baseY);
+      ctx.lineTo(baseRightX, baseY);
+      ctx.closePath();
+      ctx.fill();
+
+      // Laser Cone Edge Glows
+      ctx.strokeStyle = 'rgba(0, 255, 224, 0.35)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(rightApexX, rightApexY);
+      ctx.lineTo(baseLeftX, baseY);
+      ctx.moveTo(rightApexX, rightApexY);
+      ctx.lineTo(baseRightX, baseY);
+      ctx.stroke();
+
+      // Apex Star Lens Flare
+      const starRadius = 14 + Math.sin(time * 2.5) * 4;
+      drawLensStar(rightApexX, rightApexY, starRadius, '#00ffe0');
+      ctx.restore();
+
+
+      // 3. FLOATING GLASS CHART HUD (GatesFX Scene 1)
+      const hudX = width * 0.72 + Math.cos(time * 0.6) * 10;
+      const hudY = height * 0.65 + Math.sin(time * 0.8) * 8;
+      const hudW = 160;
+      const hudH = 95;
+
+      ctx.save();
+      ctx.fillStyle = 'rgba(12, 18, 30, 0.55)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.roundRect(hudX - hudW * 0.5, hudY - hudH * 0.5, hudW, hudH, 10);
+      ctx.fill();
+      ctx.stroke();
+
+      // Glowing top-left corner bracket
+      ctx.strokeStyle = '#00ffe0';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(hudX - hudW * 0.5 + 16, hudY - hudH * 0.5);
+      ctx.lineTo(hudX - hudW * 0.5, hudY - hudH * 0.5);
+      ctx.lineTo(hudX - hudW * 0.5, hudY - hudH * 0.5 + 16);
+      ctx.stroke();
+
+      // Mini bouncing coordinate grid
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+      ctx.lineWidth = 0.5;
+      for (let gx = -hudW * 0.4; gx < hudW * 0.4; gx += 20) {
+        ctx.beginPath();
+        ctx.moveTo(hudX + gx, hudY - hudH * 0.4);
+        ctx.lineTo(hudX + gx, hudY + hudH * 0.4);
+        ctx.stroke();
+      }
+
+      // Glowing ascending line chart
+      ctx.strokeStyle = '#10b981';
+      ctx.lineWidth = 1.6;
+      ctx.shadowColor = '#10b981';
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      ctx.moveTo(hudX - hudW * 0.38, hudY + hudH * 0.25);
+      ctx.lineTo(hudX - hudW * 0.15, hudY + hudH * 0.05);
+      ctx.lineTo(hudX, hudY + hudH * 0.15);
+      ctx.lineTo(hudX + hudW * 0.2, hudY - hudH * 0.1);
+      ctx.lineTo(hudX + hudW * 0.38, hudY - hudH * 0.28);
+      ctx.stroke();
+
+      ctx.restore();
+
+      animId = requestAnimationFrame(renderGatesfx);
+    }
+
+    const gatesfxObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isPaused = !entry.isIntersecting;
+        if (entry.isIntersecting && !animId) {
+          animId = requestAnimationFrame(renderGatesfx);
+        }
+      });
+    }, { threshold: 0.05 });
+    gatesfxObserver.observe(gatesfxCanvas);
+
+    animId = requestAnimationFrame(renderGatesfx);
+  }
+
+
   // 11B. CONCISE KHMER NAVBAR LABELS TO PREVENT TOOLBAR OVERFLOW
   // ========================================================
   if (translations && translations.km) {

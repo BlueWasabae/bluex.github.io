@@ -12514,3 +12514,132 @@ section,
     font-size: 2.2rem;
   }
 }
+
+
+/* ==============================================================================
+   PINTEREST mbMf2q6ku (GATESFX) VOLUMETRIC LASER & DICHOTOMY BACKGROUND ENGINE
+   ============================================================================== */
+
+.gatesfx-card-wrapper {
+  position: relative !important;
+  overflow: hidden !important;
+  background: linear-gradient(180deg, rgba(8, 11, 20, 0.98) 0%, rgba(5, 7, 14, 0.99) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.gatesfx-shift-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.92;
+}
+
+.gatesfx-laser-pyramid {
+  position: absolute;
+  right: 10%;
+  bottom: -40px;
+  width: 320px;
+  height: 480px;
+  background: radial-gradient(ellipse at 50% 100%, rgba(0, 255, 224, 0.14) 0%, rgba(16, 185, 129, 0.08) 40%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gatesfx-ambient-fog {
+  position: absolute;
+  left: 10%;
+  top: 20%;
+  width: 340px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.08) 0%, transparent 65%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.genesis-shift-header,
+.genesis-compare-grid {
+  position: relative;
+  z-index: 2;
+}
+
+/* Retail Drawdown Badge */
+.gatesfx-drawdown-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: 8px;
+  padding: 6px 12px;
+  margin-bottom: 16px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #f87171;
+}
+
+.drawdown-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 10px #ef4444;
+  animation: radarPulse 1.8s infinite;
+}
+
+/* Institutional Discipline Profit Ticker */
+.gatesfx-profit-ticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(0, 255, 224, 0.12) 0%, rgba(16, 185, 129, 0.12) 100%);
+  border: 1px solid rgba(0, 255, 224, 0.45);
+  border-radius: 10px;
+  padding: 6px 14px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 20px rgba(0, 255, 224, 0.15);
+}
+
+.ticker-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00ffe0;
+  box-shadow: 0 0 10px #00ffe0;
+  animation: radarPulse 1.8s infinite;
+}
+
+.ticker-label {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #94a3b8;
+}
+
+.ticker-val {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.92rem;
+  font-weight: 900;
+  color: #00ffe0;
+  text-shadow: 0 0 12px rgba(0, 255, 224, 0.6);
+  letter-spacing: 0.02em;
+}
+
+.ticker-gain {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.15);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  padding: 2px 6px;
+  border-radius: 4px;
+}

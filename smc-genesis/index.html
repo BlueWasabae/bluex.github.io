@@ -50,7 +50,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600;700&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="/styles.css?v=20261109v10">
+  <link rel="stylesheet" href="/styles.css?v=20261109v11">
 
   <style>
     /* Specific Table & Ecosystem Elements for SMC Genesis */
@@ -640,7 +640,10 @@
          ======================================================== -->
     <section class="genesis-shift-section">
       <div class="container">
-        <div class="genesis-shift-card">
+        <div class="genesis-shift-card gatesfx-card-wrapper">
+          <canvas id="gatesfxShiftCanvas" class="gatesfx-shift-canvas" aria-hidden="true"></canvas>
+          <div class="gatesfx-laser-pyramid" aria-hidden="true"></div>
+          <div class="gatesfx-ambient-fog" aria-hidden="true"></div>
           <div class="genesis-shift-header">
             <span class="knowledge-tag-badge" data-i18n="genesis.shiftBadge">The Paradigm Shift • Institutional vs Retail</span>
             <h2 class="knowledge-title" data-i18n="genesis.shiftTitle">Why 95% of Retail Traders Are Simply Liquidity</h2>
@@ -1030,6 +1033,6 @@
     </a>
   </div>
 
-  <script src="/script.js?v=20261109v10"></script>
+  <script src="/script.js?v=20261109v11"></script>
 </body>
 </html>
