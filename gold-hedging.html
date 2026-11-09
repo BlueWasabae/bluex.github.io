@@ -53,7 +53,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600;700&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="/styles.css?v=20261110v22">
+  <link rel="stylesheet" href="/styles.css?v=20261110v23">
 </head>
 <body class="page-hedging">
 
@@ -79,9 +79,27 @@
     <div class="container">
       <nav class="nav-wrapper">
         <!-- 3D Brand Logo -->
-        <a href="/" class="logo" id="brandLogo" aria-label="BlueX Official - Return to Home" title="BlueX Home">
-          <img src="/assets/images/bluex-3d-logo.png" alt="BlueX" class="nav-logo-3d-img">
-        </a>
+        <a href="/" class="logo pin-prismatic-logo" id="brandLogo" aria-label="BlueX Official - Return to Home" title="BlueX Home">
+        <span class="pin-prism-medallion" aria-hidden="true">
+          <span class="pin-prism-flare"></span>
+          <span class="pin-prism-ring"></span>
+          <span class="pin-prism-disc">
+            <svg class="pin-prism-emblem" viewBox="0 0 28 28" fill="none">
+              <defs>
+                <linearGradient id="bxEmblemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="45%" stop-color="#7dd3fc"/>
+                  <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+              </defs>
+              <path d="M6.5 6.5L14 14M14 14L21.5 21.5M14 14L21.5 6.5M14 14L6.5 21.5" stroke="url(#bxEmblemGrad)" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M14 4.2L16.4 11.6L23.8 14L16.4 16.4L14 23.8L11.6 16.4L4.2 14L11.6 11.6L14 4.2Z" fill="url(#bxEmblemGrad)" fill-opacity="0.24" stroke="#00f5d4" stroke-width="1.1"/>
+              <circle cx="14" cy="14" r="2.2" fill="#ffffff"/>
+            </svg>
+          </span>
+        </span>
+        <img src="/assets/images/bluex-3d-logo.png" alt="BlueX" class="nav-logo-3d-img">
+      </a>
 
         <!-- Centered Menu Pills -->
         <ul class="nav-menu" id="navMenu">
@@ -995,8 +1013,26 @@
        ======================================================== -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <a href="/" class="logo" id="footerBrandLogo" aria-label="BlueX Official - Return to Home" title="Return to BlueX Home">
-        <img src="/assets/images/bluex-3d-logo.png" alt="BlueX" style="height: 36px; width: auto; filter: drop-shadow(0 0 12px rgba(0, 255, 224, 0.4));">
+      <a href="/" class="logo pin-prismatic-logo" id="footerBrandLogo" aria-label="BlueX Official - Return to Home" title="Return to BlueX Home">
+        <span class="pin-prism-medallion" aria-hidden="true">
+          <span class="pin-prism-flare"></span>
+          <span class="pin-prism-ring"></span>
+          <span class="pin-prism-disc">
+            <svg class="pin-prism-emblem" viewBox="0 0 28 28" fill="none">
+              <defs>
+                <linearGradient id="bxEmblemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="45%" stop-color="#7dd3fc"/>
+                  <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+              </defs>
+              <path d="M6.5 6.5L14 14M14 14L21.5 21.5M14 14L21.5 6.5M14 14L6.5 21.5" stroke="url(#bxEmblemGrad)" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M14 4.2L16.4 11.6L23.8 14L16.4 16.4L14 23.8L11.6 16.4L4.2 14L11.6 11.6L14 4.2Z" fill="url(#bxEmblemGrad)" fill-opacity="0.24" stroke="#00f5d4" stroke-width="1.1"/>
+              <circle cx="14" cy="14" r="2.2" fill="#ffffff"/>
+            </svg>
+          </span>
+        </span>
+        <img class="nav-logo-3d-img" src="/assets/images/bluex-3d-logo.png" alt="BlueX" style="height: 36px; width: auto; filter: drop-shadow(0 0 12px rgba(0, 255, 224, 0.4));">
       </a>
 
       <p class="footer-copy" data-i18n="footer.copy">© 2026 BlueX. Master Your Ego. Master Your Trades. All rights reserved.</p>
@@ -1042,6 +1078,6 @@
     </a>
   </div>
 
-  <script src="/script.js?v=20261110v22"></script>
+  <script src="/script.js?v=20261110v23"></script>
 </body>
 </html>

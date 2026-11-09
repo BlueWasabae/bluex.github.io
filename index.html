@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles.css?v=20261110v22">
+  <link rel="stylesheet" href="/styles.css?v=20261110v23">
 </head>
 <body>
 
@@ -73,8 +73,25 @@
   <header class="site-header" id="top">
     <div class="container">
       <nav class="nav-wrapper">
-        <!-- 3D Brand Logo -->
-        <a href="#top" class="logo" id="brandLogo" aria-label="BlueX Official" title="BlueX - Scroll to Top">
+        <!-- 3D Brand Logo (Pin 26ud0QUtw Prismatic Chromatic-Dispersion Capsule) -->
+        <a href="#top" class="logo pin-prismatic-logo" id="brandLogo" aria-label="BlueX Official" title="BlueX - Scroll to Top">
+          <span class="pin-prism-medallion" aria-hidden="true">
+            <span class="pin-prism-flare"></span>
+            <span class="pin-prism-ring"></span>
+            <span class="pin-prism-disc">
+              <svg class="pin-prism-emblem" viewBox="0 0 24 24" fill="none">
+                <defs>
+                  <linearGradient id="bluexPrismGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#38bdf8"/>
+                  </linearGradient>
+                </defs>
+                <path d="M12 2.5L16.2 6.8L12 11.1L7.8 6.8L12 2.5Z" fill="url(#bluexPrismGrad)"/>
+                <path d="M5.5 8.5L10.2 14L5.5 19.5H8.8L12 15.8L15.2 19.5H18.5L13.8 14L18.5 8.5H15.2L12 12.2L8.8 8.5H5.5Z" fill="url(#bluexPrismGrad)"/>
+              </svg>
+            </span>
+          </span>
           <img src="/assets/images/bluex-3d-logo.png" alt="BlueX" class="nav-logo-3d-img">
         </a>
 
@@ -2355,8 +2372,26 @@
        ======================================================== -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <a href="#top" class="logo" id="footerBrandLogo" aria-label="BlueX Official - Scroll to Top" title="Back to top">
-        <img src="/assets/images/bluex-3d-logo.png" alt="BlueX" style="height: 36px; width: auto; filter: drop-shadow(0 0 12px rgba(0, 255, 224, 0.4));">
+      <a href="#top" class="logo pin-prismatic-logo" id="footerBrandLogo" aria-label="BlueX Official - Scroll to Top" title="Back to top">
+        <span class="pin-prism-medallion" aria-hidden="true">
+          <span class="pin-prism-flare"></span>
+          <span class="pin-prism-ring"></span>
+          <span class="pin-prism-disc">
+            <svg class="pin-prism-emblem" viewBox="0 0 28 28" fill="none">
+              <defs>
+                <linearGradient id="bxEmblemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="45%" stop-color="#7dd3fc"/>
+                  <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+              </defs>
+              <path d="M6.5 6.5L14 14M14 14L21.5 21.5M14 14L21.5 6.5M14 14L6.5 21.5" stroke="url(#bxEmblemGrad)" stroke-width="2.6" stroke-linecap="round"/>
+              <path d="M14 4.2L16.4 11.6L23.8 14L16.4 16.4L14 23.8L11.6 16.4L4.2 14L11.6 11.6L14 4.2Z" fill="url(#bxEmblemGrad)" fill-opacity="0.24" stroke="#00f5d4" stroke-width="1.1"/>
+              <circle cx="14" cy="14" r="2.2" fill="#ffffff"/>
+            </svg>
+          </span>
+        </span>
+        <img class="nav-logo-3d-img" src="/assets/images/bluex-3d-logo.png" alt="BlueX" style="height: 36px; width: auto; filter: drop-shadow(0 0 12px rgba(0, 255, 224, 0.4));">
       </a>
 
       <p class="footer-copy" data-i18n="footer.copy">© 2026 BlueX. Master Your Ego. Master Your Trades. All rights reserved.</p>
@@ -2567,6 +2602,6 @@
     <span id="toastMessage">Notification message</span>
   </div>
 
-  <script src="/script.js?v=20261110v22"></script>
+  <script src="/script.js?v=20261110v23"></script>
 </body>
 </html>
