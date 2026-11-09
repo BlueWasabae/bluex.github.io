@@ -14235,3 +14235,185 @@ section,
     font-size: 0.68rem;
   }
 }
+
+
+
+
+/* ==============================================================================
+   PIN 5DazFh2Tn (ROW 7, LEFT): DEEP CYAN LIQUID GLASS CAPSULE REGISTER BUTTON
+   URL: https://pin.it/5DazFh2Tn
+   Accurate Theme: Obsidian Cyan Liquid Glass Body + Luminous Electric Cyan
+   Meniscus Arc + Glowing Telegram Paper Plane + Cyan Ambient Refraction
+   ============================================================================== */
+.nav-register-dm-btn,
+.btn-register-direct,
+.btn-oneclick-dm,
+.floating-cta-pill,
+.nav-drawer-dm-cta {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 9px !important;
+  border-radius: 9999px !important;
+  background: radial-gradient(125% 120% at 50% 12%, rgba(14, 52, 92, 0.78) 0%, rgba(6, 18, 38, 0.96) 65%, rgba(2, 8, 18, 0.99) 100%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.38) !important;
+  color: #ffffff !important;
+  font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+  text-decoration: none !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  box-shadow: 
+    0 10px 28px rgba(0, 0, 0, 0.8),
+    0 0 32px rgba(0, 255, 224, 0.38),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.5) !important;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s ease !important;
+  cursor: pointer !important;
+  z-index: 1 !important;
+}
+
+/* Proportional dimensions */
+.nav-register-dm-btn {
+  padding: 8px 18px !important;
+  font-size: 0.8rem !important;
+  height: auto !important;
+}
+
+.btn-register-direct,
+.btn-oneclick-dm {
+  padding: 13px 28px !important;
+  font-size: 0.96rem !important;
+}
+
+.floating-cta-pill {
+  padding: 9px 20px !important;
+  font-size: 0.82rem !important;
+}
+
+.nav-drawer-dm-cta {
+  padding: 12px 24px !important;
+  font-size: 0.92rem !important;
+  width: 100% !important;
+}
+
+/* Luminous Cyan Meniscus (Refraction Arcs on Bottom-Right and Top-Left) */
+.nav-register-dm-btn::before,
+.btn-register-direct::before,
+.btn-oneclick-dm::before,
+.floating-cta-pill::before,
+.nav-drawer-dm-cta::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: inherit !important;
+  background: 
+    radial-gradient(circle at 88% 85%, rgba(0, 255, 224, 0.92) 0%, rgba(56, 189, 248, 0.45) 24%, transparent 58%),
+    radial-gradient(circle at 10% 38%, rgba(56, 189, 248, 0.8) 0%, rgba(14, 116, 144, 0.25) 28%, transparent 56%) !important;
+  pointer-events: none !important;
+  opacity: 0.95 !important;
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
+  z-index: -1 !important;
+}
+
+/* Specular Bottom Meniscus Glow Line */
+.nav-register-dm-btn::after,
+.btn-register-direct::after,
+.btn-oneclick-dm::after,
+.floating-cta-pill::after,
+.nav-drawer-dm-cta::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0px !important;
+  left: 15% !important;
+  right: 15% !important;
+  height: 1.5px !important;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 224, 0.95) 50%, transparent 100%) !important;
+  filter: blur(0.5px) !important;
+  pointer-events: none !important;
+  transition: all 0.3s ease !important;
+  z-index: 1 !important;
+}
+
+/* Paper Airplane Icon Styling matching Pin */
+.btn-paper-plane,
+.nav-register-dm-btn svg,
+.btn-register-direct svg,
+.btn-oneclick-dm svg,
+.floating-cta-pill svg,
+.nav-drawer-dm-cta svg {
+  color: #00ffe0 !important;
+  fill: currentColor !important;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 224, 0.85)) !important;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease !important;
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+/* Hover Dynamics */
+.nav-register-dm-btn:hover,
+.btn-register-direct:hover,
+.btn-oneclick-dm:hover,
+.floating-cta-pill:hover,
+.nav-drawer-dm-cta:hover {
+  transform: translateY(-3px) scale(1.025) !important;
+  border-color: rgba(0, 255, 224, 0.8) !important;
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.85),
+    0 0 46px rgba(0, 255, 224, 0.6),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.7) !important;
+}
+
+.nav-register-dm-btn:hover::before,
+.btn-register-direct:hover::before,
+.btn-oneclick-dm:hover::before,
+.floating-cta-pill:hover::before,
+.nav-drawer-dm-cta:hover::before {
+  opacity: 1 !important;
+  transform: scale(1.03) !important;
+}
+
+.nav-register-dm-btn:hover::after,
+.btn-register-direct:hover::after,
+.btn-oneclick-dm:hover::after,
+.floating-cta-pill:hover::after,
+.nav-drawer-dm-cta:hover::after {
+  left: 6% !important;
+  right: 6% !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, transparent 0%, #00ffe0 50%, transparent 100%) !important;
+  filter: blur(0.8px) !important;
+}
+
+.nav-register-dm-btn:hover .btn-paper-plane,
+.btn-register-direct:hover .btn-paper-plane,
+.btn-oneclick-dm:hover .btn-paper-plane,
+.floating-cta-pill:hover .btn-paper-plane,
+.nav-drawer-dm-cta:hover .btn-paper-plane,
+.nav-register-dm-btn:hover svg,
+.btn-register-direct:hover svg,
+.btn-oneclick-dm:hover svg,
+.floating-cta-pill:hover svg,
+.nav-drawer-dm-cta:hover svg {
+  transform: translate(3px, -3px) scale(1.12) !important;
+  filter: drop-shadow(0 0 14px rgba(0, 255, 224, 1)) !important;
+}
+
+/* Active Press Dynamics */
+.nav-register-dm-btn:active,
+.btn-register-direct:active,
+.btn-oneclick-dm:active,
+.floating-cta-pill:active,
+.nav-drawer-dm-cta:active {
+  transform: translateY(1.5px) scale(0.975) !important;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.9),
+    0 0 22px rgba(0, 255, 224, 0.35),
+    inset 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+}
