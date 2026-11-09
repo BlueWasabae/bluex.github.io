@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles.css?v=20261109v14">
+  <link rel="stylesheet" href="/styles.css?v=20261109v15">
 </head>
 <body>
 
@@ -888,267 +888,395 @@
               Hard-earned market principles, psychological truths, and timeless books on trading, money, and emotional mastery that shaped my disciplined edge.
             </p>
 
-            <!-- Navigation Tabs -->
-            <div class="knowledge-nav-tabs">
-              <button type="button" class="knowledge-tab-btn active" data-filter="all">
-                <span>📚</span>
-                <span data-i18n="knowledge.tabAll">All Resources</span>
-              </button>
-              <button type="button" class="knowledge-tab-btn" data-filter="lessons">
-                <span>🧠</span>
-                <span data-i18n="knowledge.tabLessons">Lessons Learned</span>
-              </button>
-              <button type="button" class="knowledge-tab-btn" data-filter="books">
-                <span>📖</span>
-                <span data-i18n="knowledge.tabBooks">Popular Books</span>
-              </button>
-              <a href="/knowledge" class="btn-open-knowledge-page" style="margin-left:auto;">
+            <!-- Fey Filter Navigation Tabs (Pin 2: Fey.com Slit System) -->
+            <div class="fey-slit-deck-header">
+              <div class="fey-category-filter">
+                <button type="button" class="fey-filter-btn active" data-fey-target="lessons">
+                  <span>🧠</span>
+                  <span data-i18n="knowledge.tabLessons">Institutional Lessons (4 Pillars)</span>
+                </button>
+                <button type="button" class="fey-filter-btn" data-fey-target="books">
+                  <span>📖</span>
+                  <span data-i18n="knowledge.tabBooks">Curated Classics (5 Books)</span>
+                </button>
+              </div>
+              <a href="/knowledge" class="glassy-btn btn-open-knowledge-page" style="margin-left:auto;">
                 <span data-i18n="knowledge.openPageBtn">Open Full Knowledge Vault ↗</span>
               </a>
             </div>
           </div>
 
-          <!-- Module 1: Lessons Learned -->
-          <div id="knowledgeLessonsBlock">
-            <div class="knowledge-block-title">
-              <h3>
-                <span data-i18n="knowledge.lessonsHeading">Core Lessons Learned in the Real Market</span>
-                <span class="badge-num">4 Foundations</span>
-              </h3>
+          <!-- Fey Expanding Slit Deck (Pin 2: Fey.com Style) -->
+          <div class="fey-slit-deck-container">
+            <!-- Track 1: Institutional Core Lessons (Active by Default) -->
+            <div class="fey-slits-track" id="feyLessonsTrack">
+              <!-- Slit 1: Bos iBos -->
+              <div class="fey-slit-card active" data-slit-id="lesson-1">
+                <div class="fey-slit-collapsed-bar">
+                  <span class="fey-slit-num">01</span>
+                  <span class="fey-slit-vtitle">Bos iBos • Body-Close Law</span>
+                  <span class="fey-slit-icon-bottom">📐</span>
+                </div>
+                <div class="fey-slit-content">
+                  <div class="fey-content-top">
+                    <span class="fey-tag-badge">Structure Law</span>
+                    <span class="fey-stage-badge">01 / 04</span>
+                  </div>
+                  <h3 class="fey-content-title">Bos iBos: Body-Close Confirmation Over Blind Wicks</h3>
+                  <p class="fey-content-desc">
+                    Retail traders react to wick rejections and arbitrary trendline breaks, which algorithms routinely engineer as liquidity sweeps. In institutional flow, a true Break of Structure (BOS) requires full candle body closure beyond the swing level. Without a decisive body close, price remains in range consolidation.
+                  </p>
+                  <div class="fey-rule-quote-box">
+                    “Never predict a break before the close. If the body closes inside the range, the sweep was completed and retail became the liquidity.”
+                  </div>
+                  <div class="fey-key-metrics-grid">
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Execution Rule</div>
+                      <div class="fey-metric-val">Body-Close Only</div>
+                    </div>
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Validation Time</div>
+                      <div class="fey-metric-val">3M Candle Close</div>
+                    </div>
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Structure Shift</div>
+                      <div class="fey-metric-val">iBOS to BOS</div>
+                    </div>
+                  </div>
+                  <div class="fey-card-action-row">
+                    <a href="/smc-genesis.html" class="glassy-btn" style="padding: 10px 22px; font-size: 0.85rem;">
+                      <span>Explore Structural Framework</span>
+                      <span>→</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slit 2: Supply & Demand Base Formations -->
+              <div class="fey-slit-card" data-slit-id="lesson-2">
+                <div class="fey-slit-collapsed-bar">
+                  <span class="fey-slit-num">02</span>
+                  <span class="fey-slit-vtitle">Supply &amp; Demand • Fresh Zones</span>
+                  <span class="fey-slit-icon-bottom">🏛️</span>
+                </div>
+                <div class="fey-slit-content">
+                  <div class="fey-content-top">
+                    <span class="fey-tag-badge">Base Formation</span>
+                    <span class="fey-stage-badge">02 / 04</span>
+                  </div>
+                  <h3 class="fey-content-title">Supply &amp; Demand: Unmitigated Order Block Formations</h3>
+                  <p class="fey-content-desc">
+                    Institutional orders leave footprint imbalances that displace price with high velocity. We map Rally-Base-Rally (RBR), Drop-Base-Drop (DBD), and reversal zones strictly on fresh, unmitigated zones. We never trade tested or exhausted levels where large banks have already neutralized inventory.
+                  </p>
+                  <div class="fey-rule-quote-box gold">
+                    “Price only returns to high-displacement zones when institutional resting orders remain unfilled. Trade the first touch, never the third.”
+                  </div>
+                  <div class="fey-key-metrics-grid">
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Zone Criteria</div>
+                      <div class="fey-metric-val">Fresh &amp; Unmitigated</div>
+                    </div>
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Momentum Type</div>
+                      <div class="fey-metric-val">High Displacement</div>
+                    </div>
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Base Refinement</div>
+                      <div class="fey-metric-val">15M High Probability</div>
+                    </div>
+                  </div>
+                  <div class="fey-card-action-row">
+                    <a href="/smc-genesis.html" class="glassy-btn" style="padding: 10px 22px; font-size: 0.85rem;">
+                      <span>Learn S&amp;D Mechanics</span>
+                      <span>→</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slit 3: 3M no M1 Multi-Timeframe -->
+              <div class="fey-slit-card" data-slit-id="lesson-3">
+                <div class="fey-slit-collapsed-bar">
+                  <span class="fey-slit-num">03</span>
+                  <span class="fey-slit-vtitle">3M no M1 • Execution Pipeline</span>
+                  <span class="fey-slit-icon-bottom">⏱️</span>
+                </div>
+                <div class="fey-slit-content">
+                  <div class="fey-content-top">
+                    <span class="fey-tag-badge">Timeframe Pipeline</span>
+                    <span class="fey-stage-badge">03 / 04</span>
+                  </div>
+                  <h3 class="fey-content-title">3M no M1 Pipeline: 4H Macro Bias → 15M S&amp;D → 3M BOS Entry</h3>
+                  <p class="fey-content-desc">
+                    The 1-minute (M1) timeframe is plagued by spread slippage, algorithmic noise, and psychological fatigue. Our proprietary timeframe pipeline aligns the 4-Hour macro order flow direction with 15-Minute Supply &amp; Demand zones, executing surgical entry exclusively on the 3-Minute structural confirmation.
+                  </p>
+                  <div class="fey-rule-quote-box">
+                    “Macro trend dictates the river; 15M frames the dam; 3M triggers the release. Eliminate M1 noise and watch execution clarity double.”
+                  </div>
+                  <div class="fey-key-metrics-grid">
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Macro Bias</div>
+                      <div class="fey-metric-val">4-Hour Direction</div>
+                    </div>
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Zone Refinement</div>
+                      <div class="fey-metric-val">15-Minute Bases</div>
+                    </div>
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Surgical Trigger</div>
+                      <div class="fey-metric-val">3-Minute (Strictly No M1)</div>
+                    </div>
+                  </div>
+                  <div class="fey-card-action-row">
+                    <a href="/smc-genesis.html" class="glassy-btn" style="padding: 10px 22px; font-size: 0.85rem;">
+                      <span>View Timeframe Rules</span>
+                      <span>→</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slit 4: Capital Discipline -->
+              <div class="fey-slit-card" data-slit-id="lesson-4">
+                <div class="fey-slit-collapsed-bar">
+                  <span class="fey-slit-num">04</span>
+                  <span class="fey-slit-vtitle">Capital Discipline • 0.5%–1.0% Risk</span>
+                  <span class="fey-slit-icon-bottom">🛡️</span>
+                </div>
+                <div class="fey-slit-content">
+                  <div class="fey-content-top">
+                    <span class="fey-tag-badge">Risk &amp; Math</span>
+                    <span class="fey-stage-badge">04 / 04</span>
+                  </div>
+                  <h3 class="fey-content-title">Capital Discipline: 0.5% – 1.0% Risk with 1:3 to 1:10+ Asymmetry</h3>
+                  <p class="fey-content-desc">
+                    A trader with a 40% win rate and a strict 1:3 minimum risk-to-reward ratio will exponentially outperform a 90% scalper who risks 100 pips to make 10 pips. We calculate lot sizes strictly from dollar risk and invalidation point. In institutional trading, surviving drawdowns is the prerequisite for multi-year compounding.
+                  </p>
+                  <div class="fey-rule-quote-box gold">
+                    “Define dollar risk before you even look at profit targets. Protect your downside with military precision and let the upside take care of itself.”
+                  </div>
+                  <div class="fey-key-metrics-grid">
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Max Risk Per Setup</div>
+                      <div class="fey-metric-val">0.5% to 1.0% Capital</div>
+                    </div>
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Risk-to-Reward</div>
+                      <div class="fey-metric-val">Min 1:3 to 1:10+</div>
+                    </div>
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Lot Sizing</div>
+                      <div class="fey-metric-val">Mathematical Pip Formula</div>
+                    </div>
+                  </div>
+                  <div class="fey-card-action-row">
+                    <a href="/gold-hedging.html" class="glassy-btn" style="padding: 10px 22px; font-size: 0.85rem;">
+                      <span>Open Risk &amp; Pip Calculator</span>
+                      <span>→</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="knowledge-lessons-grid">
-              <!-- Lesson 1 -->
-              <div class="lesson-card">
-                <div class="lesson-card-header">
-                  <span class="lesson-number">01</span>
-                  <span class="lesson-category-tag" data-i18n="knowledge.l1Tag">Market Structure &amp; Liquidity</span>
+            <!-- Track 2: Curated Classic Books (Hidden by default, toggled via tabs) -->
+            <div class="fey-slits-track" id="feyBooksTrack" style="display: none;">
+              <!-- Book 1 -->
+              <div class="fey-slit-card active" data-slit-id="book-1">
+                <div class="fey-slit-collapsed-bar">
+                  <span class="fey-slit-num">01</span>
+                  <span class="fey-slit-vtitle">Trading in the Zone • Mark Douglas</span>
+                  <span class="fey-slit-icon-bottom">🎯</span>
                 </div>
-                <h4 class="lesson-title" data-i18n="knowledge.l1Title">Liquidity Sweeps Over Blind Patterns</h4>
-                <p class="lesson-text" data-i18n="knowledge.l1Text">
-                  Retail traders memorize static chart patterns like double tops and trendlines. Institutions view these exact patterns as liquidity pools to sweep before moving price. Never enter until retail stops have been triggered and market structure confirms order flow alignment.
-                </p>
-                <div class="lesson-rule-box" data-i18n="knowledge.l1Rule">
-                  “Wait for the liquidity sweep before committing capital. Without a sweep, you are the liquidity.”
-                </div>
-              </div>
-
-              <!-- Lesson 2 -->
-              <div class="lesson-card">
-                <div class="lesson-card-header">
-                  <span class="lesson-number">02</span>
-                  <span class="lesson-category-tag" data-i18n="knowledge.l2Tag">Risk &amp; Survival Math</span>
-                </div>
-                <h4 class="lesson-title" data-i18n="knowledge.l2Title">Capital Preservation is Your Only Lifeline</h4>
-                <p class="lesson-text" data-i18n="knowledge.l2Text">
-                  A trader with a 40% win rate and a 1:3 Risk-to-Reward ratio will exponentially outperform a 90% scalper with no stop loss. Always calculate your exact lot size based on dollar risk (1% to 2% max per trade) and the distance to invalidation—never on emotion.
-                </p>
-                <div class="lesson-rule-box" data-i18n="knowledge.l2Rule">
-                  “Define your dollar risk before you even consider potential reward. Survive first, compound second.”
-                </div>
-              </div>
-
-              <!-- Lesson 3 -->
-              <div class="lesson-card">
-                <div class="lesson-card-header">
-                  <span class="lesson-number">03</span>
-                  <span class="lesson-category-tag" data-i18n="knowledge.l3Tag">Trading Psychology &amp; Ego</span>
-                </div>
-                <h4 class="lesson-title" data-i18n="knowledge.l3Title">Ego is the Greatest Account Destroyer</h4>
-                <p class="lesson-text" data-i18n="knowledge.l3Text">
-                  The market has no memory and zero personal interest in you. Losses are operating business expenses, not personal insults. Revenge trading is ego demanding to be right. Elite trading is executing a probabilistic edge with complete emotional detachment.
-                </p>
-                <div class="lesson-rule-box" data-i18n="knowledge.l3Rule">
-                  “Master your ego. If a loss makes you angry, your position size was too big for your nervous system.”
+                <div class="fey-slit-content">
+                  <div class="fey-content-top">
+                    <span class="fey-tag-badge">Psychology &amp; Probabilities</span>
+                    <span class="fey-stage-badge">Classic 01</span>
+                  </div>
+                  <h3 class="fey-content-title">Trading in the Zone (Mark Douglas)</h3>
+                  <p class="fey-content-desc">
+                    The undisputed masterwork on eliminating fear, accepting unavoidable market risk, and thinking in statistical distributions. Douglas teaches traders how to achieve complete peace of mind by understanding that any single trade outcome is random, but an edge over 50 trades is guaranteed.
+                  </p>
+                  <div class="fey-rule-quote-box">
+                    “When you genuinely accept the risks, you will be at peace with any outcome.”
+                  </div>
+                  <div class="fey-key-metrics-grid">
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Core Lesson</div>
+                      <div class="fey-metric-val">Probabilistic Mindset</div>
+                    </div>
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Key Cure</div>
+                      <div class="fey-metric-val">Eliminating Hesitation</div>
+                    </div>
+                  </div>
+                  <div class="fey-card-action-row">
+                    <a href="/knowledge" class="glassy-btn" style="padding: 10px 22px; font-size: 0.85rem;">Read Full Study Notes ↗</a>
+                  </div>
                 </div>
               </div>
 
-              <!-- Lesson 4 -->
-              <div class="lesson-card">
-                <div class="lesson-card-header">
-                  <span class="lesson-number">04</span>
-                  <span class="lesson-category-tag" data-i18n="knowledge.l4Tag">Process &amp; Daily Routine</span>
+              <!-- Book 2 -->
+              <div class="fey-slit-card" data-slit-id="book-2">
+                <div class="fey-slit-collapsed-bar">
+                  <span class="fey-slit-num">02</span>
+                  <span class="fey-slit-vtitle">Reminiscences of a Stock Operator</span>
+                  <span class="fey-slit-icon-bottom">📜</span>
                 </div>
-                <h4 class="lesson-title" data-i18n="knowledge.l4Title">Consistency is Built in the Unseen Habits</h4>
-                <p class="lesson-text" data-i18n="knowledge.l4Text">
-                  Professional trading is a high-performance mental sport. Consistency is not created during the trade; it is forged through pre-market session reviews, trade journaling, emotional check-ins, and strict adherence to personal non-negotiables.
-                </p>
-                <div class="lesson-rule-box" data-i18n="knowledge.l4Rule">
-                  “A trade outside your rules is a losing trade, even if it ended in profit. Process is everything.”
+                <div class="fey-slit-content">
+                  <div class="fey-content-top">
+                    <span class="fey-tag-badge">Market Tape &amp; Discipline</span>
+                    <span class="fey-stage-badge">Classic 02</span>
+                  </div>
+                  <h3 class="fey-content-title">Reminiscences of a Stock Operator (Edwin Lefèvre)</h3>
+                  <p class="fey-content-desc">
+                    The timeless biography of Jesse Livermore. It contains the most profound market truths ever written: that big money is not made in frequent trading, but in the patience to sit still once a high-probability institutional trend is identified.
+                  </p>
+                  <div class="fey-rule-quote-box gold">
+                    “It was never my thinking that made the big money for me. It was always my sitting.”
+                  </div>
+                  <div class="fey-key-metrics-grid">
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Core Lesson</div>
+                      <div class="fey-metric-val">Sitting Tight &amp; Trend Riding</div>
+                    </div>
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Key Cure</div>
+                      <div class="fey-metric-val">Overtrading &amp; Micromanagement</div>
+                    </div>
+                  </div>
+                  <div class="fey-card-action-row">
+                    <a href="/knowledge" class="glassy-btn" style="padding: 10px 22px; font-size: 0.85rem;">Read Full Study Notes ↗</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Book 3 -->
+              <div class="fey-slit-card" data-slit-id="book-3">
+                <div class="fey-slit-collapsed-bar">
+                  <span class="fey-slit-num">03</span>
+                  <span class="fey-slit-vtitle">The Disciplined Trader</span>
+                  <span class="fey-slit-icon-bottom">🧠</span>
+                </div>
+                <div class="fey-slit-content">
+                  <div class="fey-content-top">
+                    <span class="fey-tag-badge">Emotional Boundaries</span>
+                    <span class="fey-stage-badge">Classic 03</span>
+                  </div>
+                  <h3 class="fey-content-title">The Disciplined Trader (Mark Douglas)</h3>
+                  <p class="fey-content-desc">
+                    Comprehensive psychological roadmap detailing how internal beliefs, ego, and the fear of being wrong sabotage traders. Shows step-by-step how to construct rigid mental boundaries in an environment of unlimited market freedom.
+                  </p>
+                  <div class="fey-rule-quote-box">
+                    “95% of trading errors stem from fear—fear of being wrong, losing money, and missing out.”
+                  </div>
+                  <div class="fey-key-metrics-grid">
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Core Lesson</div>
+                      <div class="fey-metric-val">Internal Mental Discipline</div>
+                    </div>
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Key Cure</div>
+                      <div class="fey-metric-val">Revenge Trading &amp; Fear</div>
+                    </div>
+                  </div>
+                  <div class="fey-card-action-row">
+                    <a href="/knowledge" class="glassy-btn" style="padding: 10px 22px; font-size: 0.85rem;">Read Full Study Notes ↗</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Book 4 -->
+              <div class="fey-slit-card" data-slit-id="book-4">
+                <div class="fey-slit-collapsed-bar">
+                  <span class="fey-slit-num">04</span>
+                  <span class="fey-slit-vtitle">The Psychology of Money</span>
+                  <span class="fey-slit-icon-bottom">💎</span>
+                </div>
+                <div class="fey-slit-content">
+                  <div class="fey-content-top">
+                    <span class="fey-tag-badge">Wealth Longevity</span>
+                    <span class="fey-stage-badge">Classic 04</span>
+                  </div>
+                  <h3 class="fey-content-title">The Psychology of Money (Morgan Housel)</h3>
+                  <p class="fey-content-desc">
+                    Crucial insights proving that managing capital has little to do with raw analytical IQ and everything to do with behavioral discipline, humility, and avoiding catastrophic risk that interrupts long-term compounding.
+                  </p>
+                  <div class="fey-rule-quote-box gold">
+                    “Doing well with money has a little to do with how smart you are and a lot to do with how you behave.”
+                  </div>
+                  <div class="fey-key-metrics-grid">
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Core Lesson</div>
+                      <div class="fey-metric-val">Behavioral Humility</div>
+                    </div>
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Key Cure</div>
+                      <div class="fey-metric-val">Reckless Leverage &amp; Greed</div>
+                    </div>
+                  </div>
+                  <div class="fey-card-action-row">
+                    <a href="/knowledge" class="glassy-btn" style="padding: 10px 22px; font-size: 0.85rem;">Read Full Study Notes ↗</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Book 5 -->
+              <div class="fey-slit-card" data-slit-id="book-5">
+                <div class="fey-slit-collapsed-bar">
+                  <span class="fey-slit-num">05</span>
+                  <span class="fey-slit-vtitle">Market Wizards • Jack Schwager</span>
+                  <span class="fey-slit-icon-bottom">🏆</span>
+                </div>
+                <div class="fey-slit-content">
+                  <div class="fey-content-top">
+                    <span class="fey-tag-badge">Institutional Reality</span>
+                    <span class="fey-stage-badge">Classic 05</span>
+                  </div>
+                  <h3 class="fey-content-title">Market Wizards (Jack D. Schwager)</h3>
+                  <p class="fey-content-desc">
+                    Interviews with the world's most successful macro hedge fund managers and proprietary desk traders. Demonstrates that while methodologies vary, every master shares one uncompromising attribute: ruthless, non-negotiable risk control.
+                  </p>
+                  <div class="fey-rule-quote-box">
+                    “Risk control is the single most important factor shared by all great traders.”
+                  </div>
+                  <div class="fey-key-metrics-grid">
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Core Lesson</div>
+                      <div class="fey-metric-val">Universal Risk Priority</div>
+                    </div>
+                    <div class="fey-metric-pill">
+                      <div class="fey-metric-label">Key Cure</div>
+                      <div class="fey-metric-val">Ego-Driven Sizing</div>
+                    </div>
+                  </div>
+                  <div class="fey-card-action-row">
+                    <a href="/knowledge" class="glassy-btn" style="padding: 10px 22px; font-size: 0.85rem;">Read Full Study Notes ↗</a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Module 2: Recommended Books -->
-          <div id="knowledgeBooksBlock">
-            <div class="knowledge-block-title">
-              <h3>
-                <span data-i18n="knowledge.booksHeading">Must-Read Books: Trading, Money &amp; Psychology</span>
-                <span class="badge-num">8 Curated Classics</span>
-              </h3>
-            </div>
-
-            <div class="books-grid">
-              <!-- Book 1: Trading in the Zone -->
-              <div class="book-card">
-                <div class="book-card-top">
-                  <span class="book-genre-pill" data-i18n="knowledge.b1Genre">Psychology &amp; Probabilities</span>
-                  <div class="book-icon-badge">🎯</div>
-                </div>
-                <h4 class="book-title" data-i18n="knowledge.b1Title">Trading in the Zone</h4>
-                <div class="book-author" data-i18n="knowledge.b1Author">By Mark Douglas</div>
-                <p class="book-desc" data-i18n="knowledge.b1Desc">
-                  The definitive masterwork on eliminating fear, accepting unavoidable market risk, and thinking in statistical probabilities.
-                </p>
-                <div class="book-quote-box" data-i18n="knowledge.b1Quote">
-                  “When you genuinely accept the risks, you will be at peace with any outcome.”
-                </div>
-                <div class="book-why-read">
-                  <span class="check-icon">✓</span>
-                  <span data-i18n="knowledge.b1Why">Essential for: Overcoming fear of losing &amp; trade execution paralysis.</span>
-                </div>
-              </div>
-
-              <!-- Book 2: The Psychology of Money -->
-              <div class="book-card">
-                <div class="book-card-top">
-                  <span class="book-genre-pill" data-i18n="knowledge.b2Genre">Money &amp; Wealth Mindset</span>
-                  <div class="book-icon-badge">💎</div>
-                </div>
-                <h4 class="book-title" data-i18n="knowledge.b2Title">The Psychology of Money</h4>
-                <div class="book-author" data-i18n="knowledge.b2Author">By Morgan Housel</div>
-                <p class="book-desc" data-i18n="knowledge.b2Desc">
-                  Timeless lessons on how behavioral discipline, staying humble, and long-term compounding surpass raw technical intelligence.
-                </p>
-                <div class="book-quote-box" data-i18n="knowledge.b2Quote">
-                  “Doing well with money has a little to do with how smart you are and a lot to do with how you behave.”
-                </div>
-                <div class="book-why-read">
-                  <span class="check-icon">✓</span>
-                  <span data-i18n="knowledge.b2Why">Essential for: Capital longevity &amp; managing wealth without reckless greed.</span>
-                </div>
-              </div>
-
-              <!-- Book 3: The Disciplined Trader -->
-              <div class="book-card">
-                <div class="book-card-top">
-                  <span class="book-genre-pill" data-i18n="knowledge.b3Genre">Emotional Discipline</span>
-                  <div class="book-icon-badge">🧠</div>
-                </div>
-                <h4 class="book-title" data-i18n="knowledge.b3Title">The Disciplined Trader</h4>
-                <div class="book-author" data-i18n="knowledge.b3Author">By Mark Douglas</div>
-                <p class="book-desc" data-i18n="knowledge.b3Desc">
-                  Deep psychological roadmap detailing how internal beliefs and fear of being wrong sabotage traders, and how to construct rigid mental boundaries.
-                </p>
-                <div class="book-quote-box" data-i18n="knowledge.b3Quote">
-                  “Ninety-five percent of trading errors stem from fear—fear of being wrong, losing money, and missing out.”
-                </div>
-                <div class="book-why-read">
-                  <span class="check-icon">✓</span>
-                  <span data-i18n="knowledge.b3Why">Essential for: Eradicating emotional tilt and impulsive overtrading.</span>
-                </div>
-              </div>
-
-              <!-- Book 4: Reminiscences of a Stock Operator -->
-              <div class="book-card">
-                <div class="book-card-top">
-                  <span class="book-genre-pill" data-i18n="knowledge.b4Genre">Market History &amp; Tape</span>
-                  <div class="book-icon-badge">📜</div>
-                </div>
-                <h4 class="book-title" data-i18n="knowledge.b4Title">Reminiscences of a Stock Operator</h4>
-                <div class="book-author" data-i18n="knowledge.b4Author">By Edwin Lefèvre</div>
-                <p class="book-desc" data-i18n="knowledge.b4Desc">
-                  The legendary fictionalized biography of Jesse Livermore. Unmatched insights on sitting through winning trends and respecting price action.
-                </p>
-                <div class="book-quote-box" data-i18n="knowledge.b4Quote">
-                  “It was never my thinking that made the big money for me. It was always my sitting.”
-                </div>
-                <div class="book-why-read">
-                  <span class="check-icon">✓</span>
-                  <span data-i18n="knowledge.b4Why">Essential for: Developing immense patience &amp; letting winning trades run.</span>
-                </div>
-              </div>
-
-              <!-- Book 5: Market Wizards -->
-              <div class="book-card">
-                <div class="book-card-top">
-                  <span class="book-genre-pill" data-i18n="knowledge.b5Genre">Master Strategies</span>
-                  <div class="book-icon-badge">🏆</div>
-                </div>
-                <h4 class="book-title" data-i18n="knowledge.b5Title">Market Wizards</h4>
-                <div class="book-author" data-i18n="knowledge.b5Author">By Jack D. Schwager</div>
-                <p class="book-desc" data-i18n="knowledge.b5Desc">
-                  Legendary interviews with top institutional traders proving that divergent methodologies all share one bedrock: ruthless risk management.
-                </p>
-                <div class="book-quote-box" data-i18n="knowledge.b5Quote">
-                  “Risk control is the single most important factor shared by all great traders.”
-                </div>
-                <div class="book-why-read">
-                  <span class="check-icon">✓</span>
-                  <span data-i18n="knowledge.b5Why">Essential for: Understanding how real institutional winners think and operate.</span>
-                </div>
-              </div>
-
-              <!-- Book 6: Atomic Habits -->
-              <div class="book-card">
-                <div class="book-card-top">
-                  <span class="book-genre-pill" data-i18n="knowledge.b6Genre">Habits &amp; Routine</span>
-                  <div class="book-icon-badge">⚡</div>
-                </div>
-                <h4 class="book-title" data-i18n="knowledge.b6Title">Atomic Habits</h4>
-                <div class="book-author" data-i18n="knowledge.b6Author">By James Clear</div>
-                <p class="book-desc" data-i18n="knowledge.b6Desc">
-                  Practical guide to building systematic routines, eliminating friction in positive habits, and compounding 1% daily process improvements.
-                </p>
-                <div class="book-quote-box" data-i18n="knowledge.b6Quote">
-                  “You do not rise to the level of your goals. You fall to the level of your systems.”
-                </div>
-                <div class="book-why-read">
-                  <span class="check-icon">✓</span>
-                  <span data-i18n="knowledge.b6Why">Essential for: Creating daily pre-market preparation &amp; journaling discipline.</span>
-                </div>
-              </div>
-
-              <!-- Book 7: Thinking, Fast and Slow -->
-              <div class="book-card">
-                <div class="book-card-top">
-                  <span class="book-genre-pill" data-i18n="knowledge.b7Genre">Decision Under Pressure</span>
-                  <div class="book-icon-badge">💡</div>
-                </div>
-                <h4 class="book-title" data-i18n="knowledge.b7Title">Thinking, Fast and Slow</h4>
-                <div class="book-author" data-i18n="knowledge.b7Author">By Daniel Kahneman</div>
-                <p class="book-desc" data-i18n="knowledge.b7Desc">
-                  Nobel laureate breakdown of System 1 (emotional intuition) vs System 2 (analytical logic), exposing dangerous cognitive biases.
-                </p>
-                <div class="book-quote-box" data-i18n="knowledge.b7Quote">
-                  “We are prone to overestimate how much we understand and underestimate the role of chance.”
-                </div>
-                <div class="book-why-read">
-                  <span class="check-icon">✓</span>
-                  <span data-i18n="knowledge.b7Why">Essential for: Recognizing cognitive bias and eliminating impulsive gambling.</span>
-                </div>
-              </div>
-
-              <!-- Book 8: The Intelligent Investor -->
-              <div class="book-card">
-                <div class="book-card-top">
-                  <span class="book-genre-pill" data-i18n="knowledge.b8Genre">Margin of Safety</span>
-                  <div class="book-icon-badge">🛡️</div>
-                </div>
-                <h4 class="book-title" data-i18n="knowledge.b8Title">The Intelligent Investor</h4>
-                <div class="book-author" data-i18n="knowledge.b8Author">By Benjamin Graham</div>
-                <p class="book-desc" data-i18n="knowledge.b8Desc">
-                  The foundational bible of investment discipline. Teaches emotional detachment from market swings and the vital concept of risk margins.
-                </p>
-                <div class="book-quote-box" data-i18n="knowledge.b8Quote">
-                  “The essence of investment management is the management of risks, not returns.”
-                </div>
-                <div class="book-why-read">
-                  <span class="check-icon">✓</span>
-                  <span data-i18n="knowledge.b8Why">Essential for: High-level risk valuation &amp; swing trading perspective.</span>
-                </div>
-              </div>
+            <!-- Liquid Chrome Wave Base Accent (Pin 2 Visual Signature) -->
+            <div class="fey-liquid-chrome-wave" aria-hidden="true">
+              <svg viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="feyChromeGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="rgba(0, 255, 224, 0.25)" />
+                    <stop offset="35%" stop-color="rgba(245, 158, 11, 0.2)" />
+                    <stop offset="70%" stop-color="rgba(0, 255, 224, 0.3)" />
+                    <stop offset="100%" stop-color="rgba(56, 189, 248, 0.25)" />
+                  </linearGradient>
+                  <linearGradient id="feyChromeGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="rgba(10, 20, 36, 0.9)" />
+                    <stop offset="50%" stop-color="rgba(24, 38, 64, 0.7)" />
+                    <stop offset="100%" stop-color="rgba(8, 14, 25, 0.95)" />
+                  </linearGradient>
+                </defs>
+                <path d="M0,45 C240,110 480,-10 720,55 C960,120 1200,10 1440,65 L1440,120 L0,120 Z" fill="url(#feyChromeGrad2)" />
+                <path d="M0,60 C320,12 640,95 960,35 C1200,-5 1350,75 1440,50 L1440,120 L0,120 Z" fill="url(#feyChromeGrad1)" opacity="0.6" />
+                <path d="M0,60 C320,12 640,95 960,35 C1200,-5 1350,75 1440,50" stroke="rgba(0, 255, 224, 0.6)" stroke-width="1.5" />
+              </svg>
             </div>
           </div>
         </div>
@@ -1392,123 +1520,217 @@
           </p>
         </div>
 
-        <div class="faq-accordion">
-          <!-- Question 1 -->
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <span data-i18n="faq.q1">Who are the trading courses and mentorship programs designed for?</span>
-              <div class="faq-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </div>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="faq.a1">
-                The curriculum is engineered for developing and intermediate traders who are frustrated with inconsistent results, arbitrary chart clutter, or emotional trading sabotage. Whether you are seeking structured foundational market literacy or transitioning to institutional Supply &amp; Demand and disciplined capital execution, the program delivers clear, repeatable frameworks.
-              </p>
+        <!-- zsearch.ai 3D Stepped Glass Folder Cascade System (Pin 3) -->
+        <div class="faq-zsearch-container">
+          <!-- Left Column: High-Contrast Search & Category Filters -->
+          <div class="zsearch-info-col">
+            <div class="zsearch-badge">
+              <span>●</span>
+              <span>YEARS OF EXECUTION • ONE SOURCE</span>
+            </div>
+            <h2 class="zsearch-headline">
+              Years of Execution.<br>
+              <span class="gold-accent">One Direct Answer.</span>
+            </h2>
+            <p class="zsearch-subtitle">
+              Instant access to institutional execution rules, risk management parameters, broker verification, and live SMC Genesis curriculum.
+            </p>
+
+            <!-- Frosted Glass Search Input Pill -->
+            <div class="zsearch-input-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="zsearchFaqInput" placeholder="Ask BlueX or search questions..." autocomplete="off">
+              <span class="zsearch-kbd-badge">ESC</span>
+            </div>
+
+            <!-- Category Filter Chips -->
+            <div class="zsearch-chips">
+              <button type="button" class="zsearch-chip active" data-faq-filter="all">All (7)</button>
+              <button type="button" class="zsearch-chip" data-faq-filter="structure">Structure Law</button>
+              <button type="button" class="zsearch-chip" data-faq-filter="risk">Risk Mandate</button>
+              <button type="button" class="zsearch-chip" data-faq-filter="broker">Brokers</button>
+              <button type="button" class="zsearch-chip" data-faq-filter="curriculum">Curriculum</button>
             </div>
           </div>
 
-          <!-- Question 2 -->
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <span data-i18n="faq.q2">What trading methodology and markets do you cover?</span>
-              <div class="faq-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
+          <!-- Right Column: 3D Cascading Stepped Glass Folder Deck -->
+          <div class="zsearch-cascade-deck" id="zsearchDeck">
+            <!-- Folder 01 -->
+            <div class="zsearch-folder-card active" data-category="curriculum">
+              <div class="zsearch-folder-header">
+                <div class="zsearch-folder-tab-badge">
+                  <span class="zsearch-folder-index">01</span>
+                  <span class="zsearch-folder-category">Curriculum Target</span>
+                </div>
+                <h3 class="zsearch-folder-title" data-i18n="faq.q1">Who are the trading courses and mentorship programs designed for?</h3>
+                <div class="zsearch-folder-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
               </div>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="faq.a2">
-                We specialize in institutional order flow, liquidity sweeps, supply-and-demand imbalances, and asymmetric risk architecture. Our primary focus is centered on high-liquidity global markets including major Forex currency pairs, Gold (XAU/USD), and benchmark indices. We do not engage in erratic speculation or low-liquidity gambling.
-              </p>
+              <div class="zsearch-folder-drawer">
+                <p class="zsearch-answer-text" data-i18n="faq.a1">
+                  The curriculum is engineered for developing and intermediate traders who are frustrated with inconsistent results, arbitrary chart clutter, or emotional trading sabotage. Whether you are seeking structured foundational market literacy or transitioning to institutional Supply &amp; Demand and disciplined capital execution, the program delivers clear, repeatable frameworks.
+                </p>
+                <div class="zsearch-callout-pill">
+                  <span>🎯</span>
+                  <span>Target: Eliminating emotional retail mistakes through mechanical structure.</span>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <!-- Question 3 -->
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <span data-i18n="faq.q3">How is the Study Course structured and delivered?</span>
-              <div class="faq-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
+            <!-- Folder 02 -->
+            <div class="zsearch-folder-card" data-category="structure">
+              <div class="zsearch-folder-header">
+                <div class="zsearch-folder-tab-badge">
+                  <span class="zsearch-folder-index">02</span>
+                  <span class="zsearch-folder-category">Methodology &amp; Flow</span>
+                </div>
+                <h3 class="zsearch-folder-title" data-i18n="faq.q2">What trading methodology and markets do you cover?</h3>
+                <div class="zsearch-folder-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
               </div>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="faq.a3">
-                All education is delivered through direct, interactive live teaching sessions with BlueX. Every concept is taught live on real-time market charts with screen sharing, direct voice interaction, real-time trade breakdowns, and hands-on execution coaching tailored to eliminate your psychological mistakes.
-              </p>
+              <div class="zsearch-folder-drawer">
+                <p class="zsearch-answer-text" data-i18n="faq.a2">
+                  We specialize in institutional Supply &amp; Demand, liquidity sweeps, supply-and-demand imbalances, and asymmetric risk architecture. Our primary focus is centered on high-liquidity global markets including major Forex currency pairs, Gold (XAU/USD), and benchmark indices. We do not engage in erratic speculation or low-liquidity gambling.
+                </p>
+                <div class="zsearch-callout-pill">
+                  <span>🏛️</span>
+                  <span>Core Focus: XAU/USD Gold Execution Desk &amp; Major Forex Liquid Pairs.</span>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <!-- Question 4 -->
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <span data-i18n="faq.q4">What is your strict approach to risk management?</span>
-              <div class="faq-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
+            <!-- Folder 03 -->
+            <div class="zsearch-folder-card" data-category="curriculum">
+              <div class="zsearch-folder-header">
+                <div class="zsearch-folder-tab-badge">
+                  <span class="zsearch-folder-index">03</span>
+                  <span class="zsearch-folder-category">Live Delivery</span>
+                </div>
+                <h3 class="zsearch-folder-title" data-i18n="faq.q3">How is the Study Course structured and delivered?</h3>
+                <div class="zsearch-folder-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
               </div>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="faq.a4">
-                Risk mitigation is our primary core pillar: <em>protect capital before seeking yield</em>. Every position sizing model adheres strictly to predefined account risk (typically 0.5% to 1.0% per trade) and targets asymmetric reward-to-risk ratios of minimum 1:3. We enforce strict stop losses and explicitly reject high-risk martingale or grid tactics.
-              </p>
+              <div class="zsearch-folder-drawer">
+                <p class="zsearch-answer-text" data-i18n="faq.a3">
+                  All education is delivered through direct, interactive live teaching sessions with BlueX. Every concept is taught live on real-time market charts with screen sharing, direct voice interaction, real-time trade breakdowns, and hands-on execution coaching tailored to eliminate your psychological mistakes.
+                </p>
+                <div class="zsearch-callout-pill">
+                  <span>📡</span>
+                  <span>Delivery: 100% Interactive Live Stream Sessions with Real-Time Chart Teardowns.</span>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <!-- Question 5 -->
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <span data-i18n="faq.q5">What is BlueX's relationship with SAGFX?</span>
-              <div class="faq-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
+            <!-- Folder 04 -->
+            <div class="zsearch-folder-card" data-category="risk">
+              <div class="zsearch-folder-header">
+                <div class="zsearch-folder-tab-badge">
+                  <span class="zsearch-folder-index">04</span>
+                  <span class="zsearch-folder-category">Capital Discipline</span>
+                </div>
+                <h3 class="zsearch-folder-title" data-i18n="faq.q4">What is your strict approach to risk management?</h3>
+                <div class="zsearch-folder-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
               </div>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="faq.a5">
-                SAGFX is an affiliate partner and payment gateway service provider. Participation with any third-party broker or platform is entirely voluntary and conducted independently at the trader's discretion. Visitors are free to ask about partnership options upon direct inquiry.
-              </p>
+              <div class="zsearch-folder-drawer">
+                <p class="zsearch-answer-text" data-i18n="faq.a4">
+                  Risk mitigation is our primary core pillar: <em>protect capital before seeking yield</em>. Every position sizing model adheres strictly to predefined account risk (typically 0.5% to 1.0% per trade) and targets asymmetric reward-to-risk ratios of minimum 1:3. We enforce strict stop losses and explicitly reject high-risk martingale or grid tactics.
+                </p>
+                <div class="zsearch-callout-pill">
+                  <span>🛡️</span>
+                  <span>Mandate: 0.5% – 1.0% Risk Per Setup • Minimum 1:3 RR Asymmetry.</span>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <!-- Question 6 -->
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <span data-i18n="faq.q6">How is BlueX compliant with Cambodian financial regulations (SERC)?</span>
-              <div class="faq-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
+            <!-- Folder 05 -->
+            <div class="zsearch-folder-card" data-category="broker">
+              <div class="zsearch-folder-header">
+                <div class="zsearch-folder-tab-badge">
+                  <span class="zsearch-folder-index">05</span>
+                  <span class="zsearch-folder-category">Partner Verification</span>
+                </div>
+                <h3 class="zsearch-folder-title" data-i18n="faq.q5">What is BlueX's relationship with affiliate brokers like MegaFusion?</h3>
+                <div class="zsearch-folder-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
               </div>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="faq.a6">
-                In strict adherence to the regulatory standards set forth by the Securities and Exchange Regulator of Cambodia (SERC) and the Law on Non-Government Securities, all content, study courses, live teaching sessions, and market analysis frameworks provided by BlueX are <strong>100% educational, analytical, and informational</strong>. BlueX does not solicit, accept, pool, or manage public funds, nor act as an unlicensed derivative broker in the Kingdom of Cambodia. All trading activity is strictly self-directed by the individual.
-              </p>
+              <div class="zsearch-folder-drawer">
+                <p class="zsearch-answer-text" data-i18n="faq.a5">
+                  MegaFusion is an officially verified global affiliate broker partner providing Tier-1 liquidity infrastructure, raw institutional spreads, and segregated client capital accounts. Participation with any third-party broker or platform is entirely voluntary and conducted independently at the trader's discretion.
+                </p>
+                <div class="zsearch-callout-pill">
+                  <span>⚡</span>
+                  <span>Link: Register via MegaFusion to unlock direct community and setup support.</span>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <!-- Question 7 -->
-          <div class="faq-item">
-            <button class="faq-question" type="button">
-              <span data-i18n="faq.q7">How can I enroll in the Study Course or get in touch?</span>
-              <div class="faq-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
+            <!-- Folder 06 -->
+            <div class="zsearch-folder-card" data-category="compliance">
+              <div class="zsearch-folder-header">
+                <div class="zsearch-folder-tab-badge">
+                  <span class="zsearch-folder-index">06</span>
+                  <span class="zsearch-folder-category">SERC Compliance</span>
+                </div>
+                <h3 class="zsearch-folder-title" data-i18n="faq.q6">How is BlueX compliant with Cambodian financial regulations (SERC)?</h3>
+                <div class="zsearch-folder-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
               </div>
-            </button>
-            <div class="faq-answer">
-              <p data-i18n="faq.a7">
-                You can reach out directly via private Telegram DM to BlueX (<a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" style="color:var(--color-gold); font-weight:700;">@Le_Bluue</a>), join our official community group (<a href="https://t.me/bluexacademy" target="_blank" rel="noopener noreferrer" style="color:var(--color-cyan); font-weight:700;">t.me/bluexacademy</a>), or submit the inquiry form on this site.
-              </p>
+              <div class="zsearch-folder-drawer">
+                <p class="zsearch-answer-text" data-i18n="faq.a6">
+                  In strict adherence to the regulatory standards set forth by the Securities and Exchange Regulator of Cambodia (SERC) and the Law on Non-Government Securities, all content, study courses, live teaching sessions, and market analysis frameworks provided by BlueX are <strong>100% educational, analytical, and informational</strong>. BlueX does not solicit, accept, pool, or manage public funds, nor act as an unlicensed derivative broker in the Kingdom of Cambodia. All trading activity is strictly self-directed by the individual.
+                </p>
+                <div class="zsearch-callout-pill">
+                  <span>⚖️</span>
+                  <span>Standard: 100% Educational &amp; Independent Analytical Framework.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Folder 07 -->
+            <div class="zsearch-folder-card" data-category="curriculum">
+              <div class="zsearch-folder-header">
+                <div class="zsearch-folder-tab-badge">
+                  <span class="zsearch-folder-index">07</span>
+                  <span class="zsearch-folder-category">Direct Contact</span>
+                </div>
+                <h3 class="zsearch-folder-title" data-i18n="faq.q7">How can I enroll in the Study Course or get in touch?</h3>
+                <div class="zsearch-folder-chevron">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="zsearch-folder-drawer">
+                <p class="zsearch-answer-text" data-i18n="faq.a7">
+                  You can reach out directly via private Telegram DM to BlueX (<a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" style="color:var(--color-gold); font-weight:700;">@Le_Bluue</a>), join our official community group (<a href="https://t.me/bluexacademy" target="_blank" rel="noopener noreferrer" style="color:var(--color-cyan); font-weight:700;">t.me/bluexacademy</a>), or submit the inquiry form on this site.
+                </p>
+                <div class="zsearch-callout-pill">
+                  <span>💬</span>
+                  <span>Direct Channel: Private Telegram @Le_Bluue &amp; Community Channel.</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1781,6 +2003,6 @@
     <span id="toastMessage">Notification message</span>
   </div>
 
-  <script src="/script.js?v=20261109v14"></script>
+  <script src="/script.js?v=20261109v15"></script>
 </body>
 </html>

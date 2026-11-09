@@ -2774,8 +2774,87 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 7. INTERACTIVE FAQ ACCORDION
+  // 7. PIN 3: ZSEARCH.AI 3D STEPPED GLASS FOLDER CASCADE (FAQ)
   // ========================================================
+  const zsearchCards = document.querySelectorAll('.zsearch-folder-card');
+  const zsearchInput = document.getElementById('zsearchFaqInput');
+  const zsearchChips = document.querySelectorAll('.zsearch-chip');
+
+  if (zsearchCards.length > 0) {
+    zsearchCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const isActive = card.classList.contains('active');
+        // Close other cards
+        zsearchCards.forEach(c => {
+          if (c !== card) c.classList.remove('active');
+        });
+        // Toggle current card
+        if (isActive) {
+          card.classList.remove('active');
+        } else {
+          card.classList.add('active');
+        }
+      });
+    });
+
+    // Live search filtering
+    if (zsearchInput) {
+      zsearchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        zsearchCards.forEach(card => {
+          const title = (card.querySelector('.zsearch-folder-title')?.textContent || '').toLowerCase();
+          const answer = (card.querySelector('.zsearch-answer-text')?.textContent || '').toLowerCase();
+          const category = (card.getAttribute('data-category') || '').toLowerCase();
+
+          if (!query || title.includes(query) || answer.includes(query) || category.includes(query)) {
+            card.classList.remove('search-hidden');
+            if (query && (title.includes(query) || answer.includes(query))) {
+              card.classList.add('search-match');
+            } else {
+              card.classList.remove('search-match');
+            }
+          } else {
+            card.classList.add('search-hidden');
+            card.classList.remove('search-match');
+          }
+        });
+      });
+
+      // Clear search on Escape key
+      zsearchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          zsearchInput.value = '';
+          zsearchCards.forEach(c => {
+            c.classList.remove('search-hidden');
+            c.classList.remove('search-match');
+          });
+          zsearchInput.blur();
+        }
+      });
+    }
+
+    // Category filter chips
+    if (zsearchChips.length > 0) {
+      zsearchChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          zsearchChips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          const filter = chip.getAttribute('data-faq-filter');
+
+          zsearchCards.forEach(card => {
+            const cardCat = card.getAttribute('data-category') || '';
+            if (filter === 'all' || cardCat === filter) {
+              card.classList.remove('search-hidden');
+            } else {
+              card.classList.add('search-hidden');
+            }
+          });
+        });
+      });
+    }
+  }
+
+  // Fallback for classic FAQ items if present
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
     const questionBtn = item.querySelector('.faq-question');
@@ -2784,8 +2863,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (questionBtn && answer) {
       questionBtn.addEventListener('click', () => {
         const isOpen = item.classList.contains('active');
-
-        // Close all other open items
         faqItems.forEach(otherItem => {
           if (otherItem !== item) {
             otherItem.classList.remove('active');
@@ -2793,8 +2870,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (otherAnswer) otherAnswer.style.maxHeight = null;
           }
         });
-
-        // Toggle clicked item
         if (isOpen) {
           item.classList.remove('active');
           answer.style.maxHeight = null;
@@ -2805,16 +2880,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
-
-  // Open first FAQ item by default for intuitive discovery
-  if (faqItems.length > 0) {
-    const firstItem = faqItems[0];
-    const firstAnswer = firstItem.querySelector('.faq-answer');
-    if (firstItem && firstAnswer) {
-      firstItem.classList.add('active');
-      firstAnswer.style.maxHeight = firstAnswer.scrollHeight + 'px';
-    }
-  }
 
 
   // ========================================================
@@ -2843,19 +2908,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ========================================================
-  // 9. KNOWLEDGE & BOOKS FILTER TABS
+  // 9. PIN 2: FEY.COM EXPANDING SLITS ACCORDION CONTROLLER
   // ========================================================
+  const feyFilterBtns = document.querySelectorAll('.fey-filter-btn');
+  const feyLessonsTrack = document.getElementById('feyLessonsTrack');
+  const feyBooksTrack = document.getElementById('feyBooksTrack');
+
+  if (feyFilterBtns.length > 0) {
+    feyFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        feyFilterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.getAttribute('data-fey-target');
+
+        if (target === 'lessons') {
+          if (feyLessonsTrack) feyLessonsTrack.style.display = 'flex';
+          if (feyBooksTrack) feyBooksTrack.style.display = 'none';
+        } else if (target === 'books') {
+          if (feyLessonsTrack) feyLessonsTrack.style.display = 'none';
+          if (feyBooksTrack) feyBooksTrack.style.display = 'flex';
+        }
+      });
+    });
+  }
+
+  // Slit card hover & click activation
+  const feySlitCards = document.querySelectorAll('.fey-slit-card');
+  if (feySlitCards.length > 0) {
+    feySlitCards.forEach(card => {
+      // Activate on click
+      card.addEventListener('click', () => {
+        const parentTrack = card.closest('.fey-slits-track');
+        if (parentTrack) {
+          parentTrack.querySelectorAll('.fey-slit-card').forEach(c => c.classList.remove('active'));
+        }
+        card.classList.add('active');
+      });
+
+      // Also activate on desktop hover for fluid Fey sensation
+      card.addEventListener('mouseenter', () => {
+        if (window.innerWidth > 840) {
+          const parentTrack = card.closest('.fey-slits-track');
+          if (parentTrack) {
+            parentTrack.querySelectorAll('.fey-slit-card').forEach(c => c.classList.remove('active'));
+          }
+          card.classList.add('active');
+        }
+      });
+    });
+  }
+
+  // Classic knowledge tab support fallback
   const knowledgeTabs = document.querySelectorAll('.knowledge-tab-btn');
   const lessonsBlock = document.getElementById('knowledgeLessonsBlock');
   const booksBlock = document.getElementById('knowledgeBooksBlock');
-
   if (knowledgeTabs.length > 0) {
     knowledgeTabs.forEach(tab => {
       tab.addEventListener('click', () => {
         knowledgeTabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         const filter = tab.getAttribute('data-filter');
-
         if (filter === 'all') {
           if (lessonsBlock) lessonsBlock.style.display = 'block';
           if (booksBlock) booksBlock.style.display = 'block';
