@@ -7805,44 +7805,141 @@ html[data-theme="light"].effects-frozen .knowledge-card-main {
   border-color: rgba(180, 130, 40, 0.24) !important;
 }
 
-/* 7. FX Toggle Buttons Styling */
+/* ==============================================================================
+   7. ART MODE GLOWING FX TOGGLE SWITCH (Pinterest Pin 713257659763120056)
+   Re-engineered: Obsidian glass pill, inner amber reflection, neon magenta ring
+   ============================================================================== */
 .nav-tool-btn.nav-fx-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-weight: 700;
+  gap: 7px;
+  padding: 4px 8px 4px 5px;
+  background: rgba(11, 15, 23, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-pill);
   cursor: pointer;
-  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-tool-btn.nav-fx-btn:hover {
-  border-color: var(--color-cyan);
-  box-shadow: 0 0 10px rgba(0, 255, 224, 0.25);
-  color: #ffffff;
+  border-color: rgba(255, 42, 133, 0.45);
+  box-shadow: 0 0 14px rgba(255, 42, 133, 0.25);
 }
 
-.nav-fx-btn .fx-icon {
-  font-size: 0.85rem;
-  line-height: 1;
+/* Obsidian Pill Track */
+.fx-art-track {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  background: #07090e;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.85), inset 0 -1px 2px rgba(255, 255, 255, 0.05), 0 1px 3px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Inner Left Warm Amber Crescent Reflection */
+.fx-art-glow-left {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 16px;
+  border-radius: 9999px;
+  background: radial-gradient(ellipse at 25% 50%, rgba(255, 215, 0, 0.9) 0%, rgba(255, 150, 0, 0.5) 45%, transparent 75%);
+  filter: drop-shadow(0 0 4px rgba(255, 185, 20, 0.75));
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* Inner Right Soft Magenta Bloom */
+.fx-art-glow-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 100%;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 65% 50%, rgba(255, 42, 133, 0.45) 0%, transparent 75%);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* Sliding Knob / Thumb */
+.fx-art-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #090c12;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  transform: translateX(18px);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* Vibrant Neon Magenta Ring */
+.fx-art-ring {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #ff2a85;
+  box-shadow: 0 0 8px #ff2a85, 0 0 16px rgba(255, 42, 133, 0.8), inset 0 0 3px rgba(255, 42, 133, 0.55);
+  transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fx-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #f1f5f9;
+}
+
+/* ========================================================
+   FROZEN / PERFORMANCE MODE (html.effects-frozen)
+   ======================================================== */
+html.effects-frozen .fx-art-thumb {
+  transform: translateX(0);
+}
+
+html.effects-frozen .fx-art-glow-left {
+  opacity: 0.2;
+}
+
+html.effects-frozen .fx-art-glow-right {
+  opacity: 0;
+}
+
+html.effects-frozen .fx-art-ring {
+  border-color: rgba(0, 255, 224, 0.7);
+  box-shadow: 0 0 6px rgba(0, 255, 224, 0.55), inset 0 0 2px rgba(0, 255, 224, 0.3);
 }
 
 html.effects-frozen .nav-tool-btn.nav-fx-btn {
-  background: rgba(0, 255, 224, 0.12) !important;
-  border-color: rgba(0, 255, 224, 0.45) !important;
-  color: #00ffe0 !important;
-  box-shadow: 0 0 12px rgba(0, 255, 224, 0.2) !important;
+  background: rgba(11, 15, 23, 0.65) !important;
+  border-color: rgba(0, 255, 224, 0.35) !important;
 }
 
-[data-theme="light"] .nav-tool-btn.nav-fx-btn:hover {
-  border-color: #0284c7;
-  color: #0284c7;
+html.effects-frozen .nav-tool-btn.nav-fx-btn:hover {
+  border-color: rgba(0, 255, 224, 0.6) !important;
+  box-shadow: 0 0 12px rgba(0, 255, 224, 0.25) !important;
 }
 
-[data-theme="light"].effects-frozen .nav-tool-btn.nav-fx-btn {
-  background: rgba(2, 132, 199, 0.12) !important;
-  border-color: rgba(2, 132, 199, 0.5) !important;
-  color: #0284c7 !important;
-  box-shadow: 0 0 10px rgba(2, 132, 199, 0.18) !important;
+html.effects-frozen .fx-label {
+  color: #00ffe0;
 }
 
 /* Mobile Drawer Dedicated FX Toggle */
@@ -7850,7 +7947,7 @@ html.effects-frozen .nav-tool-btn.nav-fx-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;
   width: 100%;
   padding: 10px 14px;
   border-radius: 12px;
@@ -7865,29 +7962,81 @@ html.effects-frozen .nav-tool-btn.nav-fx-btn {
 }
 
 .nav-drawer-fx-toggle:hover {
-  background: rgba(0, 255, 224, 0.08);
-  border-color: rgba(0, 255, 224, 0.3);
+  background: rgba(255, 42, 133, 0.08);
+  border-color: rgba(255, 42, 133, 0.3);
   color: #ffffff;
 }
 
-html.effects-frozen .nav-drawer-fx-toggle {
-  background: rgba(0, 255, 224, 0.12) !important;
-  border-color: rgba(0, 255, 224, 0.45) !important;
-  color: #00ffe0 !important;
-  box-shadow: 0 0 14px rgba(0, 255, 224, 0.2) !important;
+.fx-art-track-lg {
+  width: 48px;
+  height: 24px;
+}
+.fx-art-track-lg .fx-art-glow-left {
+  width: 16px;
+  height: 18px;
+}
+.fx-art-track-lg .fx-art-glow-right {
+  width: 28px;
+}
+.fx-art-track-lg .fx-art-thumb {
+  width: 18px;
+  height: 18px;
+  top: 2px;
+  left: 2px;
+  transform: translateX(24px);
+}
+.fx-art-track-lg .fx-art-ring {
+  border-width: 2.2px;
+}
+html.effects-frozen .fx-art-track-lg .fx-art-thumb {
+  transform: translateX(0);
 }
 
+html.effects-frozen .nav-drawer-fx-toggle {
+  background: rgba(0, 255, 224, 0.1) !important;
+  border-color: rgba(0, 255, 224, 0.4) !important;
+  color: #00ffe0 !important;
+  box-shadow: 0 0 14px rgba(0, 255, 224, 0.18) !important;
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] .nav-tool-btn.nav-fx-btn {
+  background: #f8fafc;
+  border-color: rgba(0, 0, 0, 0.14);
+}
+[data-theme="light"] .fx-art-track {
+  background: #111827;
+  border-color: rgba(0, 0, 0, 0.3);
+}
+[data-theme="light"] .fx-label {
+  color: #1e293b;
+}
+[data-theme="light"] .nav-tool-btn.nav-fx-btn:hover {
+  border-color: #ff2a85;
+  box-shadow: 0 0 10px rgba(255, 42, 133, 0.2);
+}
+[data-theme="light"].effects-frozen .nav-tool-btn.nav-fx-btn {
+  background: rgba(2, 132, 199, 0.08) !important;
+  border-color: rgba(2, 132, 199, 0.45) !important;
+}
+[data-theme="light"].effects-frozen .fx-label {
+  color: #0284c7;
+}
+[data-theme="light"].effects-frozen .fx-art-ring {
+  border-color: #0284c7;
+  box-shadow: 0 0 6px rgba(2, 132, 199, 0.45);
+}
 [data-theme="light"] .nav-drawer-fx-toggle {
   background: rgba(15, 23, 42, 0.04);
   border-color: rgba(15, 23, 42, 0.1);
   color: #1e293b;
 }
-
 [data-theme="light"].effects-frozen .nav-drawer-fx-toggle {
   background: rgba(2, 132, 199, 0.1) !important;
   border-color: rgba(2, 132, 199, 0.4) !important;
   color: #0284c7 !important;
 }
+
 
 /* ==============================================================================
    LUXURY MODERN SECTION TITLES & ILLUMINATION EFFECTS
@@ -10825,4 +10974,140 @@ html[lang="km"] .brokers-title {
     padding-right: 90px;
     font-size: 0.86rem;
   }
+}
+
+
+/* ==============================================================================
+   PROP FIRM & PORTFOLIO ARCHITECTURE SHOWCASE CARD (Pinterest 935482153865056813)
+   ============================================================================== */
+.prop-showcase-card {
+  position: relative;
+  background: rgba(13, 17, 23, 0.72);
+  border: 1px solid rgba(0, 255, 224, 0.2);
+  border-radius: var(--radius-lg, 16px);
+  padding: 16px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.prop-showcase-card:hover {
+  border-color: rgba(0, 255, 224, 0.45);
+  box-shadow: 0 14px 40px rgba(0, 255, 224, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.prop-showcase-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.prop-showcase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-cyan, #00ffe0);
+  background: rgba(0, 255, 224, 0.08);
+  border: 1px solid rgba(0, 255, 224, 0.28);
+  border-radius: var(--radius-pill, 9999px);
+  padding: 4px 10px;
+}
+
+.prop-showcase-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ffe0;
+  box-shadow: 0 0 8px #00ffe0;
+  animation: pulseCyan 2s infinite;
+}
+
+.prop-showcase-tag {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.04em;
+}
+
+.prop-showcase-frame {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #05070a;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prop-showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+  filter: contrast(1.05) brightness(1.02);
+}
+
+.prop-showcase-card:hover .prop-showcase-img {
+  transform: scale(1.025);
+}
+
+.prop-showcase-glow-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(0, 255, 224, 0.08), transparent 70%), linear-gradient(180deg, transparent 65%, rgba(13, 17, 23, 0.85) 100%);
+  pointer-events: none;
+}
+
+.prop-showcase-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.prop-showcase-chip {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+
+[data-theme="light"] .prop-showcase-card {
+  background: #ffffff;
+  border-color: rgba(2, 132, 199, 0.25);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .prop-showcase-tag {
+  color: #4b5563;
+}
+
+[data-theme="light"] .prop-showcase-chip {
+  color: #1f2937;
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.08);
 }

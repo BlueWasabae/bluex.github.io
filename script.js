@@ -394,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2B. EFFECTS FREEZE & PERFORMANCE LITE ENGINE (SMOOTH MOBILE 60FPS)
   // ========================================================
   const fxToggleBtn = document.getElementById('fxToggleBtn');
-  const fxToggleDrawerBtn = document.getElementById('fxToggleDrawerBtn');
+  const fxToggleDrawerBtn = document.getElementById('fxToggleDrawerBtn') || document.getElementById('fxToggleBtnDrawer');
   const fxNavIcon = document.getElementById('fxNavIcon');
   const fxBtnText = document.getElementById('fxBtnText');
   const fxDrawerIcon = document.getElementById('fxDrawerIcon');
@@ -407,25 +407,33 @@ document.addEventListener('DOMContentLoaded', () => {
       if (fxBtnText) fxBtnText.textContent = 'OFF';
       if (fxToggleBtn) {
         fxToggleBtn.classList.add('fx-frozen');
-        fxToggleBtn.setAttribute('title', currentLang === 'km' ? 'ចលនា: ផ្អាក (ចុចដើម្បីបើក)' : 'Effects: Frozen (Click to Resume)');
+        fxToggleBtn.setAttribute('aria-checked', 'false');
+        fxToggleBtn.setAttribute('title', currentLang === 'km' ? 'ចលនា: ផ្អាក (ចុចដើម្បីបើក)' : 'Art Mode: Frozen (Click to Resume)');
       }
       if (fxDrawerIcon) fxDrawerIcon.textContent = '❄️';
       if (fxDrawerText) {
-        fxDrawerText.textContent = currentLang === 'km' ? 'ចលនា: ផ្អាក (ចុចដើម្បីបើក)' : 'Effects: Frozen (Tap to Resume)';
+        fxDrawerText.textContent = currentLang === 'km' ? 'ចលនា: ផ្អាក (ចុចដើម្បីបើក)' : 'Art Mode: Frozen (Tap to Resume)';
       }
-      if (fxToggleDrawerBtn) fxToggleDrawerBtn.classList.add('fx-frozen');
+      if (fxToggleDrawerBtn) {
+        fxToggleDrawerBtn.classList.add('fx-frozen');
+        fxToggleDrawerBtn.setAttribute('aria-checked', 'false');
+      }
     } else {
       if (fxNavIcon) fxNavIcon.textContent = '⚡';
       if (fxBtnText) fxBtnText.textContent = 'FX';
       if (fxToggleBtn) {
         fxToggleBtn.classList.remove('fx-frozen');
-        fxToggleBtn.setAttribute('title', currentLang === 'km' ? 'ចលនា: បើក (ចុចដើម្បីផ្អាក)' : 'Effects: Active (Click to Freeze)');
+        fxToggleBtn.setAttribute('aria-checked', 'true');
+        fxToggleBtn.setAttribute('title', currentLang === 'km' ? 'ចលនា: បើក (ចុចដើម្បីផ្អាក)' : 'Art Mode: Active (Click to Freeze)');
       }
       if (fxDrawerIcon) fxDrawerIcon.textContent = '⚡';
       if (fxDrawerText) {
-        fxDrawerText.textContent = currentLang === 'km' ? 'ចលនា: បើក (ចុចដើម្បីផ្អាក)' : 'Effects: Active (Tap to Freeze)';
+        fxDrawerText.textContent = currentLang === 'km' ? 'ចលនា: បើក (ចុចដើម្បីផ្អាក)' : 'Art Mode: Active (Tap to Freeze)';
       }
-      if (fxToggleDrawerBtn) fxToggleDrawerBtn.classList.remove('fx-frozen');
+      if (fxToggleDrawerBtn) {
+        fxToggleDrawerBtn.classList.remove('fx-frozen');
+        fxToggleDrawerBtn.setAttribute('aria-checked', 'true');
+      }
     }
   }
 
@@ -583,6 +591,11 @@ document.addEventListener('DOMContentLoaded', () => {
       'capital.structureVal': 'Bilateral Negotiable',
       'capital.riskGateLabel': 'Risk Gate',
       'capital.riskGateVal': 'Predefined Stop',
+      'capital.propBadge': 'Prop Firm & Capital Mandate',
+      'capital.propTag': 'Quantitative Framework',
+      'capital.propChip1': '⚡ High Watermark Execution',
+      'capital.propChip2': '🛡️ Fixed Risk Mandates',
+      'capital.propChip3': '🎯 Scaled Allocation',
 
       // Calculator
       'calc.badge': 'Risk Architecture • Position Sizing',
@@ -1367,6 +1380,11 @@ document.addEventListener('DOMContentLoaded', () => {
       'capital.structureVal': 'ចរចាជាឯកជនទ្វេភាគី',
       'capital.riskGateLabel': 'កម្រិតការពារ',
       'capital.riskGateVal': 'កំណត់ Stop-Out ដាច់ខាត',
+      'capital.propBadge': 'Prop Firm & យុទ្ធសាស្ត្រដើមទុន',
+      'capital.propTag': 'រចនាសម្ព័ន្ធគណិតវិទ្យា',
+      'capital.propChip1': '⚡ ប្រតិបត្តិការ High Watermark',
+      'capital.propChip2': '🛡️ កំណត់ហានិភ័យថេរ',
+      'capital.propChip3': '🎯 បែងចែកដើមទុនជាជំហាន',
 
       // Calculator
       'calc.badge': 'ការគ្រប់គ្រងហានិភ័យ • ការគណនាទំហំ Lot',

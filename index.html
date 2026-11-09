@@ -45,7 +45,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles.css?v=20261105v1">
+  <link rel="stylesheet" href="/styles.css?v=20261109v1">
 </head>
 <body>
 
@@ -120,8 +120,14 @@
 
           <!-- Mobile Drawer Performance / FX Freeze Mode Toggle -->
           <li class="nav-mobile-settings nav-mobile-only">
-            <button type="button" class="nav-drawer-fx-toggle" id="fxToggleDrawerBtn" aria-label="Toggle Effects / Smooth Mobile Mode">
-              <span class="fx-drawer-icon" id="fxDrawerIcon">⚡</span>
+            <button type="button" class="nav-drawer-fx-toggle" id="fxToggleDrawerBtn" role="switch" aria-checked="true" aria-label="Toggle Effects / Smooth Mobile Mode">
+              <span class="fx-art-track fx-art-track-lg" aria-hidden="true">
+                <span class="fx-art-glow-left"></span>
+                <span class="fx-art-glow-right"></span>
+                <span class="fx-art-thumb">
+                  <span class="fx-art-ring"></span>
+                </span>
+              </span>
               <span class="fx-drawer-text" id="fxDrawerText" data-i18n="nav.fxDrawer">Effects: Active (Tap to Freeze)</span>
             </button>
           </li>
@@ -164,8 +170,14 @@
           </button>
 
           <!-- Effects Freeze / Performance Lite Toggle Button -->
-          <button class="nav-tool-btn nav-fx-btn" id="fxToggleBtn" type="button" aria-label="Toggle Effects / Smooth Mobile" title="Effects: ON (Click to Freeze / Smooth Mobile)">
-            <span class="fx-icon" id="fxNavIcon">⚡</span>
+          <button class="nav-tool-btn nav-fx-btn" id="fxToggleBtn" type="button" role="switch" aria-checked="true" aria-label="Toggle Visual Effects (Art Mode)" title="Art Mode: ON (Click to Freeze / Smooth Mobile)">
+            <span class="fx-art-track" id="fxArtTrack" aria-hidden="true">
+              <span class="fx-art-glow-left"></span>
+              <span class="fx-art-glow-right"></span>
+              <span class="fx-art-thumb" id="fxArtThumb">
+                <span class="fx-art-ring"></span>
+              </span>
+            </span>
             <span class="fx-label" id="fxBtnText" data-i18n="nav.fx">FX</span>
           </button>
 
@@ -796,6 +808,26 @@
                     <span class="gov-label" data-i18n="capital.riskGateLabel">Risk Gate</span>
                     <span class="gov-val" data-i18n="capital.riskGateVal">Predefined Stop</span>
                   </div>
+                </div>
+              </div>
+
+              <!-- Prop Firm & Quantitative Execution Showcase (Pinterest Pin 935482153865056813) -->
+              <div class="prop-showcase-card">
+                <div class="prop-showcase-header">
+                  <span class="prop-showcase-badge">
+                    <span class="prop-showcase-dot"></span>
+                    <span data-i18n="capital.propBadge">Prop Firm &amp; Capital Mandate</span>
+                  </span>
+                  <span class="prop-showcase-tag" data-i18n="capital.propTag">Quantitative Framework</span>
+                </div>
+                <div class="prop-showcase-frame">
+                  <img src="assets/images/prop-firm-showcase.jpg" alt="Institutional Prop Firm &amp; Portfolio Architecture Showcase" class="prop-showcase-img" loading="lazy" width="736" height="552">
+                  <div class="prop-showcase-glow-overlay"></div>
+                </div>
+                <div class="prop-showcase-footer">
+                  <span class="prop-showcase-chip" data-i18n="capital.propChip1">⚡ High Watermark Execution</span>
+                  <span class="prop-showcase-chip" data-i18n="capital.propChip2">🛡️ Fixed Risk Mandates</span>
+                  <span class="prop-showcase-chip" data-i18n="capital.propChip3">🎯 Scaled Allocation</span>
                 </div>
               </div>
             </div>
@@ -1824,6 +1856,6 @@
     <span id="toastMessage">Notification message</span>
   </div>
 
-  <script src="/script.js?v=20261104v4"></script>
+  <script src="/script.js?v=20261109v1"></script>
 </body>
 </html>
