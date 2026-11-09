@@ -2205,6 +2205,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (langBtnText) {
       langBtnText.textContent = lang === 'km' ? 'English' : 'ខ្មែរ';
     }
+    const langFlagEl = langToggleBtn ? langToggleBtn.querySelector('.lang-flag') : null;
+    if (langFlagEl) {
+      langFlagEl.textContent = lang === 'km' ? 'EN' : 'KH';
+    }
 
     if (typeof updateFxButtonTexts === 'function') {
       updateFxButtonTexts();
@@ -5002,5 +5006,106 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initPin7i6InterfaceSuite();
+
+  // ========================================================
+  // 20. 3D LIQUID-GLASS NAV UTILITY BUTTON FX & SEAMLESS HOME -> ABOUT SCROLL BLEND
+  // ========================================================
+  function initNavUtilityAndSeamlessHomeAbout() {
+    // A. Tactile Spring Flip & Spin on Language (#langToggleBtn) & Theme (#themeToggleBtn)
+    const lBtn = document.getElementById('langToggleBtn');
+    const tBtn = document.getElementById('themeToggleBtn');
+
+    if (lBtn) {
+      lBtn.addEventListener('click', () => {
+        lBtn.classList.remove('lang-switching');
+        void lBtn.offsetWidth;
+        lBtn.classList.add('lang-switching');
+        setTimeout(() => lBtn.classList.remove('lang-switching'), 520);
+      });
+    }
+
+    if (tBtn) {
+      tBtn.addEventListener('click', () => {
+        tBtn.classList.remove('theme-spinning');
+        void tBtn.offsetWidth;
+        tBtn.classList.add('theme-spinning');
+        setTimeout(() => tBtn.classList.remove('theme-spinning'), 560);
+      });
+    }
+
+    // B. Continuous 60fps Seamless Scroll Blend from Home (#hero) to About (#about)
+    const heroSection = document.getElementById('hero');
+    const aboutSection = document.getElementById('about');
+    if (!heroSection || !aboutSection) return;
+
+    const heroCard = heroSection.querySelector('.hero-card');
+    const heroBottomRow = heroSection.querySelector('.hero-bottom-row');
+    const heroPortrait = heroSection.querySelector('.hero-portrait-stage');
+    const aboutGrid = aboutSection.querySelector('.manifesto-grid');
+
+    // Ensure #about never snaps or hides behind discrete reveal-left/reveal-right jumps
+    aboutSection.classList.add('is-visible', 'seamless-home-about');
+    aboutSection.querySelectorAll('.reveal-left, .reveal-right, .reveal-on-scroll').forEach(el => {
+      el.classList.add('is-visible');
+    });
+
+    let rafPending = false;
+    const updateSeamlessBlend = () => {
+      rafPending = false;
+      if (document.documentElement.classList.contains('effects-frozen')) {
+        if (heroCard) heroCard.style.transform = '';
+        if (heroBottomRow) {
+          heroBottomRow.style.transform = '';
+          heroBottomRow.style.opacity = '';
+        }
+        if (aboutGrid) {
+          aboutGrid.style.transform = '';
+          aboutGrid.style.opacity = '';
+        }
+        return;
+      }
+
+      const vh = window.innerHeight || 800;
+      const aboutRect = aboutSection.getBoundingClientRect();
+
+      // Normalized progress t in [0, 1] as #about enters from bottom of viewport (vh * 1.05) to comfortable reading zone (vh * 0.42)
+      const raw = (vh * 1.05 - aboutRect.top) / (vh * 0.63);
+      const t = Math.max(0, Math.min(1, raw));
+      // Smoothstep cubic hermite interpolation: 3t^2 - 2t^3
+      const smooth = t * t * (3 - 2 * t);
+
+      if (heroBottomRow) {
+        const yHero = (-14 * smooth).toFixed(2);
+        const opHero = (1 - 0.18 * smooth).toFixed(3);
+        heroBottomRow.style.transform = `translate3d(0, ${yHero}px, 0)`;
+        heroBottomRow.style.opacity = opHero;
+      }
+
+      if (heroPortrait && window.innerWidth > 768) {
+        const yPort = (-10 * smooth).toFixed(2);
+        heroPortrait.style.transform = `translate3d(0, ${yPort}px, 0)`;
+      }
+
+      if (aboutGrid) {
+        const yAbout = ((1 - smooth) * 18).toFixed(2);
+        const opAbout = (0.58 + 0.42 * smooth).toFixed(3);
+        aboutGrid.style.transform = `translate3d(0, ${yAbout}px, 0)`;
+        aboutGrid.style.opacity = opAbout;
+      }
+    };
+
+    const onScroll = () => {
+      if (!rafPending) {
+        rafPending = true;
+        requestAnimationFrame(updateSeamlessBlend);
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    updateSeamlessBlend();
+  }
+
+  initNavUtilityAndSeamlessHomeAbout();
 
 });
