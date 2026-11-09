@@ -4595,4 +4595,237 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initOrbixMobileExperience();
 
+  /* ========================================================================
+     PIN 7i6Z0vp5H: SUPERCONSCIOUS-STYLE KINETIC INTERFACE SUITE
+     ======================================================================== */
+  function initPin7i6InterfaceSuite() {
+    // 1. Global Interactive Cursor-Tracked Specular Glow on Interface Cards
+    const glowTargets = document.querySelectorAll(
+      '.hero-card, .brokers-card-main, .broker-tier-box, .course-feature-card, .capital-card, .compliance-card, .pin7i6-bento-card, .pin7i6-col-card, .pin7i6-scrub-manifesto-row'
+    );
+    glowTargets.forEach(card => {
+      card.classList.add('pin7i6-glow-surface');
+      card.addEventListener('pointermove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--pin7i6-mx', `${x}px`);
+        card.style.setProperty('--pin7i6-my', `${y}px`);
+      }, { passive: true });
+    });
+
+    // 2. 3D Topographic Moire Wave Ribbon Canvas (00:04-00:06 & 00:22-00:24)
+    const canvases = document.querySelectorAll('.pin7i6-topo-canvas');
+    canvases.forEach(canvas => {
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      let width = 0;
+      let height = 0;
+      let animId = null;
+      let isVisible = false;
+      let phase = 0;
+
+      const resize = () => {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        width = Math.max(320, rect.width);
+        height = Math.max(400, rect.height);
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+
+      const render = () => {
+        if (!isVisible) return;
+        ctx.clearRect(0, 0, width, height);
+        phase += 0.014;
+
+        const lines = 24;
+        for (let i = 0; i < lines; i++) {
+          const ratio = i / (lines - 1);
+          ctx.beginPath();
+          const alpha = 0.08 + Math.sin(ratio * Math.PI) * 0.22;
+          if (i % 3 === 0) {
+            ctx.strokeStyle = `rgba(0, 245, 212, ${alpha.toFixed(3)})`;
+          } else if (i % 3 === 1) {
+            ctx.strokeStyle = `rgba(2, 132, 199, ${(alpha * 1.1).toFixed(3)})`;
+          } else {
+            ctx.strokeStyle = `rgba(234, 179, 8, ${(alpha * 0.65).toFixed(3)})`;
+          }
+          ctx.lineWidth = 1.25;
+
+          const baseY = height * 0.16 + ratio * (height * 0.68);
+          const step = Math.max(24, Math.floor(width / 36));
+          for (let x = 0; x <= width + step; x += step) {
+            const nx = x / width;
+            const wave1 = Math.sin(nx * 4.2 + phase + i * 0.19) * 34;
+            const wave2 = Math.cos(nx * 7.5 - phase * 0.8 + i * 0.14) * 18;
+            const pinch = Math.sin(nx * Math.PI);
+            const y = baseY + (wave1 + wave2) * (0.35 + pinch * 0.65);
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        }
+        animId = requestAnimationFrame(render);
+      };
+
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          isVisible = entry.isIntersecting;
+          if (isVisible) {
+            resize();
+            if (!animId) animId = requestAnimationFrame(render);
+          } else if (animId) {
+            cancelAnimationFrame(animId);
+            animId = null;
+          }
+        });
+      }, { threshold: 0.05 });
+      io.observe(canvas.parentElement);
+    });
+
+    // 3. Stage A (00:01-00:03): Sacred Geometry 7-Circle Rosette Convergence
+    const rosette = document.getElementById('pin7i6RosetteVisualizer');
+    if (rosette) {
+      const ioRosette = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setTimeout(() => rosette.classList.add('converged'), 180);
+          }
+        });
+      }, { threshold: 0.25 });
+      ioRosette.observe(rosette);
+
+      rosette.addEventListener('click', () => {
+        rosette.classList.remove('converged');
+        setTimeout(() => rosette.classList.add('converged'), 620);
+      });
+    }
+
+    // 4. Stage B (00:04-00:09): Expanding Inline Glass Capsules + Word Illumination
+    const kineticBlock = document.getElementById('pin7i6KineticBlock');
+    if (kineticBlock) {
+      const rows = Array.from(kineticBlock.querySelectorAll('.pin7i6-split-row'));
+      const capsules = Array.from(kineticBlock.querySelectorAll('.pin7i6-inline-capsule'));
+      let activeIdx = 0;
+
+      const setRowActive = idx => {
+        rows.forEach((r, i) => r.classList.toggle('active-row', i === idx));
+        capsules.forEach((c, i) => c.classList.toggle('active-capsule', i === idx));
+      };
+
+      const ioKinetic = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            kineticBlock.classList.add('capsules-expanded');
+          }
+        });
+      }, { threshold: 0.2 });
+      ioKinetic.observe(kineticBlock);
+
+      setInterval(() => {
+        activeIdx = (activeIdx + 1) % Math.max(1, rows.length);
+        setRowActive(activeIdx);
+      }, 2400);
+    }
+
+    // Word-by-Word Scroll-Scrub & Wave Illumination (00:07-00:09)
+    const scrubPara = document.getElementById('pin7i6ScrubParagraph');
+    if (scrubPara && !scrubPara.dataset.tokenized) {
+      scrubPara.dataset.tokenized = 'true';
+      const rawText = scrubPara.textContent.trim().replace(/\s+/g, ' ');
+      const accentSet = new Set([
+        'BlueX', 'SMC', 'Genesis', '4H', '15M', 'Supply', '&', 'Demand',
+        '3M', 'Bos', 'iBos', '0.5%', '1.0%', '1:3+', 'discipline.'
+      ]);
+      const words = rawText.split(' ');
+      scrubPara.innerHTML = words
+        .map(w => {
+          const clean = w.replace(/[,—.]/g, '');
+          const isAccent = accentSet.has(w) || accentSet.has(clean);
+          return `<span class="pin7i6-scrub-word${isAccent ? ' accent-word' : ''}">${w}</span>`;
+        })
+        .join(' ');
+
+      const wordSpans = Array.from(scrubPara.querySelectorAll('.pin7i6-scrub-word'));
+      let waveCursor = 0;
+
+      const updateScrub = () => {
+        const rect = scrubPara.getBoundingClientRect();
+        const vh = window.innerHeight || 800;
+        const progress = Math.max(0.18, Math.min(1, (vh * 0.85 - rect.top) / (vh * 0.55)));
+        const litCount = Math.max(
+          Math.floor(progress * wordSpans.length),
+          waveCursor
+        );
+        wordSpans.forEach((span, idx) => {
+          span.classList.toggle('lit', idx <= litCount);
+        });
+      };
+
+      window.addEventListener('scroll', updateScrub, { passive: true });
+      setInterval(() => {
+        waveCursor = (waveCursor + 2) % (wordSpans.length + 6);
+        updateScrub();
+      }, 160);
+      updateScrub();
+    }
+
+    // 5. Stage C (00:10-00:14): Parallax Floating Bento Cards
+    const bentoCards = Array.from(document.querySelectorAll('.pin7i6-bento-card[data-parallax]'));
+    if (bentoCards.length > 0) {
+      const updateParallax = () => {
+        if (window.innerWidth <= 768) return;
+        const vh = window.innerHeight || 800;
+        bentoCards.forEach(card => {
+          const speed = parseFloat(card.dataset.parallax || '0.08');
+          const rect = card.getBoundingClientRect();
+          const centerOffset = (rect.top + rect.height * 0.5 - vh * 0.5);
+          const yShift = Math.max(-28, Math.min(28, -centerOffset * speed));
+          card.style.transform = `translateY(${yShift.toFixed(1)}px)`;
+        });
+      };
+      window.addEventListener('scroll', updateParallax, { passive: true });
+      updateParallax();
+    }
+
+    // 6. Stage D (00:16-00:17): Interactive Orbital Execution Trigger
+    const orbitalHub = document.getElementById('pin7i6OrbitalHub');
+    const triggerBtn = document.getElementById('pin7i6TriggerBtn');
+    if (orbitalHub && triggerBtn) {
+      const labels = [
+        'Start 3M Execution',
+        '4H Bias Confirmed ✓',
+        '15M S&D Zone Active ✓',
+        '3M Bos iBos Triggered ⚡'
+      ];
+      let step = 0;
+      triggerBtn.addEventListener('click', () => {
+        step = (step + 1) % labels.length;
+        triggerBtn.textContent = labels[step];
+        orbitalHub.classList.add('pulsing');
+        setTimeout(() => orbitalHub.classList.remove('pulsing'), 900);
+      });
+    }
+
+    // 7. Stage E (00:18-00:21): Dual-Mode Atmospheric Showcase Switcher
+    const modeTabs = Array.from(document.querySelectorAll('.pin7i6-mode-tab'));
+    const modePanels = Array.from(document.querySelectorAll('.pin7i6-showcase-panel'));
+    if (modeTabs.length > 0 && modePanels.length > 0) {
+      modeTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.pin7i6Mode;
+          modeTabs.forEach(t => t.classList.toggle('active', t === tab));
+          modePanels.forEach(p => p.classList.toggle('active', p.dataset.pin7i6Panel === target));
+        });
+      });
+    }
+  }
+
+  initPin7i6InterfaceSuite();
+
 });
