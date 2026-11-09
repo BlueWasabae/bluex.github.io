@@ -7564,7 +7564,7 @@ html[lang="km"] .faq-answer p {
 }
 
 
-[data-theme="light"] .smc-specs-card {
+.smc-specs-card {
   background: rgba(15, 17, 24, 0.85);
   border: 1px solid rgba(255, 184, 0, 0.25);
   border-radius: var(--radius-lg);
@@ -14417,3 +14417,605 @@ section,
     0 0 22px rgba(0, 255, 224, 0.35),
     inset 0 2px 4px rgba(0, 0, 0, 0.6) !important;
 }
+
+
+/* ==============================================================================
+   COMPREHENSIVE LIGHT MODE THEME ARCHITECTURE FOR SMC GENESIS & INTERACTIVE SUITE
+   ============================================================================== */
+
+/* --- SMC Genesis Hero & Lead Intro --- */
+[data-theme="light"] .smc-beyond-hero {
+  background: radial-gradient(circle at 50% 10%, rgba(2, 132, 199, 0.05) 0%, transparent 60%) !important;
+}
+
+[data-theme="light"] .smc-breadcrumb {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .smc-breadcrumb a {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .smc-breadcrumb a:hover {
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] .smc-breadcrumb .crumb-active {
+  color: #b45309 !important;
+}
+
+[data-theme="light"] .smc-main-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .smc-main-title .highlight {
+  color: #0284c7 !important;
+  text-shadow: none !important;
+}
+
+[data-theme="light"] .smc-lead-intro {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .smc-gold-badge {
+  background: rgba(180, 83, 9, 0.08) !important;
+  border-color: rgba(180, 83, 9, 0.3) !important;
+  color: #b45309 !important;
+}
+
+/* --- Campione 3D Perspective Specification Fan Deck --- */
+[data-theme="light"] .smc-deck-ambient-glow {
+  background: radial-gradient(ellipse at center, rgba(2, 132, 199, 0.1) 0%, rgba(180, 83, 9, 0.05) 45%, transparent 70%) !important;
+}
+
+[data-theme="light"] .smc-fan-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: -8px 14px 35px rgba(15, 23, 42, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+}
+
+[data-theme="light"] .smc-fan-card .fan-card-watermark {
+  color: rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] .smc-fan-card .bento-label {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .smc-fan-card .bento-val {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .smc-fan-card .bento-detail {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .smc-fan-deck:hover .smc-fan-card:not(:hover):not(.active) {
+  filter: brightness(0.97) !important;
+  opacity: 0.85 !important;
+}
+
+[data-theme="light"] .smc-fan-card.card-cyan:hover,
+[data-theme="light"] .smc-fan-card.card-cyan.active,
+[data-theme="light"] .smc-fan-card.card-cyan:focus-visible {
+  border-color: #0284c7 !important;
+  box-shadow: 0 20px 45px rgba(2, 132, 199, 0.22), 0 0 20px rgba(2, 132, 199, 0.1) !important;
+}
+
+[data-theme="light"] .smc-fan-card.card-amber:hover,
+[data-theme="light"] .smc-fan-card.card-amber.active,
+[data-theme="light"] .smc-fan-card.card-amber:focus-visible {
+  border-color: #d97706 !important;
+  box-shadow: 0 20px 45px rgba(217, 119, 6, 0.22), 0 0 20px rgba(217, 119, 6, 0.1) !important;
+}
+
+[data-theme="light"] .smc-fan-card.card-lime:hover,
+[data-theme="light"] .smc-fan-card.card-lime.active,
+[data-theme="light"] .smc-fan-card.card-lime:focus-visible {
+  border-color: #65a30d !important;
+  box-shadow: 0 20px 45px rgba(101, 163, 13, 0.22), 0 0 20px rgba(101, 163, 13, 0.1) !important;
+}
+
+[data-theme="light"] .smc-fan-card.card-magenta:hover,
+[data-theme="light"] .smc-fan-card.card-magenta.active,
+[data-theme="light"] .smc-fan-card.card-magenta:focus-visible {
+  border-color: #db2777 !important;
+  box-shadow: 0 20px 45px rgba(219, 39, 119, 0.22), 0 0 20px rgba(219, 39, 119, 0.1) !important;
+}
+
+/* --- Synaptic Convergence Pipeline Engine --- */
+[data-theme="light"] .smc-synaptic-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 16px 45px rgba(15, 23, 42, 0.07), 0 2px 8px rgba(15, 23, 42, 0.03) !important;
+}
+
+[data-theme="light"] .smc-flow-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .smc-flow-status-badge {
+  color: #0284c7 !important;
+  background: rgba(2, 132, 199, 0.08) !important;
+  border-color: rgba(2, 132, 199, 0.3) !important;
+}
+
+[data-theme="light"] .synaptic-node {
+  background: #f8fafc !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .synaptic-node:hover {
+  background: #f1f5f9 !important;
+  border-color: rgba(2, 132, 199, 0.35) !important;
+}
+
+[data-theme="light"] .synaptic-node.active {
+  background: #f0fdfa !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.16) !important;
+}
+
+[data-theme="light"] .synaptic-node .node-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .synaptic-node.active .node-title {
+  color: #0284c7 !important;
+  text-shadow: none !important;
+}
+
+[data-theme="light"] .synaptic-node .node-desc {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .node-icon-wrap {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+[data-theme="light"] .synaptic-hub-card {
+  background: #f8fafc !important;
+  border: 1px solid rgba(2, 132, 199, 0.3) !important;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.07) !important;
+}
+
+[data-theme="light"] .hub-header-row {
+  border-bottom-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .hub-asset-tag {
+  color: #b45309 !important;
+}
+
+[data-theme="light"] .hub-live-badge {
+  color: #0284c7 !important;
+  background: rgba(2, 132, 199, 0.1) !important;
+  border-color: rgba(2, 132, 199, 0.35) !important;
+}
+
+[data-theme="light"] .hub-score-num {
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+}
+
+[data-theme="light"] .hub-score-denom {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .hub-check-item {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .hub-check-item.active {
+  background: #f0fdf4 !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+}
+
+[data-theme="light"] .check-text {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .hub-check-item.active .check-text {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .hub-footer-status .status-msg {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .synaptic-filament {
+  stroke: rgba(15, 23, 42, 0.12) !important;
+}
+
+/* --- Metrics Grid --- */
+[data-theme="light"] .genesis-metric-card {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04) !important;
+}
+
+[data-theme="light"] .genesis-metric-value {
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] .genesis-metric-label {
+  color: #475569 !important;
+}
+
+/* --- Executive Briefing & Specs Card --- */
+[data-theme="light"] .smc-specs-card {
+  background: #f8fafc !important;
+  border-color: rgba(180, 83, 9, 0.28) !important;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] .smc-specs-badge {
+  color: #b45309 !important;
+  background: rgba(180, 83, 9, 0.08) !important;
+  border-color: rgba(180, 83, 9, 0.28) !important;
+}
+
+[data-theme="light"] .smc-spec-row {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .smc-spec-label {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .smc-spec-value {
+  color: #0f172a !important;
+}
+
+/* --- The Paradigm Shift (Institutional vs Retail) --- */
+[data-theme="light"] .genesis-shift-card {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 16px 45px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .genesis-shift-header .knowledge-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .genesis-shift-header .knowledge-sub-desc {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .genesis-compare-col.retail {
+  background: rgba(239, 68, 68, 0.03) !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+}
+
+[data-theme="light"] .genesis-compare-col.retail .compare-col-title {
+  color: #b91c1c !important;
+}
+
+[data-theme="light"] .genesis-compare-col.institutional {
+  background: rgba(2, 132, 199, 0.03) !important;
+  border: 1px solid rgba(2, 132, 199, 0.25) !important;
+}
+
+[data-theme="light"] .genesis-compare-col.institutional .compare-col-title {
+  color: #0369a1 !important;
+}
+
+[data-theme="light"] .compare-item-row {
+  color: #334155 !important;
+}
+
+/* --- Multi-Timeframe Matrix --- */
+[data-theme="light"] .timeframe-matrix-box {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] .matrix-tier-card {
+  background: #f8fafc !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .matrix-tier-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .matrix-tier-desc {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .matrix-arrow-separator {
+  color: #94a3b8 !important;
+}
+
+/* --- Telegram Gateway Cards --- */
+[data-theme="light"] .telegram-dest-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] .telegram-card-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .telegram-card-desc {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .telegram-card-handle {
+  color: #0284c7 !important;
+  background: rgba(2, 132, 199, 0.08) !important;
+}
+
+[data-theme="light"] .btn-telegram-dm {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3) !important;
+}
+
+[data-theme="light"] .btn-telegram-group {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.15) !important;
+}
+
+/* --- Spotlight Masterclass Enrollment --- */
+[data-theme="light"] .genesis-course-spotlight {
+  background: #ffffff !important;
+  border: 1px solid rgba(180, 83, 9, 0.28) !important;
+  box-shadow: 0 16px 45px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .spotlight-status-pill {
+  background: rgba(180, 83, 9, 0.08) !important;
+  border-color: rgba(180, 83, 9, 0.3) !important;
+  color: #b45309 !important;
+}
+
+[data-theme="light"] .spotlight-perk-card {
+  background: #f8fafc !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .spotlight-perk-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .spotlight-perk-desc {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .spotlight-action-box {
+  background: #f1f5f9 !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .spotlight-action-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .spotlight-action-desc {
+  color: #475569 !important;
+}
+
+/* --- Execution Brokers Grid --- */
+[data-theme="light"] .broker-tier-box {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] .broker-tier-box h3 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .broker-tier-box p {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .btn-broker-register {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3) !important;
+}
+
+/* --- Bottom Course Genesis Banner --- */
+[data-theme="light"] .course-genesis-banner {
+  background: #ffffff !important;
+  border: 1px solid rgba(180, 83, 9, 0.28) !important;
+  box-shadow: 0 16px 45px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .course-genesis-banner h2 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .course-genesis-banner p {
+  color: #475569 !important;
+}
+
+/* --- Strategy Motion Theater (Pin 143PauHRM) & Cockpit --- */
+[data-theme="light"] .prop-showcase-card {
+  background: #ffffff !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .cockpit-title-text {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .cockpit-top-bar {
+  border-bottom-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .cockpit-live-feed-pill {
+  background: rgba(2, 132, 199, 0.08) !important;
+  border-color: rgba(2, 132, 199, 0.3) !important;
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] .discipline-motion-theater {
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%) !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .theater-control-bar {
+  background: #f1f5f9 !important;
+  border-bottom-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .theater-stage-label {
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] .theater-progress-track {
+  background: rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .theater-btn-toggle {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.15) !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .scene-main-phrase {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .scene-sub-phrase {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .scene-naive-badge {
+  color: #475569 !important;
+  background: rgba(15, 23, 42, 0.05) !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+[data-theme="light"] .balance-amount {
+  color: #0284c7 !important;
+  text-shadow: none !important;
+}
+
+[data-theme="light"] .balance-caption {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .floating-asset-card {
+  background: #ffffff !important;
+  color: #334155 !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .scale-seesaw-beam {
+  background: #ffffff !important;
+  border-color: rgba(2, 132, 199, 0.4) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .left-pan .pan-title {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .left-pan .pan-metric {
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] .pan-sub {
+  color: #94a3b8 !important;
+}
+
+[data-theme="light"] .scale-buy-pill {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .scene-chart-card-glass {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .chart-tag {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .chart-tag-rule {
+  background: rgba(2, 132, 199, 0.08) !important;
+  color: #0284c7 !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+}
+
+[data-theme="light"] .theater-scrubber-bar {
+  border-top-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .theater-scene-chip {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+[data-theme="light"] .theater-scene-chip:hover {
+  background: #e2e8f0 !important;
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] .theater-scene-chip.active {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.35) !important;
+}
+
+/* --- Liquid Glass Capsule Buttons (Pin 5DazFh2Tn) Light Mode Polish --- */
+[data-theme="light"] .nav-register-dm-btn,
+[data-theme="light"] .btn-register-direct,
+[data-theme="light"] .btn-oneclick-dm,
+[data-theme="light"] .floating-cta-pill,
+[data-theme="light"] .nav-drawer-dm-cta {
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.32), 0 2px 6px rgba(15, 23, 42, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+}
+
+
+
+/* Broker Tier Elements in Dark and Light Themes */
+.broker-featured {
+  border: 2px solid var(--color-cyan) !important;
+  position: relative;
+  background: rgba(14, 18, 27, 0.95);
+}
+
+.broker-tier-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.broker-tier-desc {
+  font-size: 0.86rem;
+  color: #cbd5e1;
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+
+[data-theme="light"] .broker-featured {
+  border: 2px solid #0284c7 !important;
+  background: #ffffff !important;
+  box-shadow: 0 12px 30px rgba(2, 132, 199, 0.12) !important;
+}
+
+[data-theme="light"] .broker-tier-name {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .broker-tier-desc {
+  color: #475569 !important;
+}
+

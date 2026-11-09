@@ -3385,15 +3385,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ctx.clearRect(0, 0, width, height);
 
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
       // Ambient radial glow orbs
       const time = Date.now() * 0.0008;
       const glowGrad = ctx.createRadialGradient(
         width * 0.5 + Math.sin(time) * 120, height * 0.4 + Math.cos(time * 0.8) * 80, 10,
         width * 0.5, height * 0.4, width * 0.6
       );
-      glowGrad.addColorStop(0, 'rgba(0, 255, 224, 0.055)');
-      glowGrad.addColorStop(0.5, 'rgba(182, 243, 50, 0.025)');
-      glowGrad.addColorStop(1, 'transparent');
+      if (isLight) {
+        glowGrad.addColorStop(0, 'rgba(2, 132, 199, 0.06)');
+        glowGrad.addColorStop(0.5, 'rgba(180, 83, 9, 0.025)');
+        glowGrad.addColorStop(1, 'transparent');
+      } else {
+        glowGrad.addColorStop(0, 'rgba(0, 255, 224, 0.055)');
+        glowGrad.addColorStop(0.5, 'rgba(182, 243, 50, 0.025)');
+        glowGrad.addColorStop(1, 'transparent');
+      }
       ctx.fillStyle = glowGrad;
       ctx.fillRect(0, 0, width, height);
 
@@ -3437,11 +3445,19 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.globalAlpha = alpha;
 
         // Card frosted glass background
-        ctx.fillStyle = 'rgba(10, 16, 28, 0.75)';
-        ctx.strokeStyle = c.color;
-        ctx.lineWidth = 1 * scale;
-        ctx.shadowColor = c.color;
-        ctx.shadowBlur = 12 * scale;
+        if (isLight) {
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.94)';
+          ctx.strokeStyle = c.color === '#00ffe0' ? '#0284c7' : (c.color === '#b6f332' ? '#65a30d' : c.color);
+          ctx.lineWidth = 1.2 * scale;
+          ctx.shadowColor = 'rgba(15, 23, 42, 0.1)';
+          ctx.shadowBlur = 8 * scale;
+        } else {
+          ctx.fillStyle = 'rgba(10, 16, 28, 0.75)';
+          ctx.strokeStyle = c.color;
+          ctx.lineWidth = 1 * scale;
+          ctx.shadowColor = c.color;
+          ctx.shadowBlur = 12 * scale;
+        }
 
         ctx.beginPath();
         ctx.roundRect(posX - cw * 0.5, posY - ch * 0.5, cw, ch, cr);
@@ -3450,14 +3466,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Avatar dot / icon
         ctx.shadowBlur = 0;
-        ctx.fillStyle = c.color;
+        ctx.fillStyle = isLight && c.color === '#00ffe0' ? '#0284c7' : c.color;
         ctx.beginPath();
         ctx.arc(posX - cw * 0.35, posY, 6 * scale, 0, Math.PI * 2);
         ctx.fill();
 
         // Score text
         ctx.font = `800 ${14 * scale}px Outfit, sans-serif`;
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = isLight ? '#0f172a' : '#ffffff';
         ctx.textAlign = 'left';
         ctx.textBaseline = 'middle';
         ctx.fillText(c.score, posX - cw * 0.22, posY - 2 * scale);
