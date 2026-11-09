@@ -53,7 +53,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600;700&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="/styles.css?v=20261110v27">
+  <link rel="stylesheet" href="/styles.css?v=20261110v28">
 
   <style>
     /* Specific Table & Ecosystem Elements for SMC Genesis */
@@ -433,24 +433,24 @@
                   <svg class="synaptic-svg-filaments" id="synapticSvg" viewBox="0 0 160 360" preserveAspectRatio="none">
                     <defs>
                       <linearGradient id="synapticGradCyan" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#00ffe0" stop-opacity="0.3"/>
-                        <stop offset="50%" stop-color="#00ffe0" stop-opacity="0.9"/>
-                        <stop offset="100%" stop-color="#00ffe0" stop-opacity="0.4"/>
+                        <stop offset="0%" stop-color="#00ffe0" stop-opacity="0.85"/>
+                        <stop offset="50%" stop-color="#00ffe0" stop-opacity="1"/>
+                        <stop offset="100%" stop-color="#00ffe0" stop-opacity="0.95"/>
                       </linearGradient>
                       <linearGradient id="synapticGradAmber" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.3"/>
-                        <stop offset="50%" stop-color="#f59e0b" stop-opacity="0.9"/>
-                        <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.4"/>
+                        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.85"/>
+                        <stop offset="50%" stop-color="#f59e0b" stop-opacity="1"/>
+                        <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.95"/>
                       </linearGradient>
                       <linearGradient id="synapticGradLime" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#b6f332" stop-opacity="0.3"/>
-                        <stop offset="50%" stop-color="#b6f332" stop-opacity="0.9"/>
-                        <stop offset="100%" stop-color="#b6f332" stop-opacity="0.4"/>
+                        <stop offset="0%" stop-color="#b6f332" stop-opacity="0.85"/>
+                        <stop offset="50%" stop-color="#b6f332" stop-opacity="1"/>
+                        <stop offset="100%" stop-color="#b6f332" stop-opacity="0.95"/>
                       </linearGradient>
                       <linearGradient id="synapticGradGold" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#ffd700" stop-opacity="0.3"/>
-                        <stop offset="50%" stop-color="#ffd700" stop-opacity="0.9"/>
-                        <stop offset="100%" stop-color="#ffd700" stop-opacity="0.4"/>
+                        <stop offset="0%" stop-color="#ffd700" stop-opacity="0.85"/>
+                        <stop offset="50%" stop-color="#ffd700" stop-opacity="1"/>
+                        <stop offset="100%" stop-color="#ffd700" stop-opacity="0.95"/>
                       </linearGradient>
                       <filter id="synapticGlow">
                         <feGaussianBlur stdDeviation="3" result="blur"/>
@@ -468,8 +468,11 @@
                     <path class="synaptic-filament f3" id="fil3" d="M 0,252 C 80,252 80,180 160,180" />
                     <path class="synaptic-filament f4" id="fil4" d="M 0,324 C 80,324 80,180 160,180" />
 
-                    <!-- Dynamic Photon Light Pulse -->
-                    <circle class="synaptic-photon" id="synapticPhoton" r="5" fill="#00ffe0" filter="url(#synapticGlow)" cx="0" cy="36">
+                    <!-- Convergence Hub Terminal Port -->
+                    <circle class="synaptic-hub-port" id="synapticHubPort" cx="160" cy="180" r="4" fill="#00ffe0" filter="url(#synapticGlow)" />
+
+                    <!-- Dynamic Photon Light Pulse (cx=0, cy=0 so animateMotion tracks exact path) -->
+                    <circle class="synaptic-photon" id="synapticPhoton" r="4.5" fill="#00ffe0" filter="url(#synapticGlow)" cx="0" cy="0">
                       <animateMotion id="photonMotion" dur="1.8s" repeatCount="indefinite" path="M 0,36 C 80,36 80,180 160,180" />
                     </circle>
                   </svg>
@@ -1546,6 +1549,6 @@
     </div>
   </div>
 
-  <script src="/script.js?v=20261110v27"></script>
+  <script src="/script.js?v=20261110v28"></script>
 </body>
 </html>

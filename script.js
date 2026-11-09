@@ -3577,9 +3577,43 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentStage = 0;
     let cycleTimer = null;
     let manualHold = false;
+    const svgEl = document.getElementById('synapticSvg');
+    const hubPort = document.getElementById('synapticHubPort');
+
+    function recalcSynapticGeometry() {
+      if (!svgEl || !hubCard || nodes.length === 0) return;
+      const svgRect = svgEl.getBoundingClientRect();
+      if (svgRect.height < 20) return;
+      const hubRect = hubCard.getBoundingClientRect();
+      const yHub = ((hubRect.top + hubRect.height * 0.5 - svgRect.top) / svgRect.height) * 360;
+      const clampedYHub = Math.max(40, Math.min(320, yHub));
+
+      if (hubPort) {
+        hubPort.setAttribute('cx', '160');
+        hubPort.setAttribute('cy', clampedYHub.toFixed(1));
+      }
+
+      nodes.forEach((node, idx) => {
+        const nRect = node.getBoundingClientRect();
+        const yNode = ((nRect.top + nRect.height * 0.5 - svgRect.top) / svgRect.height) * 360;
+        const clampedY = Math.max(12, Math.min(348, yNode));
+        const dPath = `M 0,${clampedY.toFixed(1)} C 80,${clampedY.toFixed(1)} 80,${clampedYHub.toFixed(1)} 160,${clampedYHub.toFixed(1)}`;
+        if (filaments[idx]) {
+          filaments[idx].setAttribute('d', dPath);
+        }
+        if (stagesData[idx]) {
+          stagesData[idx].path = dPath;
+        }
+      });
+
+      if (photonMotion && stagesData[currentStage]) {
+        photonMotion.setAttribute('path', stagesData[currentStage].path);
+      }
+    }
 
     function activateStage(index) {
       currentStage = index;
+      recalcSynapticGeometry();
       const data = stagesData[index];
 
       // Update Nodes
@@ -3594,12 +3628,17 @@ document.addEventListener('DOMContentLoaded', () => {
         else f.classList.remove('active');
       });
 
-      // Update SVG Photon
+      // Update SVG Photon & Hub Port
       if (photonMotion) {
         photonMotion.setAttribute('path', data.path);
       }
       if (photon) {
+        photon.setAttribute('cx', '0');
+        photon.setAttribute('cy', '0');
         photon.setAttribute('fill', data.color);
+      }
+      if (hubPort) {
+        hubPort.setAttribute('fill', data.color);
       }
 
       // Animate Score Counter
@@ -3664,6 +3703,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    window.addEventListener('resize', recalcSynapticGeometry, { passive: true });
+    setTimeout(recalcSynapticGeometry, 120);
+    activateStage(0);
     startCycle();
   }
 
