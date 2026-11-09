@@ -18670,3 +18670,250 @@ section,
   background-clip: text;
   color: transparent;
 }
+
+/* ==========================================================================
+   PIN 7ucrcnkS7: 3D IRIDESCENT LIQUID-GLASS CAUSTIC BUBBLE SPHERE
+   Effect On/Off Toggle Animation (#fxToggleBtn & #fxToggleDrawerBtn)
+   URL: https://pin.it/7ucrcnkS7
+   ========================================================================== */
+
+.nav-tool-btn.nav-fx-btn {
+  position: relative !important;
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.14) 0%, rgba(15, 23, 42, 0.45) 100%) !important;
+  border: 1px solid rgba(186, 230, 253, 0.32) !important;
+  box-shadow:
+    -3px 3px 14px rgba(56, 189, 248, 0.38),
+    3px -2px 12px rgba(94, 234, 212, 0.28),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: visible !important;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+
+.nav-tool-btn.nav-fx-btn:hover {
+  transform: scale(1.09) !important;
+  border-color: rgba(125, 211, 252, 0.68) !important;
+  box-shadow:
+    -5px 4px 18px rgba(56, 189, 248, 0.58),
+    4px -3px 16px rgba(244, 114, 182, 0.38),
+    0 0 22px rgba(94, 234, 212, 0.42) !important;
+}
+
+/* 3D Iridescent Liquid-Glass Sphere (Replicates Pin 7ucrcnkS7 00:00-00:04) */
+.fx-art-track,
+.fx-art-track.fx-art-track-lg {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50% 50% 48% 52% / 52% 48% 52% 48% !important;
+  border: 1px solid rgba(255, 255, 255, 0.78) !important;
+  background: radial-gradient(
+    circle at 38% 34%,
+    #ffffff 0%,
+    #f0fdfa 26%,
+    #a5f3fc 52%,
+    #60a5fa 78%,
+    #818cf8 100%
+  ) !important;
+  box-shadow:
+    -4px 3px 11px rgba(56, 189, 248, 0.62),
+    3px -2px 9px rgba(94, 234, 212, 0.42),
+    inset 2.5px 3px 5px rgba(255, 255, 255, 0.98),
+    inset -3px -3.5px 6px rgba(59, 130, 246, 0.72),
+    inset 1.5px -3px 5px rgba(244, 114, 182, 0.58),
+    inset 0 0 9px rgba(94, 234, 212, 0.48) !important;
+  overflow: hidden !important;
+  animation: pin7ucBubbleMorph 3.8s ease-in-out infinite !important;
+  will-change: transform, border-radius;
+}
+
+@keyframes pin7ucBubbleMorph {
+  0%, 100% {
+    border-radius: 50% 50% 48% 52% / 52% 48% 52% 48%;
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    border-radius: 54% 46% 52% 48% / 47% 54% 46% 53%;
+    transform: rotate(4deg) scale(1.04, 0.96);
+  }
+  50% {
+    border-radius: 46% 54% 51% 49% / 53% 48% 52% 47%;
+    transform: rotate(-3deg) scale(0.97, 1.04);
+  }
+  75% {
+    border-radius: 52% 48% 46% 54% / 49% 53% 47% 51%;
+    transform: rotate(3deg) scale(1.03, 0.98);
+  }
+}
+
+/* Left Periwinkle-Blue Caustic Halo Lobe */
+.fx-art-glow-left {
+  position: absolute !important;
+  inset: -3px !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 50% !important;
+  background: radial-gradient(
+    ellipse at 22% 48%,
+    rgba(56, 189, 248, 0.88) 0%,
+    rgba(99, 102, 241, 0.52) 42%,
+    transparent 72%
+  ) !important;
+  filter: blur(1.5px) !important;
+  opacity: 0.92 !important;
+  animation: pin7ucCausticLeft 3.1s ease-in-out infinite alternate !important;
+  pointer-events: none !important;
+}
+
+@keyframes pin7ucCausticLeft {
+  0% { transform: translate(-2px, 1px) scale(0.96); }
+  100% { transform: translate(2px, -2px) scale(1.08); }
+}
+
+/* Swirling Iridescent Aqua-Mint, Rose-Pink & Pearl Conic Refraction Lobe */
+.fx-art-glow-right {
+  position: absolute !important;
+  inset: -5px !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 50% !important;
+  background: conic-gradient(
+    from 0deg at 52% 52%,
+    rgba(255, 255, 255, 0.92) 0deg,
+    rgba(94, 234, 212, 0.85) 72deg,
+    rgba(96, 165, 250, 0.82) 144deg,
+    rgba(244, 114, 182, 0.78) 218deg,
+    rgba(253, 224, 71, 0.58) 284deg,
+    rgba(167, 243, 208, 0.85) 325deg,
+    rgba(255, 255, 255, 0.92) 360deg
+  ) !important;
+  filter: blur(2.2px) !important;
+  opacity: 0.88 !important;
+  animation: pin7ucBubbleSwirl 3.4s linear infinite !important;
+  pointer-events: none !important;
+}
+
+@keyframes pin7ucBubbleSwirl {
+  0% { transform: rotate(0deg) scale(1.05); }
+  50% { transform: rotate(180deg) scale(1.12); }
+  100% { transform: rotate(360deg) scale(1.05); }
+}
+
+/* Curved Top-Left Fresnel Glass Specular Highlight */
+.fx-art-glass-shine {
+  position: absolute !important;
+  top: 2px !important;
+  left: 4px !important;
+  width: 17px !important;
+  height: 9px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.12) 100%) !important;
+  transform: rotate(-26deg) !important;
+  z-index: 4 !important;
+  pointer-events: none !important;
+}
+
+/* Inner Floating Caustic Lens & Soap-Bubble Interference Ring */
+.fx-art-thumb,
+.fx-art-track-lg .fx-art-thumb {
+  position: absolute !important;
+  inset: 3px !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 50% !important;
+  background: radial-gradient(
+    circle at 42% 38%,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(204, 251, 241, 0.55) 48%,
+    rgba(244, 114, 182, 0.25) 82%,
+    transparent 100%
+  ) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  z-index: 3 !important;
+  animation: pin7ucInnerLens 2.9s ease-in-out infinite alternate !important;
+}
+
+@keyframes pin7ucInnerLens {
+  0% { transform: translate(-1.5px, -1px) scale(0.95); }
+  100% { transform: translate(1.5px, 1.5px) scale(1.04); }
+}
+
+.fx-art-ring,
+.fx-art-track-lg .fx-art-ring {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50% !important;
+  border: 1.4px solid rgba(255, 255, 255, 0.82) !important;
+  box-shadow:
+    inset -2px -2px 5px rgba(244, 114, 182, 0.55),
+    inset 2px 2px 5px rgba(56, 189, 248, 0.55) !important;
+}
+
+.fx-art-core-spark {
+  position: absolute !important;
+  bottom: 3px !important;
+  right: 4px !important;
+  width: 7px !important;
+  height: 4px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  filter: blur(0.4px) !important;
+  transform: rotate(-32deg) !important;
+}
+
+/* ==========================================================================
+   EFFECTS OFF STATE (html.effects-frozen): Dormant Smoked-Crystal Sphere
+   ========================================================================== */
+html.effects-frozen .nav-tool-btn.nav-fx-btn {
+  background: rgba(10, 16, 28, 0.78) !important;
+  border-color: rgba(148, 163, 184, 0.28) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.12) !important;
+}
+
+html.effects-frozen .fx-art-track,
+html.effects-frozen .fx-art-track.fx-art-track-lg {
+  animation: none !important;
+  border-radius: 50% !important;
+  background: radial-gradient(
+    circle at 36% 34%,
+    rgba(148, 163, 184, 0.45) 0%,
+    rgba(30, 41, 59, 0.88) 58%,
+    rgba(9, 13, 24, 0.96) 100%
+  ) !important;
+  border-color: rgba(148, 163, 184, 0.42) !important;
+  box-shadow:
+    inset 1.5px 2px 4px rgba(255, 255, 255, 0.35),
+    inset -2px -2px 5px rgba(2, 132, 199, 0.35) !important;
+  filter: saturate(0.25) brightness(0.75) !important;
+}
+
+html.effects-frozen .fx-art-glow-left,
+html.effects-frozen .fx-art-glow-right,
+html.effects-frozen .fx-art-thumb {
+  animation: none !important;
+  opacity: 0.22 !important;
+  transform: none !important;
+}
+
+@media (max-width: 768px) {
+  .nav-tool-btn.nav-fx-btn {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+  }
+  .fx-art-track {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
