@@ -2893,11 +2893,67 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ========================================================
+  // 9C. CAMPIONE 3D PERSPECTIVE SPECIFICATION FAN DECK
+  // ========================================================
+  const fanDeckContainer = document.getElementById('smcFanDeckContainer');
+  const fanDeck = document.getElementById('smcFanDeck');
+  const fanCards = document.querySelectorAll('.smc-fan-card');
+
+  if (fanDeckContainer && fanDeck && fanCards.length > 0) {
+    let fanFrame = null;
+
+    // Mousemove 3D subtle tilt on the whole deck (Campione spatial tracking)
+    fanDeckContainer.addEventListener('mousemove', (e) => {
+      if (window.innerWidth < 960) return;
+      if (document.documentElement.classList.contains('effects-frozen')) return;
+      if (fanFrame) return;
+
+      fanFrame = requestAnimationFrame(() => {
+        const rect = fanDeckContainer.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const normX = (e.clientX - centerX) / (rect.width / 2);
+        const normY = (e.clientY - centerY) / (rect.height / 2);
+
+        // Subtle tilt clamped for elegant depth
+        const tiltY = (normX * 5).toFixed(2);
+        const tiltX = (-normY * 3.5).toFixed(2);
+
+        fanDeck.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        fanFrame = null;
+      });
+    }, { passive: true });
+
+    fanDeckContainer.addEventListener('mouseleave', () => {
+      if (fanFrame) cancelAnimationFrame(fanFrame);
+      fanFrame = null;
+      fanDeck.style.transform = '';
+    });
+
+    // Touch & Click / Tab support: elevates active card
+    fanCards.forEach((card) => {
+      const activate = () => {
+        fanCards.forEach(c => {
+          c.classList.remove('active');
+          c.setAttribute('aria-expanded', 'false');
+        });
+        card.classList.add('active');
+        card.setAttribute('aria-expanded', 'true');
+      };
+
+      card.addEventListener('mouseenter', activate);
+      card.addEventListener('click', activate);
+      card.addEventListener('focus', activate);
+    });
+  }
+
+
 
   // ========================================================
   // 10. SUBTLE AMBIENT CARD SPOTLIGHT GLOW (R-A-F THROTTLED)
   // ========================================================
-  const cards = document.querySelectorAll('.pillar-card, .mentorship-card-main, .about-portrait-card, .capital-card-main, .calculator-card-main, .brokers-card-main, .broker-tier-box, .course-standards-box, .compliance-card, .social-direct-box, .knowledge-card-main, .lesson-card, .book-card, .genesis-module-card, .genesis-compare-col, .genesis-concept-card, .genesis-metric-card, .course-genesis-banner');
+  const cards = document.querySelectorAll('.smc-fan-card, .pillar-card, .mentorship-card-main, .about-portrait-card, .capital-card-main, .calculator-card-main, .brokers-card-main, .broker-tier-box, .course-standards-box, .compliance-card, .social-direct-box, .knowledge-card-main, .lesson-card, .book-card, .genesis-module-card, .genesis-compare-col, .genesis-concept-card, .genesis-metric-card, .course-genesis-banner');
   let cardHoverFrame = null;
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {

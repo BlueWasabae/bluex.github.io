@@ -11606,6 +11606,25 @@ section,
   color: rgba(0, 255, 224, 0.6);
   text-shadow: 0 0 10px rgba(0, 255, 224, 0.6);
   flex-shrink: 0;
+  animation: stepArrowLaser 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes stepArrowLaser {
+  0% {
+    transform: translateX(-3px);
+    opacity: 0.4;
+    text-shadow: 0 0 4px rgba(0, 255, 224, 0.3);
+  }
+  50% {
+    transform: translateX(3px);
+    opacity: 1;
+    text-shadow: 0 0 18px rgba(0, 255, 224, 0.9), 0 0 30px rgba(0, 255, 224, 0.6);
+  }
+  100% {
+    transform: translateX(-3px);
+    opacity: 0.4;
+    text-shadow: 0 0 4px rgba(0, 255, 224, 0.3);
+  }
 }
 
 /* Hyper-Glow Neon Lime CTA Button */
@@ -11832,4 +11851,268 @@ section,
   .smc-terminal-header { padding: 10px 12px; }
   .smc-term-title { font-size: 0.68rem; }
   .smc-terminal-footer { font-size: 0.7rem; padding: 10px 12px; }
+}
+
+
+/* ========================================================
+   CAMPIONE 3D PERSPECTIVE CARD FAN DECK & MOTION ENGINE
+   (Services/Pillars Interactive 3D Perspective Fan Deck)
+   ======================================================== */
+.smc-fan-deck-container {
+  position: relative;
+  max-width: 1040px;
+  margin: 44px auto 36px;
+  padding: 36px 12px 48px;
+  perspective: 1400px;
+  perspective-origin: 50% 55%;
+  z-index: 8;
+  scroll-margin-top: 90px !important;
+}
+
+.smc-deck-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 680px;
+  height: 300px;
+  background: radial-gradient(ellipse at center, rgba(0, 255, 224, 0.12) 0%, rgba(182, 243, 50, 0.05) 45%, transparent 70%);
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.5s ease;
+}
+
+.smc-fan-deck {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+/* Individual 3D Fan Card */
+.smc-fan-card {
+  position: relative;
+  flex: 0 1 260px;
+  min-width: 210px;
+  max-width: 270px;
+  margin-left: -32px; /* Overlapping fan deck */
+  background: linear-gradient(165deg, rgba(16, 22, 36, 0.94) 0%, rgba(9, 13, 22, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  padding: 24px 22px 22px;
+  text-align: left;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transform-style: preserve-3d;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: -12px 18px 45px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease,
+              filter 0.35s ease,
+              opacity 0.35s ease,
+              background 0.35s ease;
+  overflow: hidden;
+}
+
+.smc-fan-card:first-child {
+  margin-left: 0;
+}
+
+/* Staggered 3D Resting Angles (Desktop Fan Spread) */
+.smc-fan-card:nth-child(1) {
+  z-index: 1;
+  transform: perspective(1200px) rotateY(6.5deg) rotateZ(-3.5deg) translateY(10px) translateZ(0);
+}
+.smc-fan-card:nth-child(2) {
+  z-index: 2;
+  transform: perspective(1200px) rotateY(2deg) rotateZ(-1.2deg) translateY(2px) translateZ(8px);
+}
+.smc-fan-card:nth-child(3) {
+  z-index: 3;
+  transform: perspective(1200px) rotateY(-2deg) rotateZ(1.2deg) translateY(2px) translateZ(8px);
+}
+.smc-fan-card:nth-child(4) {
+  z-index: 4;
+  transform: perspective(1200px) rotateY(-6.5deg) rotateZ(3.5deg) translateY(10px) translateZ(0);
+}
+
+/* Card Watermark Typography (Campione Style) */
+.fan-card-watermark {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+  letter-spacing: -0.05em;
+  transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.fan-card-ambient-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  opacity: 0.6;
+  transition: opacity 0.4s ease, height 0.4s ease;
+}
+
+.card-cyan .fan-card-ambient-accent {
+  background: linear-gradient(90deg, transparent, #00ffe0, transparent);
+}
+.card-amber .fan-card-ambient-accent {
+  background: linear-gradient(90deg, transparent, #f59e0b, transparent);
+}
+.card-lime .fan-card-ambient-accent {
+  background: linear-gradient(90deg, transparent, #b6f332, transparent);
+}
+.card-magenta .fan-card-ambient-accent {
+  background: linear-gradient(90deg, transparent, #ff2a85, transparent);
+}
+
+.fan-badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.fan-badge-status .badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
+}
+.card-cyan .fan-badge-status { color: #00ffe0; }
+.card-amber .fan-badge-status { color: #f59e0b; }
+.card-lime .fan-badge-status { color: #b6f332; }
+.card-magenta .fan-badge-status { color: #ff2a85; }
+
+.fan-card-bar {
+  margin-top: 16px;
+  height: 2px;
+  width: 28px;
+  border-radius: 2px;
+  opacity: 0.4;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+.card-cyan .fan-card-bar { background: #00ffe0; }
+.card-amber .fan-card-bar { background: #f59e0b; }
+.card-lime .fan-card-bar { background: #b6f332; }
+.card-magenta .fan-card-bar { background: #ff2a85; }
+
+/* HOVER & ACTIVE STATE (Campione 3D Elevation & Straighten Effect) */
+.smc-fan-deck:hover .smc-fan-card:not(:hover):not(.active) {
+  filter: brightness(0.78);
+  opacity: 0.72;
+  transform: perspective(1200px) scale(0.97);
+}
+
+.smc-fan-card:hover,
+.smc-fan-card.active,
+.smc-fan-card:focus-visible {
+  outline: none;
+  z-index: 20 !important;
+  transform: perspective(1200px) translateY(-32px) translateZ(40px) rotateY(0deg) rotateZ(0deg) scale(1.06) !important;
+  filter: brightness(1.08) !important;
+  opacity: 1 !important;
+}
+
+.smc-fan-card:hover .fan-card-watermark,
+.smc-fan-card.active .fan-card-watermark {
+  color: rgba(255, 255, 255, 0.09);
+  transform: translateY(-2px);
+}
+
+.smc-fan-card:hover .fan-card-ambient-accent,
+.smc-fan-card.active .fan-card-ambient-accent {
+  opacity: 1;
+  height: 3px;
+}
+
+.smc-fan-card:hover .fan-card-bar,
+.smc-fan-card.active .fan-card-bar {
+  width: 100%;
+  opacity: 0.9;
+}
+
+.smc-fan-card.card-cyan:hover,
+.smc-fan-card.card-cyan.active,
+.smc-fan-card.card-cyan:focus-visible {
+  border-color: rgba(0, 255, 224, 0.75);
+  box-shadow: 0 28px 65px -10px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 255, 224, 0.35), inset 0 1px 0 rgba(0, 255, 224, 0.3);
+}
+
+.smc-fan-card.card-amber:hover,
+.smc-fan-card.card-amber.active,
+.smc-fan-card.card-amber:focus-visible {
+  border-color: rgba(245, 158, 11, 0.75);
+  box-shadow: 0 28px 65px -10px rgba(0, 0, 0, 0.9), 0 0 35px rgba(245, 158, 11, 0.35), inset 0 1px 0 rgba(245, 158, 11, 0.3);
+}
+
+.smc-fan-card.card-lime:hover,
+.smc-fan-card.card-lime.active,
+.smc-fan-card.card-lime:focus-visible {
+  border-color: rgba(182, 243, 50, 0.75);
+  box-shadow: 0 28px 65px -10px rgba(0, 0, 0, 0.9), 0 0 35px rgba(182, 243, 50, 0.35), inset 0 1px 0 rgba(182, 243, 50, 0.3);
+}
+
+.smc-fan-card.card-magenta:hover,
+.smc-fan-card.card-magenta.active,
+.smc-fan-card.card-magenta:focus-visible {
+  border-color: rgba(255, 42, 133, 0.75);
+  box-shadow: 0 28px 65px -10px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 42, 133, 0.35), inset 0 1px 0 rgba(255, 42, 133, 0.3);
+}
+
+/* Mobile & Tablet Adaptation */
+@media (max-width: 960px) {
+  .smc-fan-deck-container {
+    padding: 10px 0 24px;
+    perspective: none;
+  }
+  .smc-fan-deck {
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    transform: none !important;
+  }
+  .smc-fan-card {
+    flex: 1 1 calc(50% - 16px);
+    min-width: 240px;
+    max-width: 100%;
+    margin-left: 0 !important;
+    transform: none !important;
+  }
+  .smc-fan-card:hover,
+  .smc-fan-card.active {
+    transform: translateY(-8px) scale(1.02) !important;
+  }
+}
+
+@media (max-width: 580px) {
+  .smc-fan-deck {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .smc-fan-card {
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0 !important;
+    padding: 20px 18px;
+    transform: none !important;
+  }
+  .smc-fan-card:hover,
+  .smc-fan-card.active {
+    transform: translateY(-4px) !important;
+  }
 }
