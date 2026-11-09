@@ -4412,4 +4412,187 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initPinSocialDockShowcase();
 
+  // ========================================================
+  // PIN 7rg9IHjAC: ORBIX MOBILE HUB, AI ORB DOCK & NEON SETUP WIZARD
+  // ========================================================
+  function initOrbixMobileExperience() {
+    // 1. Mobile Segmented Pill Tabs & Stacked 3D Deck
+    const mobileHub = document.getElementById('orbixMobileHub');
+    if (mobileHub) {
+      const tabs = Array.from(mobileHub.querySelectorAll('.orbix-pill-tab'));
+      const frontCard = document.getElementById('orbixDeckFrontCard');
+      const deckImg = document.getElementById('orbixDeckImg');
+      const chip1 = document.getElementById('orbixChip1');
+      const chip2 = document.getElementById('orbixChip2');
+      const chip3 = document.getElementById('orbixChip3');
+      const deckTitle = document.getElementById('orbixDeckTitle');
+      const deckSub = document.getElementById('orbixDeckSub');
+
+      const DECK_DATA = {
+        genesis: {
+          href: '/smc-genesis',
+          img: '/assets/images/institutional-trading-desk.jpg',
+          c1: 'XAU/USD',
+          c2: 'Bos iBos • S&D',
+          c3: '4H → 15M → 3M',
+          title: 'SMC Genesis',
+          sub: 'Masterclass Package'
+        },
+        strategy: {
+          href: '#capital',
+          img: '/assets/images/disciplined-trader-focus.jpg',
+          c1: '0.5%–1.0% Risk',
+          c2: '3M Body-Close',
+          c3: 'Min 1:3+ R:R',
+          title: 'Mechanical Edge',
+          sub: 'Execution Protocol'
+        },
+        calculator: {
+          href: '#calculator',
+          img: '/assets/images/live-teaching-analysis.jpg',
+          c1: 'Lot Size',
+          c2: 'Gold Hedging',
+          c3: 'Zero Guesswork',
+          title: 'Risk & Lot Math',
+          sub: 'Interactive Terminal'
+        },
+        knowledge: {
+          href: '#knowledge',
+          img: '/assets/images/bluex-book-portrait.jpg',
+          c1: '4 Core Laws',
+          c2: 'Trading Psychology',
+          c3: 'Curated Books',
+          title: 'Knowledge Vault',
+          sub: 'Proven Market Wisdom'
+        },
+        connect: {
+          href: '#connect',
+          img: '/assets/images/bluex-portrait.jpg',
+          c1: '@Le_Bluue',
+          c2: '1-Click Direct DM',
+          c3: '5 Official Channels',
+          title: 'Direct Connect',
+          sub: 'Mentorship & Updates'
+        }
+      };
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const key = tab.getAttribute('data-orbix-tab');
+          const d = DECK_DATA[key];
+          if (!d) return;
+          tabs.forEach(t => t.classList.toggle('active', t === tab));
+          if (frontCard) {
+            frontCard.classList.add('deck-switching');
+            setTimeout(() => frontCard.classList.remove('deck-switching'), 260);
+            frontCard.setAttribute('href', d.href);
+          }
+          if (deckImg) deckImg.src = d.img;
+          if (chip1) chip1.textContent = d.c1;
+          if (chip2) chip2.textContent = d.c2;
+          if (chip3) chip3.textContent = d.c3;
+          if (deckTitle) deckTitle.textContent = d.title;
+          if (deckSub) deckSub.textContent = d.sub;
+        });
+      });
+    }
+
+    // 2. Frosted Glass Bottom Sheet & Neon Lime Setup Wizard
+    const backdrop = document.getElementById('orbixWizardBackdrop');
+    const openOrbBtn = document.getElementById('orbixAiOrbBtn');
+    const openSwipeBtn = document.getElementById('orbixDockSwipeBtn');
+    const openHeroBtn = document.getElementById('orbixHeroWizardBtn');
+    const closeBtn = document.getElementById('orbixWizardCloseBtn');
+    const resetBtn = document.getElementById('orbixResetSlotBtn');
+    const nextSlotBtn = document.getElementById('orbixNextSlotBtn');
+    const nextSlotLabel = document.getElementById('orbixNextSlotLabel');
+    const neonCard = document.getElementById('orbixNeonCard');
+    const procPane = document.getElementById('orbixProcessingPane');
+    const resPane = document.getElementById('orbixResultPane');
+    const resNum = document.getElementById('orbixResultNum');
+    const wizardHeading = document.getElementById('orbixWizardHeading');
+
+    if (!backdrop || !neonCard) return;
+    const slotPanes = Array.from(neonCard.querySelectorAll('.orbix-slot-pane'));
+    let activeSlot = 0;
+
+    function setWizardSlot(slotIdx) {
+      activeSlot = slotIdx;
+      neonCard.style.display = 'flex';
+      if (procPane) procPane.classList.remove('active');
+      if (resPane) resPane.classList.remove('active');
+      if (wizardHeading) {
+        wizardHeading.textContent = 'Complete the setup and get your trading roadmap';
+      }
+      slotPanes.forEach((pane, idx) => {
+        pane.classList.toggle('active', idx === slotIdx);
+      });
+      if (nextSlotLabel) {
+        nextSlotLabel.textContent = slotIdx < slotPanes.length - 1 ? 'Tap To Next Slot' : 'Generate Roadmap';
+      }
+    }
+
+    function openWizard(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      setWizardSlot(0);
+      backdrop.classList.add('is-open');
+      backdrop.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeWizard() {
+      backdrop.classList.remove('is-open');
+      backdrop.setAttribute('aria-hidden', 'true');
+    }
+
+    [openOrbBtn, openSwipeBtn, openHeroBtn].forEach(btn => {
+      if (btn) btn.addEventListener('click', openWizard);
+    });
+    if (closeBtn) closeBtn.addEventListener('click', closeWizard);
+    if (resetBtn) resetBtn.addEventListener('click', () => setWizardSlot(0));
+
+    backdrop.addEventListener('click', e => {
+      if (e.target === backdrop) closeWizard();
+    });
+
+    // Interactive timeframe chips inside Slot 1
+    const tfChips = Array.from(neonCard.querySelectorAll('.orbix-slot-chip'));
+    tfChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        tfChips.forEach(c => c.classList.toggle('active', c === chip));
+      });
+    });
+
+    if (nextSlotBtn) {
+      nextSlotBtn.addEventListener('click', () => {
+        if (activeSlot < slotPanes.length - 1) {
+          setWizardSlot(activeSlot + 1);
+        } else {
+          // Processing sine-wave transition (00:35-00:36 in Pin 7rg9IHjAC)
+          neonCard.style.display = 'none';
+          if (procPane) procPane.classList.add('active');
+          if (wizardHeading) wizardHeading.textContent = 'Synthesizing your BlueX execution plan...';
+
+          setTimeout(() => {
+            if (procPane) procPane.classList.remove('active');
+            if (resPane) resPane.classList.add('active');
+            if (wizardHeading) wizardHeading.textContent = 'Your Institutional Trading Package';
+            if (resNum) {
+              let count = 244;
+              const timer = setInterval(() => {
+                count += 1;
+                resNum.textContent = String(count);
+                if (count >= 250) clearInterval(timer);
+              }, 70);
+            }
+          }, 950);
+        }
+      });
+    }
+  }
+
+  initOrbixMobileExperience();
+
 });

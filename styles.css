@@ -16273,4 +16273,1083 @@ section,
   color: #0f172a !important;
 }
 
+/* ==============================================================================
+   PIN 7rg9IHjAC: ORBIX MOBILE UI CUSTOMIZATION & COMPREHENSIVE MOBILE LAYOUT FIX
+   URL: https://pin.it/7rg9IHjAC
+   ============================================================================== */
+
+/* --- A. Orbix Mobile Segmented Pill Tabs & Stacked 3D Package Deck --- */
+.orbix-mobile-hub {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.orbix-pill-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+.orbix-pill-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.orbix-pill-tab {
+  flex-shrink: 0;
+  padding: 9px 18px;
+  border-radius: 9999px;
+  font-family: var(--font-heading, "Plus Jakarta Sans", sans-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(226, 232, 240, 0.82);
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.orbix-pill-tab.active {
+  background: #ffffff;
+  color: #090d16;
+  border-color: #ffffff;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Stacked 3D Tilted Package Deck (matches 00:00-00:02 in Pin 7rg9IHjAC) */
+.orbix-stacked-deck {
+  position: relative;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.orbix-deck-back-card {
+  position: absolute;
+  top: 0;
+  left: 6%;
+  right: 6%;
+  height: 168px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(168, 85, 247, 0.35));
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transform: rotate(3.5deg) translateY(-2px);
+  opacity: 0.75;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.orbix-deck-front-card {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 176px;
+  padding: 14px 16px;
+  border-radius: 22px;
+  overflow: hidden;
+  text-decoration: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  background: #0d1322;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.orbix-deck-front-card.deck-switching {
+  transform: scale(0.97) rotate(-1deg);
+}
+
+.orbix-deck-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.5s ease;
+}
+
+.orbix-deck-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 12, 22, 0.35) 0%, rgba(8, 12, 22, 0.88) 100%);
+  z-index: 1;
+}
+
+.orbix-deck-chips {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.orbix-chip-frosted {
+  padding: 4px 11px;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: #f8fafc;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.orbix-chip-neon {
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: #e2ff54;
+  color: #090d16;
+  font-size: 0.72rem;
+  font-weight: 800;
+  box-shadow: 0 4px 14px rgba(226, 255, 84, 0.38);
+}
+
+.orbix-deck-bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.orbix-deck-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.orbix-deck-italic {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: rgba(241, 245, 249, 0.9);
+  line-height: 1.15;
+}
+
+.orbix-deck-wizard-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(12px);
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* --- B. Floating iOS Glassmorphic Bottom Dock Bar + Glowing AI Orb --- */
+.orbix-mobile-bottom-bar {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(390px, calc(100vw - 24px));
+  height: 58px;
+  padding: 6px 8px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, rgba(30, 36, 56, 0.86) 0%, rgba(15, 19, 32, 0.94) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    0 18px 40px rgba(0, 0, 0, 0.65),
+    0 0 25px rgba(139, 92, 246, 0.22);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  z-index: 9995;
+  box-sizing: border-box;
+}
+
+.orbix-dock-home-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #e2ff54;
+  color: #090d16;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-decoration: none;
+  box-shadow: 0 0 18px rgba(226, 255, 84, 0.45);
+  transition: transform 0.25s ease;
+}
+
+.orbix-dock-home-btn:active {
+  transform: scale(0.92);
+}
+
+.orbix-dock-search-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.orbix-dock-swipe-track {
+  flex: 1;
+  height: 42px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 4px 14px 4px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.orbix-dock-arrow-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.orbix-dock-chevrons {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: rgba(226, 232, 240, 0.72);
+  animation: orbixChevronPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes orbixChevronPulse {
+  0%, 100% { transform: translateX(0); opacity: 0.6; }
+  50% { transform: translateX(4px); opacity: 1; }
+}
+
+/* Glowing 3D Iridescent AI Orb Button (matches 00:01-00:39 in Pin 7rg9IHjAC) */
+.orbix-ai-orb-btn {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbix-orb-core {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #ffffff 0%, #38bdf8 28%, #8b5cf6 58%, #3b0764 90%);
+  box-shadow:
+    0 0 18px rgba(139, 92, 246, 0.85),
+    0 0 32px rgba(56, 189, 248, 0.55),
+    inset 0 2px 6px rgba(255, 255, 255, 0.85);
+  animation: orbixPlasmaPulse 3s ease-in-out infinite;
+}
+
+.orbix-orb-ring {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(168, 85, 247, 0.55);
+  animation: orbixRingSpin 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes orbixPlasmaPulse {
+  0%, 100% { transform: scale(1); filter: hue-rotate(0deg); }
+  50% { transform: scale(1.07); filter: hue-rotate(22deg); }
+}
+
+@keyframes orbixRingSpin {
+  0% { transform: rotate(0deg) scale(1); opacity: 0.75; }
+  50% { transform: rotate(180deg) scale(1.08); opacity: 0.35; }
+  100% { transform: rotate(360deg) scale(1); opacity: 0.75; }
+}
+
+/* --- C. Frosted Glass Bottom Sheet & Neon Lime Setup Wizard (00:03-00:36) --- */
+.orbix-wizard-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100050;
+  background: rgba(4, 7, 15, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s ease;
+}
+
+.orbix-wizard-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.orbix-wizard-sheet {
+  width: min(420px, 100vw);
+  max-height: 88vh;
+  overflow-y: auto;
+  background: linear-gradient(170deg, rgba(42, 34, 68, 0.95) 0%, rgba(18, 20, 32, 0.98) 55%, rgba(12, 14, 22, 0.99) 100%);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.24);
+  border-radius: 30px 30px 0 0;
+  padding: 22px 20px 24px;
+  box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.8);
+  transform: translateY(100%);
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  box-sizing: border-box;
+}
+
+.orbix-wizard-backdrop.is-open .orbix-wizard-sheet {
+  transform: translateY(0);
+}
+
+.orbix-sheet-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.orbix-sheet-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(226, 232, 240, 0.75);
+}
+
+.orbix-sheet-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbix-sheet-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.28;
+  margin: 0 0 18px;
+}
+
+/* Signature Neon Lime-Yellow Interactive Card (00:09-00:34 in Pin 7rg9IHjAC) */
+.orbix-neon-card {
+  position: relative;
+  background: #e2ff54;
+  color: #090d16;
+  border-radius: 26px;
+  padding: 24px 20px 18px;
+  box-shadow:
+    0 18px 40px rgba(226, 255, 84, 0.22),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.75);
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+}
+
+.orbix-slot-pane {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  animation: orbixSlotFadeIn 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.orbix-slot-pane.active {
+  display: flex;
+}
+
+@keyframes orbixSlotFadeIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.orbix-slot-question {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(9, 13, 22, 0.72);
+}
+
+.orbix-slot-answer {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #090d16;
+}
+
+.orbix-route-pills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 4px 0 8px;
+}
+
+.orbix-dark-pill {
+  background: #090d16;
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 6px 13px;
+  border-radius: 9999px;
+}
+
+.orbix-route-to {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(9, 13, 22, 0.7);
+}
+
+.orbix-slot-center-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #090d16;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-top: 6px;
+  box-shadow: 0 8px 20px rgba(9, 13, 22, 0.25);
+}
+
+.orbix-slot-chips {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+
+.orbix-slot-chip {
+  padding: 5px 12px;
+  border-radius: 9999px;
+  border: 1px solid rgba(9, 13, 22, 0.2);
+  background: rgba(9, 13, 22, 0.06);
+  color: #090d16;
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.orbix-slot-chip.active {
+  background: #090d16;
+  color: #ffffff;
+  border-color: #090d16;
+}
+
+.orbix-slot-big-range {
+  font-size: 2.05rem;
+  font-weight: 800;
+  color: #090d16;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-top: 4px;
+}
+
+.orbix-slot-big-range .range-to {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 4px;
+}
+
+.orbix-slot-subnote {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(9, 13, 22, 0.68);
+}
+
+.orbix-next-slot-bar {
+  margin-top: 16px;
+  width: 100%;
+  height: 46px;
+  border-radius: 9999px;
+  background: rgba(9, 13, 22, 0.1);
+  border: 1px solid rgba(9, 13, 22, 0.16);
+  padding: 4px 16px 4px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  color: #090d16;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.orbix-next-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #090d16;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.orbix-next-chevrons {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+/* Processing Sine-Wave View (00:35-00:36) */
+.orbix-processing-pane {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  gap: 14px;
+}
+
+.orbix-processing-pane.active {
+  display: flex;
+}
+
+.orbix-sine-wave-svg {
+  width: 240px;
+  height: 56px;
+  animation: orbixWaveFloat 1.1s ease-in-out infinite alternate;
+}
+
+@keyframes orbixWaveFloat {
+  from { transform: scaleY(0.85); }
+  to   { transform: scaleY(1.15); }
+}
+
+.orbix-processing-text {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: #e2e8f0;
+}
+
+/* Final Package Result View (00:37-00:39) */
+.orbix-result-pane {
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+  animation: orbixSlotFadeIn 0.35s ease;
+}
+
+.orbix-result-pane.active {
+  display: flex;
+}
+
+.orbix-result-stat-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.orbix-result-big-num {
+  font-size: 2.3rem;
+  font-weight: 300;
+  color: #c084fc;
+  line-height: 1;
+}
+
+.orbix-result-stat-meta {
+  font-size: 0.74rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.orbix-result-package-card {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  min-height: 185px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.orbix-result-package-card > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.orbix-result-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 12, 22, 0.3) 0%, rgba(8, 12, 22, 0.92) 100%);
+  z-index: 1;
+}
+
+.orbix-result-card-bottom {
+  position: relative;
+  z-index: 2;
+  margin-top: 24px;
+}
+
+.orbix-result-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.orbix-result-cta {
+  flex: 1;
+  text-align: center;
+  padding: 9px 12px;
+  border-radius: 9999px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.orbix-result-cta.primary {
+  background: #e2ff54;
+  color: #090d16;
+}
+
+.orbix-result-cta.secondary {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.orbix-sheet-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding-top: 10px;
+}
+
+.orbix-sheet-mini-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.orbix-sheet-orb-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==============================================================================
+   COMPREHENSIVE MOBILE PLACEMENT & ALIGNMENT OVERHAUL (<= 840px & <= 768px)
+   Fixes all misplaced/overflowing mobile components across the entire site
+   ============================================================================== */
+@media (max-width: 840px) {
+  /* Activate Pin 7rg9IHjAC Mobile Hub & Bottom Bar */
+  .orbix-mobile-hub {
+    display: flex !important;
+  }
+  .orbix-mobile-bottom-bar {
+    display: flex !important;
+  }
+  /* Hide legacy floating pill on mobile so bottom dock sits cleanly */
+  .genesis-floating-cta {
+    display: none !important;
+  }
+  body {
+    padding-bottom: 84px !important;
+  }
+
+  /* 1. Fix Knowledge Slit Accordion on Mobile (override 54px horizontal width lock) */
+  .fey-slit-deck-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+  .fey-category-filter {
+    width: 100% !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+  .fey-filter-btn {
+    flex: 1 !important;
+    justify-content: center !important;
+    padding: 8px 10px !important;
+    font-size: 0.76rem !important;
+  }
+  .fey-slits-track {
+    flex-direction: column !important;
+    min-height: auto !important;
+    padding: 10px !important;
+    gap: 8px !important;
+  }
+  .fey-slit-card:not(.active) {
+    flex: 0 0 52px !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    border-radius: 14px !important;
+  }
+  .fey-slit-collapsed-bar {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    padding: 0 14px !important;
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .fey-slit-vtitle {
+    writing-mode: horizontal-tb !important;
+    transform: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    flex: 1 !important;
+    text-align: left !important;
+    font-size: 0.82rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .fey-slit-card.active {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    border-radius: 16px !important;
+  }
+  .fey-slit-content {
+    padding: 18px 16px !important;
+    min-width: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* 2. Fix Register Liquid Capsule Buttons & All CTAs on Mobile (allow clean text wrap, zero horizontal overflow) */
+  .btn-register-direct,
+  .btn-oneclick-dm,
+  .nav-drawer-dm-cta,
+  .btn-mentorship,
+  .btn-primary,
+  .btn-secondary,
+  .btn-broker-register,
+  .btn-open-knowledge-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    padding: 12px 16px !important;
+    font-size: 0.85rem !important;
+    line-height: 1.3 !important;
+    text-align: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 3. Fix Hero Section Placement on Mobile */
+  .hero-section {
+    padding-top: 74px !important;
+  }
+  .hero-card {
+    padding: 22px 16px !important;
+    border-radius: 22px !important;
+  }
+  .hero-badge-group {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    margin-bottom: 12px !important;
+  }
+  .hero-title {
+    font-size: clamp(1.75rem, 7.2vw, 2.25rem) !important;
+    line-height: 1.15 !important;
+    margin-bottom: 10px !important;
+  }
+  .hero-subtitle-role {
+    font-size: 0.78rem !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    margin-bottom: 16px !important;
+  }
+  .hero-portrait-stage {
+    height: 290px !important;
+    max-width: 320px !important;
+    margin: 10px auto 8px !important;
+  }
+  .hero-bottom-row {
+    margin-top: 12px !important;
+    gap: 14px !important;
+  }
+
+  /* 4. Fix Strategy Motion Theater (#disciplineTheater) on Mobile */
+  .capital-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .prop-showcase-card {
+    padding: 12px !important;
+    border-radius: 16px !important;
+    margin-top: 8px !important;
+  }
+  .cockpit-top-bar {
+    gap: 6px !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 8px !important;
+  }
+  .cockpit-title-text {
+    font-size: 0.66rem !important;
+  }
+  .theater-control-bar {
+    padding: 8px 10px !important;
+    gap: 8px !important;
+  }
+  .theater-stage-label {
+    min-width: auto !important;
+    font-size: 0.64rem !important;
+  }
+  .theater-stage-viewport {
+    min-height: 256px !important;
+  }
+  .theater-scene {
+    padding: 12px 10px !important;
+  }
+  .scale-seesaw-beam {
+    width: min(250px, 92%) !important;
+    height: 50px !important;
+    padding: 0 8px !important;
+  }
+  .verdict-rule-pill {
+    white-space: normal !important;
+    font-size: 0.62rem !important;
+    line-height: 1.35 !important;
+    padding: 5px 10px !important;
+    border-radius: 10px !important;
+  }
+  .theater-scrubber-bar {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+    padding: 8px 6px 4px !important;
+  }
+  .theater-scene-chip {
+    font-size: 0.66rem !important;
+    padding: 6px 6px !important;
+  }
+  .prop-showcase-footer {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+  }
+  .prop-showcase-chip {
+    white-space: normal !important;
+    font-size: 0.7rem !important;
+    padding: 7px 10px !important;
+  }
+
+  /* 5. Fix FAQ ZSearch 3D Folder Cascade on Mobile */
+  .zsearch-cascade-deck {
+    min-height: auto !important;
+    gap: 10px !important;
+    padding-bottom: 8px !important;
+  }
+  .zsearch-folder-card,
+  .zsearch-folder-card:nth-child(n),
+  .zsearch-folder-card.active {
+    transform: none !important;
+  }
+  .zsearch-folder-header {
+    flex-wrap: wrap !important;
+    padding: 14px 14px !important;
+    gap: 8px !important;
+  }
+  .zsearch-folder-tab-badge {
+    width: calc(100% - 36px) !important;
+    order: 1 !important;
+    gap: 8px !important;
+  }
+  .zsearch-folder-chevron {
+    order: 2 !important;
+  }
+  .zsearch-folder-title {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    order: 3 !important;
+    padding: 0 !important;
+    font-size: 0.92rem !important;
+    line-height: 1.38 !important;
+  }
+  .zsearch-folder-card.active .zsearch-folder-drawer {
+    padding: 0 14px 16px 14px !important;
+  }
+
+  /* 6. Fix Social Dock & Morphing Profile Card (#pinSocialShowcase) on Mobile */
+  .social-connect-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .pin-social-dock-wrap {
+    justify-content: center !important;
+    width: 100% !important;
+  }
+  .pin-social-dock-bar {
+    gap: 8px !important;
+    padding: 8px 12px !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .pin-dock-icon {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 11px !important;
+  }
+  .pin-profile-card {
+    padding: 16px 14px !important;
+    border-radius: 20px !important;
+  }
+  .pin-profile-header {
+    gap: 12px !important;
+    align-items: flex-start !important;
+  }
+  .pin-avatar-neon-ring {
+    width: 62px !important;
+    height: 62px !important;
+  }
+  .pin-handle-row {
+    gap: 6px !important;
+    margin-bottom: 8px !important;
+  }
+  .pin-handle-name {
+    font-size: 0.96rem !important;
+  }
+  .pin-follow-pill-btn {
+    padding: 4px 9px !important;
+    font-size: 0.68rem !important;
+  }
+  .pin-stats-row {
+    gap: 6px !important;
+  }
+  .pin-stat-num {
+    font-size: 0.9rem !important;
+  }
+  .pin-stat-lbl {
+    font-size: 0.66rem !important;
+  }
+  .pin-reel-col {
+    height: 130px !important;
+  }
+  .social-direct-cards.pin-compact-links {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* 7. Fix SMC Genesis Mobile Grids & Flow Architecture */
+  .smc-pillars-strip {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .smc-flow-stages {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  .smc-flow-arrow {
+    transform: rotate(90deg) !important;
+    margin: 2px auto !important;
+  }
+  .smc-stat-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+}
+
+/* Light Mode Support for Pin 7rg9IHjAC Mobile Hub & Dock */
+[data-theme="light"] .orbix-pill-tab {
+  background: rgba(15, 23, 42, 0.06);
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #334155;
+}
+[data-theme="light"] .orbix-pill-tab.active {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+[data-theme="light"] .orbix-mobile-bottom-bar {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.14);
+}
+[data-theme="light"] .orbix-dock-search-btn,
+[data-theme="light"] .orbix-dock-swipe-track {
+  background: #f1f5f9;
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #0f172a;
+}
+[data-theme="light"] .orbix-dock-chevrons {
+  color: #475569;
+}
+
+
 
