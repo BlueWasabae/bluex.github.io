@@ -3694,6 +3694,34 @@ document.addEventListener('DOMContentLoaded', () => {
       // Apex Star Lens Flare
       const starRadius = 14 + Math.sin(time * 2.5) * 4;
       drawLensStar(rightApexX, rightApexY, starRadius, '#00ffe0');
+
+      // Floating Profit Widget (GatesFX Scene 3)
+      const pW = 145;
+      const pH = 44;
+      const pX = rightApexX;
+      const pY = rightApexY - 34;
+
+      ctx.fillStyle = 'rgba(8, 14, 24, 0.8)';
+      ctx.strokeStyle = 'rgba(0, 255, 224, 0.45)';
+      ctx.lineWidth = 1;
+      ctx.shadowColor = 'rgba(0, 255, 224, 0.4)';
+      ctx.shadowBlur = 12;
+      ctx.beginPath();
+      ctx.roundRect(pX - pW * 0.5, pY - pH * 0.5, pW, pH, 8);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.shadowBlur = 0;
+      ctx.font = '700 8.5px "JetBrains Mono", monospace';
+      ctx.fillStyle = '#64748b';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('DISCIPLINE EXPECTANCY', pX - pW * 0.42, pY - 8);
+
+      ctx.font = '800 15px "JetBrains Mono", monospace';
+      ctx.fillStyle = '#00ffe0';
+      ctx.fillText(profitSequence[profitIndex], pX - pW * 0.42, pY + 10);
+
       ctx.restore();
 
 
