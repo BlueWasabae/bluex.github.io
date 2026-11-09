@@ -4186,4 +4186,230 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Strategy Motion Theater
   initDisciplineTheater();
 
+  // ========================================================
+  // PIN jJHQXs9lj: INTERACTIVE SOCIAL DOCK & MORPHING PROFILE CARD
+  // ========================================================
+  function initPinSocialDockShowcase() {
+    const showcase = document.getElementById('pinSocialShowcase');
+    const dockBar = document.getElementById('pinSocialDockBar');
+    const dockCursor = document.getElementById('pinDockCursor');
+    const profileCard = document.getElementById('pinProfileCard');
+    const reelsGrid = document.getElementById('pinReelsGrid');
+    if (!showcase || !dockBar || !profileCard) return;
+
+    const dockItems = Array.from(dockBar.querySelectorAll('.pin-dock-item'));
+    const compactLinks = Array.from(showcase.querySelectorAll('[data-platform-trigger]'));
+
+    const avatarLink = document.getElementById('pinAvatarLink');
+    const handleName = document.getElementById('pinHandleName');
+    const followBtn = document.getElementById('pinFollowBtn');
+    const followText = document.getElementById('pinFollowText');
+    const stat1Num = document.getElementById('pinStat1Num');
+    const stat1Lbl = document.getElementById('pinStat1Lbl');
+    const stat2Num = document.getElementById('pinStat2Num');
+    const stat2Lbl = document.getElementById('pinStat2Lbl');
+    const stat3Num = document.getElementById('pinStat3Num');
+    const stat3Lbl = document.getElementById('pinStat3Lbl');
+    const bioCategory = document.getElementById('pinBioCategory');
+    const bioHeadline = document.getElementById('pinBioHeadline');
+    const bioTags = document.getElementById('pinBioTags');
+    const dashLink = document.getElementById('pinDashboardLink');
+    const dashTitle = document.getElementById('pinDashTitle');
+    const dashMetric = document.getElementById('pinDashMetric');
+
+    const PLATFORMS = {
+      'tg-dm': {
+        handle: 'Le_Bluue',
+        url: 'https://t.me/Le_Bluue',
+        stat1: { num: 450, prefix: '', suffix: '+', decimals: 0, lbl: 'setups' },
+        stat2: { num: 15.4, prefix: '', suffix: 'K', decimals: 1, lbl: 'followers' },
+        stat3: { num: 3, prefix: '1:', suffix: '+', decimals: 0, lbl: 'min R:R' },
+        category: 'Telegram Direct Mentorship • @Le_Bluue',
+        headline: 'Replace emotional urges with mechanical discipline',
+        tags: 'XAU/USD (GOLD) | BOS • iBOS | SUPPLY & DEMAND',
+        dashTitle: 'Professional execution dashboard',
+        dashMetric: '2M+ views & daily XAU/USD breakdowns in the last 30 days.',
+        followDone: 'Following'
+      },
+      'tt': {
+        handle: 'lebluue',
+        url: 'https://www.tiktok.com/@lebluue?_r=1',
+        stat1: { num: 120, prefix: '', suffix: '+', decimals: 0, lbl: 'reels' },
+        stat2: { num: 18.2, prefix: '', suffix: 'K', decimals: 1, lbl: 'followers' },
+        stat3: { num: 2.1, prefix: '', suffix: 'M', decimals: 1, lbl: 'views' },
+        category: 'Official TikTok Creator • @lebluue',
+        headline: 'Daily Gold (XAU/USD) structure & psychology breakdowns',
+        tags: '4H BIAS → 15M S&D → 3M BOS | ZERO M1 NOISE',
+        dashTitle: 'Creator performance dashboard',
+        dashMetric: '2.1M+ views on XAU/USD Supply & Demand reels.',
+        followDone: 'Following'
+      },
+      'fb': {
+        handle: 'bluewasabae',
+        url: 'https://www.facebook.com/bluewasabae',
+        stat1: { num: 260, prefix: '', suffix: '+', decimals: 0, lbl: 'posts' },
+        stat2: { num: 14.5, prefix: '', suffix: 'K', decimals: 1, lbl: 'followers' },
+        stat3: { num: 100, prefix: '', suffix: '%', decimals: 0, lbl: 'mechanical' },
+        category: 'Official Facebook Page • fb.com/bluewasabae',
+        headline: 'Live chart markups, trade recaps & mentorship updates',
+        tags: 'PURE SUPPLY & DEMAND | 0.5% – 1.0% CAPITAL RISK',
+        dashTitle: 'Professional page insights',
+        dashMetric: 'Weekly XAU/USD trade breakdowns & student progress.',
+        followDone: 'Following'
+      },
+      'tg': {
+        handle: 'bluexacademy',
+        url: 'https://t.me/bluexacademy',
+        stat1: { num: 580, prefix: '', suffix: '+', decimals: 0, lbl: 'charts' },
+        stat2: { num: 6.4, prefix: '', suffix: 'K', decimals: 1, lbl: 'members' },
+        stat3: { num: 10, prefix: '1:', suffix: '+', decimals: 0, lbl: 'asymmetry' },
+        category: 'Official Telegram Community • t.me/bluexacademy',
+        headline: 'Real-time Gold structure updates & educational vault',
+        tags: 'BOS • iBOS | LIQUIDITY SWEEPS | DISCIPLINED EDGE',
+        dashTitle: 'Community broadcast hub',
+        dashMetric: 'Live session alerts, 4H/15M zone markups & student Q&A.',
+        followDone: 'Joined'
+      },
+      'yt': {
+        handle: 'bluextrader',
+        url: 'https://youtube.com/@bluextrader?si=kYuO3ACRxIhHMilT',
+        stat1: { num: 85, prefix: '', suffix: '+', decimals: 0, lbl: 'sessions' },
+        stat2: { num: 9.8, prefix: '', suffix: 'K', decimals: 1, lbl: 'subscribers' },
+        stat3: { num: 4, prefix: '', suffix: 'K', decimals: 0, lbl: 'masterclass' },
+        category: 'Official YouTube Channel • @bluextrader',
+        headline: 'Deep-dive SMC Genesis masterclasses & full breakdowns',
+        tags: 'FULL S&D ARCHITECTURE | RISK MATH | TRADING MINDSET',
+        dashTitle: 'Studio analytics dashboard',
+        dashMetric: 'In-depth XAU/USD execution walkthroughs & live streams.',
+        followDone: 'Subscribed'
+      }
+    };
+
+    const platformOrder = ['tg-dm', 'tt', 'fb', 'tg', 'yt'];
+    let currentIdx = 0;
+    let isHovered = false;
+    let reelsShifted = false;
+
+    function animateStatCounter(el, cfg) {
+      if (!el || !cfg) return;
+      const duration = 520;
+      const start = performance.now();
+      const startVal = cfg.num * 0.35;
+      function tick(now) {
+        const p = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const cur = startVal + (cfg.num - startVal) * eased;
+        const formatted = cfg.decimals > 0 ? cur.toFixed(cfg.decimals) : Math.round(cur);
+        el.textContent = (cfg.prefix || '') + formatted + (cfg.suffix || '');
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function moveDockCursorTo(itemEl) {
+      if (!dockCursor || !itemEl || !dockBar) return;
+      const barRect = dockBar.getBoundingClientRect();
+      const itemRect = itemEl.getBoundingClientRect();
+      if (barRect.width === 0) return;
+      const offsetLeft = (itemRect.left - barRect.left) + (itemRect.width * 0.52);
+      dockCursor.style.left = `${offsetLeft}px`;
+      dockCursor.classList.add('clicking');
+      itemEl.classList.add('is-clicked');
+      setTimeout(() => {
+        dockCursor.classList.remove('clicking');
+        itemEl.classList.remove('is-clicked');
+      }, 240);
+    }
+
+    function switchPlatform(platformKey, idxOverride) {
+      const data = PLATFORMS[platformKey];
+      if (!data) return;
+
+      if (typeof idxOverride === 'number') {
+        currentIdx = idxOverride;
+      } else {
+        const foundIdx = platformOrder.indexOf(platformKey);
+        if (foundIdx !== -1) currentIdx = foundIdx;
+      }
+
+      const targetDockItem = dockItems.find(btn => btn.getAttribute('data-platform') === platformKey);
+      dockItems.forEach(btn => btn.classList.toggle('active', btn === targetDockItem));
+      compactLinks.forEach(link => link.classList.toggle('active-link', link.getAttribute('data-platform-trigger') === platformKey));
+
+      if (targetDockItem) moveDockCursorTo(targetDockItem);
+
+      profileCard.classList.add('is-switching');
+      setTimeout(() => profileCard.classList.remove('is-switching'), 260);
+      profileCard.setAttribute('data-active-platform', platformKey);
+
+      if (avatarLink) avatarLink.href = data.url;
+      if (handleName) {
+        handleName.textContent = data.handle;
+        handleName.href = data.url;
+      }
+      if (dashLink) dashLink.href = data.url;
+
+      // Follow -> Following button transition (like 00:12-00:13 in Pin jJHQXs9lj)
+      if (followBtn && followText) {
+        followBtn.href = data.url;
+        followBtn.classList.remove('is-following');
+        followText.textContent = 'Follow';
+        setTimeout(() => {
+          followBtn.classList.add('is-following');
+          followText.textContent = data.followDone;
+        }, 420);
+      }
+
+      animateStatCounter(stat1Num, data.stat1);
+      if (stat1Lbl) stat1Lbl.textContent = data.stat1.lbl;
+      animateStatCounter(stat2Num, data.stat2);
+      if (stat2Lbl) stat2Lbl.textContent = data.stat2.lbl;
+      animateStatCounter(stat3Num, data.stat3);
+      if (stat3Lbl) stat3Lbl.textContent = data.stat3.lbl;
+
+      if (bioCategory) bioCategory.textContent = data.category;
+      if (bioHeadline) bioHeadline.textContent = data.headline;
+      if (bioTags) bioTags.textContent = data.tags;
+      if (dashTitle) dashTitle.textContent = data.dashTitle;
+      if (dashMetric) dashMetric.textContent = data.dashMetric;
+
+      // Toggle staggered 3-column vertical reel scroll
+      reelsShifted = !reelsShifted;
+      if (reelsGrid) {
+        reelsGrid.classList.toggle('reels-shifted', reelsShifted);
+      }
+    }
+
+    dockItems.forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        const key = btn.getAttribute('data-platform');
+        const url = btn.getAttribute('data-url');
+        if (profileCard.getAttribute('data-active-platform') === key && url) {
+          window.open(url, '_blank', 'noopener,noreferrer');
+        } else {
+          switchPlatform(key, i);
+        }
+      });
+    });
+
+    compactLinks.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        const key = link.getAttribute('data-platform-trigger');
+        if (key) switchPlatform(key);
+      });
+    });
+
+    showcase.addEventListener('mouseenter', () => { isHovered = true; });
+    showcase.addEventListener('mouseleave', () => { isHovered = false; });
+
+    // Auto-cycle through platforms & vertical reel shifts every 3.6s
+    setInterval(() => {
+      if (isHovered || document.hidden) return;
+      currentIdx = (currentIdx + 1) % platformOrder.length;
+      switchPlatform(platformOrder[currentIdx], currentIdx);
+    }, 3600);
+  }
+
+  initPinSocialDockShowcase();
+
 });
