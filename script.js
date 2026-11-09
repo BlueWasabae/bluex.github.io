@@ -3952,4 +3952,219 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollTicking = true;
     }
   }, { passive: true });
+
+  // ========================================================
+  // 13. PIN 143PauHRM: "TRADING VS GAMBLING" STRATEGY MOTION THEATER
+  // ========================================================
+  function initDisciplineTheater() {
+    const theater = document.getElementById('disciplineMotionTheater');
+    if (!theater) return;
+
+    const scenes = theater.querySelectorAll('.theater-scene');
+    const chips = theater.querySelectorAll('.theater-scene-chip');
+    const stageLabel = document.getElementById('theaterStageLabel');
+    const progressBar = document.getElementById('theaterProgressBar');
+    const playPauseBtn = document.getElementById('theaterPlayPauseBtn');
+    const pauseIcon = document.getElementById('theaterPauseIcon');
+    const playIcon = document.getElementById('theaterPlayIcon');
+    const balanceAmount = document.getElementById('theaterBalanceAmount');
+    const balanceTicker = document.getElementById('theaterBalanceTicker');
+    const scene2Caption = document.getElementById('scene2Caption');
+    const scene2Sub = document.getElementById('scene2Sub');
+    const collapseAvatarWrap = document.getElementById('collapseAvatarWrap');
+    const canvas = document.getElementById('theaterCanvas');
+
+    const sceneTitles = [
+      '01 // The Crowd',
+      '02 // The Gamble',
+      '03 // The Collapse',
+      '04 // The Fulcrum',
+      '05 // The Law'
+    ];
+
+    let currentScene = 0;
+    let isPlaying = true;
+    let sceneStartTime = performance.now();
+    const SCENE_DURATION = 4600; // 4.6s per scene
+    let animFrame = null;
+    let isHovered = false;
+    let balanceCollapsed = false;
+
+    // Background Canvas Particles
+    let ctx = null;
+    let particles = [];
+    if (canvas) {
+      ctx = canvas.getContext('2d');
+      const resizeCanvas = () => {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      };
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      for (let i = 0; i < 22; i++) {
+        particles.push({
+          x: Math.random() * (canvas.width || 400),
+          y: Math.random() * (canvas.height || 300),
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: -0.2 - Math.random() * 0.4,
+          r: 1 + Math.random() * 2,
+          color: Math.random() > 0.5 ? 'rgba(0, 255, 224, ' : 'rgba(245, 158, 11, ',
+          alpha: 0.15 + Math.random() * 0.35
+        });
+      }
+    }
+
+    function renderTheaterCanvas() {
+      if (!ctx || !canvas) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.y < 0) {
+          p.y = canvas.height;
+          p.x = Math.random() * canvas.width;
+        }
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + p.alpha + ')';
+        ctx.fill();
+      }
+    }
+
+    function setScene(index) {
+      currentScene = (index + scenes.length) % scenes.length;
+      sceneStartTime = performance.now();
+      balanceCollapsed = false;
+
+      // Update Scenes
+      scenes.forEach((s, idx) => {
+        if (idx === currentScene) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+
+      // Update Scrubber Chips
+      chips.forEach((c, idx) => {
+        if (idx === currentScene) {
+          c.classList.add('active');
+        } else {
+          c.classList.remove('active');
+        }
+      });
+
+      // Update Stage Label
+      if (stageLabel) {
+        stageLabel.textContent = sceneTitles[currentScene] || ('0' + (currentScene + 1) + ' // Stage');
+      }
+
+      // Reset Scene 2 (Collapse) state if switching away or returning
+      if (currentScene === 2) {
+        if (balanceAmount) {
+          balanceAmount.textContent = '$9,297';
+          balanceAmount.classList.remove('collapsed');
+        }
+        if (balanceTicker) {
+          balanceTicker.textContent = '+34.2% Peak Surge';
+          balanceTicker.classList.remove('collapsed');
+        }
+        if (scene2Caption) scene2Caption.textContent = 'with no plan,';
+        if (scene2Sub) {
+          scene2Sub.textContent = 'and hoping.';
+          scene2Sub.classList.remove('warning-glow');
+        }
+        if (collapseAvatarWrap) collapseAvatarWrap.style.display = 'none';
+      }
+    }
+
+    function loop(time) {
+      renderTheaterCanvas();
+
+      if (isPlaying && !isHovered && !document.documentElement.classList.contains('effects-frozen')) {
+        const elapsed = time - sceneStartTime;
+        const progress = Math.min(100, (elapsed / SCENE_DURATION) * 100);
+
+        if (progressBar) {
+          progressBar.style.width = progress + '%';
+        }
+
+        // Special timing for Scene 2 (Collapse): crash after 1.4s
+        if (currentScene === 2 && elapsed >= 1400 && !balanceCollapsed) {
+          balanceCollapsed = true;
+          if (balanceAmount) {
+            balanceAmount.textContent = '$2,776';
+            balanceAmount.classList.add('collapsed');
+          }
+          if (balanceTicker) {
+            balanceTicker.textContent = '-70.1% Max Drawdown';
+            balanceTicker.classList.add('collapsed');
+          }
+          if (scene2Caption) scene2Caption.textContent = 'and hoping...';
+          if (scene2Sub) {
+            scene2Sub.textContent = 'ACCOUNT WIPED OUT.';
+            scene2Sub.classList.add('warning-glow');
+          }
+          if (collapseAvatarWrap) collapseAvatarWrap.style.display = 'block';
+        }
+
+        if (elapsed >= SCENE_DURATION) {
+          setScene(currentScene + 1);
+        }
+      }
+
+      animFrame = requestAnimationFrame(loop);
+    }
+
+    // Play/Pause button handler
+    if (playPauseBtn) {
+      playPauseBtn.addEventListener('click', () => {
+        isPlaying = !isPlaying;
+        if (pauseIcon && playIcon) {
+          pauseIcon.style.display = isPlaying ? 'block' : 'none';
+          playIcon.style.display = isPlaying ? 'none' : 'block';
+        }
+        if (isPlaying) {
+          sceneStartTime = performance.now();
+        }
+      });
+    }
+
+    // Scrubber chip click handlers
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const targetScene = parseInt(chip.getAttribute('data-scene'), 10);
+        if (!isNaN(targetScene)) {
+          setScene(targetScene);
+        }
+      });
+    });
+
+    // Pause on mouse hover for comfortable reading
+    theater.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+    theater.addEventListener('mouseleave', () => {
+      isHovered = false;
+      const curPct = (progressBar && progressBar.style.width) ? parseFloat(progressBar.style.width) : 0;
+      sceneStartTime = performance.now() - (curPct / 100 * SCENE_DURATION);
+    });
+
+    // Touch support for mobile
+    theater.addEventListener('touchstart', () => { isHovered = true; }, { passive: true });
+    theater.addEventListener('touchend', () => {
+      setTimeout(() => { isHovered = false; }, 2000);
+    }, { passive: true });
+
+    // Start theater
+    setScene(0);
+    animFrame = requestAnimationFrame(loop);
+  }
+
+  // Initialize Strategy Motion Theater
+  initDisciplineTheater();
+
 });

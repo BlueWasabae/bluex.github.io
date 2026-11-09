@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles.css?v=20261109v15">
+  <link rel="stylesheet" href="/styles.css?v=20261109v17">
 </head>
 <body>
 
@@ -738,21 +738,211 @@
 
               <!-- Prop Firm & Quantitative Execution Showcase (Pinterest Pin 935482153865056813) -->
               <div class="prop-showcase-card">
-                <div class="prop-showcase-header">
-                  <span class="prop-showcase-badge">
-                    <span class="prop-showcase-dot"></span>
-                    <span data-i18n="capital.propBadge">Prop Firm &amp; Capital Mandate</span>
-                  </span>
-                  <span class="prop-showcase-tag" data-i18n="capital.propTag">Quantitative Framework</span>
+                <!-- Cockpit Top Bar -->
+                <div class="cockpit-top-bar">
+                  <div class="cockpit-dots">
+                    <span class="cockpit-dot cdot-red"></span>
+                    <span class="cockpit-dot cdot-yellow"></span>
+                    <span class="cockpit-dot cdot-green"></span>
+                  </div>
+                  <div class="cockpit-title-text">
+                    <span>BlueX Quantitative Cockpit</span>
+                    <span class="cockpit-sep">•</span>
+                    <span>XAU/USD (Gold) Execution Desk</span>
+                  </div>
+                  <div class="cockpit-live-feed-pill">
+                    <span class="theater-pulse-dot"></span>
+                    <span>Live 3M Feed</span>
+                  </div>
                 </div>
-                <div class="prop-showcase-frame">
-                  <img src="assets/images/disciplined-trader-focus.jpg" alt="Institutional Quantitative Trading &amp; Portfolio Architecture" class="prop-showcase-img" loading="lazy" width="736" height="552">
-                  <div class="prop-showcase-glow-overlay"></div>
+
+                <!-- Discipline Motion Theater (Pinterest Pin 143PauHRM: "Trading vs Gambling") -->
+                <div class="discipline-motion-theater" id="disciplineMotionTheater" aria-label="Trading vs Gambling Strategy Motion Theater">
+                  <!-- Control Bar -->
+                  <div class="theater-control-bar">
+                    <div class="theater-stage-label" id="theaterStageLabel">01 // The Crowd</div>
+                    <div class="theater-progress-track">
+                      <div class="theater-progress-bar" id="theaterProgressBar"></div>
+                    </div>
+                    <button type="button" class="theater-btn-toggle" id="theaterPlayPauseBtn" aria-label="Toggle Play/Pause" title="Play / Pause Animation">
+                      <svg id="theaterPauseIcon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="5" y="4" width="4" height="16" rx="1" />
+                        <rect x="15" y="4" width="4" height="16" rx="1" />
+                      </svg>
+                      <svg id="theaterPlayIcon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+                        <polygon points="6,4 20,12 6,20" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  <!-- Stage Viewport -->
+                  <div class="theater-stage-viewport" id="theaterViewport">
+                    <canvas id="theaterCanvas" class="theater-canvas"></canvas>
+
+                    <!-- Scene 0: The Crowd Illusion -->
+                    <div class="theater-scene active" data-scene="0">
+                      <div class="scene-heading-anim">
+                        <span class="scene-sub-phrase">Most people aren’t trading,</span>
+                        <h3 class="scene-main-phrase">They Follow The Crowd.</h3>
+                      </div>
+                      <div class="scene-avatars-cluster">
+                        <div class="glowing-avatar-orb orb-left">
+                          <div class="avatar-head">
+                            <span class="avatar-smile">⌣</span>
+                          </div>
+                          <div class="avatar-body"></div>
+                        </div>
+                        <div class="glowing-avatar-orb orb-center">
+                          <div class="avatar-head">
+                            <span class="avatar-smile">⌣</span>
+                          </div>
+                          <div class="avatar-body"></div>
+                        </div>
+                        <div class="glowing-avatar-orb orb-right">
+                          <div class="avatar-head">
+                            <span class="avatar-smile">⌣</span>
+                          </div>
+                          <div class="avatar-body"></div>
+                        </div>
+                      </div>
+                      <span class="scene-naive-badge">95% Retail Herd • No Structural Edge</span>
+                    </div>
+
+                    <!-- Scene 1: The Gamble (3D Isometric Rolling Dice) -->
+                    <div class="theater-scene" data-scene="1">
+                      <div class="scene-heading-anim">
+                        <span class="scene-sub-phrase">Without rules &amp; risk discipline,</span>
+                        <h3 class="scene-main-phrase warning-glow">they’re gambling.</h3>
+                      </div>
+                      <div class="scene-dice-container">
+                        <div class="isometric-die die-1">
+                          <div class="die-face die-front"><span class="pip pip-center"></span></div>
+                          <div class="die-face die-back"><span class="pip pip-tl"></span><span class="pip pip-tr"></span><span class="pip pip-bl"></span><span class="pip pip-br"></span><span class="pip pip-center"></span><span class="pip" style="top:24.5px;left:10px"></span></div>
+                          <div class="die-face die-top"><span class="pip pip-tl"></span><span class="pip pip-br"></span></div>
+                          <div class="die-face die-bottom"><span class="pip pip-tl"></span><span class="pip pip-tr"></span><span class="pip pip-bl"></span><span class="pip pip-br"></span><span class="pip pip-center"></span></div>
+                          <div class="die-face die-left"><span class="pip pip-tl"></span><span class="pip pip-center"></span><span class="pip pip-br"></span></div>
+                          <div class="die-face die-right"><span class="pip pip-tl"></span><span class="pip pip-tr"></span><span class="pip pip-bl"></span><span class="pip pip-br"></span></div>
+                        </div>
+                        <div class="isometric-die die-2">
+                          <div class="die-face die-front"><span class="pip pip-tl"></span><span class="pip pip-center"></span><span class="pip pip-br"></span></div>
+                          <div class="die-face die-back"><span class="pip pip-tl"></span><span class="pip pip-tr"></span><span class="pip pip-bl"></span><span class="pip pip-br"></span></div>
+                          <div class="die-face die-top"><span class="pip pip-tl"></span><span class="pip pip-tr"></span><span class="pip pip-bl"></span><span class="pip pip-br"></span><span class="pip pip-center"></span></div>
+                          <div class="die-face die-bottom"><span class="pip pip-center"></span></div>
+                          <div class="die-face die-left"><span class="pip pip-tl"></span><span class="pip pip-br"></span></div>
+                          <div class="die-face die-right"><span class="pip pip-tl"></span><span class="pip pip-tr"></span><span class="pip pip-bl"></span><span class="pip pip-br"></span><span class="pip pip-center"></span><span class="pip" style="top:24.5px;left:10px"></span></div>
+                        </div>
+                      </div>
+                      <span class="scene-gamble-badge">⚠️ Random Entries • No Invalidation Gate</span>
+                    </div>
+
+                    <!-- Scene 2: The Collapse ($9,297 -> $2,776 Crash & Hoping) -->
+                    <div class="theater-scene" data-scene="2">
+                      <div class="scene-heading-anim">
+                        <span class="scene-sub-phrase" id="scene2Caption">with no plan,</span>
+                        <h3 class="scene-main-phrase" id="scene2Sub">and hoping.</h3>
+                      </div>
+                      <div class="scene-balance-display">
+                        <div class="balance-amount" id="theaterBalanceAmount">$9,297</div>
+                        <div class="balance-ticker" id="theaterBalanceTicker">+34.2% Peak Surge</div>
+                      </div>
+                      <div class="scene-asset-cards-floating">
+                        <span class="floating-asset-card" style="animation-delay: 0s;">🪙 BTC $94.2k</span>
+                        <span class="floating-asset-card" style="animation-delay: 0.2s;">⚡ XAU/USD Gold</span>
+                        <span class="floating-asset-card" style="animation-delay: 0.4s;">💠 SOL $182</span>
+                        <span class="floating-asset-card" style="animation-delay: 0.6s;">💎 ETH $3.4k</span>
+                      </div>
+                      <div class="collapse-avatar-face" id="collapseAvatarWrap" style="display:none; margin-top:10px;">
+                        <div class="avatar-head sad">
+                          <span class="avatar-frown">⌢</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Scene 3: The Fulcrum Seesaw (Structured Execution vs Impulse) -->
+                    <div class="theater-scene" data-scene="3">
+                      <div class="scene-heading-anim">
+                        <span class="scene-sub-phrase">Mechanical Execution</span>
+                        <h3 class="scene-main-phrase cyan-glow">is your only edge.</h3>
+                      </div>
+                      <div class="scene-fulcrum-scale-wrapper">
+                        <div class="scale-seesaw-beam" id="theaterSeesawBeam">
+                          <div class="scale-pan left-pan">
+                            <span class="pan-title">Institutional Rule</span>
+                            <span class="pan-metric">0.5% - 1.0% Risk</span>
+                            <span class="pan-sub">1:3+ Asymmetric RR</span>
+                          </div>
+                          <div class="scale-pan right-pan">
+                            <div class="scale-buy-pill">
+                              <span>BUY</span>
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                              </svg>
+                            </div>
+                            <span class="pan-sub">3M Confirmation</span>
+                          </div>
+                        </div>
+                        <div class="scale-fulcrum-pivot">
+                          <div class="triangle-pivot-shape"></div>
+                          <div class="fulcrum-base-glow"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Scene 4: The Market Law (The Chart Doesn't Care • It Only Rewards Discipline) -->
+                    <div class="theater-scene" data-scene="4">
+                      <div class="scene-chart-card-glass">
+                        <div class="chart-header-row">
+                          <span class="chart-tag">XAU/USD 3M EXECUTION</span>
+                          <span class="chart-tag-rule">BOS BODY-CLOSE</span>
+                        </div>
+                        <svg class="chart-candlestick-svg" viewBox="0 0 320 60" preserveAspectRatio="none">
+                          <!-- Supply Demand Zone -->
+                          <rect x="20" y="8" width="80" height="28" fill="rgba(0, 255, 224, 0.12)" stroke="rgba(0, 255, 224, 0.4)" stroke-dasharray="3 3" rx="4" />
+                          <text x="24" y="22" fill="#00ffe0" font-size="8" font-family="monospace" font-weight="bold">15M S&D ZONE</text>
+                          <!-- Bearish candles -->
+                          <line x1="45" y1="4" x2="45" y2="44" stroke="#ef4444" stroke-width="1.5" />
+                          <rect x="41" y="14" width="8" height="22" fill="#ef4444" rx="1.5" />
+                          <line x1="75" y1="12" x2="75" y2="48" stroke="#ef4444" stroke-width="1.5" />
+                          <rect x="71" y="20" width="8" height="20" fill="#ef4444" rx="1.5" />
+                          <!-- Sweep Wick & Reversal Candlesticks -->
+                          <line x1="105" y1="18" x2="105" y2="56" stroke="#00ffe0" stroke-width="1.5" />
+                          <rect x="101" y="26" width="8" height="18" fill="#00ffe0" rx="1.5" />
+                          <line x1="140" y1="16" x2="140" y2="46" stroke="#00ffe0" stroke-width="1.5" />
+                          <rect x="136" y="22" width="8" height="18" fill="#00ffe0" rx="1.5" />
+                          <!-- BOS Body Close Line -->
+                          <line x1="140" y1="20" x2="300" y2="20" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4 4" />
+                          <text x="200" y="15" fill="#f59e0b" font-size="8" font-family="monospace" font-weight="bold">BOS BODY-CLOSE CONFIRMED</text>
+                          <!-- Strong displacement candle -->
+                          <line x1="180" y1="8" x2="180" y2="38" stroke="#00ffe0" stroke-width="1.5" />
+                          <rect x="176" y="10" width="8" height="22" fill="#00ffe0" rx="1.5" />
+                          <line x1="220" y1="4" x2="220" y2="30" stroke="#00ffe0" stroke-width="1.5" />
+                          <rect x="216" y="6" width="8" height="18" fill="#00ffe0" rx="1.5" />
+                        </svg>
+                      </div>
+                      <div class="discipline-verdict-banner">
+                        <span class="scene-sub-phrase">The chart doesn’t care how confident you feel.</span>
+                        <h3 class="scene-main-phrase gold-glow">IT ONLY REWARDS DISCIPLINE.</h3>
+                        <span class="verdict-rule-pill">Pure Mechanical Rules • 4H Bias → 15M S&amp;D → 3M BOS</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Scrubber Chips -->
+                  <div class="theater-scrubber-bar" id="theaterScrubberBar">
+                    <button type="button" class="theater-scene-chip active" data-scene="0">01 The Crowd</button>
+                    <button type="button" class="theater-scene-chip" data-scene="1">02 The Gamble</button>
+                    <button type="button" class="theater-scene-chip" data-scene="2">03 The Collapse</button>
+                    <button type="button" class="theater-scene-chip" data-scene="3">04 The Fulcrum</button>
+                    <button type="button" class="theater-scene-chip" data-scene="4">05 The Law</button>
+                  </div>
                 </div>
+
+                <!-- Footer Institutional Tags -->
                 <div class="prop-showcase-footer">
-                  <span class="prop-showcase-chip" data-i18n="capital.propChip1">⚡ High Watermark Execution</span>
-                  <span class="prop-showcase-chip" data-i18n="capital.propChip2">🛡️ Fixed Risk Mandates</span>
-                  <span class="prop-showcase-chip" data-i18n="capital.propChip3">🎯 Scaled Allocation</span>
+                  <span class="prop-showcase-chip">⚡ Pure Mechanical Execution • 0.5% - 1.0% Risk</span>
+                  <span class="prop-showcase-chip">📐 Bos iBos (Body-Close)</span>
+                  <span class="prop-showcase-chip">⏱️ 4H → 15M → 3M (No M1)</span>
+                  <span class="prop-showcase-chip">🛡️ Min 1:3+ RR Mandate</span>
                 </div>
               </div>
             </div>
@@ -2003,6 +2193,6 @@
     <span id="toastMessage">Notification message</span>
   </div>
 
-  <script src="/script.js?v=20261109v15"></script>
+  <script src="/script.js?v=20261109v17"></script>
 </body>
 </html>
