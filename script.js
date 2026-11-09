@@ -3212,6 +3212,327 @@ document.addEventListener('DOMContentLoaded', () => {
   initBluexStarlightCanvas();
 
   // ========================================================
+  
+  // ========================================================
+  // 9D. PINTEREST 965811082600638023 SYNAPTIC DATA STREAM LOOP & 3D BG
+  // ========================================================
+  
+  // Part A: 3D Floating Score Cards Loop Background (Hero Canvas)
+  const loopBgCanvas = document.getElementById('smcGenesisLoopBgCanvas');
+  if (loopBgCanvas) {
+    const ctx = loopBgCanvas.getContext('2d');
+    let width = 0;
+    let height = 0;
+    let animId = null;
+    let isBgPaused = false;
+
+    const cardsData = [
+      { score: '98/100', badge: 'HOT', tag: 'BOS iBOS', color: '#00ffe0' },
+      { score: '94/100', badge: 'HOT', tag: '15M S&D', color: '#b6f332' },
+      { score: '91/100', badge: 'A+', tag: '3M ENTRY', color: '#00ffe0' },
+      { score: '88/100', badge: 'WARM', tag: '4H BIAS', color: '#f59e0b' },
+      { score: '96/100', badge: 'HOT', tag: '1:4.5 RR', color: '#ffd700' },
+      { score: '92/100', badge: 'A+', tag: 'DISCIPLINE', color: '#00ffe0' },
+      { score: '89/100', badge: 'WARM', tag: 'BASE S&D', color: '#b6f332' },
+      { score: '97/100', badge: 'HOT', tag: '0.5% RISK', color: '#ffd700' },
+      { score: '93/100', badge: 'A+', tag: 'NO M1', color: '#00ffe0' },
+      { score: '86/100', badge: 'WARM', tag: 'MACRO FLOW', color: '#f59e0b' },
+    ];
+
+    const cardEntities = cardsData.map((d, i) => {
+      return {
+        ...d,
+        x: 0.15 + (i % 5) * 0.18 + (Math.random() * 0.08 - 0.04),
+        y: 0.2 + (Math.floor(i / 2) % 4) * 0.2 + (Math.random() * 0.1 - 0.05),
+        z: 150 + i * 110 + Math.random() * 50,
+        speed: 0.65 + Math.random() * 0.45,
+        w: 180,
+        h: 58
+      };
+    });
+
+    function resizeCanvas() {
+      const parent = loopBgCanvas.parentElement;
+      if (!parent) return;
+      width = parent.offsetWidth;
+      height = parent.offsetHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      loopBgCanvas.width = width * dpr;
+      loopBgCanvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    function render3DLoop() {
+      if (document.documentElement.classList.contains('effects-frozen') || isBgPaused) {
+        animId = null;
+        return;
+      }
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Ambient radial glow orbs
+      const time = Date.now() * 0.0008;
+      const glowGrad = ctx.createRadialGradient(
+        width * 0.5 + Math.sin(time) * 120, height * 0.4 + Math.cos(time * 0.8) * 80, 10,
+        width * 0.5, height * 0.4, width * 0.6
+      );
+      glowGrad.addColorStop(0, 'rgba(0, 255, 224, 0.055)');
+      glowGrad.addColorStop(0.5, 'rgba(182, 243, 50, 0.025)');
+      glowGrad.addColorStop(1, 'transparent');
+      ctx.fillStyle = glowGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      // Sort by depth (farthest first)
+      cardEntities.sort((a, b) => b.z - a.z);
+
+      const fov = 480;
+      const cx = width * 0.5;
+      const cy = height * 0.45;
+
+      for (let i = 0; i < cardEntities.length; i++) {
+        const c = cardEntities[i];
+        c.z -= c.speed;
+        if (c.z < -100) {
+          c.z = 1100 + Math.random() * 80;
+          c.x = 0.12 + Math.random() * 0.76;
+          c.y = 0.15 + Math.random() * 0.7;
+        }
+
+        const scale = fov / (fov + c.z);
+        if (scale <= 0) continue;
+
+        const posX = cx + (c.x * width - cx) * scale;
+        const posY = cy + (c.y * height - cy) * scale;
+
+        // Alpha calculation based on distance
+        let alpha = 1;
+        if (c.z > 800) {
+          alpha = (1100 - c.z) / 300;
+        } else if (c.z < 120) {
+          alpha = (c.z + 100) / 220;
+        }
+        alpha = Math.max(0, Math.min(1, alpha)) * 0.85;
+        if (alpha <= 0.02) continue;
+
+        const cw = c.w * scale;
+        const ch = c.h * scale;
+        const cr = 10 * scale;
+
+        ctx.save();
+        ctx.globalAlpha = alpha;
+
+        // Card frosted glass background
+        ctx.fillStyle = 'rgba(10, 16, 28, 0.75)';
+        ctx.strokeStyle = c.color;
+        ctx.lineWidth = 1 * scale;
+        ctx.shadowColor = c.color;
+        ctx.shadowBlur = 12 * scale;
+
+        ctx.beginPath();
+        ctx.roundRect(posX - cw * 0.5, posY - ch * 0.5, cw, ch, cr);
+        ctx.fill();
+        ctx.stroke();
+
+        // Avatar dot / icon
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = c.color;
+        ctx.beginPath();
+        ctx.arc(posX - cw * 0.35, posY, 6 * scale, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Score text
+        ctx.font = `800 ${14 * scale}px Outfit, sans-serif`;
+        ctx.fillStyle = '#ffffff';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(c.score, posX - cw * 0.22, posY - 2 * scale);
+
+        // Badge pill
+        const bw = 40 * scale;
+        const bh = 14 * scale;
+        const bx = posX + cw * 0.22;
+        const by = posY;
+        ctx.fillStyle = c.color + '22';
+        ctx.strokeStyle = c.color + '88';
+        ctx.lineWidth = 0.8 * scale;
+        ctx.beginPath();
+        ctx.roundRect(bx - bw * 0.5, by - bh * 0.5, bw, bh, 4 * scale);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.font = `700 ${8 * scale}px "JetBrains Mono", monospace`;
+        ctx.fillStyle = c.color;
+        ctx.textAlign = 'center';
+        ctx.fillText(c.badge, bx, by);
+
+        ctx.restore();
+      }
+
+      animId = requestAnimationFrame(render3DLoop);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isBgPaused = !entry.isIntersecting;
+        if (entry.isIntersecting && !animId) {
+          animId = requestAnimationFrame(render3DLoop);
+        }
+      });
+    }, { threshold: 0.05 });
+    observer.observe(loopBgCanvas);
+
+    animId = requestAnimationFrame(render3DLoop);
+  }
+
+
+  // Part B: Interactive Synaptic Convergence Component Loop
+  const synapticBox = document.getElementById('smcSynapticEngineBox');
+  if (synapticBox) {
+    const nodes = synapticBox.querySelectorAll('.synaptic-node');
+    const filaments = synapticBox.querySelectorAll('.synaptic-filament');
+    const photon = document.getElementById('synapticPhoton');
+    const photonMotion = document.getElementById('photonMotion');
+    const hubScoreNum = document.getElementById('hubScoreNum');
+    const hubScoreBadgeText = document.getElementById('hubScoreBadgeText');
+    const hubStatusMsg = document.getElementById('hubStatusMsg');
+    const checkItems = synapticBox.querySelectorAll('.hub-check-item');
+    const hubCard = document.getElementById('synapticHubCard');
+
+    const stagesData = [
+      {
+        score: 88,
+        badge: 'MACRO BIAS ALIGNED',
+        msg: 'Stage 01 synchronized • 4H Directional bias confirmed',
+        path: 'M 0,36 C 80,36 80,180 160,180',
+        color: '#00ffe0'
+      },
+      {
+        score: 92,
+        badge: 'S&D ORIGIN FORMED',
+        msg: 'Stage 02 synchronized • 15M High-displacement base located',
+        path: 'M 0,108 C 80,108 80,180 160,180',
+        color: '#f59e0b'
+      },
+      {
+        score: 96,
+        badge: '3M BOS BODY-CLOSE',
+        msg: 'Stage 03 synchronized • Structural shift confirmed (No M1)',
+        path: 'M 0,180 C 80,180 80,180 160,180',
+        color: '#b6f332'
+      },
+      {
+        score: 98,
+        badge: '1:4.8 ASYMMETRIC RR',
+        msg: 'Mathematical edge active • Minimum 1:3 to 1:10+ profile',
+        path: 'M 0,252 C 80,252 80,180 160,180',
+        color: '#ffd700'
+      },
+      {
+        score: 100,
+        badge: 'DISCIPLINE LOCKED',
+        msg: 'Capital defense active • Exactly 0.5% – 1.0% account risk',
+        path: 'M 0,324 C 80,324 80,180 160,180',
+        color: '#00ffe0'
+      }
+    ];
+
+    let currentStage = 0;
+    let cycleTimer = null;
+    let manualHold = false;
+
+    function activateStage(index) {
+      currentStage = index;
+      const data = stagesData[index];
+
+      // Update Nodes
+      nodes.forEach((n, i) => {
+        if (i === index) n.classList.add('active');
+        else n.classList.remove('active');
+      });
+
+      // Update Filaments
+      filaments.forEach((f, i) => {
+        if (i === index) f.classList.add('active');
+        else f.classList.remove('active');
+      });
+
+      // Update SVG Photon
+      if (photonMotion) {
+        photonMotion.setAttribute('path', data.path);
+      }
+      if (photon) {
+        photon.setAttribute('fill', data.color);
+      }
+
+      // Animate Score Counter
+      if (hubScoreNum) {
+        const startScore = parseInt(hubScoreNum.textContent) || 88;
+        const targetScore = data.score;
+        let count = startScore;
+        const step = targetScore > startScore ? 1 : -1;
+        const counterInt = setInterval(() => {
+          if (count === targetScore) {
+            clearInterval(counterInt);
+          } else {
+            count += step;
+            hubScoreNum.textContent = count;
+          }
+        }, 30);
+      }
+
+      // Update Badge & Status
+      if (hubScoreBadgeText) hubScoreBadgeText.textContent = data.badge;
+      if (hubStatusMsg) hubStatusMsg.textContent = data.msg;
+
+      // Update Checklist items
+      checkItems.forEach((item, i) => {
+        if (i === index) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+
+      // Pulse Card border
+      if (hubCard) {
+        hubCard.style.borderColor = data.color + 'aa';
+        setTimeout(() => {
+          if (hubCard) hubCard.style.borderColor = 'rgba(0, 255, 224, 0.3)';
+        }, 600);
+      }
+    }
+
+    function startCycle() {
+      if (cycleTimer) clearInterval(cycleTimer);
+      cycleTimer = setInterval(() => {
+        if (manualHold || document.documentElement.classList.contains('effects-frozen')) return;
+        const next = (currentStage + 1) % stagesData.length;
+        activateStage(next);
+      }, 3200);
+    }
+
+    nodes.forEach(node => {
+      node.addEventListener('click', () => {
+        const idx = parseInt(node.getAttribute('data-index')) || 0;
+        activateStage(idx);
+        manualHold = true;
+        clearTimeout(node._holdTimer);
+        node._holdTimer = setTimeout(() => { manualHold = false; }, 6000);
+      });
+
+      node.addEventListener('mouseenter', () => {
+        const idx = parseInt(node.getAttribute('data-index')) || 0;
+        activateStage(idx);
+      });
+    });
+
+    startCycle();
+  }
+
+
   // 11B. CONCISE KHMER NAVBAR LABELS TO PREVENT TOOLBAR OVERFLOW
   // ========================================================
   if (translations && translations.km) {
