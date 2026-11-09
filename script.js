@@ -4201,6 +4201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const compactLinks = Array.from(showcase.querySelectorAll('[data-platform-trigger]'));
 
     const avatarLink = document.getElementById('pinAvatarLink');
+    const avatarImg = document.getElementById('pinAvatarImg');
     const handleName = document.getElementById('pinHandleName');
     const followBtn = document.getElementById('pinFollowBtn');
     const followText = document.getElementById('pinFollowText');
@@ -4216,72 +4217,189 @@ document.addEventListener('DOMContentLoaded', () => {
     const dashLink = document.getElementById('pinDashboardLink');
     const dashTitle = document.getElementById('pinDashTitle');
     const dashMetric = document.getElementById('pinDashMetric');
+    const dashScreenImg = document.getElementById('pinDashScreenImg');
+    const dashScreenBadge = document.getElementById('pinDashScreenBadge');
+    const profileGlare = document.getElementById('pinProfileGlare');
+
+    const reelCol0 = document.getElementById('pinReelCol0');
+    const reelImg0A = document.getElementById('pinReelImg0A');
+    const reelTag0A = document.getElementById('pinReelTag0A');
+    const reelCap0A = document.getElementById('pinReelCap0A');
+    const reelImg0B = document.getElementById('pinReelImg0B');
+    const reelTag0B = document.getElementById('pinReelTag0B');
+    const reelCap0B = document.getElementById('pinReelCap0B');
+
+    const reelCol1 = document.getElementById('pinReelCol1');
+    const centerImgA = document.getElementById('pinCenterPillImgA');
+    const centerSubA = document.getElementById('pinCenterPillSubA');
+    const centerMainA = document.getElementById('pinCenterPillMainA');
+    const centerImgB = document.getElementById('pinCenterPillImgB');
+    const centerSubB = document.getElementById('pinCenterPillSubB');
+    const centerMainB = document.getElementById('pinCenterPillMainB');
+
+    const reelCol2 = document.getElementById('pinReelCol2');
+    const reelImg2A = document.getElementById('pinReelImg2A');
+    const reelTag2A = document.getElementById('pinReelTag2A');
+    const reelCap2A = document.getElementById('pinReelCap2A');
+    const reelImg2B = document.getElementById('pinReelImg2B');
+    const reelTag2B = document.getElementById('pinReelTag2B');
+    const reelCap2B = document.getElementById('pinReelCap2B');
 
     const PLATFORMS = {
       'tg-dm': {
-        handle: 'Le_Bluue',
+        handle: 'Blue X (@Le_Bluue)',
+        avatar: '/assets/images/socials/tg-comm-avatar.jpg',
         url: 'https://t.me/Le_Bluue',
-        stat1: { num: 450, prefix: '', suffix: '+', decimals: 0, lbl: 'setups' },
-        stat2: { num: 15.4, prefix: '', suffix: 'K', decimals: 1, lbl: 'followers' },
-        stat3: { num: 3, prefix: '1:', suffix: '+', decimals: 0, lbl: 'min R:R' },
-        category: 'Telegram Direct Mentorship • @Le_Bluue',
-        headline: 'Replace emotional urges with mechanical discipline',
+        stat1: { num: 88, prefix: '', suffix: '', decimals: 0, lbl: 'academy subs' },
+        stat2: { num: 44, prefix: '', suffix: '', decimals: 0, lbl: 'trade videos' },
+        stat3: { num: 36, prefix: '', suffix: '', decimals: 0, lbl: 'chart setups' },
+        category: 'Telegram Official Mentor • @Le_Bluue',
+        headline: 'Mentoring in SMC Genesis 📚 • Direct 1-on-1 Contact',
         tags: 'XAU/USD (GOLD) | BOS • iBOS | SUPPLY & DEMAND',
-        dashTitle: 'Professional execution dashboard',
-        dashMetric: '2M+ views & daily XAU/USD breakdowns in the last 30 days.',
-        followDone: 'Following'
+        dashTitle: 'Direct Mentorship & SMC Genesis Registration',
+        dashMetric: 'Instant 1-on-1 Telegram DM (@Le_Bluue) • Active 24/7',
+        dashImg: '/assets/images/socials/tg-post-4.jpg',
+        dashBadge: 'LIVE CHART',
+        followDone: 'Message 1-on-1',
+        col0: {
+          href: 'https://t.me/s/bluexacademy',
+          imgA: '/assets/images/socials/tg-post-4.jpg', tagA: '15M S&D', capA: 'XAU/USD TradingView Setup',
+          imgB: '/assets/images/socials/tg-post-2.jpg', tagB: 'MT5 LIVE', capB: 'XAUUSD.fx M5 Execution'
+        },
+        col1: {
+          href: 'https://t.me/Le_Bluue',
+          imgA: '/assets/images/socials/tg-comm-avatar.jpg', subA: 'MENTORSHIP', mainA: 'SMC Genesis 📚',
+          imgB: '/assets/images/bluex-3d-logo.png', subB: 'DIRECT DM', mainB: '@Le_Bluue ↗'
+        },
+        col2: {
+          href: 'https://www.youtube.com/watch?v=ACsklIOiGkc',
+          imgA: '/assets/images/socials/yt-vid-2.jpg', tagA: 'SMC 2.0', capA: 'មេរៀន SMC 2.0 For Free???',
+          imgB: '/assets/images/socials/yt-vid-3.jpg', tagB: '350 PIPS', capB: 'XAU/USD Entry Recap'
+        }
       },
       'tt': {
-        handle: 'lebluue',
+        handle: 'BlueX (@lebluue)',
+        avatar: '/assets/images/socials/tt-avatar.jpg',
         url: 'https://www.tiktok.com/@lebluue?_r=1',
-        stat1: { num: 120, prefix: '', suffix: '+', decimals: 0, lbl: 'reels' },
-        stat2: { num: 18.2, prefix: '', suffix: 'K', decimals: 1, lbl: 'followers' },
-        stat3: { num: 2.1, prefix: '', suffix: 'M', decimals: 1, lbl: 'views' },
-        category: 'Official TikTok Creator • @lebluue',
-        headline: 'Daily Gold (XAU/USD) structure & psychology breakdowns',
-        tags: '4H BIAS → 15M S&D → 3M BOS | ZERO M1 NOISE',
-        dashTitle: 'Creator performance dashboard',
-        dashMetric: '2.1M+ views on XAU/USD Supply & Demand reels.',
-        followDone: 'Following'
+        stat1: { num: 208, prefix: '', suffix: '', decimals: 0, lbl: 'videos' },
+        stat2: { num: 128, prefix: '', suffix: '', decimals: 0, lbl: 'followers' },
+        stat3: { num: 22.1, prefix: '', suffix: 'K', decimals: 1, lbl: 'likes' },
+        category: 'Official TikTok Creator • @lebluue (25 Following)',
+        headline: 'More Info • https://t.me/Le_Bluue • FB: Le Bluue',
+        tags: '208 VIDEOS | 22.1K LIKES | XAU/USD GOLD & MINDSET',
+        dashTitle: 'TikTok Creator Analytics (@lebluue)',
+        dashMetric: '22.1K total likes across 208 published trading & mindset videos.',
+        dashImg: '/assets/images/socials/tt-avatar.jpg',
+        dashBadge: '22.1K LIKES',
+        followDone: 'Follow @lebluue',
+        col0: {
+          href: 'https://www.tiktok.com/@lebluue?_r=1',
+          imgA: '/assets/images/socials/tt-avatar.jpg', tagA: '22.1K LIKES', capA: '@lebluue Official Profile',
+          imgB: '/assets/images/socials/tg-post-2.jpg', tagB: '208 VIDEOS', capB: 'Live Gold M5 Execution'
+        },
+        col1: {
+          href: 'https://www.tiktok.com/@lebluue?_r=1',
+          imgA: '/assets/images/socials/tt-avatar.jpg', subA: 'TIKTOK CREATOR', mainA: '22.1K Likes',
+          imgB: '/assets/images/bluex-3d-logo.png', subB: '208 VIDEOS', mainB: '@lebluue ↗'
+        },
+        col2: {
+          href: 'https://www.tiktok.com/@lebluue?_r=1',
+          imgA: '/assets/images/socials/tg-post-1.jpg', tagA: '4K REEL', capA: 'High-Volume Zone Setup',
+          imgB: '/assets/images/socials/yt-vid-2.jpg', tagB: 'SMC 2.0', capB: 'Daily Trading Breakdowns'
+        }
       },
       'fb': {
-        handle: 'bluewasabae',
+        handle: 'Le Bluue (bluewasabae)',
+        avatar: '/assets/images/socials/tt-avatar.jpg',
         url: 'https://www.facebook.com/bluewasabae',
-        stat1: { num: 260, prefix: '', suffix: '+', decimals: 0, lbl: 'posts' },
-        stat2: { num: 14.5, prefix: '', suffix: 'K', decimals: 1, lbl: 'followers' },
-        stat3: { num: 100, prefix: '', suffix: '%', decimals: 0, lbl: 'mechanical' },
-        category: 'Official Facebook Page • fb.com/bluewasabae',
-        headline: 'Live chart markups, trade recaps & mentorship updates',
+        stat1: { num: 208, prefix: '', suffix: '', decimals: 0, lbl: 'reels & posts' },
+        stat2: { num: 22.1, prefix: '', suffix: 'K', decimals: 1, lbl: 'creator likes' },
+        stat3: { num: 88, prefix: '', suffix: '', decimals: 0, lbl: 'VIP members' },
+        category: 'Official Facebook Profile • fb.com/bluewasabae',
+        headline: 'FB: Le Bluue • Daily XAU/USD Gold Recaps & Community',
         tags: 'PURE SUPPLY & DEMAND | 0.5% – 1.0% CAPITAL RISK',
-        dashTitle: 'Professional page insights',
-        dashMetric: 'Weekly XAU/USD trade breakdowns & student progress.',
-        followDone: 'Following'
+        dashTitle: 'Facebook Profile Hub (fb.com/bluewasabae)',
+        dashMetric: 'Official Facebook of BlueX (Le Bluue) • Connected with @lebluue.',
+        dashImg: '/assets/images/socials/yt-vid-3.jpg',
+        dashBadge: 'FB: LE BLUUE',
+        followDone: 'Follow Page',
+        col0: {
+          href: 'https://www.facebook.com/bluewasabae',
+          imgA: '/assets/images/socials/yt-vid-3.jpg', tagA: '350 PIPS', capA: 'XAU/USD Entry Recap',
+          imgB: '/assets/images/socials/tg-post-4.jpg', tagB: 'CHART POST', capB: '15M Supply & Demand'
+        },
+        col1: {
+          href: 'https://www.facebook.com/bluewasabae',
+          imgA: '/assets/images/socials/tg-comm-avatar.jpg', subA: 'FACEBOOK', mainA: 'Le Bluue ↗',
+          imgB: '/assets/images/smc-genesis-logo.jpg', subB: 'OFFICIAL', mainB: 'bluewasabae'
+        },
+        col2: {
+          href: 'https://www.facebook.com/bluewasabae',
+          imgA: '/assets/images/socials/yt-vid-4.jpg', tagA: 'EPISODE 05', capA: 'Trading Psychology Live',
+          imgB: '/assets/images/socials/tt-avatar.jpg', tagB: 'LE BLUUE', capB: 'Official Creator Page'
+        }
       },
       'tg': {
-        handle: 'bluexacademy',
+        handle: 'BlueXAcademy',
+        avatar: '/assets/images/socials/tg-comm-avatar.jpg',
         url: 'https://t.me/bluexacademy',
-        stat1: { num: 580, prefix: '', suffix: '+', decimals: 0, lbl: 'charts' },
-        stat2: { num: 6.4, prefix: '', suffix: 'K', decimals: 1, lbl: 'members' },
-        stat3: { num: 10, prefix: '1:', suffix: '+', decimals: 0, lbl: 'asymmetry' },
-        category: 'Official Telegram Community • t.me/bluexacademy',
-        headline: 'Real-time Gold structure updates & educational vault',
-        tags: 'BOS • iBOS | LIQUIDITY SWEEPS | DISCIPLINED EDGE',
-        dashTitle: 'Community broadcast hub',
-        dashMetric: 'Live session alerts, 4H/15M zone markups & student Q&A.',
-        followDone: 'Joined'
+        stat1: { num: 88, prefix: '', suffix: '', decimals: 0, lbl: 'subscribers' },
+        stat2: { num: 44, prefix: '', suffix: '', decimals: 0, lbl: 'videos' },
+        stat3: { num: 36, prefix: '', suffix: '', decimals: 0, lbl: 'photos' },
+        category: 'Telegram Public Channel • t.me/bluexacademy (59 Links)',
+        headline: 'Financial Markets adviser & Study Course. Consistency & Risk management.',
+        tags: '88 SUBSCRIBERS | 44 VIDEOS | 36 PHOTOS | 59 LINKS',
+        dashTitle: 'Live Channel Preview (t.me/s/bluexacademy)',
+        dashMetric: '88 subscribers • 44 trading videos • 36 chart photos • 59 links.',
+        dashImg: '/assets/images/socials/tg-post-4.jpg',
+        dashBadge: '88 SUBS LIVE',
+        followDone: 'Join Channel',
+        col0: {
+          href: 'https://t.me/s/bluexacademy',
+          imgA: '/assets/images/socials/tg-post-4.jpg', tagA: '36 PHOTOS', capA: 'TradingView Gold 15M Setup',
+          imgB: '/assets/images/socials/tg-post-1.jpg', tagB: '4K CHART', capB: 'High-Volume Zone Map'
+        },
+        col1: {
+          href: 'https://t.me/bluexacademy',
+          imgA: '/assets/images/socials/tg-comm-avatar.jpg', subA: '88 SUBSCRIBERS', mainA: 'BlueXAcademy',
+          imgB: '/assets/images/smc-genesis-logo.jpg', subB: '44 VIDEOS', mainB: 'Join Channel ↗'
+        },
+        col2: {
+          href: 'https://t.me/s/bluexacademy',
+          imgA: '/assets/images/socials/tg-post-2.jpg', tagA: 'LIVE MT5', capA: 'XAUUSD.fx M5 Buy Execution',
+          imgB: '/assets/images/socials/yt-vid-3.jpg', tagB: '59 LINKS', capB: 'Daily Gold Breakdowns'
+        }
       },
       'yt': {
-        handle: 'bluextrader',
+        handle: 'BlueX Daily Trading',
+        avatar: '/assets/images/socials/yt-avatar.jpg',
         url: 'https://youtube.com/@bluextrader?si=kYuO3ACRxIhHMilT',
-        stat1: { num: 85, prefix: '', suffix: '+', decimals: 0, lbl: 'sessions' },
-        stat2: { num: 9.8, prefix: '', suffix: 'K', decimals: 1, lbl: 'subscribers' },
-        stat3: { num: 4, prefix: '', suffix: 'K', decimals: 0, lbl: 'masterclass' },
+        stat1: { num: 33, prefix: '', suffix: '', decimals: 0, lbl: 'subscribers' },
+        stat2: { num: 6, prefix: '', suffix: '', decimals: 0, lbl: 'videos' },
+        stat3: { num: 169, prefix: '', suffix: '+', decimals: 0, lbl: 'top views' },
         category: 'Official YouTube Channel • @bluextrader',
-        headline: 'Deep-dive SMC Genesis masterclasses & full breakdowns',
-        tags: 'FULL S&D ARCHITECTURE | RISK MATH | TRADING MINDSET',
-        dashTitle: 'Studio analytics dashboard',
-        dashMetric: 'In-depth XAU/USD execution walkthroughs & live streams.',
-        followDone: 'Subscribed'
+        headline: 'Welcome to BlueX Daily Trading 📈 SMC, price action & risk management.',
+        tags: '33 SUBSCRIBERS | 6 VIDEOS | SMC 2.0 & 350 PIPS RECAP',
+        dashTitle: 'YouTube Studio Screenshot (@bluextrader)',
+        dashMetric: '6 full episodes including "មេរៀន SMC 2.0 For Free???" & "350 Pips Entry Recap".',
+        dashImg: '/assets/images/socials/screen-youtube.png',
+        dashBadge: 'YOUTUBE LIVE',
+        followDone: 'Subscribe',
+        col0: {
+          href: 'https://www.youtube.com/watch?v=ACsklIOiGkc',
+          imgA: '/assets/images/socials/yt-vid-2.jpg', tagA: '169 VIEWS', capA: 'មេរៀន SMC 2.0 For Free???',
+          imgB: '/assets/images/socials/yt-vid-1.jpg', tagB: '53 VIEWS', capB: 'Trading Psychology | BlueX'
+        },
+        col1: {
+          href: 'https://youtube.com/@bluextrader?si=kYuO3ACRxIhHMilT',
+          imgA: '/assets/images/socials/yt-avatar.jpg', subA: '33 SUBSCRIBERS', mainA: '@bluextrader',
+          imgB: '/assets/images/socials/screen-youtube.png', subB: '6 VIDEOS', mainB: 'Subscribe ↗'
+        },
+        col2: {
+          href: 'https://www.youtube.com/watch?v=zxQDup9_R4E',
+          imgA: '/assets/images/socials/yt-vid-3.jpg', tagA: '350 PIPS', capA: 'Entry Recap 30/07/2026',
+          imgB: '/assets/images/socials/yt-vid-4.jpg', tagB: 'EPISODE 05', capB: 'Trading Psychology Ep.5'
+        }
       }
     };
 
@@ -4292,9 +4410,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function animateStatCounter(el, cfg) {
       if (!el || !cfg) return;
+      el.classList.remove('stat-pop');
+      void el.offsetWidth;
+      el.classList.add('stat-pop');
       const duration = 520;
       const start = performance.now();
-      const startVal = cfg.num * 0.35;
+      const startVal = cfg.num * 0.25;
       function tick(now) {
         const p = Math.min(1, (now - start) / duration);
         const eased = 1 - Math.pow(1 - p, 3);
@@ -4339,25 +4460,30 @@ document.addEventListener('DOMContentLoaded', () => {
       if (targetDockItem) moveDockCursorTo(targetDockItem);
 
       profileCard.classList.add('is-switching');
-      setTimeout(() => profileCard.classList.remove('is-switching'), 260);
+      setTimeout(() => profileCard.classList.remove('is-switching'), 320);
       profileCard.setAttribute('data-active-platform', platformKey);
 
       if (avatarLink) avatarLink.href = data.url;
+      if (avatarImg && data.avatar) {
+        avatarImg.src = data.avatar;
+      }
       if (handleName) {
         handleName.textContent = data.handle;
         handleName.href = data.url;
       }
       if (dashLink) dashLink.href = data.url;
+      if (dashScreenImg && data.dashImg) dashScreenImg.src = data.dashImg;
+      if (dashScreenBadge && data.dashBadge) dashScreenBadge.textContent = data.dashBadge;
 
-      // Follow -> Following button transition (like 00:12-00:13 in Pin jJHQXs9lj)
+      // Follow -> Active CTA button transition
       if (followBtn && followText) {
         followBtn.href = data.url;
         followBtn.classList.remove('is-following');
-        followText.textContent = 'Follow';
+        followText.textContent = 'Connect';
         setTimeout(() => {
           followBtn.classList.add('is-following');
           followText.textContent = data.followDone;
-        }, 420);
+        }, 320);
       }
 
       animateStatCounter(stat1Num, data.stat1);
@@ -4373,12 +4499,61 @@ document.addEventListener('DOMContentLoaded', () => {
       if (dashTitle) dashTitle.textContent = data.dashTitle;
       if (dashMetric) dashMetric.textContent = data.dashMetric;
 
+      // Update 3-Column Real Screenshots & Video Thumbnails
+      if (data.col0) {
+        if (reelCol0) reelCol0.href = data.col0.href;
+        if (reelImg0A) reelImg0A.src = data.col0.imgA;
+        if (reelTag0A) reelTag0A.textContent = data.col0.tagA;
+        if (reelCap0A) reelCap0A.textContent = data.col0.capA;
+        if (reelImg0B) reelImg0B.src = data.col0.imgB;
+        if (reelTag0B) reelTag0B.textContent = data.col0.tagB;
+        if (reelCap0B) reelCap0B.textContent = data.col0.capB;
+      }
+      if (data.col1) {
+        if (reelCol1) reelCol1.href = data.col1.href;
+        if (centerImgA) centerImgA.src = data.col1.imgA;
+        if (centerSubA) centerSubA.textContent = data.col1.subA;
+        if (centerMainA) centerMainA.textContent = data.col1.mainA;
+        if (centerImgB) centerImgB.src = data.col1.imgB;
+        if (centerSubB) centerSubB.textContent = data.col1.subB;
+        if (centerMainB) centerMainB.textContent = data.col1.mainB;
+      }
+      if (data.col2) {
+        if (reelCol2) reelCol2.href = data.col2.href;
+        if (reelImg2A) reelImg2A.src = data.col2.imgA;
+        if (reelTag2A) reelTag2A.textContent = data.col2.tagA;
+        if (reelCap2A) reelCap2A.textContent = data.col2.capA;
+        if (reelImg2B) reelImg2B.src = data.col2.imgB;
+        if (reelTag2B) reelTag2B.textContent = data.col2.tagB;
+        if (reelCap2B) reelCap2B.textContent = data.col2.capB;
+      }
+
       // Toggle staggered 3-column vertical reel scroll
       reelsShifted = !reelsShifted;
       if (reelsGrid) {
         reelsGrid.classList.toggle('reels-shifted', reelsShifted);
       }
     }
+
+    // 3D Interactive Perspective Tilt & Holographic Glare on Profile Card
+    profileCard.addEventListener('pointermove', e => {
+      if (window.innerWidth <= 768) return;
+      const rect = profileCard.getBoundingClientRect();
+      const nx = (e.clientX - rect.left) / rect.width;
+      const ny = (e.clientY - rect.top) / rect.height;
+      const rotY = (nx - 0.5) * 7.5;
+      const rotX = (0.5 - ny) * 6.5;
+      profileCard.style.transform = `perspective(1100px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-3px)`;
+      if (profileGlare) {
+        profileGlare.style.opacity = '1';
+        profileGlare.style.background = `radial-gradient(360px circle at ${(nx * 100).toFixed(1)}% ${(ny * 100).toFixed(1)}%, rgba(0, 245, 212, 0.16), rgba(56, 189, 248, 0.08) 42%, transparent 72%)`;
+      }
+    }, { passive: true });
+
+    profileCard.addEventListener('pointerleave', () => {
+      profileCard.style.transform = '';
+      if (profileGlare) profileGlare.style.opacity = '0';
+    });
 
     dockItems.forEach((btn, i) => {
       btn.addEventListener('click', () => {

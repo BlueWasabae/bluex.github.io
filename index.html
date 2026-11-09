@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles.css?v=20261110v25">
+  <link rel="stylesheet" href="/styles.css?v=20261110v26">
 </head>
 <body>
 
@@ -2445,20 +2445,23 @@
 
                 <!-- Morphing Frosted-Glass Social Profile Card -->
                 <div class="pin-profile-card" id="pinProfileCard" data-active-platform="tg-dm">
-                  <!-- Top-Left Ambient Platform Glow -->
+                  <!-- Top-Left Ambient Platform Glow + Holographic Glare & Scanline -->
                   <div class="pin-profile-ambient-glow" aria-hidden="true"></div>
+                  <div class="pin-profile-glare" id="pinProfileGlare" aria-hidden="true"></div>
+                  <div class="pin-profile-scanline" aria-hidden="true"></div>
 
                   <!-- Header: Glowing Ring Avatar + Handle + Verified Seal + Animated Counters -->
                   <div class="pin-profile-header">
                     <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="pin-avatar-ring-wrap" id="pinAvatarLink">
                       <div class="pin-avatar-neon-ring">
-                        <img src="assets/images/bluex-portrait.jpg" alt="BlueX Official Avatar" class="pin-avatar-img" loading="lazy" />
+                        <img src="/assets/images/socials/tg-comm-avatar.jpg" alt="BlueX Official Avatar" class="pin-avatar-img" id="pinAvatarImg" loading="lazy" />
                       </div>
+                      <span class="pin-avatar-live-dot" title="Verified Active Profile">LIVE</span>
                     </a>
 
                     <div class="pin-profile-meta">
                       <div class="pin-handle-row">
-                        <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="pin-handle-name" id="pinHandleName">Le_Bluue</a>
+                        <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="pin-handle-name" id="pinHandleName">Blue X (@Le_Bluue)</a>
                         <!-- Scalloped Verified Checkmark Badge -->
                         <span class="pin-verified-seal" title="Verified Official BlueX Channel">
                           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -2467,24 +2470,24 @@
                           </svg>
                         </span>
                         <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="pin-follow-pill-btn is-following" id="pinFollowBtn">
-                          <span class="pin-follow-text" id="pinFollowText">Following</span>
+                          <span class="pin-follow-text" id="pinFollowText">Message 1-on-1</span>
                           <span class="pin-follow-arrow">↗</span>
                         </a>
                       </div>
 
-                      <!-- 3 Animated Stat Counters -->
+                      <!-- 3 Real Verified Stat Counters -->
                       <div class="pin-stats-row">
                         <div class="pin-stat-item">
-                          <span class="pin-stat-num" id="pinStat1Num">450+</span>
-                          <span class="pin-stat-lbl" id="pinStat1Lbl">setups</span>
+                          <span class="pin-stat-num" id="pinStat1Num">88</span>
+                          <span class="pin-stat-lbl" id="pinStat1Lbl">academy subs</span>
                         </div>
                         <div class="pin-stat-item">
-                          <span class="pin-stat-num" id="pinStat2Num">15.4K</span>
-                          <span class="pin-stat-lbl" id="pinStat2Lbl">followers</span>
+                          <span class="pin-stat-num" id="pinStat2Num">44</span>
+                          <span class="pin-stat-lbl" id="pinStat2Lbl">trade videos</span>
                         </div>
                         <div class="pin-stat-item">
-                          <span class="pin-stat-num" id="pinStat3Num">1:3+</span>
-                          <span class="pin-stat-lbl" id="pinStat3Lbl">min R:R</span>
+                          <span class="pin-stat-num" id="pinStat3Num">36</span>
+                          <span class="pin-stat-lbl" id="pinStat3Lbl">chart setups</span>
                         </div>
                       </div>
                     </div>
@@ -2492,44 +2495,55 @@
 
                   <!-- Bio & Typewriter Specialty Block -->
                   <div class="pin-profile-bio">
-                    <div class="pin-bio-category" id="pinBioCategory">Telegram Direct Mentorship • @Le_Bluue</div>
-                    <div class="pin-bio-headline" id="pinBioHeadline">Replace emotional urges with mechanical discipline</div>
+                    <div class="pin-bio-category" id="pinBioCategory">Telegram Official Mentor • @Le_Bluue</div>
+                    <div class="pin-bio-headline" id="pinBioHeadline">Mentoring in SMC Genesis 📚 • Direct 1-on-1 Contact</div>
                     <div class="pin-bio-tags" id="pinBioTags">XAU/USD (GOLD) | BOS • iBOS | SUPPLY &amp; DEMAND</div>
                   </div>
 
-                  <!-- Frosted Slate Professional Dashboard Pill -->
+                  <!-- Frosted Slate Professional Dashboard + Live Channel Screenshot Preview -->
                   <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="pin-prof-dashboard" id="pinDashboardLink">
-                    <div class="pin-dash-title" id="pinDashTitle">Professional execution dashboard</div>
-                    <div class="pin-dash-sub">
-                      <span class="pin-dash-trend-arrow">↗</span>
-                      <span id="pinDashMetric">2M+ views &amp; daily XAU/USD breakdowns in the last 30 days.</span>
+                    <div class="pin-dash-left">
+                      <div class="pin-dash-title-row">
+                        <span class="pin-live-eq" aria-hidden="true">
+                          <i></i><i></i><i></i><i></i>
+                        </span>
+                        <span class="pin-dash-title" id="pinDashTitle">Direct Mentorship &amp; SMC Genesis Registration</span>
+                      </div>
+                      <div class="pin-dash-sub">
+                        <span class="pin-dash-trend-arrow">↗</span>
+                        <span id="pinDashMetric">Instant 1-on-1 Telegram DM (@Le_Bluue) • Active 24/7</span>
+                      </div>
+                    </div>
+                    <div class="pin-dash-screen-thumb">
+                      <img src="/assets/images/socials/tg-post-4.jpg" alt="Verified Channel Screenshot" id="pinDashScreenImg" loading="lazy" />
+                      <span class="pin-dash-screen-badge" id="pinDashScreenBadge">LIVE CHART</span>
                     </div>
                   </a>
 
-                  <!-- 3-Column Vertical Reel Grid with Staggered Vertical Slot-Scroll -->
+                  <!-- 3-Column Vertical Reel Grid with Real Platform Screenshots & Thumbnails -->
                   <div class="pin-reels-grid" id="pinReelsGrid">
                     <!-- Column 1 -->
-                    <a href="https://www.tiktok.com/@lebluue?_r=1" target="_blank" rel="noopener noreferrer" class="pin-reel-col" data-col="0">
+                    <a href="https://t.me/s/bluexacademy" target="_blank" rel="noopener noreferrer" class="pin-reel-col" id="pinReelCol0" data-col="0">
                       <div class="pin-reel-track">
                         <div class="pin-reel-slide">
-                          <img src="assets/images/institutional-trading-desk.jpg" alt="XAU/USD 3M Execution" loading="lazy" />
+                          <img src="/assets/images/socials/tg-post-4.jpg" alt="XAU/USD 15M Chart" id="pinReelImg0A" loading="lazy" />
                           <div class="pin-reel-overlay">
-                            <span class="pin-reel-tag">3M ENTRY</span>
-                            <span class="pin-reel-caption">XAU/USD BOS Body-Close</span>
+                            <span class="pin-reel-tag" id="pinReelTag0A">15M S&amp;D</span>
+                            <span class="pin-reel-caption" id="pinReelCap0A">XAU/USD TradingView Setup</span>
                           </div>
                         </div>
                         <div class="pin-reel-slide">
-                          <img src="assets/images/disciplined-trader-focus.jpg" alt="Mechanical Discipline" loading="lazy" />
+                          <img src="/assets/images/socials/tg-post-2.jpg" alt="MT5 Live Execution" id="pinReelImg0B" loading="lazy" />
                           <div class="pin-reel-overlay">
-                            <span class="pin-reel-tag">MINDSET</span>
-                            <span class="pin-reel-caption">0.5%–1.0% Risk Law</span>
+                            <span class="pin-reel-tag" id="pinReelTag0B">MT5 LIVE</span>
+                            <span class="pin-reel-caption" id="pinReelCap0B">XAUUSD.fx M5 Execution</span>
                           </div>
                         </div>
                       </div>
                     </a>
 
                     <!-- Column 2 (Center Feature Card with Wave Arcs & Floating Pill like Pin jJHQXs9lj) -->
-                    <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="pin-reel-col center-feature" data-col="1">
+                    <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="pin-reel-col center-feature" id="pinReelCol1" data-col="1">
                       <div class="pin-reel-track">
                         <div class="pin-reel-slide emerald-wave-slide">
                           <svg class="pin-wave-arcs" viewBox="0 0 120 180" fill="none" aria-hidden="true">
@@ -2539,10 +2553,10 @@
                             <path d="M35 118 C52 134, 68 134, 85 118" stroke="rgba(0,0,0,0.65)" stroke-width="5" stroke-linecap="round"/>
                           </svg>
                           <div class="pin-floating-media-pill">
-                            <img src="assets/images/smc-genesis-logo.jpg" alt="SMC Genesis" loading="lazy" />
+                            <img src="/assets/images/socials/tg-comm-avatar.jpg" alt="BlueX Official" id="pinCenterPillImgA" loading="lazy" />
                             <div class="pin-media-pill-text">
-                              <span class="pill-sub">MASTERCLASS</span>
-                              <span class="pill-main">SMC Genesis.</span>
+                              <span class="pill-sub" id="pinCenterPillSubA">MENTORSHIP</span>
+                              <span class="pill-main" id="pinCenterPillMainA">SMC Genesis 📚</span>
                             </div>
                           </div>
                         </div>
@@ -2554,10 +2568,10 @@
                             <path d="M35 118 C52 134, 68 134, 85 118" stroke="rgba(0,245,212,0.35)" stroke-width="4" stroke-linecap="round"/>
                           </svg>
                           <div class="pin-floating-media-pill">
-                            <img src="assets/images/bluex-3d-logo.png" alt="BlueX Pipeline" loading="lazy" />
+                            <img src="/assets/images/bluex-3d-logo.png" alt="BlueX Pipeline" id="pinCenterPillImgB" loading="lazy" />
                             <div class="pin-media-pill-text">
-                              <span class="pill-sub">PIPELINE</span>
-                              <span class="pill-main">4H → 15M → 3M</span>
+                              <span class="pill-sub" id="pinCenterPillSubB">PIPELINE</span>
+                              <span class="pill-main" id="pinCenterPillMainB">4H → 15M → 3M</span>
                             </div>
                           </div>
                         </div>
@@ -2565,20 +2579,20 @@
                     </a>
 
                     <!-- Column 3 -->
-                    <a href="https://youtube.com/@bluextrader?si=kYuO3ACRxIhHMilT" target="_blank" rel="noopener noreferrer" class="pin-reel-col" data-col="2">
+                    <a href="https://www.youtube.com/watch?v=ACsklIOiGkc" target="_blank" rel="noopener noreferrer" class="pin-reel-col" id="pinReelCol2" data-col="2">
                       <div class="pin-reel-track">
                         <div class="pin-reel-slide">
-                          <img src="assets/images/live-teaching-analysis.jpg" alt="Live Market Breakdown" loading="lazy" />
+                          <img src="/assets/images/socials/yt-vid-2.jpg" alt="SMC 2.0 Free Lesson" id="pinReelImg2A" loading="lazy" />
                           <div class="pin-reel-overlay">
-                            <span class="pin-reel-tag">PURE S&amp;D</span>
-                            <span class="pin-reel-caption">15M Supply &amp; Demand</span>
+                            <span class="pin-reel-tag" id="pinReelTag2A">SMC 2.0</span>
+                            <span class="pin-reel-caption" id="pinReelCap2A">មេរៀន SMC 2.0 For Free???</span>
                           </div>
                         </div>
                         <div class="pin-reel-slide">
-                          <img src="assets/images/bluex-hero-portrait.png" alt="BlueX Trading Desk" loading="lazy" />
+                          <img src="/assets/images/socials/yt-vid-3.jpg" alt="350 Pips Entry Recap" id="pinReelImg2B" loading="lazy" />
                           <div class="pin-reel-overlay">
-                            <span class="pin-reel-tag">1:3 TO 1:10+</span>
-                            <span class="pin-reel-caption">Asymmetric Edge</span>
+                            <span class="pin-reel-tag" id="pinReelTag2B">350 PIPS</span>
+                            <span class="pin-reel-caption" id="pinReelCap2B">XAU/USD Entry Recap</span>
                           </div>
                         </div>
                       </div>
@@ -2586,31 +2600,31 @@
                   </div>
                 </div>
 
-                <!-- Compact 5-Channel Direct Quick-Access Strip -->
+                <!-- Compact 5-Channel Direct Quick-Access Strip with Real Verified Counts -->
                 <div class="social-direct-cards pin-compact-links">
-                  <a href="https://www.facebook.com/bluewasabae" target="_blank" rel="noopener noreferrer" class="social-direct-box fb" data-platform-trigger="fb" title="Follow BlueX on Facebook">
+                  <a href="https://www.facebook.com/bluewasabae" target="_blank" rel="noopener noreferrer" class="social-direct-box fb" data-platform-trigger="fb" title="Follow Le Bluue on Facebook">
                     <span class="pin-mini-dot fb"></span>
-                    <span class="social-box-title">Facebook</span>
+                    <span class="social-box-title">Facebook • Le Bluue</span>
                     <span class="social-box-handle">fb.com/bluewasabae ↗</span>
                   </a>
-                  <a href="https://www.tiktok.com/@lebluue?_r=1" target="_blank" rel="noopener noreferrer" class="social-direct-box tt" data-platform-trigger="tt" title="Watch BlueX on TikTok">
+                  <a href="https://www.tiktok.com/@lebluue?_r=1" target="_blank" rel="noopener noreferrer" class="social-direct-box tt" data-platform-trigger="tt" title="Watch BlueX on TikTok (208 Videos • 22.1K Likes)">
                     <span class="pin-mini-dot tt"></span>
-                    <span class="social-box-title">TikTok</span>
-                    <span class="social-box-handle">@lebluue ↗</span>
+                    <span class="social-box-title">TikTok • 22.1K Likes</span>
+                    <span class="social-box-handle">@lebluue (208 Vids) ↗</span>
                   </a>
-                  <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="social-direct-box tg tg-dm" data-platform-trigger="tg-dm" title="Direct DM BlueX on Telegram (@Le_Bluue)">
+                  <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="social-direct-box tg tg-dm" data-platform-trigger="tg-dm" title="Direct DM Blue X on Telegram (@Le_Bluue)">
                     <span class="pin-mini-dot tg-dm"></span>
-                    <span class="social-box-title">Telegram DM</span>
-                    <span class="social-box-handle">@Le_Bluue ↗</span>
+                    <span class="social-box-title">Telegram DM • Blue X</span>
+                    <span class="social-box-handle">@Le_Bluue (1-on-1) ↗</span>
                   </a>
-                  <a href="https://t.me/bluexacademy" target="_blank" rel="noopener noreferrer" class="social-direct-box tg" data-platform-trigger="tg" title="Join BlueX Telegram Community Group">
+                  <a href="https://t.me/bluexacademy" target="_blank" rel="noopener noreferrer" class="social-direct-box tg" data-platform-trigger="tg" title="Join BlueXAcademy Telegram Channel (88 Subscribers • 44 Videos)">
                     <span class="pin-mini-dot tg"></span>
-                    <span class="social-box-title">Community</span>
+                    <span class="social-box-title">Channel • 88 Subs</span>
                     <span class="social-box-handle">t.me/bluexacademy ↗</span>
                   </a>
-                  <a href="https://youtube.com/@bluextrader?si=kYuO3ACRxIhHMilT" target="_blank" rel="noopener noreferrer" class="social-direct-box yt full-col" data-platform-trigger="yt" title="Subscribe to BlueX on YouTube">
+                  <a href="https://youtube.com/@bluextrader?si=kYuO3ACRxIhHMilT" target="_blank" rel="noopener noreferrer" class="social-direct-box yt full-col" data-platform-trigger="yt" title="Subscribe to BlueX Daily Trading on YouTube (33 Subscribers • 6 Videos)">
                     <span class="pin-mini-dot yt"></span>
-                    <span class="social-box-title">YouTube</span>
+                    <span class="social-box-title">YouTube • BlueX Daily Trading (33 Subs • 6 Videos)</span>
                     <span class="social-box-handle">@bluextrader ↗</span>
                   </a>
                 </div>
@@ -2960,6 +2974,6 @@
     <span id="toastMessage">Notification message</span>
   </div>
 
-  <script src="/script.js?v=20261110v25"></script>
+  <script src="/script.js?v=20261110v26"></script>
 </body>
 </html>
