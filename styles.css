@@ -23206,30 +23206,30 @@ html.effects-frozen .pin1up-fab-orb::before {
 
 /* Light Mode Clean Parity for Neat Top Navbar */
 [data-theme="light"] .site-header .nav-wrapper {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border-color: rgba(15, 23, 42, 0.1) !important;
+  background: rgba(16, 26, 42, 0.88) !important;
+  border-color: rgba(125, 211, 252, 0.18) !important;
   box-shadow:
-    0 12px 32px rgba(15, 23, 42, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    0 12px 32px rgba(4, 10, 22, 0.45),
+    inset 0 1px 0 rgba(186, 230, 253, 0.12) !important;
 }
 
 @media (min-width: 1280px) {
   [data-theme="light"] .site-header .nav-link {
-    color: #475569 !important;
+    color: #94a3b8 !important;
   }
   [data-theme="light"] .site-header .nav-link:hover {
-    color: #0f172a !important;
-    background: rgba(15, 23, 42, 0.05) !important;
+    color: #f1f5f9 !important;
+    background: rgba(56, 189, 248, 0.1) !important;
   }
   [data-theme="light"] .site-header .nav-link.active {
-    background: rgba(2, 132, 199, 0.1) !important;
-    border-color: rgba(2, 132, 199, 0.32) !important;
-    color: #0369a1 !important;
+    background: rgba(56, 189, 248, 0.16) !important;
+    border-color: rgba(56, 189, 248, 0.42) !important;
+    color: #7dd3fc !important;
   }
   [data-theme="light"] .nav-more-menu {
-    background: rgba(255, 255, 255, 0.96);
-    border-color: rgba(15, 23, 42, 0.1);
-    box-shadow: 0 16px 38px rgba(15, 23, 42, 0.12);
+    background: rgba(15, 24, 40, 0.96);
+    border-color: rgba(125, 211, 252, 0.2);
+    box-shadow: 0 16px 38px rgba(4, 10, 22, 0.65);
   }
 }
 
@@ -23237,19 +23237,343 @@ html.effects-frozen .pin1up-fab-orb::before {
   [data-theme="light"] .site-header #langToggleBtn,
   [data-theme="light"] .site-header #themeToggleBtn,
   [data-theme="light"] .site-header #fxToggleBtn {
-    background: rgba(15, 23, 42, 0.05) !important;
-    border-color: rgba(15, 23, 42, 0.12) !important;
-    box-shadow: none !important;
+    background: rgba(56, 189, 248, 0.08) !important;
+    border-color: rgba(125, 211, 252, 0.24) !important;
+    box-shadow: inset 0 1px 0 rgba(186, 230, 253, 0.12) !important;
   }
   [data-theme="light"] .site-header #langToggleBtn #langBtnText {
-    color: #0f172a !important;
+    color: #e2e8f0 !important;
   }
   [data-theme="light"] .site-header .nav-cta-btn {
-    background: linear-gradient(135deg, #0284c7, #0d9488) !important;
-    border-color: transparent !important;
-    color: #ffffff !important;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.28) 0%, rgba(0, 245, 212, 0.24) 100%) !important;
+    border-color: rgba(56, 189, 248, 0.52) !important;
+    color: #f8fafc !important;
   }
 }
+
+/* =========================================================================
+   2026-11-10 MASTER OVERHAUL:
+   1. DIM-COOL NORDIC SLATE-ICE [data-theme="light"] PALETTE
+   2. SEAMLESS INTER-SECTION COLOR & BOUNDARY BLENDING
+   3. HIGH-FPS SCROLL COMPOSITING & BLUR REDUCTION
+   ========================================================================= */
+
+/* --- 1. DIM-COOL NORDIC SLATE-ICE THEME ([data-theme="light"]) --- */
+[data-theme="light"] {
+  --bg-main: #0d1522 !important;
+  --bg-card: #152236 !important;
+  --bg-card-subtle: #192840 !important;
+  --bg-card-hover: #1e304c !important;
+  --text-primary: #e2e8f0 !important;
+  --text-secondary: #cbd5e1 !important;
+  --text-muted: #94a3b8 !important;
+  --border-subtle: rgba(148, 163, 184, 0.15) !important;
+  --border-medium: rgba(125, 211, 252, 0.24) !important;
+  --border-gold: rgba(251, 191, 36, 0.38) !important;
+  --border-cyan: rgba(56, 189, 248, 0.36) !important;
+  --color-gold: #fbbf24 !important;
+  --color-cyan: #38bdf8 !important;
+  --color-lime: #34d399 !important;
+  --color-lime-glow: rgba(52, 211, 153, 0.24) !important;
+  --shadow-card: 0 18px 42px rgba(4, 10, 22, 0.56) !important;
+}
+
+[data-theme="light"] html,
+[data-theme="light"] body {
+  background-color: #0d1522 !important;
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.11) 0%, transparent 58%),
+    radial-gradient(circle at 85% 32%, rgba(99, 102, 241, 0.08) 0%, transparent 52%),
+    linear-gradient(180deg, #0d1522 0%, #101b2c 50%, #0d1522 100%) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .site-bg-wrapper {
+  opacity: 1 !important;
+  background: #0d1522 !important;
+}
+
+[data-theme="light"] .site-bg-video {
+  filter: brightness(0.62) contrast(1.06) hue-rotate(192deg) saturate(0.82) !important;
+  opacity: 0.42 !important;
+}
+
+[data-theme="light"] .site-bg-overlay {
+  background: radial-gradient(circle at center, rgba(13, 21, 34, 0.22) 0%, rgba(10, 17, 28, 0.84) 100%) !important;
+}
+
+[data-theme="light"] #hero::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 21, 34, 0) 0%,
+    rgba(13, 21, 34, 0.38) 45%,
+    rgba(14, 23, 38, 0.82) 78%,
+    #0e1726 100%
+  ) !important;
+}
+
+[data-theme="light"] #about::before {
+  background: radial-gradient(ellipse 75% 130px at 50% 0%, rgba(56, 189, 248, 0.1), transparent 75%) !important;
+}
+
+/* Override all bright white/slate cards in [data-theme="light"] into dim-cool frosted slate-ice */
+[data-theme="light"] .glass-card,
+[data-theme="light"] .about-card,
+[data-theme="light"] .broker-card,
+[data-theme="light"] .course-card,
+[data-theme="light"] .capital-card,
+[data-theme="light"] .calc-wrapper,
+[data-theme="light"] .stat-card,
+[data-theme="light"] .social-card,
+[data-theme="light"] .faq-item,
+[data-theme="light"] .zsearch-folder-card,
+[data-theme="light"] .pin-profile-card,
+[data-theme="light"] .pin-social-dock-bar,
+[data-theme="light"] .social-direct-card,
+[data-theme="light"] .discipline-motion-theater,
+[data-theme="light"] .smc-pillar-card,
+[data-theme="light"] .smc-flow-card,
+[data-theme="light"] .smc-stat-box,
+[data-theme="light"] .kh-card,
+[data-theme="light"] .hedging-card {
+  background: linear-gradient(155deg, rgba(21, 34, 54, 0.88) 0%, rgba(15, 25, 42, 0.92) 100%) !important;
+  border-color: rgba(125, 211, 252, 0.18) !important;
+  color: #e2e8f0 !important;
+  box-shadow:
+    0 18px 42px rgba(4, 9, 20, 0.52),
+    inset 0 1px 0 rgba(186, 230, 253, 0.1) !important;
+}
+
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] .section-title,
+[data-theme="light"] .hero-title,
+[data-theme="light"] .broker-name,
+[data-theme="light"] .course-title,
+[data-theme="light"] .zsearch-folder-title,
+[data-theme="light"] .pin-handle-name,
+[data-theme="light"] .pin-stat-num {
+  color: #f1f5f9 !important;
+}
+
+[data-theme="light"] p,
+[data-theme="light"] .section-subtitle,
+[data-theme="light"] .hero-subtitle,
+[data-theme="light"] .about-text,
+[data-theme="light"] .course-desc,
+[data-theme="light"] .zsearch-folder-drawer p {
+  color: #cbd5e1 !important;
+}
+
+/* Pin 3t7iLdyEe Glass Telemetry Card in Dim-Cool Light Mode */
+[data-theme="light"] .pin3t7-glass-shell {
+  background: linear-gradient(145deg, rgba(22, 36, 58, 0.78) 0%, rgba(14, 24, 40, 0.88) 100%) !important;
+  border-color: rgba(125, 211, 252, 0.24) !important;
+  box-shadow:
+    0 24px 60px rgba(4, 10, 22, 0.58),
+    inset 0 1.5px 0 rgba(186, 230, 253, 0.22) !important;
+}
+
+[data-theme="light"] .pin3t7-subcard,
+[data-theme="light"] .pin3t7-list-row,
+[data-theme="light"] .pin3t7-metric-pill,
+[data-theme="light"] .pin3t7-pill-tab {
+  background: rgba(25, 41, 66, 0.78) !important;
+  border-color: rgba(125, 211, 252, 0.18) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .pin3t7-pill-tab.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.28), rgba(99, 102, 241, 0.28)) !important;
+  border-color: rgba(125, 211, 252, 0.55) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .pin3t7-big-stat,
+[data-theme="light"] .pin3t7-subcard-head h3,
+[data-theme="light"] .pin3t7-list-copy strong,
+[data-theme="light"] .pin3t7-brand-name,
+[data-theme="light"] .pin3t7-metric-pill strong {
+  color: #f8fafc !important;
+}
+
+[data-theme="light"] .pin3t7-subcard-desc,
+[data-theme="light"] .pin3t7-list-copy span,
+[data-theme="light"] .pin3t7-stat-caption,
+[data-theme="light"] .pin3t7-metric-pill span {
+  color: #94a3b8 !important;
+}
+
+/* Mobile Dock & Quick Setup Drawer in Dim-Cool Light Mode */
+[data-theme="light"] .orbix-pill-tab {
+  background: rgba(24, 38, 62, 0.78) !important;
+  border-color: rgba(125, 211, 252, 0.2) !important;
+  color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .orbix-pill-tab.active {
+  background: linear-gradient(135deg, #0284c7, #2563eb) !important;
+  color: #ffffff !important;
+  border-color: rgba(125, 211, 252, 0.55) !important;
+}
+
+[data-theme="light"] .orbix-mobile-bottom-bar {
+  background: rgba(15, 25, 42, 0.92) !important;
+  border-color: rgba(125, 211, 252, 0.22) !important;
+  box-shadow: 0 14px 36px rgba(3, 8, 18, 0.68) !important;
+}
+
+[data-theme="light"] .orbix-dock-search-btn,
+[data-theme="light"] .orbix-dock-swipe-track {
+  background: rgba(24, 39, 64, 0.88) !important;
+  border-color: rgba(125, 211, 252, 0.2) !important;
+  color: #f1f5f9 !important;
+}
+
+[data-theme="light"] .pin1u-sheet-card {
+  background: linear-gradient(165deg, rgba(18, 30, 49, 0.97) 0%, rgba(12, 21, 36, 0.99) 100%) !important;
+  border-color: rgba(125, 211, 252, 0.24) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .pin1u-bento-tile,
+[data-theme="light"] .pin1u-risk-bar,
+[data-theme="light"] .pin1u-Check-row {
+  background: rgba(25, 40, 65, 0.78) !important;
+  border-color: rgba(125, 211, 252, 0.18) !important;
+  color: #e2e8f0 !important;
+}
+
+/* --- 2. SEAMLESS INTER-SECTION COLOR & BOUNDARY BLENDING --- */
+
+/* Feather top & bottom edges of Pin 3t7iLdyEe stage so it melts into Hero and About */
+.pin3t7-stage-section {
+  background: transparent !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  position: relative;
+}
+
+.pin3t7-trails-canvas {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 15%, #000 85%, transparent 100%) !important;
+  mask-image: linear-gradient(180deg, transparent 0%, #000 15%, #000 85%, transparent 100%) !important;
+}
+
+.pin3t7-radial-glow-left {
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.16) 0%, rgba(37, 99, 235, 0.06) 52%, transparent 75%) !important;
+}
+
+.pin3t7-radial-glow-right {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(245, 158, 11, 0.06) 52%, transparent 75%) !important;
+}
+
+/* Harmonize Homepage Overview Quad (Pin 5qzp28j8e, 7vIqA4kJz, 2U5gE0DHx, 5CQU3hUwN)
+   into a unified Midnight-Sapphire & Cyan-Emerald-Gold continuum */
+.pin-overview-quad-section {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(8, 15, 28, 0.55) 12%,
+    rgba(8, 15, 28, 0.55) 88%,
+    transparent 100%
+  ) !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+.ov5q-card {
+  background:
+    radial-gradient(circle at var(--ov5q-mx, 50%) var(--ov5q-my, 0%), rgba(56, 189, 248, 0.14) 0%, transparent 58%),
+    linear-gradient(165deg, rgba(14, 24, 42, 0.84) 0%, rgba(8, 15, 28, 0.92) 100%) !important;
+  border: 1px solid rgba(125, 211, 252, 0.16) !important;
+}
+
+.ov7v-plasma-stage,
+.ov2u-timeline-stage,
+.ov5c-intelligence-stage {
+  background:
+    radial-gradient(ellipse 80% 65% at 50% 0%, rgba(56, 189, 248, 0.10) 0%, transparent 70%),
+    linear-gradient(165deg, rgba(13, 23, 40, 0.84) 0%, rgba(8, 14, 26, 0.92) 100%) !important;
+  border: 1px solid rgba(125, 211, 252, 0.16) !important;
+  box-shadow:
+    0 20px 48px rgba(2, 6, 16, 0.48),
+    inset 0 1px 0 rgba(186, 230, 253, 0.1) !important;
+}
+
+/* Eliminate hard border lines and opaque color jump on Pin 7i6 Interface Suite */
+.pin7i6-suite-section,
+[data-theme="light"] .pin7i6-suite-section {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(10, 18, 33, 0.72) 14%,
+    rgba(12, 22, 38, 0.78) 50%,
+    rgba(10, 18, 33, 0.72) 86%,
+    transparent 100%
+  ) !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.pin7i6-topo-canvas {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%) !important;
+  mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%) !important;
+}
+
+[data-theme="light"] .pin7i6-bento-card,
+[data-theme="light"] .pin7i6-scrub-shell,
+[data-theme="light"] .pin7i6-cta-bar {
+  background: linear-gradient(160deg, rgba(20, 33, 54, 0.86) 0%, rgba(14, 24, 40, 0.92) 100%) !important;
+  border-color: rgba(125, 211, 252, 0.2) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .pin7i6-scrub-word {
+  color: rgba(148, 163, 184, 0.28) !important;
+}
+
+[data-theme="light"] .pin7i6-scrub-word.is-lit {
+  color: #f1f5f9 !important;
+}
+
+/* Smooth soft gradient transitions across all core page sections */
+#about,
+#brokers,
+#courses,
+#capital,
+#calculator,
+#knowledge,
+#faq,
+#connect {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* --- 3. GPU ANTI-LAG SCROLL & BLUR OPTIMIZATION --- */
+.pin3t7-glass-shell,
+.ov5c-feature-glass-card,
+.pin7i6-bento-card,
+.pin7i6-scrub-shell,
+.glass-card,
+.broker-card,
+.course-card,
+.calc-wrapper,
+.zsearch-folder-card,
+.pin-profile-card {
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.pin3t7-subcard,
+.pin3t7-list-row,
+.ov5q-card {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
 
 
 

@@ -3165,10 +3165,10 @@ document.addEventListener('DOMContentLoaded', () => {
       draw(isLight) {
         const currentAlpha = Math.max(0.08, Math.min(0.9, this.alpha));
         const color = this.colorType === 'cyan'
-          ? (isLight ? `rgba(2, 132, 199, ${currentAlpha * 0.85})` : `rgba(0, 255, 224, ${currentAlpha * 0.9})`)
+          ? (isLight ? `rgba(56, 189, 248, ${currentAlpha * 0.85})` : `rgba(0, 255, 224, ${currentAlpha * 0.9})`)
           : (this.colorType === 'white'
-            ? (isLight ? `rgba(15, 23, 42, ${currentAlpha * 0.75})` : `rgba(255, 255, 255, ${currentAlpha})`)
-            : (isLight ? `rgba(180, 83, 9, ${currentAlpha})` : `rgba(255, 184, 0, ${currentAlpha})`));
+            ? (isLight ? `rgba(226, 232, 240, ${currentAlpha * 0.78})` : `rgba(255, 255, 255, ${currentAlpha})`)
+            : (isLight ? `rgba(125, 211, 252, ${currentAlpha * 0.85})` : `rgba(255, 184, 0, ${currentAlpha})`));
 
         if (this.isStar) {
           // Sleek 4-point diamond star sparkle
@@ -3452,10 +3452,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Card frosted glass background
         if (isLight) {
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.94)';
-          ctx.strokeStyle = c.color === '#00ffe0' ? '#0284c7' : (c.color === '#b6f332' ? '#65a30d' : c.color);
-          ctx.lineWidth = 1.2 * scale;
-          ctx.shadowColor = 'rgba(15, 23, 42, 0.1)';
+          ctx.fillStyle = 'rgba(20, 32, 52, 0.84)';
+          ctx.strokeStyle = c.color === '#00ffe0' ? '#38bdf8' : (c.color === '#b6f332' ? '#34d399' : c.color);
+          ctx.lineWidth = 1.1 * scale;
+          ctx.shadowColor = 'rgba(56, 189, 248, 0.2)';
           ctx.shadowBlur = 8 * scale;
         } else {
           ctx.fillStyle = 'rgba(10, 16, 28, 0.75)';
@@ -3472,14 +3472,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Avatar dot / icon
         ctx.shadowBlur = 0;
-        ctx.fillStyle = isLight && c.color === '#00ffe0' ? '#0284c7' : c.color;
+        ctx.fillStyle = isLight && c.color === '#00ffe0' ? '#38bdf8' : c.color;
         ctx.beginPath();
         ctx.arc(posX - cw * 0.35, posY, 6 * scale, 0, Math.PI * 2);
         ctx.fill();
 
         // Score text
         ctx.font = `800 ${14 * scale}px Outfit, sans-serif`;
-        ctx.fillStyle = isLight ? '#0f172a' : '#ffffff';
+        ctx.fillStyle = isLight ? '#e2e8f0' : '#ffffff';
         ctx.textAlign = 'left';
         ctx.textBaseline = 'middle';
         ctx.fillText(c.score, posX - cw * 0.22, posY - 2 * scale);
@@ -4145,8 +4145,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    let theaterVisible = false;
+    let lastTheaterDraw = 0;
+
     function loop(time) {
-      renderTheaterCanvas();
+      if (!theaterVisible) {
+        animFrame = null;
+        return;
+      }
+      if (time - lastTheaterDraw >= 32) {
+        lastTheaterDraw = time;
+        renderTheaterCanvas();
+      }
 
       if (isPlaying && !isHovered && !document.documentElement.classList.contains('effects-frozen')) {
         const elapsed = time - sceneStartTime;
@@ -4223,9 +4233,21 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => { isHovered = false; }, 2000);
     }, { passive: true });
 
-    // Start theater
+    // Start theater only when visible in viewport
     setScene(0);
-    animFrame = requestAnimationFrame(loop);
+    const theaterIo = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        theaterVisible = entry.isIntersecting;
+        if (theaterVisible && !animFrame) {
+          sceneStartTime = performance.now();
+          animFrame = requestAnimationFrame(loop);
+        } else if (!theaterVisible && animFrame) {
+          cancelAnimationFrame(animFrame);
+          animFrame = null;
+        }
+      });
+    }, { threshold: 0.05 });
+    theaterIo.observe(theater);
   }
 
   // Initialize Strategy Motion Theater
@@ -4911,21 +4933,53 @@ document.addEventListener('DOMContentLoaded', () => {
   initOrbixMobileExperience();
 
   /* ========================================================================
-     PIN 7i6Z0vp5H: SUPERCONSCIOUS-STYLE KINETIC INTERFACE SUITE
+     PIN 7i6Z0vp5H: SUPERCONSCIOUS-STYLE KINETIC INTERFACE SUITE (ZERO-JANK 60FPS)
      ======================================================================== */
+  let globalScrollActive = false;
+  let globalScrollIdleTimer = null;
+  window.addEventListener('scroll', () => {
+    globalScrollActive = true;
+    if (globalScrollIdleTimer) clearTimeout(globalScrollIdleTimer);
+    globalScrollIdleTimer = setTimeout(() => {
+      globalScrollActive = false;
+    }, 110);
+  }, { passive: true });
+
   function initPin7i6InterfaceSuite() {
-    // 1. Global Interactive Cursor-Tracked Specular Glow on Interface Cards
+    // 1. Global Interactive Cursor-Tracked Specular Glow on Interface Cards (rAF-throttled, zero layout thrash)
     const glowTargets = document.querySelectorAll(
       '.hero-card, .brokers-card-main, .broker-tier-box, .course-feature-card, .capital-card, .compliance-card, .pin7i6-bento-card, .pin7i6-col-card, .pin7i6-scrub-manifesto-row'
     );
     glowTargets.forEach(card => {
       card.classList.add('pin7i6-glow-surface');
+      let cachedRect = null;
+      let moveRaf = false;
+      let lastX = 0;
+      let lastY = 0;
+
+      card.addEventListener('pointerenter', () => {
+        cachedRect = card.getBoundingClientRect();
+      }, { passive: true });
+
       card.addEventListener('pointermove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--pin7i6-mx', `${x}px`);
-        card.style.setProperty('--pin7i6-my', `${y}px`);
+        if (globalScrollActive || document.documentElement.classList.contains('effects-frozen')) return;
+        lastX = e.clientX;
+        lastY = e.clientY;
+        if (!moveRaf) {
+          moveRaf = true;
+          requestAnimationFrame(() => {
+            moveRaf = false;
+            if (!cachedRect) cachedRect = card.getBoundingClientRect();
+            const x = lastX - cachedRect.left;
+            const y = lastY - cachedRect.top;
+            card.style.setProperty('--pin7i6-mx', `${Math.round(x)}px`);
+            card.style.setProperty('--pin7i6-my', `${Math.round(y)}px`);
+          });
+        }
+      }, { passive: true });
+
+      card.addEventListener('pointerleave', () => {
+        cachedRect = null;
       }, { passive: true });
     });
 
@@ -4939,42 +4993,50 @@ document.addEventListener('DOMContentLoaded', () => {
       let animId = null;
       let isVisible = false;
       let phase = 0;
+      let lastFrameTime = 0;
 
       const resize = () => {
         const rect = canvas.parentElement.getBoundingClientRect();
-        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
         width = Math.max(320, rect.width);
         height = Math.max(400, rect.height);
-        canvas.width = width * dpr;
-        canvas.height = height * dpr;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        canvas.width = Math.floor(width);
+        canvas.height = Math.floor(height);
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
       };
 
-      const render = () => {
-        if (!isVisible) return;
-        ctx.clearRect(0, 0, width, height);
-        phase += 0.014;
+      const render = (now = 0) => {
+        if (!isVisible) {
+          animId = null;
+          return;
+        }
+        animId = requestAnimationFrame(render);
+        if (globalScrollActive || document.documentElement.classList.contains('effects-frozen')) return;
+        if (now - lastFrameTime < 34) return;
+        lastFrameTime = now;
 
-        const lines = 24;
+        ctx.clearRect(0, 0, width, height);
+        phase += 0.022;
+
+        const lines = 16;
         for (let i = 0; i < lines; i++) {
           const ratio = i / (lines - 1);
           ctx.beginPath();
-          const alpha = 0.08 + Math.sin(ratio * Math.PI) * 0.22;
+          const alpha = 0.07 + Math.sin(ratio * Math.PI) * 0.18;
           if (i % 3 === 0) {
             ctx.strokeStyle = `rgba(0, 245, 212, ${alpha.toFixed(3)})`;
           } else if (i % 3 === 1) {
-            ctx.strokeStyle = `rgba(2, 132, 199, ${(alpha * 1.1).toFixed(3)})`;
+            ctx.strokeStyle = `rgba(56, 189, 248, ${(alpha * 1.05).toFixed(3)})`;
           } else {
-            ctx.strokeStyle = `rgba(234, 179, 8, ${(alpha * 0.65).toFixed(3)})`;
+            ctx.strokeStyle = `rgba(129, 140, 248, ${(alpha * 0.7).toFixed(3)})`;
           }
-          ctx.lineWidth = 1.25;
+          ctx.lineWidth = 1.2;
 
           const baseY = height * 0.16 + ratio * (height * 0.68);
-          const step = Math.max(24, Math.floor(width / 36));
+          const step = Math.max(32, Math.floor(width / 28));
           for (let x = 0; x <= width + step; x += step) {
             const nx = x / width;
-            const wave1 = Math.sin(nx * 4.2 + phase + i * 0.19) * 34;
-            const wave2 = Math.cos(nx * 7.5 - phase * 0.8 + i * 0.14) * 18;
+            const wave1 = Math.sin(nx * 4.2 + phase + i * 0.19) * 32;
+            const wave2 = Math.cos(nx * 7.5 - phase * 0.8 + i * 0.14) * 16;
             const pinch = Math.sin(nx * Math.PI);
             const y = baseY + (wave1 + wave2) * (0.35 + pinch * 0.65);
             if (x === 0) ctx.moveTo(x, y);
@@ -4982,7 +5044,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           ctx.stroke();
         }
-        animId = requestAnimationFrame(render);
       };
 
       resize();
@@ -5027,6 +5088,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const rows = Array.from(kineticBlock.querySelectorAll('.pin7i6-split-row'));
       const capsules = Array.from(kineticBlock.querySelectorAll('.pin7i6-inline-capsule'));
       let activeIdx = 0;
+      let kineticVisible = false;
 
       const setRowActive = idx => {
         rows.forEach((r, i) => r.classList.toggle('active-row', i === idx));
@@ -5035,20 +5097,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const ioKinetic = new IntersectionObserver(entries => {
         entries.forEach(entry => {
+          kineticVisible = entry.isIntersecting;
           if (entry.isIntersecting) {
             kineticBlock.classList.add('capsules-expanded');
           }
         });
-      }, { threshold: 0.2 });
+      }, { threshold: 0.15 });
       ioKinetic.observe(kineticBlock);
 
       setInterval(() => {
+        if (!kineticVisible || document.documentElement.classList.contains('effects-frozen')) return;
         activeIdx = (activeIdx + 1) % Math.max(1, rows.length);
         setRowActive(activeIdx);
-      }, 2400);
+      }, 2800);
     }
 
-    // Word-by-Word Scroll-Scrub & Wave Illumination (00:07-00:09)
+    // Word-by-Word Scroll-Scrub & Wave Illumination (00:07-00:09) — Viewport & rAF Gated
     const scrubPara = document.getElementById('pin7i6ScrubParagraph');
     if (scrubPara && !scrubPara.dataset.tokenized) {
       scrubPara.dataset.tokenized = 'true';
@@ -5067,45 +5131,75 @@ document.addEventListener('DOMContentLoaded', () => {
         .join(' ');
 
       const wordSpans = Array.from(scrubPara.querySelectorAll('.pin7i6-scrub-word'));
-      let waveCursor = 0;
+      let scrubVisible = false;
+      let scrubRaf = false;
+      let lastLitCount = -1;
 
       const updateScrub = () => {
+        scrubRaf = false;
+        if (!scrubVisible) return;
         const rect = scrubPara.getBoundingClientRect();
         const vh = window.innerHeight || 800;
-        const progress = Math.max(0.18, Math.min(1, (vh * 0.85 - rect.top) / (vh * 0.55)));
-        const litCount = Math.max(
-          Math.floor(progress * wordSpans.length),
-          waveCursor
-        );
+        const progress = Math.max(0.28, Math.min(1, (vh * 0.88 - rect.top) / (vh * 0.55)));
+        const litCount = Math.floor(progress * wordSpans.length);
+        if (litCount === lastLitCount) return;
+        lastLitCount = litCount;
         wordSpans.forEach((span, idx) => {
           span.classList.toggle('lit', idx <= litCount);
         });
       };
 
-      window.addEventListener('scroll', updateScrub, { passive: true });
-      setInterval(() => {
-        waveCursor = (waveCursor + 2) % (wordSpans.length + 6);
-        updateScrub();
-      }, 160);
+      const ioScrub = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          scrubVisible = entry.isIntersecting;
+          if (scrubVisible) updateScrub();
+        });
+      }, { threshold: 0.05 });
+      ioScrub.observe(scrubPara);
+
+      window.addEventListener('scroll', () => {
+        if (scrubVisible && !scrubRaf) {
+          scrubRaf = true;
+          requestAnimationFrame(updateScrub);
+        }
+      }, { passive: true });
       updateScrub();
     }
 
-    // 5. Stage C (00:10-00:14): Parallax Floating Bento Cards
+    // 5. Stage C (00:10-00:14): Parallax Floating Bento Cards — Viewport & rAF Gated
     const bentoCards = Array.from(document.querySelectorAll('.pin7i6-bento-card[data-parallax]'));
-    if (bentoCards.length > 0) {
+    const parallaxStage = document.querySelector('.pin7i6-parallax-stage');
+    if (bentoCards.length > 0 && parallaxStage) {
+      let parallaxVisible = false;
+      let parallaxRaf = false;
+
       const updateParallax = () => {
-        if (window.innerWidth <= 768) return;
+        parallaxRaf = false;
+        if (!parallaxVisible || window.innerWidth <= 768 || document.documentElement.classList.contains('effects-frozen')) return;
         const vh = window.innerHeight || 800;
+        const stageRect = parallaxStage.getBoundingClientRect();
+        const centerOffset = (stageRect.top + stageRect.height * 0.5 - vh * 0.5);
         bentoCards.forEach(card => {
-          const speed = parseFloat(card.dataset.parallax || '0.08');
-          const rect = card.getBoundingClientRect();
-          const centerOffset = (rect.top + rect.height * 0.5 - vh * 0.5);
-          const yShift = Math.max(-28, Math.min(28, -centerOffset * speed));
-          card.style.transform = `translateY(${yShift.toFixed(1)}px)`;
+          const speed = parseFloat(card.dataset.parallax || '0.06');
+          const yShift = Math.max(-22, Math.min(22, -centerOffset * speed));
+          card.style.transform = `translate3d(0, ${yShift.toFixed(1)}px, 0)`;
         });
       };
-      window.addEventListener('scroll', updateParallax, { passive: true });
-      updateParallax();
+
+      const ioParallax = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          parallaxVisible = entry.isIntersecting;
+          if (parallaxVisible) updateParallax();
+        });
+      }, { threshold: 0.05 });
+      ioParallax.observe(parallaxStage);
+
+      window.addEventListener('scroll', () => {
+        if (parallaxVisible && !parallaxRaf) {
+          parallaxRaf = true;
+          requestAnimationFrame(updateParallax);
+        }
+      }, { passive: true });
     }
 
     // 6. Stage D (00:16-00:17): Interactive Orbital Execution Trigger
@@ -5468,121 +5562,126 @@ document.addEventListener('DOMContentLoaded', () => {
       applyMode(activeMode + 1);
     }, 5200);
 
-    // 3D Cursor Tilt & Specular Glare Tracking
+    // 3D Cursor Tilt & Specular Glare Tracking (rAF-throttled, cached rect)
+    let cardRect = null;
+    let tiltRaf = false;
+    let lastMouseX = 0;
+    let lastMouseY = 0;
+
     card.addEventListener('mouseenter', () => {
       isHovered = true;
-    });
+      cardRect = card.getBoundingClientRect();
+    }, { passive: true });
 
     card.addEventListener('mousemove', (e) => {
-      if (window.innerWidth <= 768 || document.documentElement.classList.contains('effects-frozen')) return;
-      const rect = card.getBoundingClientRect();
-      const relX = (e.clientX - rect.left) / rect.width;
-      const relY = (e.clientY - rect.top) / rect.height;
-      const rotY = (relX - 0.5) * 7.5;
-      const rotX = (0.5 - relY) * 6.5;
+      if (window.innerWidth <= 768 || globalScrollActive || document.documentElement.classList.contains('effects-frozen')) return;
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+      if (!tiltRaf) {
+        tiltRaf = true;
+        requestAnimationFrame(() => {
+          tiltRaf = false;
+          if (!cardRect) cardRect = card.getBoundingClientRect();
+          const relX = (lastMouseX - cardRect.left) / cardRect.width;
+          const relY = (lastMouseY - cardRect.top) / cardRect.height;
+          const rotY = (relX - 0.5) * 6.0;
+          const rotX = (0.5 - relY) * 5.0;
 
-      card.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateZ(4px)`;
-      card.style.setProperty('--pin3t7-gx', `${(relX * 100).toFixed(1)}%`);
-      card.style.setProperty('--pin3t7-gy', `${(relY * 100).toFixed(1)}%`);
-    });
+          card.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateZ(2px)`;
+          card.style.setProperty('--pin3t7-gx', `${(relX * 100).toFixed(1)}%`);
+          card.style.setProperty('--pin3t7-gy', `${(relY * 100).toFixed(1)}%`);
+        });
+      }
+    }, { passive: true });
 
     card.addEventListener('mouseleave', () => {
       isHovered = false;
+      cardRect = null;
       card.style.transform = '';
       card.style.setProperty('--pin3t7-gx', '50%');
       card.style.setProperty('--pin3t7-gy', '24%');
-    });
+    }, { passive: true });
 
-    // Diagonal Sweeping Neon Light-Trails & Bokeh Stardust Canvas
+    // Diagonal Sweeping Neon Light-Trails & Bokeh Stardust Canvas (Harmonized Cool-Cyan/Indigo Palette & 30fps Scroll-Gated)
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     let cw = 0;
     let ch = 0;
-    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let pin3t7Raf = null;
+    let lastPin3t7Draw = 0;
 
-    const bokehDots = Array.from({ length: 34 }, (_, i) => ({
+    const bokehDots = Array.from({ length: 20 }, (_, i) => ({
       x: (i * 0.6180339887) % 1,
       y: ((i * 0.3819660112) + 0.17) % 1,
-      r: 1.2 + (i % 4) * 1.15,
-      speed: 0.00018 + (i % 5) * 0.00007,
+      r: 1.1 + (i % 4) * 0.95,
+      speed: 0.00015 + (i % 5) * 0.00006,
       phase: i * 1.1,
-      color: ['#38bdf8', '#f472b6', '#fb923c', '#a855f7', '#ffffff'][i % 5]
+      color: ['#38bdf8', '#00f5d4', '#818cf8', '#fbbf24', '#e0f2fe'][i % 5]
     }));
 
     const ribbons = [
-      { color1: 'rgba(245, 158, 11, 0)', color2: 'rgba(251, 113, 133, 0.58)', color3: 'rgba(236, 72, 153, 0)', width: 3.2, offset: -0.14, amp: 0.08, speed: 0.75 },
-      { color1: 'rgba(236, 72, 153, 0)', color2: 'rgba(244, 114, 182, 0.68)', color3: 'rgba(56, 189, 248, 0)', width: 4.4, offset: -0.04, amp: 0.06, speed: 0.95 },
-      { color1: 'rgba(56, 189, 248, 0)', color2: 'rgba(56, 189, 248, 0.78)', color3: 'rgba(99, 102, 241, 0)', width: 5.0, offset: 0.05, amp: 0.07, speed: 1.12 },
-      { color1: 'rgba(168, 85, 247, 0)', color2: 'rgba(125, 211, 252, 0.52)', color3: 'rgba(56, 189, 248, 0)', width: 2.6, offset: 0.14, amp: 0.09, speed: 0.85 }
+      { color1: 'rgba(56, 189, 248, 0)', color2: 'rgba(0, 245, 212, 0.42)', color3: 'rgba(56, 189, 248, 0)', width: 2.8, offset: -0.14, amp: 0.07, speed: 0.72 },
+      { color1: 'rgba(99, 102, 241, 0)', color2: 'rgba(56, 189, 248, 0.56)', color3: 'rgba(129, 140, 248, 0)', width: 3.6, offset: -0.03, amp: 0.055, speed: 0.9 },
+      { color1: 'rgba(56, 189, 248, 0)', color2: 'rgba(125, 211, 252, 0.62)', color3: 'rgba(59, 130, 246, 0)', width: 4.0, offset: 0.05, amp: 0.065, speed: 1.05 },
+      { color1: 'rgba(245, 158, 11, 0)', color2: 'rgba(251, 191, 36, 0.32)', color3: 'rgba(56, 189, 248, 0)', width: 2.2, offset: 0.14, amp: 0.08, speed: 0.8 }
     ];
 
     function resizeCanvas() {
       const rect = section.getBoundingClientRect();
       cw = Math.max(320, rect.width);
       ch = Math.max(320, rect.height);
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.floor(cw * dpr);
-      canvas.height = Math.floor(ch * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      canvas.width = Math.floor(cw);
+      canvas.height = Math.floor(ch);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
     }
 
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas, { passive: true });
 
     let isVisible = false;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        isVisible = entry.isIntersecting;
-      });
-    }, { threshold: 0.05 });
-    io.observe(section);
 
-    function drawFrame(now) {
-      requestAnimationFrame(drawFrame);
-      if (!isVisible) return;
-
+    function drawFrame(now = 0) {
+      if (!isVisible) {
+        pin3t7Raf = null;
+        return;
+      }
+      pin3t7Raf = requestAnimationFrame(drawFrame);
       const frozen = document.documentElement.classList.contains('effects-frozen');
+      if (globalScrollActive && lastPin3t7Draw > 0) return;
+      if (now - lastPin3t7Draw < 34 && lastPin3t7Draw > 0) return;
+      lastPin3t7Draw = now;
+
       const t = frozen ? 2.4 : now * 0.001;
 
       ctx.clearRect(0, 0, cw, ch);
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
 
-      // 1. Sweeping Diagonal Neon Light-Trail Ribbons (Bottom-Left to Top-Right)
+      // 1. Sweeping Diagonal Light-Trail Ribbons (Harmonized Cyan / Indigo / Gold)
       ribbons.forEach((rib, idx) => {
-        const startX = -cw * 0.08;
-        const startY = ch * (0.86 + rib.offset) + Math.sin(t * rib.speed + idx) * 18;
+        const startX = -cw * 0.06;
+        const startY = ch * (0.84 + rib.offset) + Math.sin(t * rib.speed + idx) * 16;
         const cp1X = cw * 0.34;
-        const cp1Y = ch * (0.64 + rib.offset) - Math.cos(t * rib.speed * 0.9 + idx) * (ch * rib.amp);
+        const cp1Y = ch * (0.62 + rib.offset) - Math.cos(t * rib.speed * 0.9 + idx) * (ch * rib.amp);
         const cp2X = cw * 0.66;
-        const cp2Y = ch * (0.34 + rib.offset) + Math.sin(t * rib.speed * 1.1 + idx) * (ch * rib.amp);
-        const endX = cw * 1.08;
-        const endY = ch * (0.14 + rib.offset) - Math.cos(t * rib.speed + idx) * 18;
+        const cp2Y = ch * (0.36 + rib.offset) + Math.sin(t * rib.speed * 1.1 + idx) * (ch * rib.amp);
+        const endX = cw * 1.06;
+        const endY = ch * (0.16 + rib.offset) - Math.cos(t * rib.speed + idx) * 16;
 
         const grad = ctx.createLinearGradient(startX, startY, endX, endY);
         grad.addColorStop(0, rib.color1);
-        grad.addColorStop(0.28, rib.color2);
-        grad.addColorStop(0.72, rib.color2);
+        grad.addColorStop(0.3, rib.color2);
+        grad.addColorStop(0.7, rib.color2);
         grad.addColorStop(1, rib.color3);
 
-        // Soft outer bloom pass
-        ctx.beginPath();
-        ctx.moveTo(startX, startY);
-        ctx.bezierCurveTo(cp1X, cp1Y, cp2X, cp2Y, endX, endY);
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = rib.width * 4.2;
-        ctx.globalAlpha = 0.24;
-        ctx.stroke();
-
-        // Crisp neon core pass
         ctx.beginPath();
         ctx.moveTo(startX, startY);
         ctx.bezierCurveTo(cp1X, cp1Y, cp2X, cp2Y, endX, endY);
         ctx.strokeStyle = grad;
         ctx.lineWidth = rib.width;
-        ctx.globalAlpha = 0.88;
+        ctx.globalAlpha = 0.82;
         ctx.stroke();
       });
 
@@ -5590,19 +5689,30 @@ document.addEventListener('DOMContentLoaded', () => {
       bokehDots.forEach((p) => {
         const px = ((p.x + (frozen ? 0 : now * p.speed)) % 1) * cw;
         const py = ((p.y - (frozen ? 0 : now * p.speed * 0.65) + 10) % 1) * ch;
-        const pulse = 0.45 + 0.55 * Math.sin(t * 2.1 + p.phase);
+        const pulse = 0.45 + 0.55 * Math.sin(t * 2.0 + p.phase);
 
         ctx.beginPath();
-        ctx.arc(px, py, p.r * (0.85 + pulse * 0.35), 0, Math.PI * 2);
+        ctx.arc(px, py, p.r * (0.85 + pulse * 0.3), 0, Math.PI * 2);
         ctx.fillStyle = p.color;
-        ctx.globalAlpha = 0.25 + pulse * 0.45;
+        ctx.globalAlpha = 0.22 + pulse * 0.38;
         ctx.fill();
       });
 
       ctx.restore();
     }
 
-    requestAnimationFrame(drawFrame);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && !pin3t7Raf) {
+          pin3t7Raf = requestAnimationFrame(drawFrame);
+        } else if (!isVisible && pin3t7Raf) {
+          cancelAnimationFrame(pin3t7Raf);
+          pin3t7Raf = null;
+        }
+      });
+    }, { threshold: 0.05 });
+    io.observe(section);
   }
 
   initPin3t7GlassTelemetry();
@@ -5620,19 +5730,33 @@ document.addEventListener('DOMContentLoaded', () => {
     quadSection.classList.add('is-visible');
 
     // -----------------------------------------------------------------------
-    // 1. STAGE 1 (Pin 5qzp28j8e): Cursor-Tracked Bottom Horizon Underglow
+    // 1. STAGE 1 (Pin 5qzp28j8e): Cursor-Tracked Bottom Horizon Underglow (rAF-throttled)
     // -----------------------------------------------------------------------
     const ov5qCards = Array.from(quadSection.querySelectorAll('.ov5q-card'));
     ov5qCards.forEach((card) => {
+      let cRect = null;
+      let cRaf = false;
+      let mx = 0;
+      card.addEventListener('mouseenter', () => {
+        cRect = card.getBoundingClientRect();
+      }, { passive: true });
       card.addEventListener('mousemove', (e) => {
-        if (document.documentElement.classList.contains('effects-frozen')) return;
-        const rect = card.getBoundingClientRect();
-        const relX = Math.max(12, Math.min(88, ((e.clientX - rect.left) / rect.width) * 100));
-        card.style.setProperty('--ov5q-hx', `${relX.toFixed(1)}%`);
-      });
+        if (globalScrollActive || document.documentElement.classList.contains('effects-frozen')) return;
+        mx = e.clientX;
+        if (!cRaf) {
+          cRaf = true;
+          requestAnimationFrame(() => {
+            cRaf = false;
+            if (!cRect) cRect = card.getBoundingClientRect();
+            const relX = Math.max(12, Math.min(88, ((mx - cRect.left) / cRect.width) * 100));
+            card.style.setProperty('--ov5q-hx', `${relX.toFixed(1)}%`);
+          });
+        }
+      }, { passive: true });
       card.addEventListener('mouseleave', () => {
+        cRect = null;
         card.style.setProperty('--ov5q-hx', '38%');
-      });
+      }, { passive: true });
     });
 
     // -----------------------------------------------------------------------
@@ -5836,13 +5960,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const hCtx = halftoneCanvas.getContext('2d');
       let hw = 0;
       let hh = 0;
-      let hdpr = 1;
+      const hdpr = 1;
 
       function resizeHalftone() {
         const r = timelineStage.getBoundingClientRect();
         hw = Math.max(300, r.width);
         hh = Math.max(260, r.height);
-        hdpr = Math.min(window.devicePixelRatio || 1, 2);
         halftoneCanvas.width = Math.floor(hw * hdpr);
         halftoneCanvas.height = Math.floor(hh * hdpr);
         if (hCtx) hCtx.setTransform(hdpr, 0, 0, hdpr, 0, 0);
@@ -5852,33 +5975,32 @@ document.addEventListener('DOMContentLoaded', () => {
       window.addEventListener('resize', resizeHalftone, { passive: true });
 
       let htVisible = false;
-      const htIo = new IntersectionObserver((entries) => {
-        entries.forEach((e) => { htVisible = e.isIntersecting; });
-      }, { threshold: 0.05 });
-      htIo.observe(timelineStage);
-
+      let lastHtDraw = 0;
       function drawHalftone(now) {
-        requestAnimationFrame(drawHalftone);
         if (!htVisible || !hCtx) return;
+        requestAnimationFrame(drawHalftone);
+        if (globalScrollActive || now - lastHtDraw < 34) return;
+        lastHtDraw = now;
+
         const frozen = document.documentElement.classList.contains('effects-frozen');
         const t = frozen ? 1.5 : now * 0.0012;
 
         hCtx.clearRect(0, 0, hw, hh);
 
-        // Soft volumetric lime/yellow glow on right edge
+        // Soft volumetric cyan-emerald-lime glow on right edge
         const glowX = hw * 0.94;
         const glowY = hh * (0.48 + Math.sin(t) * 0.08);
         const rad = Math.max(hw, hh) * (0.38 + currentAuraIntensity * 0.18);
         const bgGrad = hCtx.createRadialGradient(glowX, glowY, 10, glowX, glowY, rad);
-        bgGrad.addColorStop(0, `rgba(217, 249, 157, ${(0.22 * currentAuraIntensity).toFixed(3)})`);
-        bgGrad.addColorStop(0.35, `rgba(132, 204, 22, ${(0.18 * currentAuraIntensity).toFixed(3)})`);
-        bgGrad.addColorStop(0.7, `rgba(22, 163, 74, ${(0.08 * currentAuraIntensity).toFixed(3)})`);
-        bgGrad.addColorStop(1, 'rgba(4, 8, 6, 0)');
+        bgGrad.addColorStop(0, `rgba(110, 231, 183, ${(0.20 * currentAuraIntensity).toFixed(3)})`);
+        bgGrad.addColorStop(0.38, `rgba(56, 189, 248, ${(0.14 * currentAuraIntensity).toFixed(3)})`);
+        bgGrad.addColorStop(0.72, `rgba(16, 185, 129, ${(0.07 * currentAuraIntensity).toFixed(3)})`);
+        bgGrad.addColorStop(1, 'rgba(6, 14, 24, 0)');
         hCtx.fillStyle = bgGrad;
         hCtx.fillRect(0, 0, hw, hh);
 
         // Halftone dot-matrix grid along the right 38% of the stage
-        const spacing = 11;
+        const spacing = 13;
         const startX = Math.floor(hw * 0.62);
         for (let x = startX; x < hw - 6; x += spacing) {
           const normX = (x - startX) / Math.max(1, hw - startX);
@@ -5887,20 +6009,27 @@ document.addEventListener('DOMContentLoaded', () => {
             const wave = Math.sin(x * 0.035 - t * 2.2 + y * 0.025) * 0.5 + 0.5;
             const falloff = Math.max(0, normX * (1 - dy * dy * 0.65));
             const alpha = falloff * (0.14 + wave * 0.42) * currentAuraIntensity;
-            if (alpha < 0.03) continue;
+            if (alpha < 0.035) continue;
 
-            const radius = 1.1 + falloff * wave * 1.65;
+            const radius = 1.1 + falloff * wave * 1.55;
             hCtx.beginPath();
             hCtx.arc(x, y, radius, 0, Math.PI * 2);
             hCtx.fillStyle = normX > 0.72 && wave > 0.68
-              ? `rgba(236, 252, 203, ${Math.min(0.9, alpha * 1.35).toFixed(3)})`
-              : `rgba(163, 230, 53, ${Math.min(0.85, alpha).toFixed(3)})`;
+              ? `rgba(167, 243, 208, ${Math.min(0.88, alpha * 1.3).toFixed(3)})`
+              : `rgba(52, 211, 153, ${Math.min(0.82, alpha).toFixed(3)})`;
             hCtx.fill();
           }
         }
       }
 
-      requestAnimationFrame(drawHalftone);
+      const htIo = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          const wasVis = htVisible;
+          htVisible = e.isIntersecting;
+          if (htVisible && !wasVis) requestAnimationFrame(drawHalftone);
+        });
+      }, { threshold: 0.05 });
+      htIo.observe(timelineStage);
     }
 
     // -----------------------------------------------------------------------
@@ -5947,13 +6076,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const sCtx = silkCanvas.getContext('2d');
       let sw = 0;
       let sh = 0;
-      let sdpr = 1;
+      const sdpr = 1;
 
       function resizeSilk() {
         const r = intelStage.getBoundingClientRect();
         sw = Math.max(300, r.width);
         sh = Math.max(320, r.height);
-        sdpr = Math.min(window.devicePixelRatio || 1, 2);
         silkCanvas.width = Math.floor(sw * sdpr);
         silkCanvas.height = Math.floor(sh * sdpr);
         if (sCtx) sCtx.setTransform(sdpr, 0, 0, sdpr, 0, 0);
@@ -5963,10 +6091,7 @@ document.addEventListener('DOMContentLoaded', () => {
       window.addEventListener('resize', resizeSilk, { passive: true });
 
       let silkVisible = false;
-      const silkIo = new IntersectionObserver((entries) => {
-        entries.forEach((e) => { silkVisible = e.isIntersecting; });
-      }, { threshold: 0.05 });
-      silkIo.observe(intelStage);
+      let lastSilkDraw = 0;
 
       const silkStrands = [
         { width: 3.4, alpha: 0.9, speed: 0.9, yStart: 0.52, yDip: 0.92, yEnd: 0.28, color: '#7dd3fc' },
@@ -5978,8 +6103,11 @@ document.addEventListener('DOMContentLoaded', () => {
       ];
 
       function drawSilkWaves(now) {
-        requestAnimationFrame(drawSilkWaves);
         if (!silkVisible || !sCtx) return;
+        requestAnimationFrame(drawSilkWaves);
+        if (globalScrollActive || now - lastSilkDraw < 34) return;
+        lastSilkDraw = now;
+
         const frozen = document.documentElement.classList.contains('effects-frozen');
         const t = frozen ? 2.0 : now * 0.001;
 
@@ -6056,7 +6184,14 @@ document.addEventListener('DOMContentLoaded', () => {
         sCtx.restore();
       }
 
-      requestAnimationFrame(drawSilkWaves);
+      const silkIo = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          const wasVis = silkVisible;
+          silkVisible = e.isIntersecting;
+          if (silkVisible && !wasVis) requestAnimationFrame(drawSilkWaves);
+        });
+      }, { threshold: 0.05 });
+      silkIo.observe(intelStage);
     }
   }
 
