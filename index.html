@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles.css?v=20261110v34">
+  <link rel="stylesheet" href="/styles.css?v=20261110v35">
 </head>
 <body>
 
@@ -130,13 +130,23 @@
           <li><a href="#courses" class="nav-link" data-i18n="nav.courses">Courses</a></li>
           <li><a href="/smc-genesis" class="nav-link nav-link-genesis" data-i18n="nav.genesis"><span class="genesis-pulse-dot"></span>SMC Genesis <span class="nav-new-badge">NEW</span></a></li>
           <li><a href="/gold-hedging" class="nav-link" data-i18n="nav.hedging"><span class="nav-label-full">Gold</span>&nbsp;Hedging</a></li>
-          <li><a href="#capital" class="nav-link" data-i18n="nav.capital">Strategy</a></li>
           <li><a href="#calculator" class="nav-link" data-i18n="nav.calculator">Calculator</a></li>
           <li><a href="#knowledge" class="nav-link" data-i18n="nav.knowledge">Knowledge</a></li>
-          <li><a href="#pillars" class="nav-link" data-i18n="nav.pillars">Pillars</a></li>
-          <li><a href="#media" class="nav-link" data-i18n="nav.media">Media</a></li>
-          <li><a href="#faq" class="nav-link" data-i18n="nav.faq">FAQ</a></li>
-          <li class="nav-item-connect"><a href="#connect" class="nav-link" data-i18n="nav.connect">Connect</a></li>
+          <li class="nav-more-wrap" id="navMoreWrap">
+            <button type="button" class="nav-link nav-more-trigger" id="navMoreTrigger" aria-expanded="false" aria-haspopup="true">
+              <span>More</span>
+              <svg class="nav-more-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <ul class="nav-more-menu" id="navMoreMenu">
+              <li><a href="#capital" class="nav-link" data-i18n="nav.capital">Strategy</a></li>
+              <li><a href="#pillars" class="nav-link" data-i18n="nav.pillars">Pillars</a></li>
+              <li><a href="#media" class="nav-link" data-i18n="nav.media">Media</a></li>
+              <li><a href="#faq" class="nav-link" data-i18n="nav.faq">FAQ</a></li>
+              <li class="nav-item-connect"><a href="#connect" class="nav-link" data-i18n="nav.connect">Connect</a></li>
+            </ul>
+          </li>
 
           <!-- Mobile Drawer Performance / FX Freeze Mode Toggle -->
           <li class="nav-mobile-settings nav-mobile-only">
@@ -3638,6 +3648,6 @@
     <span id="toastMessage">Notification message</span>
   </div>
 
-  <script src="/script.js?v=20261110v34"></script>
+  <script src="/script.js?v=20261110v35"></script>
 </body>
 </html>

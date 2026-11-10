@@ -22895,5 +22895,362 @@ html.effects-frozen .pin1up-fab-orb::before {
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.45);
 }
 
+/* ==========================================================================
+   NEAT INSTITUTIONAL TOP HEADER BAR & UNIFIED UTILITY RAIL (DESKTOP + ALL PAGES)
+   Streamlines crowded links into clean 8+More strip & unifies right utility chrome
+   ========================================================================== */
+.site-header .nav-wrapper {
+  min-height: 52px;
+  background: rgba(9, 13, 24, 0.86) !important;
+  backdrop-filter: blur(22px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 9999px !important;
+  padding: 6px 10px 6px 12px !important;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  gap: 14px !important;
+}
+
+.site-header .logo.pin-prismatic-logo {
+  border-right: none !important;
+  padding: 2px 10px 2px 3px !important;
+  margin-right: 0 !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.site-header .pin-prism-medallion {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.site-header .logo.pin-prismatic-logo .nav-logo-3d-img {
+  height: 24px !important;
+}
+
+/* Airy, Evenly Spaced Navigation Links Strip */
+@media (min-width: 1280px) {
+  .site-header .nav-menu {
+    gap: 4px !important;
+    justify-content: center !important;
+  }
+
+  .site-header .nav-link {
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+    padding: 6px 10px !important;
+    border-radius: 9999px !important;
+    color: rgba(203, 213, 225, 0.85) !important;
+    border: 1px solid transparent !important;
+  }
+
+  .site-header .nav-link:hover {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    transform: none !important;
+  }
+
+  .site-header .nav-link.active {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(0, 245, 212, 0.34) !important;
+    color: #ffffff !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  }
+
+  .site-header .nav-new-badge {
+    font-size: 8px !important;
+    padding: 2px 5px !important;
+    border-radius: 999px !important;
+    box-shadow: none !important;
+    margin-left: 5px !important;
+  }
+
+  /* "More ▾" Clean Frosted Dropdown for Secondary Anchor Links */
+  .nav-more-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .nav-more-trigger {
+    background: transparent;
+    cursor: pointer;
+    gap: 4px;
+    font-family: inherit;
+  }
+
+  .nav-more-chevron {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.22s ease;
+    opacity: 0.72;
+  }
+
+  .nav-more-wrap.is-open .nav-more-chevron,
+  .nav-more-wrap:hover .nav-more-chevron {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+
+  .nav-more-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 175px;
+    padding: 6px;
+    margin: 0;
+    list-style: none;
+    border-radius: 16px;
+    background: rgba(11, 16, 28, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 100020;
+  }
+
+  .nav-more-wrap:hover .nav-more-menu,
+  .nav-more-wrap.is-open .nav-more-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-more-menu .nav-link {
+    width: 100%;
+    padding: 8px 12px !important;
+    border-radius: 10px !important;
+    justify-content: flex-start;
+    font-size: 0.78rem !important;
+  }
+
+  .nav-more-menu .nav-item-connect {
+    display: block !important;
+  }
+}
+
+/* On Mobile/Tablet Drawer: flatten "More" items seamlessly into drawer list */
+@media (max-width: 1279px) {
+  .nav-more-trigger {
+    display: none !important;
+  }
+
+  .nav-more-wrap,
+  .nav-more-menu {
+    display: contents !important;
+  }
+}
+
+/* Unified Cohesive Utility Cluster & Primary CTA (Desktop) */
+@media (min-width: 769px) {
+  .site-header .nav-right-actions {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    margin-left: 4px !important;
+  }
+
+  .site-header #langToggleBtn {
+    height: 34px !important;
+    padding: 0 11px 0 5px !important;
+    gap: 6px !important;
+    border-radius: 9999px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.13) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    color: #f1f5f9 !important;
+  }
+
+  .site-header #langToggleBtn::before,
+  .site-header #langToggleBtn::after,
+  .site-header #themeToggleBtn::before,
+  .site-header #themeToggleBtn::after {
+    display: none !important;
+  }
+
+  .site-header #langToggleBtn:hover {
+    transform: translateY(-1px) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(125, 211, 252, 0.45) !important;
+    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.18) !important;
+  }
+
+  .site-header #langToggleBtn .lang-flag {
+    width: 22px !important;
+    height: 22px !important;
+    background: rgba(56, 189, 248, 0.18) !important;
+    border: 1px solid rgba(56, 189, 248, 0.42) !important;
+    box-shadow: none !important;
+    color: #7dd3fc !important;
+    font-size: 0.56rem !important;
+    font-weight: 800 !important;
+  }
+
+  .site-header #langToggleBtn #langBtnText {
+    font-size: 0.74rem !important;
+    font-weight: 700 !important;
+    text-shadow: none !important;
+    color: #f8fafc !important;
+  }
+
+  .site-header .nav-tool-btn.nav-theme-btn,
+  .site-header #themeToggleBtn {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.13) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  }
+
+  .site-header #themeToggleBtn:hover {
+    transform: translateY(-1px) !important;
+    background: rgba(251, 191, 36, 0.12) !important;
+    border-color: rgba(251, 191, 36, 0.45) !important;
+    box-shadow: 0 4px 14px rgba(251, 191, 36, 0.18) !important;
+  }
+
+  .site-header #themeToggleBtn .theme-icon {
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  .site-header #themeToggleBtn .sun-icon {
+    stroke: #fbbf24 !important;
+    filter: none !important;
+    animation: none !important;
+  }
+
+  /* Crisp FX Status Orb Button (Replaces Blurry Marble) */
+  .site-header .nav-tool-btn.nav-fx-btn,
+  .site-header #fxToggleBtn {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(0, 245, 212, 0.34) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      0 0 12px rgba(0, 245, 212, 0.16) !important;
+  }
+
+  .site-header #fxToggleBtn:hover {
+    transform: translateY(-1px) !important;
+    border-color: rgba(0, 245, 212, 0.65) !important;
+    background: rgba(0, 245, 212, 0.1) !important;
+  }
+
+  .site-header .fx-art-track {
+    width: 18px !important;
+    height: 18px !important;
+    background: radial-gradient(circle at 38% 35%, #ffffff 0%, #5eead4 45%, #0284c7 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.72) !important;
+    box-shadow: 0 0 10px rgba(0, 245, 212, 0.55) !important;
+  }
+
+  html.effects-frozen .site-header #fxToggleBtn {
+    border-color: rgba(148, 163, 184, 0.2) !important;
+    box-shadow: none !important;
+  }
+
+  html.effects-frozen .site-header .fx-art-track {
+    background: rgba(148, 163, 184, 0.35) !important;
+    border-color: rgba(148, 163, 184, 0.45) !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  /* Primary Register Now Pill: Clean Uniform 34px Height */
+  .site-header .nav-cta-btn,
+  .site-header .nav-register-dm-btn {
+    height: 34px !important;
+    padding: 0 15px !important;
+    gap: 6px !important;
+    border-radius: 9999px !important;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.22) 0%, rgba(0, 245, 212, 0.2) 100%) !important;
+    border: 1px solid rgba(0, 245, 212, 0.48) !important;
+    color: #ffffff !important;
+    font-size: 0.76rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      0 4px 16px rgba(0, 245, 212, 0.16) !important;
+  }
+
+  .site-header .nav-cta-btn:hover,
+  .site-header .nav-register-dm-btn:hover {
+    transform: translateY(-1px) !important;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.36) 0%, rgba(0, 245, 212, 0.34) 100%) !important;
+    border-color: #00f5d4 !important;
+    color: #ffffff !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      0 6px 22px rgba(0, 245, 212, 0.32) !important;
+  }
+}
+
+/* Light Mode Clean Parity for Neat Top Navbar */
+[data-theme="light"] .site-header .nav-wrapper {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  box-shadow:
+    0 12px 32px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+@media (min-width: 1280px) {
+  [data-theme="light"] .site-header .nav-link {
+    color: #475569 !important;
+  }
+  [data-theme="light"] .site-header .nav-link:hover {
+    color: #0f172a !important;
+    background: rgba(15, 23, 42, 0.05) !important;
+  }
+  [data-theme="light"] .site-header .nav-link.active {
+    background: rgba(2, 132, 199, 0.1) !important;
+    border-color: rgba(2, 132, 199, 0.32) !important;
+    color: #0369a1 !important;
+  }
+  [data-theme="light"] .nav-more-menu {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(15, 23, 42, 0.1);
+    box-shadow: 0 16px 38px rgba(15, 23, 42, 0.12);
+  }
+}
+
+@media (min-width: 769px) {
+  [data-theme="light"] .site-header #langToggleBtn,
+  [data-theme="light"] .site-header #themeToggleBtn,
+  [data-theme="light"] .site-header #fxToggleBtn {
+    background: rgba(15, 23, 42, 0.05) !important;
+    border-color: rgba(15, 23, 42, 0.12) !important;
+    box-shadow: none !important;
+  }
+  [data-theme="light"] .site-header #langToggleBtn #langBtnText {
+    color: #0f172a !important;
+  }
+  [data-theme="light"] .site-header .nav-cta-btn {
+    background: linear-gradient(135deg, #0284c7, #0d9488) !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+  }
+}
+
+
 
 

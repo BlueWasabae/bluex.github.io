@@ -6062,4 +6062,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initHomepageOverviewQuadAnimations();
 
+  // =========================================================================
+  // NEAT INSTITUTIONAL TOP HEADER: "More ▾" DROPDOWN INTERACTIVITY
+  // =========================================================================
+  function initNeatNavbarMoreMenu() {
+    const moreWrap = document.getElementById('navMoreWrap');
+    const moreTrigger = document.getElementById('navMoreTrigger');
+    const moreMenu = document.getElementById('navMoreMenu');
+    if (!moreWrap || !moreTrigger) return;
+
+    function setOpen(open) {
+      moreWrap.classList.toggle('is-open', open);
+      moreTrigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    moreTrigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(!moreWrap.classList.contains('is-open'));
+    });
+
+    if (moreMenu) {
+      moreMenu.querySelectorAll('a.nav-link').forEach((link) => {
+        link.addEventListener('click', () => setOpen(false));
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!moreWrap.contains(e.target)) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  }
+
+  initNeatNavbarMoreMenu();
+
 });
