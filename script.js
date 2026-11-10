@@ -896,7 +896,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'connect.btnOneClickDm': 'Register Now • 1-Click DM (@Le_Bluue)',
       'connect.btnCommunityJoin': '👥 Join Official Telegram Community (t.me/bluexacademy) ↗',
       'hedging.execDirective': 'DIGITAL EXECUTION DIRECTIVE',
-      'hedging.dispatchTicket': 'Dispatch Hedge Ticket to @MongsayFX',
+      'hedging.dispatchTicket': 'Dispatch Hedge Ticket to Mongsay',
       'hedging.capitalAdvisoryTitle': 'Capital & Balance Advisory',
       'hedging.userBalanceLabel': 'Your Current Trading Account Balance ()',
       'hedging.recDepositBanner': 'RECOMMENDED DEPOSIT (Safe Capital Buffer):',
@@ -1685,7 +1685,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'connect.btnOneClickDm': 'ចុះឈ្មោះឥឡូវនេះ • ១-ចុច ផ្ញើសារ (@Le_Bluue)',
       'connect.btnCommunityJoin': '👥 ចូលរួមសហគមន៍តេឡេក្រាមផ្លូវការ (t.me/bluexacademy) ↗',
       'hedging.execDirective': 'ការណែនាំបញ្ជាប្រតិបត្តិការឌីជីថល',
-      'hedging.dispatchTicket': 'ផ្ញើសំបុត្របញ្ជា Hedging ទៅកាន់ @MongsayFX',
+      'hedging.dispatchTicket': 'ផ្ញើសំបុត្របញ្ជា Hedging ទៅកាន់ Mongsay',
       'hedging.capitalAdvisoryTitle': 'ការណែនាំអំពីដើមទុន & ទឹកប្រាក់គណនី',
       'hedging.userBalanceLabel': 'សមតុល្យគណនីជួញដូរបច្ចុប្បន្នរបស់អ្នក ()',
       'hedging.recDepositBanner': 'ប្រាក់តម្កល់សុវត្ថិភាពដែលបានណែនាំ:',
@@ -2495,8 +2495,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (btnTicket) {
-        const actionStr = isBuy ? 'SELL' : 'BUY';
-        btnTicket.href = `https://t.me/MongsayFX?text=BlueX%20Hedging%20Desk%3A%20${actionStr}%20${brokerLots.toFixed(2)}%20LOTS%20${metalSymbol}%20for%20${weight}%20${unit}`;
+        btnTicket.href = 'https://mongsay.com/hedging';
       }
 
       // Update Bottom Advisory Card
