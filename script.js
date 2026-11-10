@@ -5522,4 +5522,459 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initPin3t7GlassTelemetry();
 
+  // =========================================================================
+  // HOMEPAGE OVERVIEWS QUAD ANIMATION SUITE (#pinOverviewQuadSection)
+  // 1) Pin 5qzp28j8e — Asymmetric 3-Card Electric Horizon Bento
+  // 2) Pin 7vIqA4kJz — Vertical Plasma Conduit & Squircle Core
+  // 3) Pin 2U5gE0DHx — Elastic Lime Timeline & Digital Odometer
+  // 4) Pin 5CQU3hUwN — Electric Silk Light Waves & Sapphire Feature Card
+  // =========================================================================
+  function initHomepageOverviewQuadAnimations() {
+    const quadSection = document.getElementById('pinOverviewQuadSection');
+    if (!quadSection) return;
+    quadSection.classList.add('is-visible');
+
+    // -----------------------------------------------------------------------
+    // 1. STAGE 1 (Pin 5qzp28j8e): Cursor-Tracked Bottom Horizon Underglow
+    // -----------------------------------------------------------------------
+    const ov5qCards = Array.from(quadSection.querySelectorAll('.ov5q-card'));
+    ov5qCards.forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        if (document.documentElement.classList.contains('effects-frozen')) return;
+        const rect = card.getBoundingClientRect();
+        const relX = Math.max(12, Math.min(88, ((e.clientX - rect.left) / rect.width) * 100));
+        card.style.setProperty('--ov5q-hx', `${relX.toFixed(1)}%`);
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.setProperty('--ov5q-hx', '38%');
+      });
+    });
+
+    // -----------------------------------------------------------------------
+    // 2. STAGE 2 (Pin 7vIqA4kJz): Vertical Plasma Conduit & Squircle Switcher
+    // -----------------------------------------------------------------------
+    const squircleCard = document.getElementById('ov7vSquircleCard');
+    const stepNumEl = document.getElementById('ov7vStepNum');
+    const titleEl = document.getElementById('ov7vCardTitle');
+    const descEl = document.getElementById('ov7vCardDesc');
+    const stepDots = Array.from(quadSection.querySelectorAll('.ov7v-dot[data-ov7v-step]'));
+
+    const plasmaSteps = [
+      {
+        num: '01',
+        title: 'Quick–fire transactions',
+        desc: 'Use BlueX 3M BOS protocols for secure and mechanical XAU/USD execution, ensuring your positions are conducted safely and swiftly.'
+      },
+      {
+        num: '02',
+        title: '4H Macro liquidity bias',
+        desc: 'Align every intraday trade with high-timeframe institutional orderflow before dropping down to lower-timeframe zones.'
+      },
+      {
+        num: '03',
+        title: '15M Unmitigated S&D base',
+        desc: 'Isolate clean, high-displacement Supply & Demand origin zones where institutional limit orders remain resting.'
+      },
+      {
+        num: '04',
+        title: '0.5%–1.0% Capital defense',
+        desc: 'Lock predefined equity risk on every setup while targeting 1:3 to 1:10+ asymmetric reward profiles.'
+      }
+    ];
+
+    let activePlasmaStep = 0;
+    let plasmaHovered = false;
+
+    function applyPlasmaStep(idx) {
+      activePlasmaStep = ((idx % plasmaSteps.length) + plasmaSteps.length) % plasmaSteps.length;
+      const s = plasmaSteps[activePlasmaStep];
+      if (stepNumEl) stepNumEl.textContent = s.num;
+      if (titleEl) titleEl.textContent = s.title;
+      if (descEl) descEl.textContent = s.desc;
+      stepDots.forEach((d, i) => d.classList.toggle('active', i === activePlasmaStep));
+    }
+
+    stepDots.forEach((dot) => {
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = parseInt(dot.getAttribute('data-ov7v-step') || '0', 10);
+        applyPlasmaStep(idx);
+      });
+    });
+
+    if (squircleCard) {
+      squircleCard.addEventListener('click', () => {
+        applyPlasmaStep(activePlasmaStep + 1);
+      });
+      squircleCard.addEventListener('mouseenter', () => {
+        plasmaHovered = true;
+      });
+      squircleCard.addEventListener('mouseleave', () => {
+        plasmaHovered = false;
+      });
+    }
+
+    setInterval(() => {
+      if (plasmaHovered || document.documentElement.classList.contains('effects-frozen')) return;
+      applyPlasmaStep(activePlasmaStep + 1);
+    }, 4800);
+
+    // -----------------------------------------------------------------------
+    // 3. STAGE 3 (Pin 2U5gE0DHx): Elastic Timeline Ruler, Odometer & Halftone
+    // -----------------------------------------------------------------------
+    const timelineStage = document.getElementById('ov2uTimelineStage');
+    const monthsTrack = document.getElementById('ov2uMonthsTrack');
+    const monthItems = Array.from(quadSection.querySelectorAll('.ov2u-month-item[data-ov2u-idx]'));
+    const puckBtn = document.getElementById('ov2uPuckBtn');
+    const odoDigitsEl = document.getElementById('ov2uOdometerDigits');
+    const odoLabelEl = document.getElementById('ov2uCounterLabel');
+    const presetChips = Array.from(quadSection.querySelectorAll('.ov2u-preset-chip[data-ov2u-target]'));
+    const halftoneCanvas = document.getElementById('ov2uHalftoneCanvas');
+
+    const timelineMilestones = [
+      { month: 'Mar 2024', val: 600, intensity: 0.35 },
+      { month: 'Apr 2024', val: 1450, intensity: 0.42 },
+      { month: 'May 2024', val: 2704, intensity: 0.5 },
+      { month: 'Jun 2024', val: 3765, intensity: 0.58 },
+      { month: 'July 2024', val: 4820, intensity: 0.65 },
+      { month: 'Aug 2024', val: 5750, intensity: 0.72 },
+      { month: 'Oct 2024', val: 7657, intensity: 0.8 },
+      { month: 'Dec 2024', val: 8370, intensity: 0.88 },
+      { month: 'Feb 2025', val: 9680, intensity: 0.94 },
+      { month: 'Mar 2025', val: 10000, intensity: 1.0 }
+    ];
+
+    let activeMilestoneIdx = 2;
+    let currentDisplayedNumber = 2704;
+    let currentAuraIntensity = 0.5;
+    let odoRaf = null;
+    let timelineHovered = false;
+
+    function renderOdometerString(num) {
+      if (!odoDigitsEl) return;
+      const formatted = Math.round(num).toLocaleString('en-US');
+      odoDigitsEl.innerHTML = formatted
+        .split('')
+        .map((ch) => `<span class="ov2u-digit-slot">${ch}</span>`)
+        .join('');
+    }
+
+    function animateOdometerTo(targetValue, duration = 680) {
+      if (odoRaf) cancelAnimationFrame(odoRaf);
+      const startVal = currentDisplayedNumber;
+      const delta = targetValue - startVal;
+      if (Math.abs(delta) < 1) {
+        currentDisplayedNumber = targetValue;
+        renderOdometerString(targetValue);
+        return;
+      }
+      const startTime = performance.now();
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const p = Math.min(1, elapsed / duration);
+        const ease = 1 - Math.pow(1 - p, 3);
+        currentDisplayedNumber = startVal + delta * ease;
+        renderOdometerString(currentDisplayedNumber);
+        if (p < 1) {
+          odoRaf = requestAnimationFrame(step);
+        } else {
+          currentDisplayedNumber = targetValue;
+          renderOdometerString(targetValue);
+        }
+      }
+      odoRaf = requestAnimationFrame(step);
+    }
+
+    function setMilestone(idx, customTarget = null) {
+      activeMilestoneIdx = ((idx % timelineMilestones.length) + timelineMilestones.length) % timelineMilestones.length;
+      const ms = timelineMilestones[activeMilestoneIdx];
+      currentAuraIntensity = ms.intensity;
+
+      monthItems.forEach((item, i) => {
+        item.classList.toggle('active', i === activeMilestoneIdx);
+      });
+
+      if (monthsTrack && monthItems[activeMilestoneIdx]) {
+        const itemEl = monthItems[activeMilestoneIdx];
+        const viewportH = monthsTrack.parentElement ? monthsTrack.parentElement.clientHeight : 380;
+        const itemCenter = itemEl.offsetTop + itemEl.offsetHeight * 0.5;
+        const shiftY = viewportH * 0.5 - itemCenter;
+        monthsTrack.style.transform = `translate3d(0, ${shiftY.toFixed(1)}px, 0)`;
+      }
+
+      const targetNum = customTarget !== null ? customTarget : ms.val;
+      animateOdometerTo(targetNum);
+    }
+
+    monthItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        const idx = parseInt(item.getAttribute('data-ov2u-idx') || '0', 10);
+        setMilestone(idx);
+      });
+    });
+
+    if (puckBtn) {
+      puckBtn.addEventListener('click', () => {
+        setMilestone(activeMilestoneIdx + 1);
+      });
+    }
+
+    presetChips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        presetChips.forEach((c) => c.classList.toggle('active', c === chip));
+        const target = parseInt(chip.getAttribute('data-ov2u-target') || '10000', 10);
+        const lbl = chip.getAttribute('data-ov2u-lbl') || 'Followers & Milestone Reach';
+        if (odoLabelEl) odoLabelEl.textContent = lbl;
+        setMilestone(timelineMilestones.length - 1, target);
+      });
+    });
+
+    if (timelineStage) {
+      timelineStage.addEventListener('mouseenter', () => {
+        timelineHovered = true;
+      });
+      timelineStage.addEventListener('mouseleave', () => {
+        timelineHovered = false;
+      });
+    }
+
+    // Initialize timeline position and auto-advance like pin_2U5gE0DHx.mp4
+    setTimeout(() => setMilestone(2), 120);
+    setInterval(() => {
+      if (timelineHovered || document.documentElement.classList.contains('effects-frozen')) return;
+      setMilestone(activeMilestoneIdx + 1);
+    }, 2400);
+
+    // Right-Edge Neon-Lime & Emerald Halftone Dot-Matrix Canvas
+    if (halftoneCanvas && timelineStage) {
+      const hCtx = halftoneCanvas.getContext('2d');
+      let hw = 0;
+      let hh = 0;
+      let hdpr = 1;
+
+      function resizeHalftone() {
+        const r = timelineStage.getBoundingClientRect();
+        hw = Math.max(300, r.width);
+        hh = Math.max(260, r.height);
+        hdpr = Math.min(window.devicePixelRatio || 1, 2);
+        halftoneCanvas.width = Math.floor(hw * hdpr);
+        halftoneCanvas.height = Math.floor(hh * hdpr);
+        if (hCtx) hCtx.setTransform(hdpr, 0, 0, hdpr, 0, 0);
+      }
+
+      resizeHalftone();
+      window.addEventListener('resize', resizeHalftone, { passive: true });
+
+      let htVisible = false;
+      const htIo = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { htVisible = e.isIntersecting; });
+      }, { threshold: 0.05 });
+      htIo.observe(timelineStage);
+
+      function drawHalftone(now) {
+        requestAnimationFrame(drawHalftone);
+        if (!htVisible || !hCtx) return;
+        const frozen = document.documentElement.classList.contains('effects-frozen');
+        const t = frozen ? 1.5 : now * 0.0012;
+
+        hCtx.clearRect(0, 0, hw, hh);
+
+        // Soft volumetric lime/yellow glow on right edge
+        const glowX = hw * 0.94;
+        const glowY = hh * (0.48 + Math.sin(t) * 0.08);
+        const rad = Math.max(hw, hh) * (0.38 + currentAuraIntensity * 0.18);
+        const bgGrad = hCtx.createRadialGradient(glowX, glowY, 10, glowX, glowY, rad);
+        bgGrad.addColorStop(0, `rgba(217, 249, 157, ${(0.22 * currentAuraIntensity).toFixed(3)})`);
+        bgGrad.addColorStop(0.35, `rgba(132, 204, 22, ${(0.18 * currentAuraIntensity).toFixed(3)})`);
+        bgGrad.addColorStop(0.7, `rgba(22, 163, 74, ${(0.08 * currentAuraIntensity).toFixed(3)})`);
+        bgGrad.addColorStop(1, 'rgba(4, 8, 6, 0)');
+        hCtx.fillStyle = bgGrad;
+        hCtx.fillRect(0, 0, hw, hh);
+
+        // Halftone dot-matrix grid along the right 38% of the stage
+        const spacing = 11;
+        const startX = Math.floor(hw * 0.62);
+        for (let x = startX; x < hw - 6; x += spacing) {
+          const normX = (x - startX) / Math.max(1, hw - startX);
+          for (let y = 12; y < hh - 12; y += spacing) {
+            const dy = (y - glowY) / (hh * 0.52);
+            const wave = Math.sin(x * 0.035 - t * 2.2 + y * 0.025) * 0.5 + 0.5;
+            const falloff = Math.max(0, normX * (1 - dy * dy * 0.65));
+            const alpha = falloff * (0.14 + wave * 0.42) * currentAuraIntensity;
+            if (alpha < 0.03) continue;
+
+            const radius = 1.1 + falloff * wave * 1.65;
+            hCtx.beginPath();
+            hCtx.arc(x, y, radius, 0, Math.PI * 2);
+            hCtx.fillStyle = normX > 0.72 && wave > 0.68
+              ? `rgba(236, 252, 203, ${Math.min(0.9, alpha * 1.35).toFixed(3)})`
+              : `rgba(163, 230, 53, ${Math.min(0.85, alpha).toFixed(3)})`;
+            hCtx.fill();
+          }
+        }
+      }
+
+      requestAnimationFrame(drawHalftone);
+    }
+
+    // -----------------------------------------------------------------------
+    // 4. STAGE 4 (Pin 5CQU3hUwN): Sweeping Electric-Blue Silk Light Waves &
+    //    Sapphire Frosted-Glass Feature Card
+    // -----------------------------------------------------------------------
+    const intelStage = document.getElementById('ov5cIntelligenceStage');
+    const silkCanvas = document.getElementById('ov5cSilkWavesCanvas');
+    const featBadge = document.getElementById('ov5cFeatureBadge');
+    const featTitle = document.getElementById('ov5cFeatureTitle');
+    const featDesc = document.getElementById('ov5cFeatureDesc');
+    const featDots = Array.from(quadSection.querySelectorAll('.ov5c-mini-dot[data-ov5c-mode]'));
+
+    const featureModes = [
+      {
+        badge: 'FEATURE',
+        title: 'Feature',
+        desc: 'Institutional orderflow mapping aligns 4H directional bias with unmitigated 15M Supply & Demand zones and surgical 3M BOS execution for asymmetric 1:3 to 1:10+ returns.'
+      },
+      {
+        badge: '3M BOS',
+        title: 'Precision',
+        desc: 'Zero M1 chart noise. Every entry waits for a clean 3-Minute candle body-close confirmation inside a high-displacement 15M Supply or Demand origin.'
+      },
+      {
+        badge: '0.5%–1%',
+        title: 'Discipline',
+        desc: 'Strict capital preservation rules lock risk between 0.5% and 1.0% per trade so a single 1:5 winner outpaces an entire week of variance.'
+      }
+    ];
+
+    featDots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const mIdx = parseInt(dot.getAttribute('data-ov5c-mode') || '0', 10);
+        const fm = featureModes[mIdx] || featureModes[0];
+        featDots.forEach((d, i) => d.classList.toggle('active', i === mIdx));
+        if (featBadge) featBadge.textContent = fm.badge;
+        if (featTitle) featTitle.textContent = fm.title;
+        if (featDesc) featDesc.textContent = fm.desc;
+      });
+    });
+
+    if (silkCanvas && intelStage) {
+      const sCtx = silkCanvas.getContext('2d');
+      let sw = 0;
+      let sh = 0;
+      let sdpr = 1;
+
+      function resizeSilk() {
+        const r = intelStage.getBoundingClientRect();
+        sw = Math.max(300, r.width);
+        sh = Math.max(320, r.height);
+        sdpr = Math.min(window.devicePixelRatio || 1, 2);
+        silkCanvas.width = Math.floor(sw * sdpr);
+        silkCanvas.height = Math.floor(sh * sdpr);
+        if (sCtx) sCtx.setTransform(sdpr, 0, 0, sdpr, 0, 0);
+      }
+
+      resizeSilk();
+      window.addEventListener('resize', resizeSilk, { passive: true });
+
+      let silkVisible = false;
+      const silkIo = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { silkVisible = e.isIntersecting; });
+      }, { threshold: 0.05 });
+      silkIo.observe(intelStage);
+
+      const silkStrands = [
+        { width: 3.4, alpha: 0.9, speed: 0.9, yStart: 0.52, yDip: 0.92, yEnd: 0.28, color: '#7dd3fc' },
+        { width: 2.4, alpha: 0.78, speed: 1.1, yStart: 0.58, yDip: 0.89, yEnd: 0.34, color: '#38bdf8' },
+        { width: 4.5, alpha: 0.45, speed: 0.75, yStart: 0.46, yDip: 0.94, yEnd: 0.22, color: '#0284c7' },
+        { width: 1.8, alpha: 0.95, speed: 1.25, yStart: 0.55, yDip: 0.90, yEnd: 0.38, color: '#e0f2fe' },
+        { width: 2.8, alpha: 0.62, speed: 0.85, yStart: 0.64, yDip: 0.86, yEnd: 0.44, color: '#60a5fa' },
+        { width: 2.0, alpha: 0.55, speed: 1.05, yStart: 0.48, yDip: 0.95, yEnd: 0.31, color: '#38bdf8' }
+      ];
+
+      function drawSilkWaves(now) {
+        requestAnimationFrame(drawSilkWaves);
+        if (!silkVisible || !sCtx) return;
+        const frozen = document.documentElement.classList.contains('effects-frozen');
+        const t = frozen ? 2.0 : now * 0.001;
+
+        sCtx.clearRect(0, 0, sw, sh);
+        sCtx.save();
+        sCtx.globalCompositeOperation = 'lighter';
+
+        // 1. Floor Focal Hotspot & Horizontal Reflection Ripples (Replicating Pin 5CQU3hUwN bottom glow)
+        const focalX = sw * 0.41;
+        const focalY = sh * 0.89;
+        const floorGlow = sCtx.createRadialGradient(focalX, focalY, 4, focalX, focalY, sw * 0.32);
+        floorGlow.addColorStop(0, 'rgba(255, 255, 255, 0.82)');
+        floorGlow.addColorStop(0.18, 'rgba(56, 189, 248, 0.58)');
+        floorGlow.addColorStop(0.5, 'rgba(2, 132, 199, 0.18)');
+        floorGlow.addColorStop(1, 'rgba(2, 8, 24, 0)');
+        sCtx.fillStyle = floorGlow;
+        sCtx.beginPath();
+        sCtx.ellipse(focalX, focalY, sw * 0.32, sh * 0.09, 0, 0, Math.PI * 2);
+        sCtx.fill();
+
+        // Horizontal floor water-ripple reflection lines
+        for (let r = 0; r < 4; r++) {
+          const ry = focalY + 6 + r * 5.5;
+          const rw = sw * (0.22 - r * 0.035) + Math.sin(t * 2 + r) * 12;
+          sCtx.beginPath();
+          sCtx.moveTo(focalX - rw, ry);
+          sCtx.quadraticCurveTo(focalX, ry - 2, focalX + rw, ry);
+          sCtx.strokeStyle = `rgba(125, 211, 252, ${(0.45 - r * 0.09).toFixed(2)})`;
+          sCtx.lineWidth = 1.2;
+          sCtx.stroke();
+        }
+
+        // 2. Sweeping Multi-Strand Electric-Blue Silk Light Ribbons
+        silkStrands.forEach((st, idx) => {
+          const sx = sw * 0.04;
+          const sy = sh * st.yStart + Math.sin(t * st.speed + idx) * 14;
+          const cp1x = sw * 0.25;
+          const cp1y = sh * (st.yStart + 0.18) + Math.cos(t * st.speed + idx) * 12;
+          const dipX = focalX + Math.sin(t * 0.8 + idx) * 10;
+          const dipY = sh * st.yDip;
+          const cp2x = sw * 0.58;
+          const cp2y = sh * 0.62 - Math.sin(t * st.speed + idx) * 14;
+          const ex = sw * 0.98;
+          const ey = sh * st.yEnd + Math.cos(t * st.speed + idx) * 16;
+
+          const grad = sCtx.createLinearGradient(sx, sy, ex, ey);
+          grad.addColorStop(0, 'rgba(56, 189, 248, 0)');
+          grad.addColorStop(0.22, st.color);
+          grad.addColorStop(0.45, '#ffffff');
+          grad.addColorStop(0.75, st.color);
+          grad.addColorStop(1, 'rgba(56, 189, 248, 0)');
+
+          // Outer glow pass
+          sCtx.beginPath();
+          sCtx.moveTo(sx, sy);
+          sCtx.quadraticCurveTo(cp1x, cp1y, dipX, dipY);
+          sCtx.quadraticCurveTo(cp2x, cp2y, ex, ey);
+          sCtx.strokeStyle = grad;
+          sCtx.lineWidth = st.width * 3.8;
+          sCtx.globalAlpha = st.alpha * 0.24;
+          sCtx.stroke();
+
+          // Core laser silk filament pass
+          sCtx.beginPath();
+          sCtx.moveTo(sx, sy);
+          sCtx.quadraticCurveTo(cp1x, cp1y, dipX, dipY);
+          sCtx.quadraticCurveTo(cp2x, cp2y, ex, ey);
+          sCtx.strokeStyle = grad;
+          sCtx.lineWidth = st.width;
+          sCtx.globalAlpha = st.alpha;
+          sCtx.stroke();
+        });
+
+        sCtx.restore();
+      }
+
+      requestAnimationFrame(drawSilkWaves);
+    }
+  }
+
+  initHomepageOverviewQuadAnimations();
+
 });
