@@ -20822,6 +20822,237 @@ html.effects-frozen #themeToggleBtn .sun-icon {
   border-color: rgba(148, 163, 184, 0.32);
 }
 
+/* Interactive Mobile & Desktop XAU/USD Lot & Risk Tool Drawer */
+.pin3t7-tool-drawer {
+  position: relative;
+  z-index: 2;
+  border-radius: 20px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  background:
+    linear-gradient(145deg, rgba(16, 22, 46, 0.72) 0%, rgba(10, 14, 30, 0.84) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.18),
+    0 12px 28px rgba(2, 6, 20, 0.45),
+    0 0 22px rgba(56, 189, 248, 0.1);
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+.pin3t7-tool-drawer.is-open {
+  display: flex;
+  animation: pin3t7DrawerFade 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes pin3t7DrawerFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pin3t7-tool-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pin3t7-tool-badge {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.45);
+}
+
+.pin3t7-tool-rr {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: #f472b6;
+  background: rgba(236, 72, 153, 0.14);
+  border: 1px solid rgba(236, 72, 153, 0.34);
+}
+
+.pin3t7-tool-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pin3t7-tool-split {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 10px;
+  align-items: end;
+}
+
+.pin3t7-tool-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.pin3t7-tool-lbl {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(148, 163, 184, 0.88);
+}
+
+.pin3t7-chip-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pin3t7-mini-chip {
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(226, 232, 240, 0.86);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1 1 auto;
+  text-align: center;
+  min-width: 0;
+}
+
+.pin3t7-mini-chip:hover,
+.pin3t7-mini-chip.active {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
+}
+
+.pin3t7-sl-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  padding: 0 4px;
+  border-radius: 9px;
+  border: 1px solid rgba(244, 114, 182, 0.35);
+  background: rgba(244, 114, 182, 0.08);
+}
+
+.pin3t7-step-btn {
+  width: 24px;
+  height: 22px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.2s ease;
+}
+
+.pin3t7-step-btn:hover {
+  background: rgba(244, 114, 182, 0.35);
+}
+
+.pin3t7-sl-val {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #f9a8d4;
+}
+
+.pin3t7-tool-results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pin3t7-res-box {
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.pin3t7-res-lbl {
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: rgba(148, 163, 184, 0.82);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pin3t7-res-val {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.84rem;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pin3t7-res-val.cyan {
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+.pin3t7-res-val.pink {
+  color: #f472b6;
+  text-shadow: 0 0 10px rgba(244, 114, 182, 0.4);
+}
+
+.pin3t7-res-val.emerald {
+  color: #34d399;
+  text-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
+}
+
+[data-theme="light"] .pin3t7-tool-drawer {
+  background: rgba(248, 250, 252, 0.94);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+[data-theme="light"] .pin3t7-mini-chip {
+  background: rgba(15, 23, 42, 0.05);
+  border-color: rgba(15, 23, 42, 0.14);
+  color: #0f172a;
+}
+
+[data-theme="light"] .pin3t7-res-box {
+  background: #ffffff;
+  border-color: rgba(148, 163, 184, 0.25);
+}
+
 /* Freeze Effects State */
 html.effects-frozen .pin3t7-rim-flare.top-cyan,
 html.effects-frozen .pin3t7-bell-dot,
@@ -20829,77 +21060,218 @@ html.effects-frozen .pin3t7-avatar-ring {
   animation: none !important;
 }
 
-/* Mobile Responsive Geometry (<= 768px) */
+/* Mobile Responsive Geometry (<= 768px) — Preserves Exact Pin 3t7iLdyEe 2-Col Bento & 3-Pill Horizontal Layout */
 @media (max-width: 768px) {
   .pin3t7-stage-section {
-    padding: 46px 0 54px;
+    padding: 20px 0 32px;
   }
 
   .pin3t7-glass-shell {
-    padding: 20px 16px 18px;
+    padding: 16px 12px 14px;
     border-radius: 24px;
   }
 
   .pin3t7-header-row {
-    margin-bottom: 16px;
-    gap: 10px;
+    margin-bottom: 12px;
+    gap: 8px;
   }
 
   .pin3t7-main-title {
-    font-size: 1.22rem;
+    font-size: 1.06rem;
   }
 
   .pin3t7-live-sub {
-    font-size: 0.66rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.04em;
+  }
+
+  .pin3t7-utility-icons {
+    gap: 6px;
   }
 
   .pin3t7-util-btn {
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
   }
 
+  .pin3t7-util-btn svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  /* Keep 2-Column Side-by-Side Bento Grid on Mobile like Pin 3t7iLdyEe */
   .pin3t7-bento-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin-bottom: 16px;
+    grid-template-columns: 1.04fr 0.96fr;
+    gap: 8px;
+    margin-bottom: 12px;
   }
 
   .pin3t7-subcard {
-    padding: 16px 15px 14px;
-    border-radius: 18px;
+    padding: 11px 10px 10px;
+    border-radius: 16px;
+  }
+
+  .pin3t7-analytics-head {
+    margin-bottom: 6px;
+    gap: 4px;
+  }
+
+  .pin3t7-analytics-label {
+    font-size: 0.82rem;
+  }
+
+  .pin3t7-analytics-delta {
+    font-size: 0.6rem;
+    padding: 2px 6px;
   }
 
   .pin3t7-chart-svg {
-    height: 142px;
+    height: 108px;
   }
 
+  .pin3t7-chart-axis {
+    font-size: 0.62rem;
+    padding: 4px 2px 0;
+  }
+
+  .pin3t7-user-top {
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .pin3t7-user-heading {
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+  }
+
+  .pin3t7-user-name {
+    font-size: 0.7rem;
+  }
+
+  .pin3t7-user-handle {
+    font-size: 0.64rem;
+  }
+
+  .pin3t7-avatar-orb {
+    width: 40px;
+    height: 40px;
+    padding: 2px;
+  }
+
+  .pin3t7-stats-matrix {
+    gap: 8px 6px;
+    padding-top: 6px;
+  }
+
+  .pin3t7-stat-val {
+    font-size: 0.92rem;
+    gap: 3px;
+  }
+
+  .pin3t7-stat-mini {
+    font-size: 0.56rem;
+  }
+
+  .pin3t7-chevron-dual,
+  .pin3t7-chevron-pink {
+    font-size: 0.72rem;
+  }
+
+  .pin3t7-stat-lbl {
+    font-size: 0.6rem;
+  }
+
+  /* Mobile Tool Drawer Compact Fit */
+  .pin3t7-tool-drawer {
+    padding: 12px 10px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    gap: 9px;
+  }
+
+  .pin3t7-tool-badge {
+    font-size: 0.62rem;
+  }
+
+  .pin3t7-tool-rr {
+    font-size: 0.6rem;
+  }
+
+  .pin3t7-tool-split {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 7px;
+  }
+
+  .pin3t7-mini-chip {
+    height: 26px;
+    padding: 0 6px;
+    font-size: 0.64rem;
+    border-radius: 7px;
+  }
+
+  .pin3t7-sl-stepper {
+    height: 26px;
+  }
+
+  .pin3t7-sl-val {
+    font-size: 0.66rem;
+  }
+
+  .pin3t7-tool-results {
+    gap: 6px;
+    padding-top: 8px;
+  }
+
+  .pin3t7-res-box {
+    padding: 6px 7px;
+    border-radius: 10px;
+  }
+
+  .pin3t7-res-lbl {
+    font-size: 0.56rem;
+  }
+
+  .pin3t7-res-val {
+    font-size: 0.7rem;
+  }
+
+  /* Keep 3-Pill Horizontal Action Row Side-by-Side on Mobile like Pin 3t7iLdyEe */
   .pin3t7-actions-row {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    margin-bottom: 16px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    margin-bottom: 12px;
   }
 
   .pin3t7-action-pill {
-    height: 44px;
-    font-size: 0.88rem;
-    width: 100%;
+    height: 36px;
+    padding: 0 6px;
+    border-radius: 11px;
+    font-size: 0.68rem;
   }
 
+  /* Bottom 4-Tile Neon Icon Dock + Trailing Dots */
   .pin3t7-dock-bar {
-    padding: 10px 12px;
-    gap: 10px;
-    justify-content: space-between;
+    padding: 8px 10px;
+    gap: 8px;
+    border-radius: 16px;
   }
 
   .pin3t7-dock-tile {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+  }
+
+  .pin3t7-dock-tile svg {
+    width: 18px;
+    height: 18px;
   }
 
   .pin3t7-dock-trail-dots {
-    display: none;
+    display: inline-flex;
+    gap: 5px;
+    padding-right: 2px;
   }
 }
 

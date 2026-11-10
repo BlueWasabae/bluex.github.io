@@ -4659,6 +4659,15 @@ document.addEventListener('DOMContentLoaded', () => {
           title: 'SMC Genesis',
           sub: 'Masterclass Package'
         },
+        telemetry: {
+          href: '#pin3t7GlassUiSection',
+          img: '/assets/images/live-teaching-analysis.jpg',
+          c1: 'Glass Telemetry',
+          c2: '0.5%–1.0% Lot Tool',
+          c3: '3M BOS Stream',
+          title: 'Glass Telemetry',
+          sub: 'Live Mobile Execution Tool'
+        },
         strategy: {
           href: '#capital',
           img: '/assets/images/disciplined-trader-focus.jpg',
@@ -5159,6 +5168,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('pin3t7LightTrailsCanvas');
     if (!section || !card) return;
 
+    // Make immediately visible so mobile users never wait for scroll threshold
+    section.classList.add('is-visible');
+
     const primaryPath = document.getElementById('pin3t7PrimaryPath');
     const secondaryPath = document.getElementById('pin3t7SecondaryPath');
     const areaPath = document.getElementById('pin3t7AreaPath');
@@ -5180,6 +5192,76 @@ document.addEventListener('DOMContentLoaded', () => {
     const utilBtns = Array.from(section.querySelectorAll('.pin3t7-util-btn[data-pin3t7-util]'));
     const btnStream = document.getElementById('pin3t7BtnStream');
     const btnRisk = document.getElementById('pin3t7BtnRisk');
+
+    // Interactive Mobile & Desktop Lot & Risk Calculator Tool Elements
+    const toolDrawer = document.getElementById('pin3t7ToolDrawer');
+    const toolRrTag = document.getElementById('pin3t7ToolRrTag');
+    const eqChips = Array.from(section.querySelectorAll('#pin3t7EquityChips .pin3t7-mini-chip[data-eq]'));
+    const riskChips = Array.from(section.querySelectorAll('#pin3t7RiskChips .pin3t7-mini-chip[data-risk]'));
+    const slMinus = document.getElementById('pin3t7SlMinus');
+    const slPlus = document.getElementById('pin3t7SlPlus');
+    const slValEl = document.getElementById('pin3t7SlVal');
+    const outLots = document.getElementById('pin3t7OutLots');
+    const outRisk = document.getElementById('pin3t7OutRisk');
+    const outReward = document.getElementById('pin3t7OutReward');
+
+    let calcEquity = 10000;
+    let calcRiskPct = 0.5;
+    let calcSlPips = 20;
+
+    function updateMobileLotTool() {
+      const riskUsd = calcEquity * (calcRiskPct / 100);
+      // Standard XAU/USD contract: 1.00 lot = $10 per pip ($1 per 0.10 move)
+      const rawLots = riskUsd / (calcSlPips * 10);
+      const lots = Math.max(0.01, Math.round(rawLots * 100) / 100);
+      const reward3R = Math.round(riskUsd * 3);
+      const reward5R = Math.round(riskUsd * 5);
+
+      if (slValEl) slValEl.textContent = `${calcSlPips} Pips`;
+      if (toolRrTag) toolRrTag.textContent = `3M BOS • ${calcSlPips} Pips SL`;
+      if (outLots) outLots.textContent = `${lots.toFixed(2)} Lots`;
+      if (outRisk) outRisk.textContent = `$${riskUsd.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 1 })} (${calcRiskPct}%)`;
+      if (outReward) outReward.textContent = `+$${reward3R.toLocaleString('en-US')} – +$${reward5R.toLocaleString('en-US')}`;
+
+      eqChips.forEach((c) => {
+        c.classList.toggle('active', parseFloat(c.getAttribute('data-eq') || '0') === calcEquity);
+      });
+      riskChips.forEach((c) => {
+        c.classList.toggle('active', parseFloat(c.getAttribute('data-risk') || '0') === calcRiskPct);
+      });
+    }
+
+    eqChips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        calcEquity = parseFloat(chip.getAttribute('data-eq') || '10000');
+        updateMobileLotTool();
+        applyMode(2);
+      });
+    });
+
+    riskChips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        calcRiskPct = parseFloat(chip.getAttribute('data-risk') || '0.5');
+        updateMobileLotTool();
+        applyMode(2);
+      });
+    });
+
+    if (slMinus) {
+      slMinus.addEventListener('click', () => {
+        calcSlPips = Math.max(5, calcSlPips - 5);
+        updateMobileLotTool();
+      });
+    }
+
+    if (slPlus) {
+      slPlus.addEventListener('click', () => {
+        calcSlPips = Math.min(60, calcSlPips + 5);
+        updateMobileLotTool();
+      });
+    }
+
+    updateMobileLotTool();
 
     const modes = [
       {
@@ -5278,6 +5360,9 @@ document.addEventListener('DOMContentLoaded', () => {
     utilBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
         const uIdx = parseInt(btn.getAttribute('data-pin3t7-util') || '0', 10);
+        if ((uIdx === 0 || uIdx === 2) && toolDrawer) {
+          toolDrawer.classList.toggle('is-open');
+        }
         applyMode((uIdx + 1) % modes.length);
       });
     });
@@ -5286,7 +5371,10 @@ document.addEventListener('DOMContentLoaded', () => {
       btnStream.addEventListener('click', () => applyMode(1));
     }
     if (btnRisk) {
-      btnRisk.addEventListener('click', () => applyMode(2));
+      btnRisk.addEventListener('click', () => {
+        if (toolDrawer) toolDrawer.classList.toggle('is-open');
+        applyMode(2);
+      });
     }
 
     // Auto-cycle every 5.2s when not hovered and effects are active

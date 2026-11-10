@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles.css?v=20261110v30">
+  <link rel="stylesheet" href="/styles.css?v=20261110v31">
 </head>
 <body>
 
@@ -284,6 +284,7 @@
               <div class="orbix-mobile-hub" id="orbixMobileHub">
                 <div class="orbix-pill-tabs" role="tablist" aria-label="Quick Module Switcher">
                   <button type="button" class="orbix-pill-tab active" data-orbix-tab="genesis">SMC Genesis</button>
+                  <button type="button" class="orbix-pill-tab" data-orbix-tab="telemetry">Glass Telemetry</button>
                   <button type="button" class="orbix-pill-tab" data-orbix-tab="strategy">3M Execution</button>
                   <button type="button" class="orbix-pill-tab" data-orbix-tab="calculator">Risk Math</button>
                   <button type="button" class="orbix-pill-tab" data-orbix-tab="knowledge">Knowledge</button>
@@ -334,64 +335,7 @@
     </section>
 
     <!-- ========================================================
-         ABOUT & BIO SECTION
-         ======================================================== -->
-    <section class="manifesto-section reveal-on-scroll" id="about">
-      <div class="container">
-        <div class="manifesto-grid">
-          <!-- Sidebar Info -->
-          <div class="manifesto-sidebar reveal-left">
-
-            <div class="available-tag-wrapper">
-              <span class="status-dot"></span>
-              <span data-i18n="about.availableTag">Available for Mentorship</span>
-            </div>
-
-            <!-- Signature Card Box -->
-            <div class="signature-card-box">
-              <div class="signature-motto" data-i18n="about.signatureMotto">
-                "Master Your Ego.<br>
-                <span>Master Your Trades.</span>"
-              </div>
-              <div class="signature-script">BlueX</div>
-              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;" data-i18n="about.signatureRole">Senior Trader &amp; Private Mentor</p>
-            </div>
-          </div>
-
-          <!-- Manifesto Content -->
-          <div class="manifesto-content reveal-right">
-            <p class="manifesto-lead-text" data-i18n="about.leadText">
-              I'm a passionate trader and mentor committed to building opportunities through <span style="color:var(--color-gold);">disciplined execution</span>, strategic risk management, and a long-term market perspective.
-            </p>
-
-            <div class="manifesto-body-paragraphs">
-              <p data-i18n="about.p1">
-                I believe that <strong>successful investing is driven by consistency, patience, and sound decision making</strong> — not emotion or speculation. My focus is on creating sustainable value while navigating the markets with <strong>professionalism, transparency, and integrity</strong>.
-              </p>
-
-              <p data-i18n="about.p2">
-                Whether you're an experienced investor or an ambitious trader looking to eliminate psychological sabotage and achieve true consistency, <strong>I welcome individuals who share a long-term vision</strong> and appreciate a disciplined approach to capital management.
-              </p>
-
-              <p style="font-size: 0.88rem; color: var(--text-muted); border-left: 2px solid rgba(255, 255, 255, 0.1); padding-left: 12px; margin-top: 6px;" data-i18n="about.sagfxNote">
-                Affiliate partnerships and payment gateway inquiries via SAGFX are available upon direct request.
-              </p>
-            </div>
-
-            <a href="#courses" class="btn-mentorship" style="display:inline-flex;">
-              <span data-i18n="about.btnExplore">Explore Study Course</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================
-         PIN 3t7iLdyEe: FUTURISTIC GLASS UI & NEON LIGHT-TRAIL TELEMETRY
+         PIN 3t7iLdyEe: FUTURISTIC GLASS UI & MOBILE TELEMETRY TOOL
          URL: https://pin.it/3t7iLdyEe
          ======================================================== -->
     <section class="pin3t7-stage-section reveal-on-scroll" id="pin3t7GlassUiSection">
@@ -415,7 +359,7 @@
                 <span class="pin3t7-live-sub" id="pin3t7LiveSub">XAU/USD • 4H → 15M → 3M Execution Desk</span>
               </div>
               <div class="pin3t7-utility-icons" role="group" aria-label="Telemetry Controls">
-                <button type="button" class="pin3t7-util-btn" data-pin3t7-util="0" aria-label="Scan Market Structure" title="Scan Market Structure">
+                <button type="button" class="pin3t7-util-btn" data-pin3t7-util="0" aria-label="Toggle Lot & Risk Tool" title="Toggle XAU/USD Lot & Risk Tool">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                     <circle cx="11" cy="11" r="7"></circle>
                     <line x1="20" y1="20" x2="16.2" y2="16.2"></line>
@@ -564,12 +508,72 @@
               </div>
             </div>
 
+            <!-- Interactive Mobile & Desktop XAU/USD Lot & Risk Tool Drawer -->
+            <div class="pin3t7-tool-drawer is-open" id="pin3t7ToolDrawer">
+              <div class="pin3t7-tool-head">
+                <span class="pin3t7-tool-badge">⚡ XAU/USD MOBILE EXECUTION &amp; LOT TOOL</span>
+                <span class="pin3t7-tool-rr" id="pin3t7ToolRrTag">3M BOS • 20 Pips SL</span>
+              </div>
+
+              <div class="pin3t7-tool-controls">
+                <!-- Account Equity Selector -->
+                <div class="pin3t7-tool-group">
+                  <span class="pin3t7-tool-lbl">Equity ($)</span>
+                  <div class="pin3t7-chip-row" id="pin3t7EquityChips">
+                    <button type="button" class="pin3t7-mini-chip" data-eq="1000">$1K</button>
+                    <button type="button" class="pin3t7-mini-chip" data-eq="5000">$5K</button>
+                    <button type="button" class="pin3t7-mini-chip active" data-eq="10000">$10K</button>
+                    <button type="button" class="pin3t7-mini-chip" data-eq="25000">$25K</button>
+                    <button type="button" class="pin3t7-mini-chip" data-eq="50000">$50K</button>
+                    <button type="button" class="pin3t7-mini-chip" data-eq="100000">$100K</button>
+                  </div>
+                </div>
+
+                <!-- Risk % & Stop Loss Pips -->
+                <div class="pin3t7-tool-split">
+                  <div class="pin3t7-tool-group">
+                    <span class="pin3t7-tool-lbl">Risk Law</span>
+                    <div class="pin3t7-chip-row" id="pin3t7RiskChips">
+                      <button type="button" class="pin3t7-mini-chip active" data-risk="0.5">0.5%</button>
+                      <button type="button" class="pin3t7-mini-chip" data-risk="0.75">0.75%</button>
+                      <button type="button" class="pin3t7-mini-chip" data-risk="1.0">1.0%</button>
+                    </div>
+                  </div>
+
+                  <div class="pin3t7-tool-group">
+                    <span class="pin3t7-tool-lbl">3M Stop Loss</span>
+                    <div class="pin3t7-sl-stepper">
+                      <button type="button" class="pin3t7-step-btn" id="pin3t7SlMinus" aria-label="Decrease Stop Loss">−</button>
+                      <span class="pin3t7-sl-val" id="pin3t7SlVal">20 Pips</span>
+                      <button type="button" class="pin3t7-step-btn" id="pin3t7SlPlus" aria-label="Increase Stop Loss">+</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Live Calculated Output Bar -->
+              <div class="pin3t7-tool-results">
+                <div class="pin3t7-res-box">
+                  <span class="pin3t7-res-lbl">XAU/USD Lot Size</span>
+                  <strong class="pin3t7-res-val cyan" id="pin3t7OutLots">0.25 Lots</strong>
+                </div>
+                <div class="pin3t7-res-box">
+                  <span class="pin3t7-res-lbl">Exact Capital Risk</span>
+                  <strong class="pin3t7-res-val pink" id="pin3t7OutRisk">$50.00 (0.5%)</strong>
+                </div>
+                <div class="pin3t7-res-box">
+                  <span class="pin3t7-res-lbl">1:3 to 1:5 Target</span>
+                  <strong class="pin3t7-res-val emerald" id="pin3t7OutReward">+$150 – +$250</strong>
+                </div>
+              </div>
+            </div>
+
             <!-- Middle 3-Pill Action Row (Replicates Upload | Settings | Upgrade Pro) -->
             <div class="pin3t7-actions-row">
               <button type="button" class="pin3t7-action-pill pill-warm" id="pin3t7BtnStream">
                 <span>3M BOS Stream</span>
               </button>
-              <button type="button" class="pin3t7-action-pill pill-glass" id="pin3t7BtnRisk">
+              <button type="button" class="pin3t7-action-pill pill-glass active" id="pin3t7BtnRisk">
                 <span>0.5%–1.0% Risk</span>
               </button>
               <a href="/smc-genesis" class="pin3t7-action-pill pill-neon-pro" id="pin3t7BtnPro">
@@ -590,7 +594,7 @@
                   <line x1="19.5" y1="19.5" x2="15.8" y2="15.8"></line>
                 </svg>
               </button>
-              <button type="button" class="pin3t7-dock-tile tile-white" data-pin3t7-tab="2" role="tab" aria-selected="false" aria-label="Direct Mentorship">
+              <button type="button" class="pin3t7-dock-tile tile-white" data-pin3t7-tab="2" role="tab" aria-selected="false" aria-label="Lot & Risk Calculator">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                 </svg>
@@ -608,6 +612,63 @@
                 <span></span>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         ABOUT & BIO SECTION
+         ======================================================== -->
+    <section class="manifesto-section reveal-on-scroll" id="about">
+      <div class="container">
+        <div class="manifesto-grid">
+          <!-- Sidebar Info -->
+          <div class="manifesto-sidebar reveal-left">
+
+            <div class="available-tag-wrapper">
+              <span class="status-dot"></span>
+              <span data-i18n="about.availableTag">Available for Mentorship</span>
+            </div>
+
+            <!-- Signature Card Box -->
+            <div class="signature-card-box">
+              <div class="signature-motto" data-i18n="about.signatureMotto">
+                "Master Your Ego.<br>
+                <span>Master Your Trades.</span>"
+              </div>
+              <div class="signature-script">BlueX</div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;" data-i18n="about.signatureRole">Senior Trader &amp; Private Mentor</p>
+            </div>
+          </div>
+
+          <!-- Manifesto Content -->
+          <div class="manifesto-content reveal-right">
+            <p class="manifesto-lead-text" data-i18n="about.leadText">
+              I'm a passionate trader and mentor committed to building opportunities through <span style="color:var(--color-gold);">disciplined execution</span>, strategic risk management, and a long-term market perspective.
+            </p>
+
+            <div class="manifesto-body-paragraphs">
+              <p data-i18n="about.p1">
+                I believe that <strong>successful investing is driven by consistency, patience, and sound decision making</strong> — not emotion or speculation. My focus is on creating sustainable value while navigating the markets with <strong>professionalism, transparency, and integrity</strong>.
+              </p>
+
+              <p data-i18n="about.p2">
+                Whether you're an experienced investor or an ambitious trader looking to eliminate psychological sabotage and achieve true consistency, <strong>I welcome individuals who share a long-term vision</strong> and appreciate a disciplined approach to capital management.
+              </p>
+
+              <p style="font-size: 0.88rem; color: var(--text-muted); border-left: 2px solid rgba(255, 255, 255, 0.1); padding-left: 12px; margin-top: 6px;" data-i18n="about.sagfxNote">
+                Affiliate partnerships and payment gateway inquiries via SAGFX are available upon direct request.
+              </p>
+            </div>
+
+            <a href="#courses" class="btn-mentorship" style="display:inline-flex;">
+              <span data-i18n="about.btnExplore">Explore Study Course</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
@@ -3047,7 +3108,7 @@
       </svg>
     </a>
 
-    <a href="#calculator" class="orbix-dock-search-btn" aria-label="Open Risk Calculator">
+    <a href="#pin3t7GlassUiSection" class="orbix-dock-search-btn" aria-label="Open Glass Telemetry & Lot Tool">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
         <circle cx="11" cy="11" r="7"></circle>
         <line x1="20" y1="20" x2="16.2" y2="16.2"></line>
@@ -3198,6 +3259,6 @@
     <span id="toastMessage">Notification message</span>
   </div>
 
-  <script src="/script.js?v=20261110v30"></script>
+  <script src="/script.js?v=20261110v31"></script>
 </body>
 </html>
