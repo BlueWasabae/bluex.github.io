@@ -5150,4 +5150,288 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initNavUtilityAndSeamlessHomeAbout();
 
+  // =========================================================================
+  // PIN 3t7iLdyEe: FUTURISTIC GLASS TELEMETRY UI & NEON LIGHT-TRAIL ENGINE
+  // =========================================================================
+  function initPin3t7GlassTelemetry() {
+    const section = document.getElementById('pin3t7GlassUiSection');
+    const card = document.getElementById('pin3t7GlassCard');
+    const canvas = document.getElementById('pin3t7LightTrailsCanvas');
+    if (!section || !card) return;
+
+    const primaryPath = document.getElementById('pin3t7PrimaryPath');
+    const secondaryPath = document.getElementById('pin3t7SecondaryPath');
+    const areaPath = document.getElementById('pin3t7AreaPath');
+    const orbMotion = document.getElementById('pin3t7OrbMotion');
+    const chartTitle = document.getElementById('pin3t7ChartTitle');
+    const analyticsDelta = document.getElementById('pin3t7AnalyticsDelta');
+    const liveSub = document.getElementById('pin3t7LiveSub');
+    const stat1Val = document.getElementById('pin3t7Stat1Val');
+    const stat1Lbl = document.getElementById('pin3t7Stat1Lbl');
+    const stat2Val = document.getElementById('pin3t7Stat2Val');
+    const stat2Sub = document.getElementById('pin3t7Stat2Sub');
+    const stat2Lbl = document.getElementById('pin3t7Stat2Lbl');
+    const stat3Val = document.getElementById('pin3t7Stat3Val');
+    const stat3Lbl = document.getElementById('pin3t7Stat3Lbl');
+    const stat4Val = document.getElementById('pin3t7Stat4Val');
+    const stat4Lbl = document.getElementById('pin3t7Stat4Lbl');
+
+    const dockTiles = Array.from(section.querySelectorAll('.pin3t7-dock-tile[data-pin3t7-tab]'));
+    const utilBtns = Array.from(section.querySelectorAll('.pin3t7-util-btn[data-pin3t7-util]'));
+    const btnStream = document.getElementById('pin3t7BtnStream');
+    const btnRisk = document.getElementById('pin3t7BtnRisk');
+
+    const modes = [
+      {
+        title: 'Analytics',
+        delta: '+18.4%',
+        sub: 'XAU/USD • 4H → 15M → 3M Execution Desk',
+        primary: 'M 8,136 C 36,118 58,82 82,84 C 108,86 124,106 148,96 C 174,86 192,52 216,54 C 238,56 264,42 296,24',
+        secondary: 'M 8,128 C 44,116 74,108 106,96 C 138,84 156,124 182,114 C 208,104 226,82 252,98 C 272,110 284,102 296,92',
+        s1V: '208', s1L: 'Videos',
+        s2V: '22.1K', s2S: '| 1:3+', s2L: 'Creator Likes',
+        s3V: '88', s3L: 'Academy Subs',
+        s4V: '128', s4L: 'Followers'
+      },
+      {
+        title: '3M BOS Flow',
+        delta: '1:4.8 RR',
+        sub: 'BODY-CLOSE CONFIRMATION • NO M1 NOISE',
+        primary: 'M 8,142 C 42,130 68,104 96,92 C 122,80 144,64 172,72 C 198,80 224,38 254,32 C 274,28 286,22 296,18',
+        secondary: 'M 8,134 C 38,124 72,118 104,102 C 136,86 164,98 194,82 C 224,66 252,64 296,52',
+        s1V: '3M', s1L: 'Entry Trigger',
+        s2V: '15M', s2S: '| S&D', s2L: 'Zone Origin',
+        s3V: '4H', s3L: 'Macro Bias',
+        s4V: '100%', s4L: 'Rule Lock'
+      },
+      {
+        title: 'Risk Protocol',
+        delta: '0.5%–1.0%',
+        sub: 'CAPITAL DEFENSE • MECHANICAL DRAWDOWN GUARD',
+        primary: 'M 8,124 C 40,112 72,96 102,94 C 132,92 162,78 192,68 C 222,58 256,44 296,28',
+        secondary: 'M 8,138 C 48,132 88,118 128,112 C 168,106 208,94 252,84 C 274,78 286,74 296,70',
+        s1V: '0.5%', s1L: 'Min Risk / Trade',
+        s2V: '1.0%', s2S: '| Cap', s2L: 'Max Exposure',
+        s3V: '1:3+', s3L: 'Asymmetric Min',
+        s4V: '1:10+', s4L: 'Runner Target'
+      },
+      {
+        title: 'S&D Matrix',
+        delta: '94.2% Sync',
+        sub: 'UNMITIGATED INSTITUTIONAL ORDERFLOW ZONES',
+        primary: 'M 8,138 C 34,102 64,74 92,88 C 120,102 146,58 176,48 C 206,38 234,62 262,36 C 278,22 288,20 296,16',
+        secondary: 'M 8,130 C 42,110 78,92 114,104 C 150,116 184,78 220,72 C 254,66 276,58 296,46',
+        s1V: '124', s1L: 'TG Members',
+        s2V: '962', s2S: '| TT', s2L: 'TikTok Community',
+        s3V: '88', s3L: 'YouTube Subs',
+        s4V: '128', s4L: 'FB Followers'
+      }
+    ];
+
+    let activeMode = 0;
+    let isHovered = false;
+
+    function applyMode(idx) {
+      activeMode = ((idx % modes.length) + modes.length) % modes.length;
+      const m = modes[activeMode];
+
+      if (chartTitle) chartTitle.textContent = m.title;
+      if (analyticsDelta) analyticsDelta.textContent = m.delta;
+      if (liveSub) liveSub.textContent = m.sub;
+
+      if (primaryPath) primaryPath.setAttribute('d', m.primary);
+      if (secondaryPath) secondaryPath.setAttribute('d', m.secondary);
+      if (areaPath) areaPath.setAttribute('d', `${m.primary} L 296,152 L 8,152 Z`);
+      if (orbMotion) orbMotion.setAttribute('path', m.primary);
+
+      if (stat1Val) stat1Val.textContent = m.s1V;
+      if (stat1Lbl) stat1Lbl.textContent = m.s1L;
+      if (stat2Val) stat2Val.textContent = m.s2V;
+      if (stat2Sub) stat2Sub.textContent = m.s2S;
+      if (stat2Lbl) stat2Lbl.textContent = m.s2L;
+      if (stat3Val) stat3Val.textContent = m.s3V;
+      if (stat3Lbl) stat3Lbl.textContent = m.s3L;
+      if (stat4Val) stat4Val.textContent = m.s4V;
+      if (stat4Lbl) stat4Lbl.textContent = m.s4L;
+
+      dockTiles.forEach((tile, i) => {
+        const active = i === activeMode;
+        tile.classList.toggle('active', active);
+        tile.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+
+      utilBtns.forEach((btn, i) => {
+        btn.classList.toggle('active', i === activeMode - 1);
+      });
+
+      if (btnStream) btnStream.classList.toggle('active', activeMode === 1);
+      if (btnRisk) btnRisk.classList.toggle('active', activeMode === 2);
+    }
+
+    dockTiles.forEach((tile) => {
+      tile.addEventListener('click', () => {
+        const idx = parseInt(tile.getAttribute('data-pin3t7-tab') || '0', 10);
+        applyMode(idx);
+      });
+    });
+
+    utilBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const uIdx = parseInt(btn.getAttribute('data-pin3t7-util') || '0', 10);
+        applyMode((uIdx + 1) % modes.length);
+      });
+    });
+
+    if (btnStream) {
+      btnStream.addEventListener('click', () => applyMode(1));
+    }
+    if (btnRisk) {
+      btnRisk.addEventListener('click', () => applyMode(2));
+    }
+
+    // Auto-cycle every 5.2s when not hovered and effects are active
+    setInterval(() => {
+      if (isHovered || document.documentElement.classList.contains('effects-frozen')) return;
+      applyMode(activeMode + 1);
+    }, 5200);
+
+    // 3D Cursor Tilt & Specular Glare Tracking
+    card.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+
+    card.addEventListener('mousemove', (e) => {
+      if (window.innerWidth <= 768 || document.documentElement.classList.contains('effects-frozen')) return;
+      const rect = card.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width;
+      const relY = (e.clientY - rect.top) / rect.height;
+      const rotY = (relX - 0.5) * 7.5;
+      const rotX = (0.5 - relY) * 6.5;
+
+      card.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateZ(4px)`;
+      card.style.setProperty('--pin3t7-gx', `${(relX * 100).toFixed(1)}%`);
+      card.style.setProperty('--pin3t7-gy', `${(relY * 100).toFixed(1)}%`);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      isHovered = false;
+      card.style.transform = '';
+      card.style.setProperty('--pin3t7-gx', '50%');
+      card.style.setProperty('--pin3t7-gy', '24%');
+    });
+
+    // Diagonal Sweeping Neon Light-Trails & Bokeh Stardust Canvas
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let cw = 0;
+    let ch = 0;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const bokehDots = Array.from({ length: 34 }, (_, i) => ({
+      x: (i * 0.6180339887) % 1,
+      y: ((i * 0.3819660112) + 0.17) % 1,
+      r: 1.2 + (i % 4) * 1.15,
+      speed: 0.00018 + (i % 5) * 0.00007,
+      phase: i * 1.1,
+      color: ['#38bdf8', '#f472b6', '#fb923c', '#a855f7', '#ffffff'][i % 5]
+    }));
+
+    const ribbons = [
+      { color1: 'rgba(245, 158, 11, 0)', color2: 'rgba(251, 113, 133, 0.58)', color3: 'rgba(236, 72, 153, 0)', width: 3.2, offset: -0.14, amp: 0.08, speed: 0.75 },
+      { color1: 'rgba(236, 72, 153, 0)', color2: 'rgba(244, 114, 182, 0.68)', color3: 'rgba(56, 189, 248, 0)', width: 4.4, offset: -0.04, amp: 0.06, speed: 0.95 },
+      { color1: 'rgba(56, 189, 248, 0)', color2: 'rgba(56, 189, 248, 0.78)', color3: 'rgba(99, 102, 241, 0)', width: 5.0, offset: 0.05, amp: 0.07, speed: 1.12 },
+      { color1: 'rgba(168, 85, 247, 0)', color2: 'rgba(125, 211, 252, 0.52)', color3: 'rgba(56, 189, 248, 0)', width: 2.6, offset: 0.14, amp: 0.09, speed: 0.85 }
+    ];
+
+    function resizeCanvas() {
+      const rect = section.getBoundingClientRect();
+      cw = Math.max(320, rect.width);
+      ch = Math.max(320, rect.height);
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(cw * dpr);
+      canvas.height = Math.floor(ch * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    let isVisible = false;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        isVisible = entry.isIntersecting;
+      });
+    }, { threshold: 0.05 });
+    io.observe(section);
+
+    function drawFrame(now) {
+      requestAnimationFrame(drawFrame);
+      if (!isVisible) return;
+
+      const frozen = document.documentElement.classList.contains('effects-frozen');
+      const t = frozen ? 2.4 : now * 0.001;
+
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+
+      // 1. Sweeping Diagonal Neon Light-Trail Ribbons (Bottom-Left to Top-Right)
+      ribbons.forEach((rib, idx) => {
+        const startX = -cw * 0.08;
+        const startY = ch * (0.86 + rib.offset) + Math.sin(t * rib.speed + idx) * 18;
+        const cp1X = cw * 0.34;
+        const cp1Y = ch * (0.64 + rib.offset) - Math.cos(t * rib.speed * 0.9 + idx) * (ch * rib.amp);
+        const cp2X = cw * 0.66;
+        const cp2Y = ch * (0.34 + rib.offset) + Math.sin(t * rib.speed * 1.1 + idx) * (ch * rib.amp);
+        const endX = cw * 1.08;
+        const endY = ch * (0.14 + rib.offset) - Math.cos(t * rib.speed + idx) * 18;
+
+        const grad = ctx.createLinearGradient(startX, startY, endX, endY);
+        grad.addColorStop(0, rib.color1);
+        grad.addColorStop(0.28, rib.color2);
+        grad.addColorStop(0.72, rib.color2);
+        grad.addColorStop(1, rib.color3);
+
+        // Soft outer bloom pass
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
+        ctx.bezierCurveTo(cp1X, cp1Y, cp2X, cp2Y, endX, endY);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = rib.width * 4.2;
+        ctx.globalAlpha = 0.24;
+        ctx.stroke();
+
+        // Crisp neon core pass
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
+        ctx.bezierCurveTo(cp1X, cp1Y, cp2X, cp2Y, endX, endY);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = rib.width;
+        ctx.globalAlpha = 0.88;
+        ctx.stroke();
+      });
+
+      // 2. Drifting Luminous Bokeh Stardust Particles
+      bokehDots.forEach((p) => {
+        const px = ((p.x + (frozen ? 0 : now * p.speed)) % 1) * cw;
+        const py = ((p.y - (frozen ? 0 : now * p.speed * 0.65) + 10) % 1) * ch;
+        const pulse = 0.45 + 0.55 * Math.sin(t * 2.1 + p.phase);
+
+        ctx.beginPath();
+        ctx.arc(px, py, p.r * (0.85 + pulse * 0.35), 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = 0.25 + pulse * 0.45;
+        ctx.fill();
+      });
+
+      ctx.restore();
+    }
+
+    requestAnimationFrame(drawFrame);
+  }
+
+  initPin3t7GlassTelemetry();
+
 });
