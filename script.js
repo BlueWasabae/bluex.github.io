@@ -4770,11 +4770,13 @@ document.addEventListener('DOMContentLoaded', () => {
       setWizardSlot(0);
       backdrop.classList.add('is-open');
       backdrop.setAttribute('aria-hidden', 'false');
+      if (openOrbBtn) openOrbBtn.classList.add('is-open');
     }
 
     function closeWizard() {
       backdrop.classList.remove('is-open');
       backdrop.setAttribute('aria-hidden', 'true');
+      if (openOrbBtn) openOrbBtn.classList.remove('is-open');
     }
 
     [openOrbBtn, openSwipeBtn, openHeroBtn].forEach(btn => {
@@ -4786,6 +4788,90 @@ document.addEventListener('DOMContentLoaded', () => {
     backdrop.addEventListener('click', e => {
       if (e.target === backdrop) closeWizard();
     });
+
+    // Pin 1Upf5WvRC: Interactive Mobile Dock Styler & Route/Scroll Active Pill Tracker
+    const mobileDockBar = document.getElementById('orbixMobileBottomBar');
+    const stylerWrap = document.getElementById('pin1upDockStyler');
+    const activeThemeNameEl = document.getElementById('pin1upActiveStyleName');
+    const presetLabels = {
+      floating: '03 Floating (Detached)',
+      glass: '02 Glassmorphism',
+      pill: '05 Pill Highlight',
+      gradient: '07 Gradient Bold',
+      ios: '11 Dock Style (iOS)'
+    };
+
+    function applyPin1upDockTheme(themeKey, notify = false) {
+      const valid = presetLabels[themeKey] ? themeKey : 'floating';
+      if (mobileDockBar) mobileDockBar.setAttribute('data-pin1up-theme', valid);
+      if (activeThemeNameEl) activeThemeNameEl.textContent = presetLabels[valid];
+      if (stylerWrap) {
+        stylerWrap.querySelectorAll('.pin1up-preset-btn[data-pin1up-preset]').forEach((b) => {
+          b.classList.toggle('active', b.getAttribute('data-pin1up-preset') === valid);
+        });
+      }
+      try {
+        localStorage.setItem('bluex_pin1up_theme', valid);
+      } catch (err) {}
+      if (notify && typeof showToast === 'function') {
+        showToast(`Dock Style: ${presetLabels[valid]}`);
+      }
+    }
+
+    let savedDockTheme = 'floating';
+    try {
+      savedDockTheme = localStorage.getItem('bluex_pin1up_theme') || 'floating';
+    } catch (err) {}
+    applyPin1upDockTheme(savedDockTheme, false);
+
+    if (stylerWrap) {
+      stylerWrap.querySelectorAll('.pin1up-preset-btn[data-pin1up-preset]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          applyPin1upDockTheme(btn.getAttribute('data-pin1up-preset'), true);
+        });
+      });
+    }
+
+    if (mobileDockBar) {
+      const navItems = Array.from(mobileDockBar.querySelectorAll('.pin1up-nav-item[data-pin1up-nav]'));
+      function setActiveDockNav(key) {
+        navItems.forEach((item) => {
+          item.classList.toggle('is-active', item.getAttribute('data-pin1up-nav') === key);
+        });
+      }
+
+      const path = (window.location.pathname || '/').toLowerCase();
+      if (path.includes('smc-genesis')) {
+        setActiveDockNav('genesis');
+      } else if (path.includes('gold-hedging')) {
+        setActiveDockNav('hedge');
+      } else if (path.includes('knowledge')) {
+        setActiveDockNav('tools');
+      } else {
+        setActiveDockNav('home');
+      }
+
+      navItems.forEach((item) => {
+        item.addEventListener('click', () => {
+          const key = item.getAttribute('data-pin1up-nav');
+          if (key) setActiveDockNav(key);
+        });
+      });
+
+      const toolsSection = document.getElementById('pin3t7GlassUiSection');
+      if (toolsSection && (!path.includes('smc-genesis') && !path.includes('gold-hedging'))) {
+        const dockIo = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveDockNav('tools');
+            } else if (window.scrollY < 450 && !path.includes('knowledge')) {
+              setActiveDockNav('home');
+            }
+          });
+        }, { threshold: 0.35 });
+        dockIo.observe(toolsSection);
+      }
+    }
 
     // Interactive timeframe chips inside Slot 1
     const tfChips = Array.from(neonCard.querySelectorAll('.orbix-slot-chip'));

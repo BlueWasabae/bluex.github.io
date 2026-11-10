@@ -22432,4 +22432,468 @@ html.effects-frozen .ov-quad-dot {
   }
 }
 
+/* ==========================================================================
+   PIN 1Upf5WvRC: MOBILE BOTTOM NAVIGATION UI KIT & DOCK STYLER
+   URL: https://pin.it/1Upf5WvRC
+   Presets: floating (03), glass (02), pill (05), gradient (07), ios (11)
+   ========================================================================== */
+.orbix-mobile-bottom-bar.pin1up-dock {
+  position: fixed !important;
+  bottom: calc(10px + env(safe-area-inset-bottom, 0px)) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: min(404px, calc(100vw - 24px)) !important;
+  max-width: 404px !important;
+  height: 62px !important;
+  padding: 6px 10px !important;
+  border-radius: 30px !important;
+  display: none;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  align-items: center !important;
+  gap: 2px !important;
+  background: linear-gradient(155deg, rgba(19, 24, 46, 0.9) 0%, rgba(10, 13, 28, 0.96) 100%) !important;
+  border: 1.5px solid rgba(148, 163, 184, 0.24) !important;
+  box-shadow:
+    0 20px 44px rgba(2, 5, 16, 0.78),
+    0 0 28px rgba(99, 102, 241, 0.22),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.26) !important;
+  backdrop-filter: blur(24px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+  overflow: visible !important;
+  z-index: 9996 !important;
+  box-sizing: border-box !important;
+  transition: background 0.35s ease, border-radius 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+/* Signature 03 Floating Top Convex Center Arch Dome */
+.orbix-mobile-bottom-bar.pin1up-dock::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -12px;
+  transform: translateX(-50%);
+  width: 78px;
+  height: 22px;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  background: linear-gradient(180deg, rgba(28, 35, 68, 0.94) 0%, rgba(19, 24, 46, 0) 100%);
+  border-top: 1.5px solid rgba(167, 139, 250, 0.34);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+@media (max-width: 840px) {
+  .orbix-mobile-bottom-bar.pin1up-dock {
+    display: grid !important;
+  }
+  body {
+    padding-bottom: 92px !important;
+  }
+}
+
+/* Uniform 48x48px Minimum Tap Area Items (Following Pin 1Upf5WvRC Design Tips) */
+.pin1up-nav-item {
+  position: relative;
+  z-index: 1;
+  min-width: 48px;
+  min-height: 48px;
+  height: 50px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-decoration: none;
+  color: rgba(203, 213, 225, 0.78);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 2px 4px;
+  cursor: pointer;
+  transition:
+    color 0.24s ease,
+    background 0.26s ease,
+    border-color 0.26s ease,
+    transform 0.24s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.26s ease;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pin1up-nav-item svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.24s ease;
+}
+
+.pin1up-nav-lbl {
+  font-family: var(--font-display, "Plus Jakarta Sans", sans-serif);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.pin1up-nav-item:active {
+  transform: scale(0.92);
+}
+
+/* Active Pill Highlight + Top Indicator Bar Support */
+.pin1up-nav-item.is-active {
+  color: #ffffff;
+  background: rgba(99, 102, 241, 0.22);
+  border-color: rgba(129, 140, 248, 0.38);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.22),
+    0 4px 14px rgba(79, 70, 229, 0.28);
+}
+
+.pin1up-nav-item.is-active svg {
+  transform: translateY(-1px) scale(1.06);
+  color: #a5b4fc;
+  filter: drop-shadow(0 0 8px rgba(129, 140, 248, 0.65));
+}
+
+/* Micro-interaction Top Active Indicator Line (09 Tab with Indicator accent) */
+.pin1up-nav-item::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 18px;
+  height: 2.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #38bdf8, #a855f7);
+  opacity: 0;
+  transition: transform 0.26s ease, opacity 0.26s ease;
+}
+
+.pin1up-nav-item.is-active::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 0.95;
+}
+
+/* Center Elevated Action FAB (Column 3 — #orbixAiOrbBtn) */
+.pin1up-fab-slot {
+  position: relative;
+  z-index: 3;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  width: auto !important;
+  height: 52px !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 2px !important;
+  cursor: pointer !important;
+  color: #c7d2fe;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pin1up-fab-orb {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  margin-top: -22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 52%, #38bdf8 100%);
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 8px 22px rgba(99, 102, 241, 0.62),
+    0 0 24px rgba(56, 189, 248, 0.42),
+    inset 0 2px 6px rgba(255, 255, 255, 0.55);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.pin1up-fab-orb svg {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pin1up-fab-slot:hover .pin1up-fab-orb,
+.pin1up-fab-slot:active .pin1up-fab-orb {
+  transform: translateY(-2px) scale(1.06);
+  box-shadow:
+    0 10px 26px rgba(99, 102, 241, 0.78),
+    0 0 32px rgba(56, 189, 248, 0.62),
+    inset 0 2px 8px rgba(255, 255, 255, 0.75);
+}
+
+.pin1up-fab-slot.is-open .pin1up-fab-orb svg {
+  transform: rotate(45deg);
+}
+
+.pin1up-fab-lbl {
+  font-family: var(--font-display, "Plus Jakarta Sans", sans-serif);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: #e0e7ff;
+  line-height: 1;
+}
+
+/* Subtle Pulse Ring on FAB (Respects Freeze Mode) */
+.pin1up-fab-orb::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(167, 139, 250, 0.52);
+  animation: pin1upFabPulse 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pin1upFabPulse {
+  0%, 100% {
+    transform: scale(0.96);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.09);
+    opacity: 0.2;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PRESET VARIANT 02: GLASSMORPHISM (Soft Blurred Gradient Mist)
+   -------------------------------------------------------------------------- */
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="glass"] {
+  background: linear-gradient(125deg, rgba(139, 92, 246, 0.34) 0%, rgba(56, 189, 248, 0.26) 48%, rgba(236, 72, 153, 0.28) 100%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.36) !important;
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.45),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(28px) saturate(210%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(210%) !important;
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="glass"]::before {
+  opacity: 0;
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="glass"] .pin1up-nav-item.is-active {
+  background: rgba(255, 255, 255, 0.24);
+  border-color: rgba(255, 255, 255, 0.48);
+  color: #ffffff;
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="glass"] .pin1up-fab-orb {
+  margin-top: -12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(167, 139, 250, 0.65));
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+/* --------------------------------------------------------------------------
+   PRESET VARIANT 05: PILL HIGHLIGHT (Clean Capsule Enclosure)
+   -------------------------------------------------------------------------- */
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="pill"] {
+  background: rgba(15, 19, 32, 0.96) !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="pill"]::before {
+  opacity: 0;
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="pill"] .pin1up-nav-item {
+  border-radius: 14px;
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="pill"] .pin1up-nav-item.is-active {
+  background: rgba(139, 92, 246, 0.28);
+  border-color: rgba(167, 139, 250, 0.55);
+  color: #e9d5ff;
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="pill"] .pin1up-fab-orb {
+  margin-top: -6px;
+  width: 42px;
+  height: 42px;
+}
+
+/* --------------------------------------------------------------------------
+   PRESET VARIANT 07: GRADIENT BOLD (Vibrant Indigo -> Violet -> Rose)
+   -------------------------------------------------------------------------- */
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="gradient"] {
+  background: linear-gradient(90deg, #4338ca 0%, #7c3aed 48%, #db2777 100%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  box-shadow:
+    0 18px 42px rgba(124, 58, 237, 0.45),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.45) !important;
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="gradient"]::before {
+  opacity: 0;
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="gradient"] .pin1up-nav-item {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="gradient"] .pin1up-nav-item.is-active {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.42);
+  color: #ffffff;
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="gradient"] .pin1up-nav-item.is-active svg {
+  color: #ffffff;
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="gradient"] .pin1up-fab-orb {
+  margin-top: -10px;
+  background: #ffffff;
+  color: #6d28d9;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* --------------------------------------------------------------------------
+   PRESET VARIANT 11: DOCK STYLE (iOS INSPIRED)
+   -------------------------------------------------------------------------- */
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="ios"] {
+  background: rgba(24, 28, 42, 0.78) !important;
+  border-radius: 26px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow:
+    0 22px 46px rgba(0, 0, 0, 0.65),
+    inset 0 1px 1px rgba(255, 255, 255, 0.28) !important;
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="ios"]::before {
+  opacity: 0;
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="ios"] .pin1up-fab-orb {
+  margin-top: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 14px;
+  border-width: 1.5px;
+}
+
+.orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="ios"] .pin1up-fab-orb::before {
+  display: none;
+}
+
+/* Light Mode Support for Pin 1Upf5WvRC Dock */
+[data-theme="light"] .orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="floating"],
+[data-theme="light"] .orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="pill"],
+[data-theme="light"] .orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="ios"] {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow:
+    0 16px 38px rgba(15, 23, 42, 0.14),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-theme="light"] .orbix-mobile-bottom-bar.pin1up-dock[data-pin1up-theme="floating"]::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0) 100%);
+  border-top-color: rgba(99, 102, 241, 0.25);
+}
+
+[data-theme="light"] .orbix-mobile-bottom-bar.pin1up-dock:not([data-pin1up-theme="gradient"]):not([data-pin1up-theme="glass"]) .pin1up-nav-item {
+  color: #475569;
+}
+
+[data-theme="light"] .orbix-mobile-bottom-bar.pin1up-dock:not([data-pin1up-theme="gradient"]):not([data-pin1up-theme="glass"]) .pin1up-nav-item.is-active {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: #4f46e5;
+}
+
+[data-theme="light"] .orbix-mobile-bottom-bar.pin1up-dock:not([data-pin1up-theme="gradient"]):not([data-pin1up-theme="glass"]) .pin1up-nav-item.is-active svg {
+  color: #4f46e5;
+  filter: none;
+}
+
+[data-theme="light"] .orbix-mobile-bottom-bar.pin1up-dock:not([data-pin1up-theme="gradient"]):not([data-pin1up-theme="glass"]) .pin1up-fab-lbl {
+  color: #334155;
+}
+
+/* Freeze Effects Mode */
+html.effects-frozen .pin1up-fab-orb::before {
+  animation: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   PIN 1Upf5WvRC INTERACTIVE DOCK STYLER TOOL INSIDE BOTTOM SHEET
+   -------------------------------------------------------------------------- */
+.pin1up-styler-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.pin1up-styler-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.pin1up-styler-title {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #a5b4fc;
+  text-transform: uppercase;
+}
+
+.pin1up-styler-active-name {
+  font-family: var(--font-mono, "JetBrains Mono", monospace);
+  font-size: 0.64rem;
+  font-weight: 700;
+  color: #e2ff54;
+}
+
+.pin1up-styler-pills {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.pin1up-preset-btn {
+  height: 30px;
+  padding: 0 4px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(15, 23, 42, 0.65);
+  color: rgba(226, 232, 240, 0.85);
+  font-family: var(--font-display, "Plus Jakarta Sans", sans-serif);
+  font-size: 0.66rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pin1up-preset-btn:hover,
+.pin1up-preset-btn.active {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-color: #a5b4fc;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.45);
+}
+
+
 

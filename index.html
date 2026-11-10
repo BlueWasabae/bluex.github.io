@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles.css?v=20261110v32">
+  <link rel="stylesheet" href="/styles.css?v=20261110v33">
 </head>
 <body>
 
@@ -3452,37 +3452,48 @@
     </a>
   </div>
 
-  <!-- Pin 7rg9IHjAC: Mobile Glassmorphic Bottom Dock Bar + Glowing AI Orb -->
-  <div class="orbix-mobile-bottom-bar" id="orbixMobileBottomBar" role="navigation" aria-label="Mobile Quick Navigation">
-    <a href="#top" class="orbix-dock-home-btn" aria-label="Scroll to Top">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 3L4 9v12h5v-7h6v7h5V9l-8-6z"/>
+  <!-- Pin 1Upf5WvRC: 5-Tab Floating Detached Glassmorphic Mobile Navigation & Center FAB -->
+  <nav class="orbix-mobile-bottom-bar pin1up-dock" id="orbixMobileBottomBar" data-pin1up-theme="floating" aria-label="Mobile Navigation Dock">
+    <a href="#top" class="pin1up-nav-item is-active" data-pin1up-nav="home" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 10.5L12 3l9 7.5v9a1.5 1.5 0 0 1-1.5 1.5H14.5v-6h-5v6H4.5A1.5 1.5 0 0 1 3 19.5v-9z"/>
       </svg>
+      <span class="pin1up-nav-lbl">Home</span>
     </a>
 
-    <a href="#pin3t7GlassUiSection" class="orbix-dock-search-btn" aria-label="Open Glass Telemetry & Lot Tool">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-        <circle cx="11" cy="11" r="7"></circle>
-        <line x1="20" y1="20" x2="16.2" y2="16.2"></line>
+    <a href="#pin3t7GlassUiSection" class="pin1up-nav-item " data-pin1up-nav="tools" aria-label="Lot & Telemetry Tool">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="7"/>
+        <line x1="20" y1="20" x2="16.2" y2="16.2"/>
       </svg>
+      <span class="pin1up-nav-lbl">Tools</span>
     </a>
 
-    <button type="button" class="orbix-dock-swipe-track" id="orbixDockSwipeBtn" aria-label="Open Trading Setup Assistant">
-      <span class="orbix-dock-arrow-circle">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
+    <button type="button" class="pin1up-fab-slot" id="orbixAiOrbBtn" aria-label="Open Quick Setup & Dock Kit">
+      <span class="pin1up-fab-orb" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <line x1="5" y1="12" x2="19" y2="12"/>
         </svg>
       </span>
-      <span class="orbix-dock-label">Quick Setup</span>
-      <span class="orbix-dock-chevrons">»»</span>
+      <span class="pin1up-fab-lbl">Setup</span>
     </button>
 
-    <button type="button" class="orbix-ai-orb-btn" id="orbixAiOrbBtn" aria-label="Open BlueX Interactive Setup Wizard">
-      <span class="orbix-orb-core"></span>
-      <span class="orbix-orb-ring"></span>
-    </button>
-  </div>
+    <a href="/smc-genesis" class="pin1up-nav-item " data-pin1up-nav="genesis" aria-label="SMC Genesis Masterclass">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+      </svg>
+      <span class="pin1up-nav-lbl">Genesis</span>
+    </a>
+
+    <a href="/gold-hedging" class="pin1up-nav-item " data-pin1up-nav="hedge" aria-label="Gold Hedging Desk">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <span class="pin1up-nav-lbl">Hedge</span>
+    </a>
+  </nav>
 
   <!-- Pin 7rg9IHjAC: Frosted Glass Bottom Sheet & Neon Lime Setup Wizard -->
   <div class="orbix-wizard-backdrop" id="orbixWizardBackdrop" aria-hidden="true">
@@ -3493,6 +3504,22 @@
       </div>
 
       <h3 class="orbix-sheet-heading" id="orbixWizardHeading">Complete the setup and get your trading roadmap</h3>
+
+      <!-- Pin 1Upf5WvRC: Live Mobile Bottom Navigation Kit Styler -->
+      <div class="pin1up-styler-bar" id="pin1upDockStyler">
+        <div class="pin1up-styler-head">
+          <span class="pin1up-styler-title">Mobile Dock Style (1Upf5WvRC)</span>
+          <span class="pin1up-styler-active-name" id="pin1upActiveStyleName">03 Floating (Detached)</span>
+        </div>
+        <div class="pin1up-styler-pills" role="group" aria-label="Mobile Dock Style Presets">
+          <button type="button" class="pin1up-preset-btn active" data-pin1up-preset="floating">Floating</button>
+          <button type="button" class="pin1up-preset-btn" data-pin1up-preset="glass">Glass</button>
+          <button type="button" class="pin1up-preset-btn" data-pin1up-preset="pill">Pill</button>
+          <button type="button" class="pin1up-preset-btn" data-pin1up-preset="gradient">Gradient</button>
+          <button type="button" class="pin1up-preset-btn" data-pin1up-preset="ios">iOS</button>
+        </div>
+      </div>
+
 
       <!-- Neon Lime Interactive Card (Replicates Pin 7rg9IHjAC 00:09-00:34) -->
       <div class="orbix-neon-card" id="orbixNeonCard" data-slot="0">
@@ -3611,6 +3638,6 @@
     <span id="toastMessage">Notification message</span>
   </div>
 
-  <script src="/script.js?v=20261110v32"></script>
+  <script src="/script.js?v=20261110v33"></script>
 </body>
 </html>
