@@ -6430,510 +6430,625 @@ document.addEventListener('DOMContentLoaded', () => {
     recalcIbProjections();
 
     // =========================================================================
-    // EXACT PIN gaLOkD5Fd MULTI-SCENE MOTION GRAPHIC CODE ENGINE (CANVAS 2D)
-    // Scene 0: Floating 3D Phones with explosive View counter ticking to 443,609
-    // Scene 1: Minimalist Black & White Hand catching falling 3D metallic coin discs (24M+ Reach)
-    // Scene 2: Sleek 3D Smartphone on Dark Stage showing Money / Reach breakthrough curve + Stacking Metallic Coins
-    // Scene 3: Atmospheric Dual Lunar Spheres with "CREATE TO EARN • PARTNER WITH BLUEX"
+    // EXACT PIN gaLOkD5Fd MULTI-PHASE KINETIC CODE ENGINE (HIGH-DPI RETINA CANVAS)
+    // Faithfully matches Pinterest gaLOkD5Fd motion graphic in pure code:
+    // Scene 1 (0.0s - 3.2s): 443,609 Views & 4 Floating 3D Devices over Earth Horizon
+    // Scene 2 (3.2s - 6.5s): 24million+ Views & Minimalist Hand Catching Falling Metallic Coins
+    // Scene 3 (6.5s - 9.5s): Smartphone Coordinate Grid & Exponential Lightning Trajectory
+    // Scene 4 (9.5s - 12.0s): Spinning Sector Wheel & Cinematic Eclipse Finale ("CREATE TO EARN")
     // =========================================================================
     const canvas = document.getElementById('ibMotionCanvas');
     const stageContainer = document.getElementById('ibMotionStage');
-    const phasePills = document.querySelectorAll('.ib-phase-pill[data-phase]');
-    const scrubSlider = document.getElementById('ibScrubSlider');
-    const pauseToggleBtn = document.getElementById('ibPauseBtn');
+    const scenePhaseLabel = document.getElementById('ibScenePhaseLabel');
+    const loopProgressFill = document.getElementById('ibLoopProgressFill');
 
     if (canvas && stageContainer) {
       const ctx = canvas.getContext('2d');
       let cw = 0;
       let ch = 0;
-      let isPaused = false;
+      let dpr = 1;
       let simTime = 0;
       let lastTime = 0;
-      const totalLoopDuration = 12.0; // 12 seconds full narrative cycle
+      const totalLoopDuration = 12.0;
 
       function resize() {
         const rect = stageContainer.getBoundingClientRect();
         cw = Math.max(300, Math.floor(rect.width));
         ch = Math.max(480, Math.floor(rect.height || 540));
-        canvas.width = cw;
-        canvas.height = ch;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.floor(cw * dpr);
+        canvas.height = Math.floor(ch * dpr);
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
       }
       resize();
       window.addEventListener('resize', resize, { passive: true });
 
-      // Helper: Draw 3D Rounded Rect / Card (Phone / Tablet)
-      function draw3DPhone(x, y, w, h, radius, tiltX, tiltY, glowColor, screenContent) {
+      // -----------------------------------------------------------------------
+      // HELPER: 3D Metallic Coin / Disc with Realistic Cylindrical Bevel
+      // -----------------------------------------------------------------------
+      function drawMetallicCoin(x, y, radiusX, radiusY, thickness, tiltDeg, isGold) {
+        ctx.save();
+        ctx.translate(x, y);
+        if (tiltDeg) ctx.rotate((tiltDeg * Math.PI) / 180);
+
+        // Cylindrical side extrusion (vertical brushed reflection)
+        ctx.beginPath();
+        ctx.ellipse(0, thickness, radiusX, radiusY, 0, 0, Math.PI);
+        ctx.ellipse(0, 0, radiusX, radiusY, 0, Math.PI, 0, true);
+        ctx.closePath();
+        const sideGrad = ctx.createLinearGradient(-radiusX, 0, radiusX, 0);
+        if (isGold) {
+          sideGrad.addColorStop(0, '#78350f');
+          sideGrad.addColorStop(0.2, '#fde047');
+          sideGrad.addColorStop(0.5, '#b45309');
+          sideGrad.addColorStop(0.8, '#fef08a');
+          sideGrad.addColorStop(1, '#451a03');
+        } else {
+          sideGrad.addColorStop(0, '#1e293b');
+          sideGrad.addColorStop(0.22, '#cbd5e1');
+          sideGrad.addColorStop(0.5, '#475569');
+          sideGrad.addColorStop(0.78, '#f8fafc');
+          sideGrad.addColorStop(1, '#0f172a');
+        }
+        ctx.fillStyle = sideGrad;
+        ctx.fill();
+        ctx.strokeStyle = isGold ? 'rgba(254, 240, 138, 0.45)' : 'rgba(255, 255, 255, 0.45)';
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+
+        // Top face with off-center radial chrome specular highlight
+        ctx.beginPath();
+        ctx.ellipse(0, 0, radiusX, radiusY, 0, 0, Math.PI * 2);
+        const topGrad = ctx.createRadialGradient(-radiusX * 0.25, -radiusY * 0.3, 1, 0, 0, radiusX);
+        if (isGold) {
+          topGrad.addColorStop(0, '#ffffff');
+          topGrad.addColorStop(0.25, '#fef08a');
+          topGrad.addColorStop(0.7, '#eab308');
+          topGrad.addColorStop(1, '#92400e');
+        } else {
+          topGrad.addColorStop(0, '#ffffff');
+          topGrad.addColorStop(0.25, '#f1f5f9');
+          topGrad.addColorStop(0.7, '#cbd5e1');
+          topGrad.addColorStop(1, '#64748b');
+        }
+        ctx.fillStyle = topGrad;
+        ctx.fill();
+        ctx.strokeStyle = isGold ? 'rgba(254, 240, 138, 0.9)' : 'rgba(255, 255, 255, 0.85)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Inner concentric milled groove
+        ctx.beginPath();
+        ctx.ellipse(0, 0, radiusX * 0.78, radiusY * 0.78, 0, 0, Math.PI * 2);
+        ctx.strokeStyle = isGold ? 'rgba(180, 83, 9, 0.45)' : 'rgba(71, 85, 105, 0.45)';
+        ctx.lineWidth = 0.9;
+        ctx.stroke();
+
+        ctx.restore();
+      }
+
+      // -----------------------------------------------------------------------
+      // HELPER: Minimalist Hand Silhouette (Directly modeled on Pin frame_03)
+      // Smooth wrist, elegant upturned thumb, and cohesive flat cupped palm
+      // -----------------------------------------------------------------------
+      function drawMinimalistHand(x, y, scale) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.scale(scale, scale);
+
+        ctx.beginPath();
+        ctx.moveTo(-180, 85);
+        // Wrist arch upwards into base of thumb
+        ctx.bezierCurveTo(-120, 60, -60, 28, 0, 20);
+        ctx.bezierCurveTo(40, 16, 70, 5, 95, -28);
+        // Smooth rounded thumb tip
+        ctx.bezierCurveTo(102, -36, 112, -32, 108, -20);
+        // Inner thumb web fold down into cupped palm
+        ctx.bezierCurveTo(102, 0, 85, 18, 100, 22);
+        // Open horizontal palm extending rightwards into unified finger contour
+        ctx.bezierCurveTo(135, 24, 185, 22, 235, 16);
+        ctx.bezierCurveTo(248, 15, 255, 24, 242, 32);
+        // Lower fingers and palm return
+        ctx.bezierCurveTo(195, 48, 140, 55, 70, 62);
+        // Lower palm to bottom wrist
+        ctx.bezierCurveTo(10, 72, -80, 88, -180, 120);
+        ctx.closePath();
+
+        // Deep obsidian/graphite gradient fill
+        const handGrad = ctx.createLinearGradient(-180, -30, 240, 80);
+        handGrad.addColorStop(0, '#060912');
+        handGrad.addColorStop(0.5, '#111827');
+        handGrad.addColorStop(1, '#1f293d');
+        ctx.fillStyle = handGrad;
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
+        ctx.shadowBlur = 24;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // Specular rim light along upper contour
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.42)';
+        ctx.lineWidth = 1.4;
+        ctx.stroke();
+
+        ctx.restore();
+      }
+
+      // -----------------------------------------------------------------------
+      // HELPER: 3D Floating Glass Device (Directly modeled on Pin frame_02)
+      // -----------------------------------------------------------------------
+      function draw3DDevice(x, y, w, h, radius, glowColor, currentViews) {
         ctx.save();
         ctx.translate(x, y);
 
-        // Ambient volumetric drop shadow
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
-        ctx.shadowBlur = 28;
-        ctx.shadowOffsetY = 16;
+        // Volumetric shadow
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.65)';
+        ctx.shadowBlur = 20;
+        ctx.shadowOffsetY = 12;
 
-        // Bevel outer chassis
+        // Metallic outer chassis
         ctx.beginPath();
         ctx.roundRect(-w * 0.5, -h * 0.5, w, h, radius);
         const chassisGrad = ctx.createLinearGradient(-w * 0.5, -h * 0.5, w * 0.5, h * 0.5);
-        chassisGrad.addColorStop(0, 'rgba(51, 65, 85, 0.95)');
-        chassisGrad.addColorStop(0.3, 'rgba(20, 30, 48, 0.98)');
-        chassisGrad.addColorStop(0.8, 'rgba(10, 16, 28, 0.98)');
-        chassisGrad.addColorStop(1, 'rgba(30, 41, 59, 0.95)');
+        chassisGrad.addColorStop(0, '#334155');
+        chassisGrad.addColorStop(0.4, '#0f172a');
+        chassisGrad.addColorStop(1, '#1e293b');
         ctx.fillStyle = chassisGrad;
         ctx.fill();
 
         ctx.shadowBlur = 0;
         ctx.shadowOffsetY = 0;
 
-        // Metallic Rim Stroke
-        ctx.strokeStyle = glowColor || 'rgba(255, 255, 255, 0.45)';
-        ctx.lineWidth = 1.6;
-        ctx.stroke();
-
-        // Screen Area
-        const inset = 6;
-        ctx.beginPath();
-        ctx.roundRect(-w * 0.5 + inset, -h * 0.5 + inset, w - inset * 2, h - inset * 2, radius - 2);
-        ctx.fillStyle = '#05070c';
-        ctx.fill();
-
-        // Screen Top Camera Notch
-        ctx.beginPath();
-        ctx.arc(0, -h * 0.5 + inset + 5, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-        ctx.fill();
-
-        // Screen Content Callback
-        if (typeof screenContent === 'function') {
-          ctx.save();
-          screenContent(-w * 0.5 + inset, -h * 0.5 + inset, w - inset * 2, h - inset * 2);
-          ctx.restore();
-        }
-
-        // Screen Glass Reflection Streak
-        const glassGrad = ctx.createLinearGradient(-w * 0.5, -h * 0.5, w * 0.6, h * 0.6);
-        glassGrad.addColorStop(0, 'rgba(255, 255, 255, 0.16)');
-        glassGrad.addColorStop(0.35, 'rgba(255, 255, 255, 0.04)');
-        glassGrad.addColorStop(0.38, 'rgba(255, 255, 255, 0)');
-        ctx.fillStyle = glassGrad;
-        ctx.beginPath();
-        ctx.roundRect(-w * 0.5 + inset, -h * 0.5 + inset, w - inset * 2, h - inset * 2, radius - 2);
-        ctx.fill();
-
-        ctx.restore();
-      }
-
-      // Helper: Draw 3D Metallic Coin / Disc with Ellipse Perspective
-      function drawCoin(x, y, radiusX, radiusY, thickness, colorA, colorB) {
-        ctx.save();
-        ctx.translate(x, y);
-
-        // Lower rim (3D edge)
-        ctx.beginPath();
-        ctx.ellipse(0, thickness, radiusX, radiusY, 0, 0, Math.PI);
-        ctx.ellipse(0, 0, radiusX, radiusY, 0, Math.PI, 0, true);
-        ctx.closePath();
-        const sideGrad = ctx.createLinearGradient(-radiusX, 0, radiusX, 0);
-        sideGrad.addColorStop(0, '#64748b');
-        sideGrad.addColorStop(0.3, '#cbd5e1');
-        sideGrad.addColorStop(0.7, '#475569');
-        sideGrad.addColorStop(1, '#94a3b8');
-        ctx.fillStyle = sideGrad;
-        ctx.fill();
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
-        ctx.lineWidth = 0.8;
-        ctx.stroke();
-
-        // Top face
-        ctx.beginPath();
-        ctx.ellipse(0, 0, radiusX, radiusY, 0, 0, Math.PI * 2);
-        const topGrad = ctx.createRadialGradient(-radiusX * 0.2, -radiusY * 0.2, 2, 0, 0, radiusX);
-        topGrad.addColorStop(0, colorA || '#f8fafc');
-        topGrad.addColorStop(0.65, colorB || '#cbd5e1');
-        topGrad.addColorStop(1, '#64748b');
-        ctx.fillStyle = topGrad;
-        ctx.fill();
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-        ctx.lineWidth = 1;
-        ctx.stroke();
-
-        ctx.restore();
-      }
-
-      // Helper: Draw Minimalist Hand Silhouette catching coins
-      function drawHand(x, y, scale) {
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.scale(scale, scale);
-
-        ctx.beginPath();
-        ctx.moveTo(-160, 40);
-        ctx.bezierCurveTo(-110, 25, -60, 5, 0, 0); // wrist to palm
-        ctx.bezierCurveTo(40, -5, 80, 5, 110, 25); // thumb base
-        ctx.bezierCurveTo(130, 20, 150, 10, 170, 0); // thumb tip
-        ctx.bezierCurveTo(150, 30, 110, 45, 90, 50); // thumb return
-        ctx.bezierCurveTo(120, 52, 170, 55, 210, 50); // index finger
-        ctx.bezierCurveTo(160, 75, 110, 78, 80, 80); // index return
-        ctx.bezierCurveTo(100, 85, 140, 88, 175, 85); // palm fingers curve
-        ctx.bezierCurveTo(110, 110, 30, 115, -40, 100);
-        ctx.bezierCurveTo(-90, 110, -130, 120, -180, 130); // wrist base
-        ctx.closePath();
-
-        const handGrad = ctx.createLinearGradient(-160, 0, 200, 100);
-        handGrad.addColorStop(0, '#0a0d14');
-        handGrad.addColorStop(0.6, '#1e293b');
-        handGrad.addColorStop(1, '#334155');
-        ctx.fillStyle = handGrad;
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
-        ctx.shadowBlur = 18;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
+        // Specular rim stroke
+        ctx.strokeStyle = glowColor || 'rgba(255, 255, 255, 0.4)';
         ctx.lineWidth = 1.2;
         ctx.stroke();
 
+        // Dark glass screen
+        const inset = 5;
+        const sw = w - inset * 2;
+        const sh = h - inset * 2;
+        ctx.beginPath();
+        ctx.roundRect(-w * 0.5 + inset, -h * 0.5 + inset, sw, sh, radius - 2);
+        ctx.fillStyle = '#050811';
+        ctx.fill();
+
+        // Miniature media window (video viewport placeholder from Pin frame_02)
+        const mediaW = sw * 0.82;
+        const mediaH = sh * 0.44;
+        ctx.beginPath();
+        ctx.roundRect(-mediaW * 0.5, -sh * 0.5 + 8, mediaW, mediaH, 6);
+        const mediaGrad = ctx.createLinearGradient(-mediaW * 0.5, 0, mediaW * 0.5, mediaH);
+        mediaGrad.addColorStop(0, 'rgba(56, 189, 248, 0.28)');
+        mediaGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.12)');
+        mediaGrad.addColorStop(1, 'rgba(251, 191, 36, 0.18)');
+        ctx.fillStyle = mediaGrad;
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+
+        // Text below media: 443609 Views
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '800 9px "Plus Jakarta Sans", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(currentViews.toLocaleString(), 0, sh * 0.22);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '600 7px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('Views', 0, sh * 0.35);
+
+        // Specular diagonal glass sheen
+        const sheen = ctx.createLinearGradient(-w * 0.5, -h * 0.5, w * 0.6, h * 0.6);
+        sheen.addColorStop(0, 'rgba(255, 255, 255, 0.18)');
+        sheen.addColorStop(0.35, 'rgba(255, 255, 255, 0.04)');
+        sheen.addColorStop(0.38, 'rgba(255, 255, 255, 0)');
+        ctx.fillStyle = sheen;
+        ctx.beginPath();
+        ctx.roundRect(-w * 0.5 + inset, -h * 0.5 + inset, sw, sh, radius - 2);
+        ctx.fill();
+
         ctx.restore();
       }
 
-      function updatePhaseUI(activeIdx) {
-        phasePills.forEach((p, idx) => {
-          p.classList.toggle('active', idx === activeIdx);
-        });
-      }
-
+      // -----------------------------------------------------------------------
+      // MAIN RENDER LOOP (60 FPS)
+      // -----------------------------------------------------------------------
       function render(timestamp) {
         if (!lastTime) lastTime = timestamp;
         const dt = (timestamp - lastTime) * 0.001;
         lastTime = timestamp;
 
-        if (!isPaused) {
-          simTime = (simTime + dt) % totalLoopDuration;
-          if (scrubSlider) scrubSlider.value = (simTime / totalLoopDuration * 100).toFixed(1);
+        simTime = (simTime + dt) % totalLoopDuration;
+        const t = simTime;
+
+        // Update loop progress bar
+        if (loopProgressFill) {
+          loopProgressFill.style.width = (simTime / totalLoopDuration * 100).toFixed(1) + '%';
         }
 
         ctx.clearRect(0, 0, cw, ch);
 
-        // Global vignette & spotlight backdrop matching pin_gaLOkD5Fd
-        // Transparent clear so the parent CSS glass gradient and video atmosphere shines through
-        // Subtle soft radial vignette that melts seamlessly with BlueX deep slate & midnight-cyan
-        const bgGrad = ctx.createRadialGradient(cw * 0.5, ch * 0.46, 20, cw * 0.5, ch * 0.46, cw * 0.72);
-        bgGrad.addColorStop(0, 'rgba(21, 32, 54, 0.42)');
-        bgGrad.addColorStop(0.55, 'rgba(12, 18, 32, 0.65)');
-        bgGrad.addColorStop(1, 'rgba(8, 12, 22, 0.88)');
+        // Master Background: Seamless deep obsidian with soft radial illumination
+        const bgGrad = ctx.createRadialGradient(cw * 0.5, ch * 0.45, 10, cw * 0.5, ch * 0.45, cw * 0.75);
+        bgGrad.addColorStop(0, 'rgba(15, 23, 42, 0.85)');
+        bgGrad.addColorStop(0.6, 'rgba(9, 14, 26, 0.95)');
+        bgGrad.addColorStop(1, '#050811');
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, cw, ch);
 
-        // Determine active scene (0.0 to 12.0s)
-        // Scene 1: 0.0 - 3.2s  (Floating 3D Phones & Views tick to 443,609)
-        // Scene 2: 3.2 - 6.2s  (Falling metallic discs into hand & 24M+ views)
-        // Scene 3: 6.2 - 9.4s  (Smartphone breakthrough Money/Reach curve & Stacking Coins)
-        // Scene 4: 9.4 - 12.0s (Dual Lunar Spheres & "CREATE TO EARN • PARTNER WITH BLUEX")
-        const t = simTime;
-
+        // =====================================================================
+        // SCENE 1 (0.0s - 3.2s): 443,609 Views & 4 Floating 3D Devices over Earth Horizon
+        // =====================================================================
         if (t < 3.2) {
-          updatePhaseUI(0);
-          // SCENE 1: FLOATING 3D PHONES WITH EXPONENTIAL VIEW TICKER
-          const sceneProg = t / 3.2; // 0 to 1
-          const easeProg = 1 - Math.pow(1 - sceneProg, 3);
+          if (scenePhaseLabel) scenePhaseLabel.textContent = '01 / 04 • REACH';
+          const sceneProg = t / 3.2;
+          const easeProg = 1 - Math.pow(1 - sceneProg, 4);
           const currentViews = Math.round(67069 + (443609 - 67069) * easeProg);
 
-          // Center Big Header: Views (Properly scaled & padded so it never clips)
-          ctx.save();
-          ctx.textAlign = 'center';
-          ctx.fillStyle = '#f8fafc';
-          const fontSize = Math.min(38, Math.floor(cw * 0.095));
-          ctx.font = `900 ${fontSize}px "Plus Jakarta Sans", sans-serif`;
-          ctx.shadowColor = 'rgba(56, 189, 248, 0.45)';
-          ctx.shadowBlur = 16;
-          ctx.fillText(currentViews.toLocaleString(), cw * 0.5, ch * 0.24);
-          ctx.shadowBlur = 0;
+          // 1. Curved Earth Horizon with Atmospheric Glow (Matching frame_02)
+          const horizonY = ch * 1.32;
+          const horizonR = ch * 0.82;
+          const earthGrad = ctx.createRadialGradient(cw * 0.5, horizonY, horizonR * 0.88, cw * 0.5, horizonY, horizonR);
+          earthGrad.addColorStop(0, '#000000');
+          earthGrad.addColorStop(0.8, '#060a14');
+          earthGrad.addColorStop(0.96, 'rgba(255, 255, 255, 0.55)');
+          earthGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+          ctx.beginPath();
+          ctx.arc(cw * 0.5, horizonY, horizonR, 0, Math.PI * 2);
+          ctx.fillStyle = earthGrad;
+          ctx.fill();
 
-          ctx.fillStyle = 'rgba(148, 163, 184, 0.85)';
-          ctx.font = `600 ${Math.min(14, Math.floor(cw * 0.038))}px "Plus Jakarta Sans", sans-serif`;
-          ctx.fillText('Monthly Client Reach (Views)', cw * 0.5, ch * 0.29);
-          ctx.restore();
-
-          // 4 Floating 3D Phones - Repositioned inside stage boundaries with harmonized BlueX borders
-          const phoneConfigs = [
-            { x: cw * 0.25, y: ch * 0.48 + Math.sin(t * 2.2) * 7, w: 82, h: 128, r: 14, glow: 'rgba(56, 189, 248, 0.38)' },
-            { x: cw * 0.72, y: ch * 0.38 + Math.cos(t * 1.8) * 8, w: 78, h: 120, r: 14, glow: 'rgba(251, 191, 36, 0.38)' },
-            { x: cw * 0.28, y: ch * 0.76 + Math.sin(t * 1.9 + 1) * 7, w: 74, h: 114, r: 13, glow: 'rgba(125, 211, 252, 0.32)' },
-            { x: cw * 0.70, y: ch * 0.74 + Math.cos(t * 2.1 + 2) * 7, w: 86, h: 134, r: 15, glow: 'rgba(56, 189, 248, 0.45)' }
-          ];
-
-          phoneConfigs.forEach((p, idx) => {
-            draw3DPhone(p.x, p.y, p.w, p.h, p.r, 0, 0, p.glow, (sx, sy, sw, sh) => {
-              // Mini chart or view counter on screen
-              ctx.fillStyle = '#ffffff';
-              ctx.font = '800 10px sans-serif';
-              ctx.textAlign = 'center';
-              ctx.fillText(currentViews.toLocaleString(), 0, -sh * 0.15);
-              ctx.fillStyle = '#94a3b8';
-              ctx.font = '600 7px sans-serif';
-              ctx.fillText('Referred Views', 0, -sh * 0.03);
-
-              // Mini volume bar graph
-              const bars = 5;
-              const barW = (sw - 20) / bars;
-              for (let b = 0; b < bars; b++) {
-                const bh = (b + 1) * (sh * 0.08) * (0.6 + Math.sin(t * 3 + b) * 0.4);
-                ctx.fillStyle = b === bars - 1 ? '#fbbf24' : '#38bdf8';
-                ctx.fillRect(-sw * 0.5 + 10 + b * barW, sh * 0.35 - bh, barW - 2, bh);
-              }
-            });
-          });
-
-        } else if (t < 6.2) {
-          updatePhaseUI(1);
-          // SCENE 2: METALLIC DISCS FALLING INTO STACK OVER SILHOUETTE HAND (24M+ Views)
-          const sceneProg = (t - 3.2) / 3.0; // 0 to 1
-
-          // Soft Atmospheric Nordic Light Aura that blends smoothly with the dark site
-          const lightGlow = ctx.createRadialGradient(cw * 0.5, ch * 0.22, 10, cw * 0.5, ch * 0.22, cw * 0.62);
-          lightGlow.addColorStop(0, 'rgba(226, 232, 240, 0.28)');
-          lightGlow.addColorStop(0.5, 'rgba(56, 189, 248, 0.12)');
-          lightGlow.addColorStop(1, 'rgba(10, 16, 28, 0)');
-          ctx.fillStyle = lightGlow;
-          ctx.fillRect(0, 0, cw, ch);
-
-          // Big Headline: 24million+ Views in Crisp Nordic Frost
+          // 2. Giant Clean Typography: 443609 Views
           ctx.save();
           ctx.textAlign = 'center';
           ctx.fillStyle = '#ffffff';
-          const s2FontSize = Math.min(38, Math.floor(cw * 0.095));
+          const fontSize = Math.min(42, Math.floor(cw * 0.11));
+          ctx.font = `900 ${fontSize}px "Plus Jakarta Sans", sans-serif`;
+          ctx.shadowColor = 'rgba(255, 255, 255, 0.45)';
+          ctx.shadowBlur = 18;
+          ctx.fillText(currentViews.toLocaleString(), cw * 0.5, ch * 0.22);
+          ctx.shadowBlur = 0;
+
+          ctx.fillStyle = '#94a3b8';
+          ctx.font = `600 ${Math.min(15, Math.floor(cw * 0.04))}px "Plus Jakarta Sans", sans-serif`;
+          ctx.fillText('Views', cw * 0.5, ch * 0.27);
+          ctx.restore();
+
+          // 3. Four 3D Glass Devices Floating in Harmonious Perspective
+          const deviceW = Math.min(cw * 0.26, 96);
+          const deviceH = deviceW * 1.48;
+          const devices = [
+            { x: cw * 0.24, y: ch * 0.46 + Math.sin(t * 2.5) * 8, glow: 'rgba(56, 189, 248, 0.45)' },
+            { x: cw * 0.76, y: ch * 0.38 + Math.cos(t * 2.2) * 8, glow: 'rgba(255, 255, 255, 0.5)' },
+            { x: cw * 0.26, y: ch * 0.74 + Math.sin(t * 2.1 + 1) * 7, glow: 'rgba(251, 191, 36, 0.4)' },
+            { x: cw * 0.74, y: ch * 0.72 + Math.cos(t * 2.4 + 2) * 8, glow: 'rgba(56, 189, 248, 0.5)' }
+          ];
+
+          devices.forEach((d) => {
+            draw3DDevice(d.x, d.y, deviceW, deviceH, 14, d.glow, currentViews);
+          });
+
+        // =====================================================================
+        // SCENE 2 (3.2s - 6.5s): 24million+ Views & Hand Catching Stacking Silver Discs
+        // =====================================================================
+        } else if (t < 6.5) {
+          if (scenePhaseLabel) scenePhaseLabel.textContent = '02 / 04 • REVENUE';
+          const sceneProg = (t - 3.2) / 3.3;
+
+          // Atmospheric Spotlight from Top
+          const spotGrad = ctx.createRadialGradient(cw * 0.5, ch * 0.2, 10, cw * 0.5, ch * 0.2, cw * 0.65);
+          spotGrad.addColorStop(0, 'rgba(255, 255, 255, 0.22)');
+          spotGrad.addColorStop(0.5, 'rgba(56, 189, 248, 0.08)');
+          spotGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          ctx.fillStyle = spotGrad;
+          ctx.fillRect(0, 0, cw, ch);
+
+          // Header: 24million+ Views (Matching frame_03)
+          ctx.save();
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#ffffff';
+          const s2FontSize = Math.min(42, Math.floor(cw * 0.11));
           ctx.font = `900 ${s2FontSize}px "Plus Jakarta Sans", sans-serif`;
-          ctx.shadowColor = 'rgba(56, 189, 248, 0.4)';
-          ctx.shadowBlur = 16;
+          ctx.shadowColor = 'rgba(255, 255, 255, 0.4)';
+          ctx.shadowBlur = 18;
           ctx.fillText('24million+', cw * 0.5, ch * 0.22);
           ctx.shadowBlur = 0;
 
-          ctx.fillStyle = 'rgba(148, 163, 184, 0.85)';
-          ctx.font = `700 ${Math.min(14, Math.floor(cw * 0.038))}px "Plus Jakarta Sans", sans-serif`;
-          ctx.fillText('Network Media Reach', cw * 0.5, ch * 0.27);
+          ctx.fillStyle = '#94a3b8';
+          ctx.font = `600 ${Math.min(15, Math.floor(cw * 0.04))}px "Plus Jakarta Sans", sans-serif`;
+          ctx.fillText('Views', cw * 0.5, ch * 0.27);
           ctx.restore();
 
-          // Falling Coins / Spheres
-          const fallY = ch * 0.32 + Math.sin(sceneProg * Math.PI) * 20;
-          // Falling top sphere / disc
-          drawCoin(cw * 0.5, fallY, 46, 24, 10, '#f1f5f9', '#94a3b8');
-          // Mid-air second disc
-          drawCoin(cw * 0.5, fallY + 68, 52, 28, 12, '#cbd5e1', '#64748b');
+          // Minimalist Hand Silhouette catching coins
+          const handBaseX = cw * 0.38;
+          const handBaseY = ch * 0.74;
+          drawMinimalistHand(handBaseX, handBaseY, Math.min(1, cw / 420));
 
-          // Stack of metallic coins in hand
-          const stackBaseY = ch * 0.72;
+          // Stacking Metallic Coins on Hand Palm
+          const coinStackX = handBaseX + 45;
+          const coinStackY = handBaseY + 12;
           const stackCount = Math.min(8, 3 + Math.floor(sceneProg * 6));
+          const coinRadX = Math.min(48, cw * 0.12);
+          const coinRadY = coinRadX * 0.44;
+
           for (let s = 0; s < stackCount; s++) {
-            drawCoin(cw * 0.44, stackBaseY - s * 14, 56, 26, 12, '#f8fafc', '#94a3b8');
+            drawMetallicCoin(coinStackX, coinStackY - s * 12, coinRadX, coinRadY, 10, 0, false);
           }
 
-          // Minimalist Hand Silhouette catching the stack
-          drawHand(cw * 0.38, stackBaseY + 12, 0.85);
+          // Falling Coins tumbling from above with gravity
+          const fallCycle = (sceneProg * 3.5) % 1;
+          const fallY1 = ch * 0.32 + Math.pow(fallCycle, 2) * (coinStackY - stackCount * 12 - ch * 0.32);
+          if (fallY1 < coinStackY - stackCount * 12) {
+            drawMetallicCoin(coinStackX, fallY1, coinRadX * 0.92, coinRadY * 0.92, 9, Math.sin(sceneProg * 12) * 15, false);
+          }
 
-        } else if (t < 9.4) {
-          updatePhaseUI(2);
-          // SCENE 3: SMARTPHONE ON STAGE WITH MONEY / REACH EXPONENTIAL BREAKTHROUGH
-          const sceneProg = (t - 6.2) / 3.2;
+          const fallY2 = ch * 0.24 + Math.pow((fallCycle + 0.5) % 1, 2) * (coinStackY - stackCount * 12 - ch * 0.24);
+          if (fallY2 < coinStackY - stackCount * 12) {
+            drawMetallicCoin(coinStackX, fallY2, coinRadX * 0.85, coinRadY * 0.85, 8, -Math.cos(sceneProg * 10) * 18, false);
+          }
 
-          // Deep Frosted Slate & Ice Horizon Spotlight
-          const stageLight = ctx.createRadialGradient(cw * 0.5, ch * 0.45, 20, cw * 0.5, ch * 0.45, cw * 0.7);
-          stageLight.addColorStop(0, 'rgba(26, 38, 64, 0.55)');
-          stageLight.addColorStop(0.65, 'rgba(14, 22, 38, 0.75)');
-          stageLight.addColorStop(1, 'rgba(8, 12, 22, 0.92)');
+          // Floating Commission Payout Tag
+          ctx.save();
+          ctx.fillStyle = '#fde047';
+          ctx.font = '800 13px "Plus Jakarta Sans", sans-serif';
+          ctx.textAlign = 'left';
+          ctx.shadowColor = 'rgba(251, 191, 36, 0.5)';
+          ctx.shadowBlur = 10;
+          ctx.fillText('+ $11.00 / lot', coinStackX + coinRadX + 16, coinStackY - stackCount * 6);
+          ctx.restore();
+
+        // =====================================================================
+        // SCENE 3 (6.5s - 9.5s): Smartphone Grid & Exponential Lightning Trajectory
+        // =====================================================================
+        } else if (t < 9.5) {
+          if (scenePhaseLabel) scenePhaseLabel.textContent = '03 / 04 • SCALE';
+          const sceneProg = (t - 6.5) / 3.0;
+
+          // Background Stage Lighting
+          const stageLight = ctx.createRadialGradient(cw * 0.5, ch * 0.5, 20, cw * 0.5, ch * 0.5, cw * 0.7);
+          stageLight.addColorStop(0, 'rgba(255, 255, 255, 0.12)');
+          stageLight.addColorStop(0.65, 'rgba(15, 23, 42, 0.8)');
+          stageLight.addColorStop(1, '#050811');
           ctx.fillStyle = stageLight;
           ctx.fillRect(0, 0, cw, ch);
 
-          // Exponential Breakthrough Growth Vector with Cyan/Gold Glow
+          // Surging Lightning Geometric Growth Line (Matching frame_05 & frame_07)
           ctx.save();
           ctx.beginPath();
-          ctx.moveTo(-20, ch * 0.68);
-          ctx.lineTo(cw * 0.22, ch * 0.52);
-          ctx.lineTo(cw * 0.42, ch * 0.48);
-          ctx.lineTo(cw * 0.76, ch * 0.24);
-          ctx.lineTo(cw * 0.82, ch * 0.32);
-          ctx.lineTo(cw + 30, ch * 0.12);
-          ctx.strokeStyle = 'rgba(15, 23, 42, 0.85)';
-          ctx.lineWidth = 12;
+          ctx.moveTo(-20, ch * 0.72);
+          ctx.lineTo(cw * 0.24, ch * 0.54);
+          ctx.lineTo(cw * 0.44, ch * 0.50);
+          ctx.lineTo(cw * 0.72, ch * 0.28);
+          ctx.lineTo(cw * 0.78, ch * 0.36);
+          ctx.lineTo(cw + 30, ch * 0.14);
+
+          // Dark outer drop shadow
+          ctx.strokeStyle = 'rgba(0, 0, 0, 0.85)';
+          ctx.lineWidth = 14;
           ctx.lineCap = 'round';
           ctx.lineJoin = 'miter';
           ctx.stroke();
 
-          ctx.strokeStyle = '#fbbf24';
-          ctx.lineWidth = 3.5;
-          ctx.shadowColor = 'rgba(251, 191, 36, 0.65)';
-          ctx.shadowBlur = 12;
+          // Brilliant neon core with cyan/gold edge
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 4;
+          ctx.shadowColor = '#38bdf8';
+          ctx.shadowBlur = 16;
           ctx.stroke();
-          ctx.shadowBlur = 0;
           ctx.restore();
 
-          // Center Horizontal Smartphone on Podium
-          const phoneW = Math.min(cw * 0.78, 320);
-          const phoneH = 175;
+          // Centered Horizontal Smartphone on Stage
+          const phoneW = Math.min(cw * 0.78, 310);
+          const phoneH = 165;
           const phoneX = cw * 0.5;
-          const phoneY = ch * 0.50;
+          const phoneY = ch * 0.52;
 
-          // Phone shadow on white floor
+          // Soft contact shadow underneath phone
           ctx.beginPath();
-          ctx.ellipse(phoneX, phoneY + phoneH * 0.55, phoneW * 0.42, 16, 0, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
+          ctx.ellipse(phoneX, phoneY + phoneH * 0.56, phoneW * 0.42, 14, 0, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
           ctx.fill();
 
-          // Horizontal Phone
-          draw3DPhone(phoneX, phoneY, phoneW, phoneH, 22, 0, 0, 'rgba(0,0,0,0.4)', (sx, sy, sw, sh) => {
-            // Coordinate Grid on Phone Display
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
-            ctx.lineWidth = 1;
-            const gridCols = 6;
-            const gridRows = 4;
-            for (let c = 1; c < gridCols; c++) {
-              ctx.beginPath();
-              ctx.moveTo(-sw * 0.5 + c * (sw / gridCols), -sh * 0.5);
-              ctx.lineTo(-sw * 0.5 + c * (sw / gridCols), sh * 0.5);
-              ctx.stroke();
-            }
-            for (let r = 1; r < gridRows; r++) {
-              ctx.beginPath();
-              ctx.moveTo(-sw * 0.5, -sh * 0.5 + r * (sh / gridRows));
-              ctx.lineTo(sw * 0.5, -sh * 0.5 + r * (sh / gridRows));
-              ctx.stroke();
-            }
+          // Draw Phone Chassis
+          ctx.save();
+          ctx.translate(phoneX, phoneY);
+          ctx.beginPath();
+          ctx.roundRect(-phoneW * 0.5, -phoneH * 0.5, phoneW, phoneH, 22);
+          const phoneGrad = ctx.createLinearGradient(-phoneW * 0.5, -phoneH * 0.5, phoneW * 0.5, phoneH * 0.5);
+          phoneGrad.addColorStop(0, '#475569');
+          phoneGrad.addColorStop(0.3, '#1e293b');
+          phoneGrad.addColorStop(1, '#0f172a');
+          ctx.fillStyle = phoneGrad;
+          ctx.fill();
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+          ctx.lineWidth = 1.4;
+          ctx.stroke();
 
-            // Labels: Money (Y) and Reach (X)
-            ctx.fillStyle = '#ffffff';
-            ctx.font = '800 13px "Plus Jakarta Sans", sans-serif';
-            ctx.textAlign = 'left';
-            ctx.fillText('Money ($)', -sw * 0.44, -sh * 0.15);
+          // Phone Screen
+          const pinset = 6;
+          const psw = phoneW - pinset * 2;
+          const psh = phoneH - pinset * 2;
+          ctx.beginPath();
+          ctx.roundRect(-phoneW * 0.5 + pinset, -phoneH * 0.5 + pinset, psw, psh, 18);
+          ctx.fillStyle = '#05070e';
+          ctx.fill();
 
-            ctx.textAlign = 'center';
-            ctx.fillText('Reach (Lots & Volume)', 0, sh * 0.38);
-
-            // Exponential Revenue Area Curve on Phone Screen
+          // Fine Coordinate Grid (Matching frame_05)
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+          ctx.lineWidth = 1;
+          const cols = 6;
+          const rows = 4;
+          for (let c = 1; c < cols; c++) {
             ctx.beginPath();
-            ctx.moveTo(-sw * 0.44, sh * 0.22);
-            ctx.bezierCurveTo(-sw * 0.1, sh * 0.18, sw * 0.1, -sh * 0.1, sw * 0.42, -sh * 0.36);
-            ctx.lineTo(sw * 0.42, sh * 0.22);
-            ctx.closePath();
-            const curveGrad = ctx.createLinearGradient(0, -sh * 0.36, 0, sh * 0.22);
-            curveGrad.addColorStop(0, 'rgba(251, 191, 36, 0.45)');
-            curveGrad.addColorStop(1, 'rgba(251, 191, 36, 0.02)');
-            ctx.fillStyle = curveGrad;
-            ctx.fill();
-
-            // Glowing curve line
-            ctx.beginPath();
-            ctx.moveTo(-sw * 0.44, sh * 0.22);
-            ctx.bezierCurveTo(-sw * 0.1, sh * 0.18, sw * 0.1, -sh * 0.1, sw * 0.42, -sh * 0.36);
-            ctx.strokeStyle = '#fbbf24';
-            ctx.lineWidth = 2.5;
+            ctx.moveTo(-psw * 0.5 + c * (psw / cols), -psh * 0.5);
+            ctx.lineTo(-psw * 0.5 + c * (psw / cols), psh * 0.5);
             ctx.stroke();
-          });
+          }
+          for (let r = 1; r < rows; r++) {
+            ctx.beginPath();
+            ctx.moveTo(-psw * 0.5, -psh * 0.5 + r * (psh / rows));
+            ctx.lineTo(psw * 0.5, -psh * 0.5 + r * (psh / rows));
+            ctx.stroke();
+          }
 
-          // Stacks of Silver / Metallic Coins on Foreground Left & Right (like frame_07)
+          // Labels: Money (Y) and Reach (X)
+          ctx.fillStyle = '#ffffff';
+          ctx.font = '800 13px "Plus Jakarta Sans", sans-serif';
+          ctx.textAlign = 'left';
+          ctx.fillText('Money', -psw * 0.42, -psh * 0.12);
+
+          ctx.textAlign = 'center';
+          ctx.fillText('Reach', 0, psh * 0.38);
+
+          // Specular Glare Streak across phone screen
+          const glare = ctx.createLinearGradient(-phoneW * 0.5, -phoneH * 0.5, phoneW * 0.5, phoneH * 0.5);
+          glare.addColorStop(0, 'rgba(255, 255, 255, 0.18)');
+          glare.addColorStop(0.35, 'rgba(255, 255, 255, 0.04)');
+          glare.addColorStop(0.38, 'rgba(255, 255, 255, 0)');
+          ctx.fillStyle = glare;
+          ctx.beginPath();
+          ctx.roundRect(-phoneW * 0.5 + pinset, -phoneH * 0.5 + pinset, psw, psh, 18);
+          ctx.fill();
+          ctx.restore();
+
+          // Flanking 3D Metallic Silver Coin Towers (Matching frame_07)
           const leftCoinX = cw * 0.12;
           const rightCoinX = cw * 0.88;
-          const coinStackY = ch * 0.88;
-
-          for (let lc = 0; lc < 12; lc++) {
-            drawCoin(leftCoinX, coinStackY - lc * 14, 42, 18, 9, '#f8fafc', '#64748b');
+          const towerY = ch * 0.86;
+          for (let lc = 0; lc < 10; lc++) {
+            drawMetallicCoin(leftCoinX, towerY - lc * 12, 38, 16, 8, 0, false);
           }
-          for (let rc = 0; rc < 14; rc++) {
-            drawCoin(rightCoinX, coinStackY - rc * 14, 46, 20, 10, '#f8fafc', '#475569');
-          }
-          for (let mc = 0; mc < 6; mc++) {
-            drawCoin(cw * 0.42, coinStackY + 20 - mc * 12, 48, 22, 10, '#cbd5e1', '#64748b');
+          for (let rc = 0; rc < 12; rc++) {
+            drawMetallicCoin(rightCoinX, towerY - rc * 12, 42, 18, 9, 0, false);
           }
 
+        // =====================================================================
+        // SCENE 4 (9.5s - 12.0s): Spinning Sector Wheel & Celestial Eclipse Finale
+        // =====================================================================
         } else {
-          updatePhaseUI(3);
-          // SCENE 4: DUAL LUNAR SPHERES WITH ATMOSPHERIC ECLIPSE EDGE + "CREATE TO EARN"
-          const sceneProg = (t - 9.4) / 2.6;
+          if (scenePhaseLabel) scenePhaseLabel.textContent = '04 / 04 • EARN';
+          const sceneProg = (t - 9.5) / 2.5;
 
-          // Pure Black Deep Space Background
-          ctx.fillStyle = '#020408';
-          ctx.fillRect(0, 0, cw, ch);
+          // 4A: Spinning Sector Wheel of Fortune (9.5s - 10.7s, Matching frame_10)
+          if (sceneProg < 0.45) {
+            const wheelProg = sceneProg / 0.45;
+            const wheelAngle = (1 - Math.pow(1 - wheelProg, 3)) * Math.PI * 4;
+            const wheelX = cw * 0.5;
+            const wheelY = ch * 0.50;
+            const wheelR = Math.min(cw * 0.36, 140);
 
-          // Left Atmospheric Planet Sphere Edge (Bright Lunar Crescent)
-          const leftSphereX = -cw * 0.35 + Math.sin(sceneProg * Math.PI) * 12;
-          const sphereRadius = ch * 0.46;
+            ctx.save();
+            ctx.translate(wheelX, wheelY);
+            ctx.rotate(wheelAngle);
 
-          const leftCrescent = ctx.createRadialGradient(leftSphereX, ch * 0.5, sphereRadius * 0.82, leftSphereX, ch * 0.5, sphereRadius);
-          leftCrescent.addColorStop(0, 'rgba(0, 0, 0, 1)');
-          leftCrescent.addColorStop(0.85, 'rgba(0, 0, 0, 0.98)');
-          leftCrescent.addColorStop(0.96, 'rgba(255, 255, 255, 0.82)');
-          leftCrescent.addColorStop(1, 'rgba(255, 255, 255, 0)');
-          ctx.beginPath();
-          ctx.arc(leftSphereX, ch * 0.5, sphereRadius, 0, Math.PI * 2);
-          ctx.fillStyle = leftCrescent;
-          ctx.fill();
+            // 8 Radial Sectors
+            const sectors = 8;
+            for (let s = 0; s < sectors; s++) {
+              ctx.beginPath();
+              ctx.moveTo(0, 0);
+              ctx.arc(0, 0, wheelR, s * (Math.PI * 2 / sectors), (s + 1) * (Math.PI * 2 / sectors));
+              ctx.closePath();
+              ctx.fillStyle = s % 2 === 0 ? '#1e293b' : '#334155';
+              ctx.fill();
+              ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+              ctx.lineWidth = 1;
+              ctx.stroke();
 
-          // Right Atmospheric Planet Sphere Edge
-          const rightSphereX = cw + cw * 0.35 - Math.sin(sceneProg * Math.PI) * 12;
-          const rightCrescent = ctx.createRadialGradient(rightSphereX, ch * 0.5, sphereRadius * 0.82, rightSphereX, ch * 0.5, sphereRadius);
-          rightCrescent.addColorStop(0, 'rgba(0, 0, 0, 1)');
-          rightCrescent.addColorStop(0.85, 'rgba(0, 0, 0, 0.98)');
-          rightCrescent.addColorStop(0.96, 'rgba(255, 255, 255, 0.82)');
-          rightCrescent.addColorStop(1, 'rgba(255, 255, 255, 0)');
-          ctx.beginPath();
-          ctx.arc(rightSphereX, ch * 0.5, sphereRadius, 0, Math.PI * 2);
-          ctx.fillStyle = rightCrescent;
-          ctx.fill();
+              // Marker in each sector (✓ on sector 0, X on others)
+              ctx.save();
+              ctx.rotate((s + 0.5) * (Math.PI * 2 / sectors));
+              ctx.fillStyle = s === 0 ? '#38bdf8' : '#94a3b8';
+              ctx.font = '800 16px sans-serif';
+              ctx.textAlign = 'center';
+              ctx.fillText(s === 0 ? '✓' : '✕', wheelR * 0.65, 5);
+              ctx.restore();
+            }
 
-          // Center Iconic Text: CREATE TO EARN • PARTNER WITH BLUEX
-          ctx.save();
-          ctx.textAlign = 'center';
-          ctx.fillStyle = '#ffffff';
-          ctx.font = `900 ${Math.floor(cw * 0.082)}px "Plus Jakarta Sans", sans-serif`;
-          ctx.letterSpacing = '0.08em';
-          ctx.fillText('CREATE', cw * 0.5, ch * 0.42);
+            // Wheel Center Hub
+            ctx.beginPath();
+            ctx.arc(0, 0, 16, 0, Math.PI * 2);
+            ctx.fillStyle = '#0f172a';
+            ctx.fill();
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.restore();
 
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
-          ctx.font = `800 ${Math.floor(cw * 0.045)}px "Plus Jakarta Sans", sans-serif`;
-          ctx.fillText('TO', cw * 0.5, ch * 0.49);
+            // Fixed Top Pointer at 12 o'clock
+            ctx.beginPath();
+            ctx.moveTo(wheelX, wheelY - wheelR - 10);
+            ctx.lineTo(wheelX - 8, wheelY - wheelR + 8);
+            ctx.lineTo(wheelX + 8, wheelY - wheelR + 8);
+            ctx.closePath();
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
 
-          ctx.fillStyle = '#fbbf24';
-          ctx.font = `900 ${Math.floor(cw * 0.082)}px "Plus Jakarta Sans", sans-serif`;
-          ctx.shadowColor = 'rgba(251, 191, 36, 0.55)';
-          ctx.shadowBlur = 24;
-          ctx.fillText('EARN', cw * 0.5, ch * 0.57);
-          ctx.shadowBlur = 0;
+          // 4B: Dramatic Lunar Eclipse Finale ("CREATE TO EARN", Matching frame_12)
+          } else {
+            const eclipseProg = (sceneProg - 0.45) / 0.55;
 
-          // Sub-kicker
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-          ctx.font = `700 ${Math.floor(cw * 0.038)}px "Plus Jakarta Sans", sans-serif`;
-          ctx.fillText('PARTNER WITH BLUEX VIP DESK', cw * 0.5, ch * 0.65);
-          ctx.restore();
+            // Pure Black Deep Space
+            ctx.fillStyle = '#020408';
+            ctx.fillRect(0, 0, cw, ch);
+
+            // Left Atmospheric Lunar Crescent
+            const leftX = -cw * 0.28 + Math.sin(eclipseProg * Math.PI) * 10;
+            const sphereR = ch * 0.48;
+            const leftGrad = ctx.createRadialGradient(leftX, ch * 0.5, sphereR * 0.82, leftX, ch * 0.5, sphereR);
+            leftGrad.addColorStop(0, '#000000');
+            leftGrad.addColorStop(0.85, '#050a14');
+            leftGrad.addColorStop(0.96, 'rgba(255, 255, 255, 0.85)');
+            leftGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            ctx.beginPath();
+            ctx.arc(leftX, ch * 0.5, sphereR, 0, Math.PI * 2);
+            ctx.fillStyle = leftGrad;
+            ctx.fill();
+
+            // Right Atmospheric Lunar Crescent
+            const rightX = cw + cw * 0.28 - Math.sin(eclipseProg * Math.PI) * 10;
+            const rightGrad = ctx.createRadialGradient(rightX, ch * 0.5, sphereR * 0.82, rightX, ch * 0.5, sphereR);
+            rightGrad.addColorStop(0, '#000000');
+            rightGrad.addColorStop(0.85, '#050a14');
+            rightGrad.addColorStop(0.96, 'rgba(255, 255, 255, 0.85)');
+            rightGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            ctx.beginPath();
+            ctx.arc(rightX, ch * 0.5, sphereR, 0, Math.PI * 2);
+            ctx.fillStyle = rightGrad;
+            ctx.fill();
+
+            // Centered Commanding Typography: CREATE TO EARN (Matching frame_12)
+            ctx.save();
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#ffffff';
+            const fSize = Math.min(44, Math.floor(cw * 0.11));
+            ctx.font = `900 ${fSize}px "Plus Jakarta Sans", sans-serif`;
+            ctx.letterSpacing = '0.08em';
+            ctx.fillText('CREATE', cw * 0.5, ch * 0.42);
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.font = `800 ${Math.floor(fSize * 0.55)}px "Plus Jakarta Sans", sans-serif`;
+            ctx.fillText('TO', cw * 0.5, ch * 0.49);
+
+            ctx.fillStyle = '#fde047';
+            ctx.font = `900 ${fSize}px "Plus Jakarta Sans", sans-serif`;
+            ctx.shadowColor = 'rgba(251, 191, 36, 0.65)';
+            ctx.shadowBlur = 24;
+            ctx.fillText('EARN', cw * 0.5, ch * 0.57);
+            ctx.shadowBlur = 0;
+
+            // Sub-kicker: Max Base $11.00 / Lot
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+            ctx.font = `700 ${Math.min(14, Math.floor(cw * 0.038))}px "Plus Jakarta Sans", sans-serif`;
+            ctx.fillText('PARTNER WITH BLUEX • UP TO $11/LOT', cw * 0.5, ch * 0.65);
+            ctx.restore();
+          }
         }
 
         requestAnimationFrame(render);
       }
 
       requestAnimationFrame(render);
-
-      // Scrub Slider Interactivity
-      if (scrubSlider) {
-        scrubSlider.addEventListener('input', () => {
-          simTime = (parseFloat(scrubSlider.value) / 100) * totalLoopDuration;
-        });
-      }
-
-      // Phase Pill Navigation
-      phasePills.forEach((pill) => {
-        pill.addEventListener('click', () => {
-          const phase = parseInt(pill.getAttribute('data-phase') || '0', 10);
-          const phaseTimes = [0.0, 3.3, 6.3, 9.5];
-          simTime = phaseTimes[phase] || 0;
-          if (scrubSlider) scrubSlider.value = (simTime / totalLoopDuration * 100).toFixed(1);
-        });
-      });
-
-      // Pause / Play
-      if (pauseToggleBtn) {
-        pauseToggleBtn.addEventListener('click', () => {
-          isPaused = !isPaused;
-          pauseToggleBtn.textContent = isPaused ? 'Resume ▶' : 'Pause ⏸';
-          pauseToggleBtn.classList.toggle('active', isPaused);
-        });
-      }
     }
 
     // Direct Telegram Dispatch Form
