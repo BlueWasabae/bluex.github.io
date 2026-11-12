@@ -494,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'ib.pageTitle': 'BlueX IB Partner • Institutional Broker Partnership',
       'ib.badge': 'Institutional Broker Partnership • Multi-Tier Rebate Engine',
       'ib.title': 'Scale Your Forex &amp; Gold Brokerage as an <span class="gold-accent">Official BlueX IB Partner</span>',
-      'ib.subtitle': 'Direct STP Liquidity, Multi-Tier Raw Rebates up to $18/Lot, Custom Trading Academy Infrastructure, and Turnkey Client Acquisition.',
+      'ib.subtitle': 'Direct STP Liquidity, Multi-Tier Raw Rebates from $6 up to $11/Lot (scaling higher with institutional volume), Custom Brokerage Infrastructure, and Real-Time Rebate Settlements.',
       'ib.calcHeading': 'Interactive IB Commission &amp; Volume Forecaster',
       'nav.drawerBrand': 'BLUEX TERMINAL',
       'nav.spotlightDesc': 'Pure Supply & Demand (S&D) Framework',
@@ -1291,7 +1291,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'ib.pageTitle': 'ដៃគូ BlueX IB • កិច្ចសហការឈ្មួញកណ្តាលកម្រិតស្ថាប័ន',
       'ib.badge': 'កិច្ចសហការដៃគូ IB • ប្រព័ន្ធ Rebate កម្រិតខ្ពស់',
       'ib.title': 'ពង្រីកបណ្តាញអតិថិជន និងចំណូល Brokerage ជាមួយ <span class="gold-accent">BlueX IB Partner</span>',
-      'ib.subtitle': 'សន្ទុះសាច់ប្រាក់ STP ផ្ទាល់, កម្រៃជើងសារ Rebate រហូតដល់ $18/Lot, ប្រព័ន្ធបណ្តុះបណ្តាល និងសម្ភារៈទីផ្សារកម្រិតអាជីព។',
+      'ib.subtitle': 'សន្ទុះសាច់ប្រាក់ STP ផ្ទាល់, កម្រៃជើងសារ Rebate ចាប់ពី $6 ដល់ $11/Lot (អាចកើនឡើងបន្ថែមតាមបរិមាណ Volume ជាក់ស្តែង) និងប្រព័ន្ធទូទាត់កម្រៃជើងសារភ្លាមៗ។',
       'ib.calcHeading': 'ប្រព័ន្ធគណនាប្រាក់ចំណូល Rebate &amp; បរិមាណជួញដូរ',
       'nav.drawerBrand': 'បណ្តាញ BLUEX TERMINAL',
       'nav.spotlightDesc': 'ប្រព័ន្ធ Supply & Demand (S&D) ជាក់ស្តែង',
@@ -6362,28 +6362,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const outRateBadge = document.getElementById('ibOutRateBadge');
     const outSubIbRev = document.getElementById('ibOutSubIbRev');
 
-    const videoPlayer = document.getElementById('ibMotionGraphicVideo');
-    const videoLoopToggle = document.getElementById('ibVideoLoopToggle');
-    const videoReplayBtn = document.getElementById('ibVideoReplayBtn');
-
-    // Commission Rates per Standard Lot based on Tier
+    // Commission Rates per Standard Lot: Base $6, Gold $8, VIP $10, Master Max $11 (Plus Volume Boost for >1000 lots)
     const tierRates = {
-      silver: { rate: 8, subRate: 1.5, name: 'Silver IB ($8/Lot)' },
-      gold: { rate: 12, subRate: 2.5, name: 'Gold IB ($12/Lot)' },
-      vip: { rate: 15, subRate: 3.5, name: 'VIP Institutional ($15/Lot)' },
-      master: { rate: 18, subRate: 4.5, name: 'Master Partner Desk ($18/Lot)' }
+      standard: { baseRate: 6, subRate: 1.0, name: 'Standard Partner ($6/Lot)' },
+      silver: { baseRate: 8, subRate: 1.5, name: 'Silver IB ($8/Lot)' },
+      gold: { baseRate: 9.5, subRate: 2.0, name: 'Gold IB ($9.50/Lot)' },
+      vip: { baseRate: 11, subRate: 2.5, name: 'VIP Institutional ($11/Lot Max)' }
     };
 
     function recalcIbProjections() {
       if (!tradersSlider || !lotsSlider) return;
       const traders = parseInt(tradersSlider.value, 10) || 25;
       const avgLots = parseFloat(lotsSlider.value) || 20;
-      const tierKey = tierSelect ? tierSelect.value : 'gold';
-      const tier = tierRates[tierKey] || tierRates.gold;
+      const tierKey = tierSelect ? tierSelect.value : 'vip';
+      const tier = tierRates[tierKey] || tierRates.vip;
 
       const totalMonthlyLots = Math.round(traders * avgLots);
-      const directMonthlyRev = totalMonthlyLots * tier.rate;
-      const estimatedSubIbRev = Math.round(directMonthlyRev * 0.22); // ~22% multi-tier network leverage
+
+      // Volume-based dynamic scaling: if volume exceeds 1,000 lots, rate can scale above $11 base
+      let effectiveRate = tier.baseRate;
+      let volumeBonusText = '';
+      if (totalMonthlyLots >= 2500) {
+        effectiveRate = Math.min(14.0, tier.baseRate + 2.5);
+        volumeBonusText = ' (+$2.50 High-Volume Scale)';
+      } else if (totalMonthlyLots >= 1000) {
+        effectiveRate = Math.min(12.5, tier.baseRate + 1.5);
+        volumeBonusText = ' (+$1.50 High-Volume Scale)';
+      }
+
+      const directMonthlyRev = totalMonthlyLots * effectiveRate;
+      const estimatedSubIbRev = Math.round(directMonthlyRev * 0.18); // ~18% multi-tier network leverage
       const totalMonthlyIncome = directMonthlyRev + estimatedSubIbRev;
       const annualIncome = totalMonthlyIncome * 12;
 
@@ -6391,44 +6399,256 @@ document.addEventListener('DOMContentLoaded', () => {
       if (lotsVal) lotsVal.textContent = avgLots.toFixed(0);
 
       if (outMonthlyVol) outMonthlyVol.textContent = totalMonthlyLots.toLocaleString() + ' Lots';
-      if (outMonthlyRev) outMonthlyRev.textContent = '$' + totalMonthlyIncome.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-      if (outAnnualRev) outAnnualRev.textContent = '$' + annualIncome.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+      if (outMonthlyRev) outMonthlyRev.textContent = '$' + Math.round(totalMonthlyIncome).toLocaleString('en-US');
+      if (outAnnualRev) outAnnualRev.textContent = '$' + Math.round(annualIncome).toLocaleString('en-US');
       if (outSubIbRev) outSubIbRev.textContent = '+$' + estimatedSubIbRev.toLocaleString() + ' (2-Tier Override)';
-      if (outRateBadge) outRateBadge.textContent = '$' + tier.rate + ' / Lot';
+      if (outRateBadge) outRateBadge.textContent = '$' + effectiveRate.toFixed(2).replace('.00', '') + ' / Lot' + volumeBonusText;
+
+      // Update live node in canvas engine if running
+      if (window.__ibLiveStats) {
+        window.__ibLiveStats.monthlyLots = totalMonthlyLots;
+        window.__ibLiveStats.monthlyRev = totalMonthlyIncome;
+        window.__ibLiveStats.activeTraders = traders;
+        window.__ibLiveStats.effectiveRate = effectiveRate;
+      }
     }
 
     if (tradersSlider) tradersSlider.addEventListener('input', recalcIbProjections);
     if (lotsSlider) lotsSlider.addEventListener('input', recalcIbProjections);
     if (tierSelect) tierSelect.addEventListener('change', recalcIbProjections);
 
-    // Initial run
+    // Initial calculation run
     recalcIbProjections();
 
-    // Motion Graphic Video Controls & Autoplay with Fallback
-    if (videoPlayer) {
-      // Ensure smooth autoplay when in viewport
-      const vIo = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            videoPlayer.play().catch(() => {});
-          } else {
-            videoPlayer.pause();
-          }
-        });
-      }, { threshold: 0.2 });
-      vIo.observe(videoPlayer);
+    // =========================================================================
+    // PURE CODE MOTION GRAPHIC ENGINE (CANVAS 2D + SVG HUD TELEMETRY LOOP)
+    // Runs 100% inside the IB interface without relying on external video files
+    // =========================================================================
+    const ibCanvas = document.getElementById('ibMotionCanvas');
+    const ibHudConsole = document.getElementById('ibHudConsole');
+    const ibLoopSpeedBtn = document.getElementById('ibLoopSpeedBtn');
+    const ibPauseBtn = document.getElementById('ibPauseBtn');
 
-      if (videoReplayBtn) {
-        videoReplayBtn.addEventListener('click', () => {
-          videoPlayer.currentTime = 0;
-          videoPlayer.play().catch(() => {});
+    window.__ibLiveStats = {
+      monthlyLots: 500,
+      monthlyRev: 6490,
+      activeTraders: 25,
+      effectiveRate: 11
+    };
+
+    if (ibCanvas) {
+      const ctx = ibCanvas.getContext('2d');
+      let cw = 0;
+      let ch = 0;
+      let animId = null;
+      let isPaused = false;
+      let speedMultiplier = 1.0;
+      let lastTime = 0;
+      let simTime = 0;
+
+      function resizeCanvas() {
+        const rect = ibCanvas.parentElement.getBoundingClientRect();
+        cw = Math.max(280, rect.width);
+        ch = Math.max(380, rect.height || 480);
+        ibCanvas.width = Math.floor(cw * 1);
+        ibCanvas.height = Math.floor(ch * 1);
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+
+      // Particles & Flow Nodes
+      const particles = [];
+      const nodeCount = 14;
+      for (let i = 0; i < 36; i++) {
+        particles.push({
+          x: Math.random() * (cw || 320),
+          y: Math.random() * (ch || 480),
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: -0.4 - Math.random() * 0.8,
+          size: 1.2 + Math.random() * 2.2,
+          alpha: 0.2 + Math.random() * 0.7,
+          hue: Math.random() > 0.4 ? 45 : 195 // Gold or Cyan
         });
       }
 
-      if (videoLoopToggle) {
-        videoLoopToggle.addEventListener('click', () => {
-          videoPlayer.loop = !videoPlayer.loop;
-          videoLoopToggle.classList.toggle('active', videoPlayer.loop);
+      // Order flow stream items
+      const liveTrades = [
+        { pair: 'XAU/USD', lot: '1.50', rebate: '$16.50', desk: 'STP Interbank' },
+        { pair: 'XAU/USD', lot: '3.00', rebate: '$33.00', desk: 'Raw STP' },
+        { pair: 'EUR/USD', lot: '5.00', rebate: '$40.00', desk: 'Institutional' },
+        { pair: 'XAU/USD', lot: '2.00', rebate: '$22.00', desk: 'STP Interbank' },
+        { pair: 'GBP/USD', lot: '4.00', rebate: '$36.00', desk: 'Direct STP' }
+      ];
+      let tradeIdx = 0;
+      let lastTradeCycle = 0;
+
+      function renderFrame(timestamp) {
+        if (!lastTime) lastTime = timestamp;
+        const dt = (timestamp - lastTime) * 0.001;
+        lastTime = timestamp;
+
+        if (!isPaused) {
+          simTime += dt * speedMultiplier;
+        }
+
+        ctx.clearRect(0, 0, cw, ch);
+
+        // 1. Dark Futuristic Grid Floor & Polar Pulse
+        ctx.save();
+        const cx = cw * 0.5;
+        const cy = ch * 0.46;
+
+        // Radial backdrop glow
+        const glowRad = Math.min(cw, ch) * 0.55;
+        const bgGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, glowRad);
+        bgGrad.addColorStop(0, 'rgba(251, 191, 36, 0.12)');
+        bgGrad.addColorStop(0.35, 'rgba(56, 189, 248, 0.08)');
+        bgGrad.addColorStop(0.75, 'rgba(11, 18, 32, 0.4)');
+        bgGrad.addColorStop(1, 'rgba(10, 16, 28, 0)');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, cw, ch);
+
+        // Rotating Cybernetic Hexagon / Radar Rings
+        const ringCount = 3;
+        for (let r = 1; r <= ringCount; r++) {
+          const radius = (glowRad * 0.32) * r + Math.sin(simTime * 1.5 + r) * 6;
+          ctx.beginPath();
+          ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+          ctx.strokeStyle = r === 2 ? 'rgba(251, 191, 36, 0.35)' : 'rgba(56, 189, 248, 0.2)';
+          ctx.lineWidth = 1.2;
+          ctx.setLineDash([4, 6]);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        // Radar Scanning Sweep
+        const sweepAngle = (simTime * 1.8) % (Math.PI * 2);
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.arc(cx, cy, glowRad * 0.88, sweepAngle, sweepAngle + 0.55);
+        ctx.closePath();
+        const sweepGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowRad * 0.88);
+        sweepGrad.addColorStop(0, 'rgba(251, 191, 36, 0.22)');
+        sweepGrad.addColorStop(1, 'rgba(251, 191, 36, 0)');
+        ctx.fillStyle = sweepGrad;
+        ctx.fill();
+
+        // 2. Rising Golden Rebate Liquidity Sparks
+        particles.forEach((p) => {
+          if (!isPaused) {
+            p.x += p.vx * speedMultiplier;
+            p.y += p.vy * speedMultiplier;
+            if (p.y < 0) {
+              p.y = ch + 5;
+              p.x = Math.random() * cw;
+            }
+          }
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.hue === 45
+            ? `rgba(251, 191, 36, ${p.alpha})`
+            : `rgba(56, 189, 248, ${p.alpha})`;
+          ctx.fill();
+        });
+
+        // 3. Central Institutional Telemetry Hub
+        ctx.beginPath();
+        ctx.arc(cx, cy, 42, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+        ctx.strokeStyle = '#fbbf24';
+        ctx.lineWidth = 2.2;
+        ctx.shadowColor = 'rgba(251, 191, 36, 0.6)';
+        ctx.shadowBlur = 14;
+        ctx.fill();
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // Center Node Core Symbol (IB Gold Node)
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '800 13px "Plus Jakarta Sans", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('BLUEX', cx, cy - 7);
+        ctx.fillStyle = '#fbbf24';
+        ctx.font = '700 9px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('IB DESK', cx, cy + 8);
+
+        // 4. Orbiting Sub-IB Satellite Nodes & Synchronized Energy Beams
+        const satellites = 4;
+        for (let s = 0; s < satellites; s++) {
+          const satAngle = simTime * 0.9 + (s * (Math.PI * 2 / satellites));
+          const satDist = 110 + Math.sin(simTime * 2 + s) * 12;
+          const sx = cx + Math.cos(satAngle) * satDist;
+          const sy = cy + Math.sin(satAngle) * satDist * 0.82;
+
+          // Connective energy laser
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(sx, sy);
+          ctx.strokeStyle = s % 2 === 0 ? 'rgba(251, 191, 36, 0.38)' : 'rgba(56, 189, 248, 0.38)';
+          ctx.lineWidth = 1.4;
+          ctx.stroke();
+
+          // Energy Packet travelling along the line
+          const packetProgress = (simTime * 1.5 + (s * 0.25)) % 1;
+          const px = cx + (sx - cx) * packetProgress;
+          const py = cy + (sy - cy) * packetProgress;
+          ctx.beginPath();
+          ctx.arc(px, py, 3, 0, Math.PI * 2);
+          ctx.fillStyle = '#ffffff';
+          ctx.shadowColor = '#fbbf24';
+          ctx.shadowBlur = 8;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+
+          // Satellite Node
+          ctx.beginPath();
+          ctx.arc(sx, sy, 14, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(11, 18, 32, 0.92)';
+          ctx.strokeStyle = s % 2 === 0 ? '#fbbf24' : '#38bdf8';
+          ctx.lineWidth = 1.5;
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.fillStyle = '#e2e8f0';
+          ctx.font = '700 8px sans-serif';
+          ctx.fillText(s === 0 ? 'SUB-IB' : (s === 1 ? 'REBATE' : (s === 2 ? 'TRADER' : 'API')), sx, sy);
+        }
+
+        // 5. Dynamic Lower Real-Time HUD Ticker
+        ctx.restore();
+
+        // Update live console feed every 2.4s
+        if (timestamp - lastTradeCycle > 2400) {
+          lastTradeCycle = timestamp;
+          const tr = liveTrades[tradeIdx % liveTrades.length];
+          tradeIdx++;
+          if (ibHudConsole) {
+            ibHudConsole.innerHTML = `
+              <span class="hud-green-dot"></span>
+              <strong>${tr.pair}</strong> • ${tr.lot} Lots • Rebate: <span style="color:#fbbf24; font-weight:800;">+${tr.rebate}</span> (${tr.desk})
+            `;
+          }
+        }
+
+        animId = requestAnimationFrame(renderFrame);
+      }
+
+      animId = requestAnimationFrame(renderFrame);
+
+      // Speed Multiplier & Pause Controls
+      if (ibLoopSpeedBtn) {
+        ibLoopSpeedBtn.addEventListener('click', () => {
+          speedMultiplier = speedMultiplier === 1.0 ? 1.8 : (speedMultiplier === 1.8 ? 0.6 : 1.0);
+          ibLoopSpeedBtn.textContent = `Speed: ${speedMultiplier}x`;
+        });
+      }
+
+      if (ibPauseBtn) {
+        ibPauseBtn.addEventListener('click', () => {
+          isPaused = !isPaused;
+          ibPauseBtn.textContent = isPaused ? 'Resume ▶' : 'Pause ⏸';
+          ibPauseBtn.classList.toggle('active', isPaused);
         });
       }
     }
@@ -6456,8 +6676,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
-
-  initIbRecruitingEngine();
+    initIbRecruitingEngine();
 
   initNeatNavbarMoreMenu();
 

@@ -23849,49 +23849,105 @@ html.effects-frozen .pin1up-fab-orb::before {
   color: #fbbf24;
 }
 
-.ib-video-wrap {
+.ib-canvas-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 9 / 16;
+  aspect-ratio: 9 / 14;
+  min-height: 440px;
   max-height: 520px;
   border-radius: 20px;
   overflow: hidden;
-  background: #000;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+  background: radial-gradient(circle at center, #0f182a 0%, #080d18 100%);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.85);
 }
 
-.ib-motion-video {
+.ib-motion-canvas {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
 }
 
-.ib-video-overlay-badge {
+.ib-hud-floating-top {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.hud-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(11, 18, 32, 0.82);
+  border: 1px solid rgba(56, 189, 248, 0.32);
+  border-radius: 9999px;
+  padding: 4px 10px;
+  color: #7dd3fc;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(8px);
+}
+
+.hud-pulse-amber {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fbbf24;
+  box-shadow: 0 0 8px #fbbf24;
+}
+
+.hud-rate-tag {
+  background: rgba(11, 18, 32, 0.82);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  border-radius: 9999px;
+  padding: 4px 10px;
+  color: #fbbf24;
+  font-size: 0.68rem;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+}
+
+.ib-hud-floating-bottom {
   position: absolute;
   bottom: 14px;
   left: 14px;
   right: 14px;
-  background: rgba(11, 16, 28, 0.85);
-  border: 1px solid rgba(251, 191, 36, 0.35);
+  background: rgba(10, 16, 28, 0.88);
+  border: 1px solid rgba(251, 191, 36, 0.32);
   border-radius: 14px;
   padding: 10px 14px;
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+}
+
+.ib-hud-console {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  backdrop-filter: blur(12px);
-}
-
-.ib-video-overlay-title {
+  gap: 6px;
+  font-family: var(--font-mono, monospace);
   font-size: 0.78rem;
-  font-weight: 800;
-  color: #ffffff;
+  color: #e2e8f0;
 }
 
-.ib-video-overlay-sub {
+.hud-green-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 8px #34d399;
+}
+
+.ib-hud-subnote {
   font-size: 0.68rem;
-  color: #fbbf24;
-  font-weight: 700;
+  color: #94a3b8;
+  margin-top: 3px;
+  font-weight: 600;
 }
 
 /* Calculator & Tiers Section */
