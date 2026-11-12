@@ -6362,12 +6362,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const outRateBadge = document.getElementById('ibOutRateBadge');
     const outSubIbRev = document.getElementById('ibOutSubIbRev');
 
-    // Commission Rates per Standard Lot: Base $6, Gold $8, VIP $10, Master Max $11 (Plus Volume Boost for >1000 lots)
+    // Commission Rates per Standard Lot: Base $6, Gold $8, VIP $9.50, Master Max Base $11
     const tierRates = {
       standard: { baseRate: 6, subRate: 1.0, name: 'Standard Partner ($6/Lot)' },
       silver: { baseRate: 8, subRate: 1.5, name: 'Silver IB ($8/Lot)' },
       gold: { baseRate: 9.5, subRate: 2.0, name: 'Gold IB ($9.50/Lot)' },
-      vip: { baseRate: 11, subRate: 2.5, name: 'VIP Institutional ($11/Lot Max)' }
+      vip: { baseRate: 11, subRate: 2.5, name: 'VIP Institutional ($11/Lot Max Base)' }
+    };
+
+    window.__ibSharedStats = {
+      traders: 25,
+      lotsPerTrader: 20,
+      totalLots: 500,
+      monthlyIncome: 6490,
+      annualIncome: 77880,
+      rate: 11.0,
+      reach: 443609
     };
 
     function recalcIbProjections() {
@@ -6404,256 +6414,519 @@ document.addEventListener('DOMContentLoaded', () => {
       if (outSubIbRev) outSubIbRev.textContent = '+$' + estimatedSubIbRev.toLocaleString() + ' (2-Tier Override)';
       if (outRateBadge) outRateBadge.textContent = '$' + effectiveRate.toFixed(2).replace('.00', '') + ' / Lot' + volumeBonusText;
 
-      // Update live node in canvas engine if running
-      if (window.__ibLiveStats) {
-        window.__ibLiveStats.monthlyLots = totalMonthlyLots;
-        window.__ibLiveStats.monthlyRev = totalMonthlyIncome;
-        window.__ibLiveStats.activeTraders = traders;
-        window.__ibLiveStats.effectiveRate = effectiveRate;
-      }
+      window.__ibSharedStats.traders = traders;
+      window.__ibSharedStats.lotsPerTrader = avgLots;
+      window.__ibSharedStats.totalLots = totalMonthlyLots;
+      window.__ibSharedStats.monthlyIncome = totalMonthlyIncome;
+      window.__ibSharedStats.annualIncome = annualIncome;
+      window.__ibSharedStats.rate = effectiveRate;
+      window.__ibSharedStats.reach = Math.round(traders * 17744);
     }
 
     if (tradersSlider) tradersSlider.addEventListener('input', recalcIbProjections);
     if (lotsSlider) lotsSlider.addEventListener('input', recalcIbProjections);
     if (tierSelect) tierSelect.addEventListener('change', recalcIbProjections);
 
-    // Initial calculation run
     recalcIbProjections();
 
     // =========================================================================
-    // PURE CODE MOTION GRAPHIC ENGINE (CANVAS 2D + SVG HUD TELEMETRY LOOP)
-    // Runs 100% inside the IB interface without relying on external video files
+    // EXACT PIN gaLOkD5Fd MULTI-SCENE MOTION GRAPHIC CODE ENGINE (CANVAS 2D)
+    // Scene 0: Floating 3D Phones with explosive View counter ticking to 443,609
+    // Scene 1: Minimalist Black & White Hand catching falling 3D metallic coin discs (24M+ Reach)
+    // Scene 2: Sleek 3D Smartphone on Dark Stage showing Money / Reach breakthrough curve + Stacking Metallic Coins
+    // Scene 3: Atmospheric Dual Lunar Spheres with "CREATE TO EARN • PARTNER WITH BLUEX"
     // =========================================================================
-    const ibCanvas = document.getElementById('ibMotionCanvas');
-    const ibHudConsole = document.getElementById('ibHudConsole');
-    const ibLoopSpeedBtn = document.getElementById('ibLoopSpeedBtn');
-    const ibPauseBtn = document.getElementById('ibPauseBtn');
+    const canvas = document.getElementById('ibMotionCanvas');
+    const stageContainer = document.getElementById('ibMotionStage');
+    const phasePills = document.querySelectorAll('.ib-phase-pill[data-phase]');
+    const scrubSlider = document.getElementById('ibScrubSlider');
+    const pauseToggleBtn = document.getElementById('ibPauseBtn');
 
-    window.__ibLiveStats = {
-      monthlyLots: 500,
-      monthlyRev: 6490,
-      activeTraders: 25,
-      effectiveRate: 11
-    };
-
-    if (ibCanvas) {
-      const ctx = ibCanvas.getContext('2d');
+    if (canvas && stageContainer) {
+      const ctx = canvas.getContext('2d');
       let cw = 0;
       let ch = 0;
-      let animId = null;
       let isPaused = false;
-      let speedMultiplier = 1.0;
-      let lastTime = 0;
       let simTime = 0;
+      let lastTime = 0;
+      const totalLoopDuration = 12.0; // 12 seconds full narrative cycle
 
-      function resizeCanvas() {
-        const rect = ibCanvas.parentElement.getBoundingClientRect();
-        cw = Math.max(280, rect.width);
-        ch = Math.max(380, rect.height || 480);
-        ibCanvas.width = Math.floor(cw * 1);
-        ibCanvas.height = Math.floor(ch * 1);
+      function resize() {
+        const rect = stageContainer.getBoundingClientRect();
+        cw = Math.max(300, Math.floor(rect.width));
+        ch = Math.max(480, Math.floor(rect.height || 540));
+        canvas.width = cw;
+        canvas.height = ch;
       }
-      resizeCanvas();
-      window.addEventListener('resize', resizeCanvas, { passive: true });
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
 
-      // Particles & Flow Nodes
-      const particles = [];
-      const nodeCount = 14;
-      for (let i = 0; i < 36; i++) {
-        particles.push({
-          x: Math.random() * (cw || 320),
-          y: Math.random() * (ch || 480),
-          vx: (Math.random() - 0.5) * 0.8,
-          vy: -0.4 - Math.random() * 0.8,
-          size: 1.2 + Math.random() * 2.2,
-          alpha: 0.2 + Math.random() * 0.7,
-          hue: Math.random() > 0.4 ? 45 : 195 // Gold or Cyan
+      // Helper: Draw 3D Rounded Rect / Card (Phone / Tablet)
+      function draw3DPhone(x, y, w, h, radius, tiltX, tiltY, glowColor, screenContent) {
+        ctx.save();
+        ctx.translate(x, y);
+
+        // Ambient volumetric drop shadow
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
+        ctx.shadowBlur = 28;
+        ctx.shadowOffsetY = 16;
+
+        // Bevel outer chassis
+        ctx.beginPath();
+        ctx.roundRect(-w * 0.5, -h * 0.5, w, h, radius);
+        const chassisGrad = ctx.createLinearGradient(-w * 0.5, -h * 0.5, w * 0.5, h * 0.5);
+        chassisGrad.addColorStop(0, '#475569');
+        chassisGrad.addColorStop(0.2, '#1e293b');
+        chassisGrad.addColorStop(0.8, '#0f172a');
+        chassisGrad.addColorStop(1, '#334155');
+        ctx.fillStyle = chassisGrad;
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+        ctx.shadowOffsetY = 0;
+
+        // Metallic Rim Stroke
+        ctx.strokeStyle = glowColor || 'rgba(255, 255, 255, 0.45)';
+        ctx.lineWidth = 1.6;
+        ctx.stroke();
+
+        // Screen Area
+        const inset = 6;
+        ctx.beginPath();
+        ctx.roundRect(-w * 0.5 + inset, -h * 0.5 + inset, w - inset * 2, h - inset * 2, radius - 2);
+        ctx.fillStyle = '#05070c';
+        ctx.fill();
+
+        // Screen Top Camera Notch
+        ctx.beginPath();
+        ctx.arc(0, -h * 0.5 + inset + 5, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.fill();
+
+        // Screen Content Callback
+        if (typeof screenContent === 'function') {
+          ctx.save();
+          screenContent(-w * 0.5 + inset, -h * 0.5 + inset, w - inset * 2, h - inset * 2);
+          ctx.restore();
+        }
+
+        // Screen Glass Reflection Streak
+        const glassGrad = ctx.createLinearGradient(-w * 0.5, -h * 0.5, w * 0.6, h * 0.6);
+        glassGrad.addColorStop(0, 'rgba(255, 255, 255, 0.16)');
+        glassGrad.addColorStop(0.35, 'rgba(255, 255, 255, 0.04)');
+        glassGrad.addColorStop(0.38, 'rgba(255, 255, 255, 0)');
+        ctx.fillStyle = glassGrad;
+        ctx.beginPath();
+        ctx.roundRect(-w * 0.5 + inset, -h * 0.5 + inset, w - inset * 2, h - inset * 2, radius - 2);
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      // Helper: Draw 3D Metallic Coin / Disc with Ellipse Perspective
+      function drawCoin(x, y, radiusX, radiusY, thickness, colorA, colorB) {
+        ctx.save();
+        ctx.translate(x, y);
+
+        // Lower rim (3D edge)
+        ctx.beginPath();
+        ctx.ellipse(0, thickness, radiusX, radiusY, 0, 0, Math.PI);
+        ctx.ellipse(0, 0, radiusX, radiusY, 0, Math.PI, 0, true);
+        ctx.closePath();
+        const sideGrad = ctx.createLinearGradient(-radiusX, 0, radiusX, 0);
+        sideGrad.addColorStop(0, '#64748b');
+        sideGrad.addColorStop(0.3, '#cbd5e1');
+        sideGrad.addColorStop(0.7, '#475569');
+        sideGrad.addColorStop(1, '#94a3b8');
+        ctx.fillStyle = sideGrad;
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+
+        // Top face
+        ctx.beginPath();
+        ctx.ellipse(0, 0, radiusX, radiusY, 0, 0, Math.PI * 2);
+        const topGrad = ctx.createRadialGradient(-radiusX * 0.2, -radiusY * 0.2, 2, 0, 0, radiusX);
+        topGrad.addColorStop(0, colorA || '#f8fafc');
+        topGrad.addColorStop(0.65, colorB || '#cbd5e1');
+        topGrad.addColorStop(1, '#64748b');
+        ctx.fillStyle = topGrad;
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.restore();
+      }
+
+      // Helper: Draw Minimalist Hand Silhouette catching coins
+      function drawHand(x, y, scale) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.scale(scale, scale);
+
+        ctx.beginPath();
+        ctx.moveTo(-160, 40);
+        ctx.bezierCurveTo(-110, 25, -60, 5, 0, 0); // wrist to palm
+        ctx.bezierCurveTo(40, -5, 80, 5, 110, 25); // thumb base
+        ctx.bezierCurveTo(130, 20, 150, 10, 170, 0); // thumb tip
+        ctx.bezierCurveTo(150, 30, 110, 45, 90, 50); // thumb return
+        ctx.bezierCurveTo(120, 52, 170, 55, 210, 50); // index finger
+        ctx.bezierCurveTo(160, 75, 110, 78, 80, 80); // index return
+        ctx.bezierCurveTo(100, 85, 140, 88, 175, 85); // palm fingers curve
+        ctx.bezierCurveTo(110, 110, 30, 115, -40, 100);
+        ctx.bezierCurveTo(-90, 110, -130, 120, -180, 130); // wrist base
+        ctx.closePath();
+
+        const handGrad = ctx.createLinearGradient(-160, 0, 200, 100);
+        handGrad.addColorStop(0, '#0a0d14');
+        handGrad.addColorStop(0.6, '#1e293b');
+        handGrad.addColorStop(1, '#334155');
+        ctx.fillStyle = handGrad;
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+        ctx.shadowBlur = 18;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+
+        ctx.restore();
+      }
+
+      function updatePhaseUI(activeIdx) {
+        phasePills.forEach((p, idx) => {
+          p.classList.toggle('active', idx === activeIdx);
         });
       }
 
-      // Order flow stream items
-      const liveTrades = [
-        { pair: 'XAU/USD', lot: '1.50', rebate: '$16.50', desk: 'STP Interbank' },
-        { pair: 'XAU/USD', lot: '3.00', rebate: '$33.00', desk: 'Raw STP' },
-        { pair: 'EUR/USD', lot: '5.00', rebate: '$40.00', desk: 'Institutional' },
-        { pair: 'XAU/USD', lot: '2.00', rebate: '$22.00', desk: 'STP Interbank' },
-        { pair: 'GBP/USD', lot: '4.00', rebate: '$36.00', desk: 'Direct STP' }
-      ];
-      let tradeIdx = 0;
-      let lastTradeCycle = 0;
-
-      function renderFrame(timestamp) {
+      function render(timestamp) {
         if (!lastTime) lastTime = timestamp;
         const dt = (timestamp - lastTime) * 0.001;
         lastTime = timestamp;
 
         if (!isPaused) {
-          simTime += dt * speedMultiplier;
+          simTime = (simTime + dt) % totalLoopDuration;
+          if (scrubSlider) scrubSlider.value = (simTime / totalLoopDuration * 100).toFixed(1);
         }
 
         ctx.clearRect(0, 0, cw, ch);
 
-        // 1. Dark Futuristic Grid Floor & Polar Pulse
-        ctx.save();
-        const cx = cw * 0.5;
-        const cy = ch * 0.46;
-
-        // Radial backdrop glow
-        const glowRad = Math.min(cw, ch) * 0.55;
-        const bgGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, glowRad);
-        bgGrad.addColorStop(0, 'rgba(251, 191, 36, 0.12)');
-        bgGrad.addColorStop(0.35, 'rgba(56, 189, 248, 0.08)');
-        bgGrad.addColorStop(0.75, 'rgba(11, 18, 32, 0.4)');
-        bgGrad.addColorStop(1, 'rgba(10, 16, 28, 0)');
+        // Global vignette & spotlight backdrop matching pin_gaLOkD5Fd
+        const bgGrad = ctx.createRadialGradient(cw * 0.5, ch * 0.45, 20, cw * 0.5, ch * 0.45, cw * 0.75);
+        bgGrad.addColorStop(0, '#1a2233');
+        bgGrad.addColorStop(0.5, '#0b0f19');
+        bgGrad.addColorStop(1, '#030508');
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, cw, ch);
 
-        // Rotating Cybernetic Hexagon / Radar Rings
-        const ringCount = 3;
-        for (let r = 1; r <= ringCount; r++) {
-          const radius = (glowRad * 0.32) * r + Math.sin(simTime * 1.5 + r) * 6;
-          ctx.beginPath();
-          ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-          ctx.strokeStyle = r === 2 ? 'rgba(251, 191, 36, 0.35)' : 'rgba(56, 189, 248, 0.2)';
-          ctx.lineWidth = 1.2;
-          ctx.setLineDash([4, 6]);
-          ctx.stroke();
-          ctx.setLineDash([]);
-        }
+        // Determine active scene (0.0 to 12.0s)
+        // Scene 1: 0.0 - 3.2s  (Floating 3D Phones & Views tick to 443,609)
+        // Scene 2: 3.2 - 6.2s  (Falling metallic discs into hand & 24M+ views)
+        // Scene 3: 6.2 - 9.4s  (Smartphone breakthrough Money/Reach curve & Stacking Coins)
+        // Scene 4: 9.4 - 12.0s (Dual Lunar Spheres & "CREATE TO EARN • PARTNER WITH BLUEX")
+        const t = simTime;
 
-        // Radar Scanning Sweep
-        const sweepAngle = (simTime * 1.8) % (Math.PI * 2);
-        ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.arc(cx, cy, glowRad * 0.88, sweepAngle, sweepAngle + 0.55);
-        ctx.closePath();
-        const sweepGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowRad * 0.88);
-        sweepGrad.addColorStop(0, 'rgba(251, 191, 36, 0.22)');
-        sweepGrad.addColorStop(1, 'rgba(251, 191, 36, 0)');
-        ctx.fillStyle = sweepGrad;
-        ctx.fill();
+        if (t < 3.2) {
+          updatePhaseUI(0);
+          // SCENE 1: FLOATING 3D PHONES WITH EXPONENTIAL VIEW TICKER
+          const sceneProg = t / 3.2; // 0 to 1
+          const easeProg = 1 - Math.pow(1 - sceneProg, 3);
+          const currentViews = Math.round(67069 + (443609 - 67069) * easeProg);
 
-        // 2. Rising Golden Rebate Liquidity Sparks
-        particles.forEach((p) => {
-          if (!isPaused) {
-            p.x += p.vx * speedMultiplier;
-            p.y += p.vy * speedMultiplier;
-            if (p.y < 0) {
-              p.y = ch + 5;
-              p.x = Math.random() * cw;
-            }
-          }
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = p.hue === 45
-            ? `rgba(251, 191, 36, ${p.alpha})`
-            : `rgba(56, 189, 248, ${p.alpha})`;
-          ctx.fill();
-        });
-
-        // 3. Central Institutional Telemetry Hub
-        ctx.beginPath();
-        ctx.arc(cx, cy, 42, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
-        ctx.strokeStyle = '#fbbf24';
-        ctx.lineWidth = 2.2;
-        ctx.shadowColor = 'rgba(251, 191, 36, 0.6)';
-        ctx.shadowBlur = 14;
-        ctx.fill();
-        ctx.stroke();
-        ctx.shadowBlur = 0;
-
-        // Center Node Core Symbol (IB Gold Node)
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '800 13px "Plus Jakarta Sans", sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText('BLUEX', cx, cy - 7);
-        ctx.fillStyle = '#fbbf24';
-        ctx.font = '700 9px "Plus Jakarta Sans", sans-serif';
-        ctx.fillText('IB DESK', cx, cy + 8);
-
-        // 4. Orbiting Sub-IB Satellite Nodes & Synchronized Energy Beams
-        const satellites = 4;
-        for (let s = 0; s < satellites; s++) {
-          const satAngle = simTime * 0.9 + (s * (Math.PI * 2 / satellites));
-          const satDist = 110 + Math.sin(simTime * 2 + s) * 12;
-          const sx = cx + Math.cos(satAngle) * satDist;
-          const sy = cy + Math.sin(satAngle) * satDist * 0.82;
-
-          // Connective energy laser
-          ctx.beginPath();
-          ctx.moveTo(cx, cy);
-          ctx.lineTo(sx, sy);
-          ctx.strokeStyle = s % 2 === 0 ? 'rgba(251, 191, 36, 0.38)' : 'rgba(56, 189, 248, 0.38)';
-          ctx.lineWidth = 1.4;
-          ctx.stroke();
-
-          // Energy Packet travelling along the line
-          const packetProgress = (simTime * 1.5 + (s * 0.25)) % 1;
-          const px = cx + (sx - cx) * packetProgress;
-          const py = cy + (sy - cy) * packetProgress;
-          ctx.beginPath();
-          ctx.arc(px, py, 3, 0, Math.PI * 2);
+          // Center Big Header: Views
+          ctx.save();
+          ctx.textAlign = 'center';
           ctx.fillStyle = '#ffffff';
-          ctx.shadowColor = '#fbbf24';
-          ctx.shadowBlur = 8;
-          ctx.fill();
+          ctx.font = `900 ${Math.floor(cw * 0.125)}px "Plus Jakarta Sans", sans-serif`;
+          ctx.shadowColor = 'rgba(255, 255, 255, 0.45)';
+          ctx.shadowBlur = 18;
+          ctx.fillText(currentViews.toLocaleString(), cw * 0.5, ch * 0.26);
           ctx.shadowBlur = 0;
 
-          // Satellite Node
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';
+          ctx.font = `600 ${Math.floor(cw * 0.048)}px "Plus Jakarta Sans", sans-serif`;
+          ctx.fillText('Monthly Client Reach (Views)', cw * 0.5, ch * 0.32);
+          ctx.restore();
+
+          // 4 Floating 3D Phones orbiting with gentle floating sine waves
+          const phoneConfigs = [
+            { x: cw * 0.22, y: ch * 0.48 + Math.sin(t * 2.2) * 8, w: 90, h: 140, r: 16, glow: 'rgba(56, 189, 248, 0.4)' },
+            { x: cw * 0.76, y: ch * 0.22 + Math.cos(t * 1.8) * 10, w: 76, h: 118, r: 14, glow: 'rgba(251, 191, 36, 0.4)' },
+            { x: cw * 0.26, y: ch * 0.78 + Math.sin(t * 1.9 + 1) * 9, w: 72, h: 110, r: 12, glow: 'rgba(255, 255, 255, 0.3)' },
+            { x: cw * 0.74, y: ch * 0.72 + Math.cos(t * 2.1 + 2) * 8, w: 104, h: 162, r: 18, glow: 'rgba(56, 189, 248, 0.5)' }
+          ];
+
+          phoneConfigs.forEach((p, idx) => {
+            draw3DPhone(p.x, p.y, p.w, p.h, p.r, 0, 0, p.glow, (sx, sy, sw, sh) => {
+              // Mini chart or view counter on screen
+              ctx.fillStyle = '#ffffff';
+              ctx.font = '800 10px sans-serif';
+              ctx.textAlign = 'center';
+              ctx.fillText(currentViews.toLocaleString(), 0, -sh * 0.15);
+              ctx.fillStyle = '#94a3b8';
+              ctx.font = '600 7px sans-serif';
+              ctx.fillText('Referred Views', 0, -sh * 0.03);
+
+              // Mini volume bar graph
+              const bars = 5;
+              const barW = (sw - 20) / bars;
+              for (let b = 0; b < bars; b++) {
+                const bh = (b + 1) * (sh * 0.08) * (0.6 + Math.sin(t * 3 + b) * 0.4);
+                ctx.fillStyle = b === bars - 1 ? '#fbbf24' : '#38bdf8';
+                ctx.fillRect(-sw * 0.5 + 10 + b * barW, sh * 0.35 - bh, barW - 2, bh);
+              }
+            });
+          });
+
+        } else if (t < 6.2) {
+          updatePhaseUI(1);
+          // SCENE 2: METALLIC DISCS FALLING INTO STACK OVER SILHOUETTE HAND (24M+ Views)
+          const sceneProg = (t - 3.2) / 3.0; // 0 to 1
+
+          // Background High-Contrast Pure White Aura
+          const lightGlow = ctx.createRadialGradient(cw * 0.5, ch * 0.2, 10, cw * 0.5, ch * 0.2, cw * 0.65);
+          lightGlow.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
+          lightGlow.addColorStop(0.45, 'rgba(255, 255, 255, 0.65)');
+          lightGlow.addColorStop(1, 'rgba(255, 255, 255, 0)');
+          ctx.fillStyle = lightGlow;
+          ctx.fillRect(0, 0, cw, ch);
+
+          // Big Headline: 24million+ Views
+          ctx.save();
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#1e293b';
+          ctx.font = `900 ${Math.floor(cw * 0.11)}px "Plus Jakarta Sans", sans-serif`;
+          ctx.fillText('24million+', cw * 0.5, ch * 0.18);
+          ctx.fillStyle = '#64748b';
+          ctx.font = `700 ${Math.floor(cw * 0.045)}px "Plus Jakarta Sans", sans-serif`;
+          ctx.fillText('Network Media Reach', cw * 0.5, ch * 0.23);
+          ctx.restore();
+
+          // Falling Coins / Spheres
+          const fallY = ch * 0.32 + Math.sin(sceneProg * Math.PI) * 20;
+          // Falling top sphere / disc
+          drawCoin(cw * 0.5, fallY, 46, 24, 10, '#f1f5f9', '#94a3b8');
+          // Mid-air second disc
+          drawCoin(cw * 0.5, fallY + 68, 52, 28, 12, '#cbd5e1', '#64748b');
+
+          // Stack of metallic coins in hand
+          const stackBaseY = ch * 0.72;
+          const stackCount = Math.min(8, 3 + Math.floor(sceneProg * 6));
+          for (let s = 0; s < stackCount; s++) {
+            drawCoin(cw * 0.44, stackBaseY - s * 14, 56, 26, 12, '#f8fafc', '#94a3b8');
+          }
+
+          // Minimalist Hand Silhouette catching the stack
+          drawHand(cw * 0.38, stackBaseY + 12, 0.85);
+
+        } else if (t < 9.4) {
+          updatePhaseUI(2);
+          // SCENE 3: SMARTPHONE ON STAGE WITH MONEY / REACH EXPONENTIAL BREAKTHROUGH
+          const sceneProg = (t - 6.2) / 3.2;
+
+          // Pure White Horizon Spotlight
+          const stageLight = ctx.createLinearGradient(0, 0, 0, ch);
+          stageLight.addColorStop(0, '#ffffff');
+          stageLight.addColorStop(0.75, '#f1f5f9');
+          stageLight.addColorStop(1, '#cbd5e1');
+          ctx.fillStyle = stageLight;
+          ctx.fillRect(0, 0, cw, ch);
+
+          // Exponential Breakthrough Lightning / Zig-Zag Growth Vector
+          ctx.save();
           ctx.beginPath();
-          ctx.arc(sx, sy, 14, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(11, 18, 32, 0.92)';
-          ctx.strokeStyle = s % 2 === 0 ? '#fbbf24' : '#38bdf8';
-          ctx.lineWidth = 1.5;
-          ctx.fill();
+          ctx.moveTo(-20, ch * 0.68);
+          ctx.lineTo(cw * 0.22, ch * 0.52);
+          ctx.lineTo(cw * 0.42, ch * 0.48);
+          ctx.lineTo(cw * 0.76, ch * 0.24);
+          ctx.lineTo(cw * 0.82, ch * 0.32);
+          ctx.lineTo(cw + 30, ch * 0.12);
+          ctx.strokeStyle = '#1e293b';
+          ctx.lineWidth = 14;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'miter';
           ctx.stroke();
 
-          ctx.fillStyle = '#e2e8f0';
-          ctx.font = '700 8px sans-serif';
-          ctx.fillText(s === 0 ? 'SUB-IB' : (s === 1 ? 'REBATE' : (s === 2 ? 'TRADER' : 'API')), sx, sy);
-        }
+          // Thin neon accent line inside the arrow
+          ctx.strokeStyle = '#fbbf24';
+          ctx.lineWidth = 4;
+          ctx.stroke();
+          ctx.restore();
 
-        // 5. Dynamic Lower Real-Time HUD Ticker
-        ctx.restore();
+          // Center Horizontal Smartphone on Podium
+          const phoneW = Math.min(cw * 0.78, 320);
+          const phoneH = 175;
+          const phoneX = cw * 0.5;
+          const phoneY = ch * 0.50;
 
-        // Update live console feed every 2.4s
-        if (timestamp - lastTradeCycle > 2400) {
-          lastTradeCycle = timestamp;
-          const tr = liveTrades[tradeIdx % liveTrades.length];
-          tradeIdx++;
-          if (ibHudConsole) {
-            ibHudConsole.innerHTML = `
-              <span class="hud-green-dot"></span>
-              <strong>${tr.pair}</strong> • ${tr.lot} Lots • Rebate: <span style="color:#fbbf24; font-weight:800;">+${tr.rebate}</span> (${tr.desk})
-            `;
+          // Phone shadow on white floor
+          ctx.beginPath();
+          ctx.ellipse(phoneX, phoneY + phoneH * 0.55, phoneW * 0.42, 16, 0, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
+          ctx.fill();
+
+          // Horizontal Phone
+          draw3DPhone(phoneX, phoneY, phoneW, phoneH, 22, 0, 0, 'rgba(0,0,0,0.4)', (sx, sy, sw, sh) => {
+            // Coordinate Grid on Phone Display
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+            ctx.lineWidth = 1;
+            const gridCols = 6;
+            const gridRows = 4;
+            for (let c = 1; c < gridCols; c++) {
+              ctx.beginPath();
+              ctx.moveTo(-sw * 0.5 + c * (sw / gridCols), -sh * 0.5);
+              ctx.lineTo(-sw * 0.5 + c * (sw / gridCols), sh * 0.5);
+              ctx.stroke();
+            }
+            for (let r = 1; r < gridRows; r++) {
+              ctx.beginPath();
+              ctx.moveTo(-sw * 0.5, -sh * 0.5 + r * (sh / gridRows));
+              ctx.lineTo(sw * 0.5, -sh * 0.5 + r * (sh / gridRows));
+              ctx.stroke();
+            }
+
+            // Labels: Money (Y) and Reach (X)
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '800 13px "Plus Jakarta Sans", sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('Money ($)', -sw * 0.44, -sh * 0.15);
+
+            ctx.textAlign = 'center';
+            ctx.fillText('Reach (Lots & Volume)', 0, sh * 0.38);
+
+            // Exponential Revenue Area Curve on Phone Screen
+            ctx.beginPath();
+            ctx.moveTo(-sw * 0.44, sh * 0.22);
+            ctx.bezierCurveTo(-sw * 0.1, sh * 0.18, sw * 0.1, -sh * 0.1, sw * 0.42, -sh * 0.36);
+            ctx.lineTo(sw * 0.42, sh * 0.22);
+            ctx.closePath();
+            const curveGrad = ctx.createLinearGradient(0, -sh * 0.36, 0, sh * 0.22);
+            curveGrad.addColorStop(0, 'rgba(251, 191, 36, 0.45)');
+            curveGrad.addColorStop(1, 'rgba(251, 191, 36, 0.02)');
+            ctx.fillStyle = curveGrad;
+            ctx.fill();
+
+            // Glowing curve line
+            ctx.beginPath();
+            ctx.moveTo(-sw * 0.44, sh * 0.22);
+            ctx.bezierCurveTo(-sw * 0.1, sh * 0.18, sw * 0.1, -sh * 0.1, sw * 0.42, -sh * 0.36);
+            ctx.strokeStyle = '#fbbf24';
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+          });
+
+          // Stacks of Silver / Metallic Coins on Foreground Left & Right (like frame_07)
+          const leftCoinX = cw * 0.12;
+          const rightCoinX = cw * 0.88;
+          const coinStackY = ch * 0.88;
+
+          for (let lc = 0; lc < 12; lc++) {
+            drawCoin(leftCoinX, coinStackY - lc * 14, 42, 18, 9, '#f8fafc', '#64748b');
           }
+          for (let rc = 0; rc < 14; rc++) {
+            drawCoin(rightCoinX, coinStackY - rc * 14, 46, 20, 10, '#f8fafc', '#475569');
+          }
+          for (let mc = 0; mc < 6; mc++) {
+            drawCoin(cw * 0.42, coinStackY + 20 - mc * 12, 48, 22, 10, '#cbd5e1', '#64748b');
+          }
+
+        } else {
+          updatePhaseUI(3);
+          // SCENE 4: DUAL LUNAR SPHERES WITH ATMOSPHERIC ECLIPSE EDGE + "CREATE TO EARN"
+          const sceneProg = (t - 9.4) / 2.6;
+
+          // Pure Black Deep Space Background
+          ctx.fillStyle = '#020408';
+          ctx.fillRect(0, 0, cw, ch);
+
+          // Left Atmospheric Planet Sphere Edge (Bright Lunar Crescent)
+          const leftSphereX = -cw * 0.35 + Math.sin(sceneProg * Math.PI) * 12;
+          const sphereRadius = ch * 0.46;
+
+          const leftCrescent = ctx.createRadialGradient(leftSphereX, ch * 0.5, sphereRadius * 0.82, leftSphereX, ch * 0.5, sphereRadius);
+          leftCrescent.addColorStop(0, 'rgba(0, 0, 0, 1)');
+          leftCrescent.addColorStop(0.85, 'rgba(0, 0, 0, 0.98)');
+          leftCrescent.addColorStop(0.96, 'rgba(255, 255, 255, 0.82)');
+          leftCrescent.addColorStop(1, 'rgba(255, 255, 255, 0)');
+          ctx.beginPath();
+          ctx.arc(leftSphereX, ch * 0.5, sphereRadius, 0, Math.PI * 2);
+          ctx.fillStyle = leftCrescent;
+          ctx.fill();
+
+          // Right Atmospheric Planet Sphere Edge
+          const rightSphereX = cw + cw * 0.35 - Math.sin(sceneProg * Math.PI) * 12;
+          const rightCrescent = ctx.createRadialGradient(rightSphereX, ch * 0.5, sphereRadius * 0.82, rightSphereX, ch * 0.5, sphereRadius);
+          rightCrescent.addColorStop(0, 'rgba(0, 0, 0, 1)');
+          rightCrescent.addColorStop(0.85, 'rgba(0, 0, 0, 0.98)');
+          rightCrescent.addColorStop(0.96, 'rgba(255, 255, 255, 0.82)');
+          rightCrescent.addColorStop(1, 'rgba(255, 255, 255, 0)');
+          ctx.beginPath();
+          ctx.arc(rightSphereX, ch * 0.5, sphereRadius, 0, Math.PI * 2);
+          ctx.fillStyle = rightCrescent;
+          ctx.fill();
+
+          // Center Iconic Text: CREATE TO EARN • PARTNER WITH BLUEX
+          ctx.save();
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#ffffff';
+          ctx.font = `900 ${Math.floor(cw * 0.082)}px "Plus Jakarta Sans", sans-serif`;
+          ctx.letterSpacing = '0.08em';
+          ctx.fillText('CREATE', cw * 0.5, ch * 0.42);
+
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
+          ctx.font = `800 ${Math.floor(cw * 0.045)}px "Plus Jakarta Sans", sans-serif`;
+          ctx.fillText('TO', cw * 0.5, ch * 0.49);
+
+          ctx.fillStyle = '#fbbf24';
+          ctx.font = `900 ${Math.floor(cw * 0.082)}px "Plus Jakarta Sans", sans-serif`;
+          ctx.shadowColor = 'rgba(251, 191, 36, 0.55)';
+          ctx.shadowBlur = 24;
+          ctx.fillText('EARN', cw * 0.5, ch * 0.57);
+          ctx.shadowBlur = 0;
+
+          // Sub-kicker
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+          ctx.font = `700 ${Math.floor(cw * 0.038)}px "Plus Jakarta Sans", sans-serif`;
+          ctx.fillText('PARTNER WITH BLUEX VIP DESK', cw * 0.5, ch * 0.65);
+          ctx.restore();
         }
 
-        animId = requestAnimationFrame(renderFrame);
+        requestAnimationFrame(render);
       }
 
-      animId = requestAnimationFrame(renderFrame);
+      requestAnimationFrame(render);
 
-      // Speed Multiplier & Pause Controls
-      if (ibLoopSpeedBtn) {
-        ibLoopSpeedBtn.addEventListener('click', () => {
-          speedMultiplier = speedMultiplier === 1.0 ? 1.8 : (speedMultiplier === 1.8 ? 0.6 : 1.0);
-          ibLoopSpeedBtn.textContent = `Speed: ${speedMultiplier}x`;
+      // Scrub Slider Interactivity
+      if (scrubSlider) {
+        scrubSlider.addEventListener('input', () => {
+          simTime = (parseFloat(scrubSlider.value) / 100) * totalLoopDuration;
         });
       }
 
-      if (ibPauseBtn) {
-        ibPauseBtn.addEventListener('click', () => {
+      // Phase Pill Navigation
+      phasePills.forEach((pill) => {
+        pill.addEventListener('click', () => {
+          const phase = parseInt(pill.getAttribute('data-phase') || '0', 10);
+          const phaseTimes = [0.0, 3.3, 6.3, 9.5];
+          simTime = phaseTimes[phase] || 0;
+          if (scrubSlider) scrubSlider.value = (simTime / totalLoopDuration * 100).toFixed(1);
+        });
+      });
+
+      // Pause / Play
+      if (pauseToggleBtn) {
+        pauseToggleBtn.addEventListener('click', () => {
           isPaused = !isPaused;
-          ibPauseBtn.textContent = isPaused ? 'Resume ▶' : 'Pause ⏸';
-          ibPauseBtn.classList.toggle('active', isPaused);
+          pauseToggleBtn.textContent = isPaused ? 'Resume ▶' : 'Pause ⏸';
+          pauseToggleBtn.classList.toggle('active', isPaused);
         });
       }
     }
 
-    // Interactive Inquiry Form to Direct Telegram Pre-filled Dispatch
+    // Direct Telegram Dispatch Form
     const ibForm = document.getElementById('ibInquiryForm');
     if (ibForm) {
       ibForm.addEventListener('submit', (e) => {
@@ -6663,11 +6936,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const exp = (document.getElementById('ibExpInput') || {}).value || 'Broker IB / Community';
         const msg = (document.getElementById('ibNoteInput') || {}).value || 'Requesting full IB terms';
 
+        const stats = window.__ibSharedStats || {};
         const text = encodeURIComponent(
           `💎 [NEW IB PARTNER INQUIRY • BLUEX VIP]\n\n` +
           `👤 Name: ${name}\n` +
           `📞 Contact/Telegram: ${phone}\n` +
           `📊 Current Network/Experience: ${exp}\n` +
+          `📈 Target Volume: ${stats.totalLots || 500} Lots/mo (${stats.traders || 25} Traders)\n` +
+          `💵 Target Rebate Tier: $${(stats.rate || 11).toFixed(2)}/Lot Base\n` +
           `📝 Notes: ${msg}\n\n` +
           `Sent from BlueX IB Recruiting Portal (https://www.bluexacademy.site/ib-partner)`
         );
@@ -6676,7 +6952,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
-    initIbRecruitingEngine();
+  initIbRecruitingEngine();
 
   initNeatNavbarMoreMenu();
 
