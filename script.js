@@ -6475,10 +6475,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.beginPath();
         ctx.roundRect(-w * 0.5, -h * 0.5, w, h, radius);
         const chassisGrad = ctx.createLinearGradient(-w * 0.5, -h * 0.5, w * 0.5, h * 0.5);
-        chassisGrad.addColorStop(0, '#475569');
-        chassisGrad.addColorStop(0.2, '#1e293b');
-        chassisGrad.addColorStop(0.8, '#0f172a');
-        chassisGrad.addColorStop(1, '#334155');
+        chassisGrad.addColorStop(0, 'rgba(51, 65, 85, 0.95)');
+        chassisGrad.addColorStop(0.3, 'rgba(20, 30, 48, 0.98)');
+        chassisGrad.addColorStop(0.8, 'rgba(10, 16, 28, 0.98)');
+        chassisGrad.addColorStop(1, 'rgba(30, 41, 59, 0.95)');
         ctx.fillStyle = chassisGrad;
         ctx.fill();
 
@@ -6615,10 +6615,12 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.clearRect(0, 0, cw, ch);
 
         // Global vignette & spotlight backdrop matching pin_gaLOkD5Fd
-        const bgGrad = ctx.createRadialGradient(cw * 0.5, ch * 0.45, 20, cw * 0.5, ch * 0.45, cw * 0.75);
-        bgGrad.addColorStop(0, '#1a2233');
-        bgGrad.addColorStop(0.5, '#0b0f19');
-        bgGrad.addColorStop(1, '#030508');
+        // Transparent clear so the parent CSS glass gradient and video atmosphere shines through
+        // Subtle soft radial vignette that melts seamlessly with BlueX deep slate & midnight-cyan
+        const bgGrad = ctx.createRadialGradient(cw * 0.5, ch * 0.46, 20, cw * 0.5, ch * 0.46, cw * 0.72);
+        bgGrad.addColorStop(0, 'rgba(21, 32, 54, 0.42)');
+        bgGrad.addColorStop(0.55, 'rgba(12, 18, 32, 0.65)');
+        bgGrad.addColorStop(1, 'rgba(8, 12, 22, 0.88)');
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, cw, ch);
 
@@ -6636,27 +6638,28 @@ document.addEventListener('DOMContentLoaded', () => {
           const easeProg = 1 - Math.pow(1 - sceneProg, 3);
           const currentViews = Math.round(67069 + (443609 - 67069) * easeProg);
 
-          // Center Big Header: Views
+          // Center Big Header: Views (Properly scaled & padded so it never clips)
           ctx.save();
           ctx.textAlign = 'center';
-          ctx.fillStyle = '#ffffff';
-          ctx.font = `900 ${Math.floor(cw * 0.125)}px "Plus Jakarta Sans", sans-serif`;
-          ctx.shadowColor = 'rgba(255, 255, 255, 0.45)';
-          ctx.shadowBlur = 18;
-          ctx.fillText(currentViews.toLocaleString(), cw * 0.5, ch * 0.26);
+          ctx.fillStyle = '#f8fafc';
+          const fontSize = Math.min(38, Math.floor(cw * 0.095));
+          ctx.font = `900 ${fontSize}px "Plus Jakarta Sans", sans-serif`;
+          ctx.shadowColor = 'rgba(56, 189, 248, 0.45)';
+          ctx.shadowBlur = 16;
+          ctx.fillText(currentViews.toLocaleString(), cw * 0.5, ch * 0.24);
           ctx.shadowBlur = 0;
 
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';
-          ctx.font = `600 ${Math.floor(cw * 0.048)}px "Plus Jakarta Sans", sans-serif`;
-          ctx.fillText('Monthly Client Reach (Views)', cw * 0.5, ch * 0.32);
+          ctx.fillStyle = 'rgba(148, 163, 184, 0.85)';
+          ctx.font = `600 ${Math.min(14, Math.floor(cw * 0.038))}px "Plus Jakarta Sans", sans-serif`;
+          ctx.fillText('Monthly Client Reach (Views)', cw * 0.5, ch * 0.29);
           ctx.restore();
 
-          // 4 Floating 3D Phones orbiting with gentle floating sine waves
+          // 4 Floating 3D Phones - Repositioned inside stage boundaries with harmonized BlueX borders
           const phoneConfigs = [
-            { x: cw * 0.22, y: ch * 0.48 + Math.sin(t * 2.2) * 8, w: 90, h: 140, r: 16, glow: 'rgba(56, 189, 248, 0.4)' },
-            { x: cw * 0.76, y: ch * 0.22 + Math.cos(t * 1.8) * 10, w: 76, h: 118, r: 14, glow: 'rgba(251, 191, 36, 0.4)' },
-            { x: cw * 0.26, y: ch * 0.78 + Math.sin(t * 1.9 + 1) * 9, w: 72, h: 110, r: 12, glow: 'rgba(255, 255, 255, 0.3)' },
-            { x: cw * 0.74, y: ch * 0.72 + Math.cos(t * 2.1 + 2) * 8, w: 104, h: 162, r: 18, glow: 'rgba(56, 189, 248, 0.5)' }
+            { x: cw * 0.25, y: ch * 0.48 + Math.sin(t * 2.2) * 7, w: 82, h: 128, r: 14, glow: 'rgba(56, 189, 248, 0.38)' },
+            { x: cw * 0.72, y: ch * 0.38 + Math.cos(t * 1.8) * 8, w: 78, h: 120, r: 14, glow: 'rgba(251, 191, 36, 0.38)' },
+            { x: cw * 0.28, y: ch * 0.76 + Math.sin(t * 1.9 + 1) * 7, w: 74, h: 114, r: 13, glow: 'rgba(125, 211, 252, 0.32)' },
+            { x: cw * 0.70, y: ch * 0.74 + Math.cos(t * 2.1 + 2) * 7, w: 86, h: 134, r: 15, glow: 'rgba(56, 189, 248, 0.45)' }
           ];
 
           phoneConfigs.forEach((p, idx) => {
@@ -6686,23 +6689,28 @@ document.addEventListener('DOMContentLoaded', () => {
           // SCENE 2: METALLIC DISCS FALLING INTO STACK OVER SILHOUETTE HAND (24M+ Views)
           const sceneProg = (t - 3.2) / 3.0; // 0 to 1
 
-          // Background High-Contrast Pure White Aura
-          const lightGlow = ctx.createRadialGradient(cw * 0.5, ch * 0.2, 10, cw * 0.5, ch * 0.2, cw * 0.65);
-          lightGlow.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
-          lightGlow.addColorStop(0.45, 'rgba(255, 255, 255, 0.65)');
-          lightGlow.addColorStop(1, 'rgba(255, 255, 255, 0)');
+          // Soft Atmospheric Nordic Light Aura that blends smoothly with the dark site
+          const lightGlow = ctx.createRadialGradient(cw * 0.5, ch * 0.22, 10, cw * 0.5, ch * 0.22, cw * 0.62);
+          lightGlow.addColorStop(0, 'rgba(226, 232, 240, 0.28)');
+          lightGlow.addColorStop(0.5, 'rgba(56, 189, 248, 0.12)');
+          lightGlow.addColorStop(1, 'rgba(10, 16, 28, 0)');
           ctx.fillStyle = lightGlow;
           ctx.fillRect(0, 0, cw, ch);
 
-          // Big Headline: 24million+ Views
+          // Big Headline: 24million+ Views in Crisp Nordic Frost
           ctx.save();
           ctx.textAlign = 'center';
-          ctx.fillStyle = '#1e293b';
-          ctx.font = `900 ${Math.floor(cw * 0.11)}px "Plus Jakarta Sans", sans-serif`;
-          ctx.fillText('24million+', cw * 0.5, ch * 0.18);
-          ctx.fillStyle = '#64748b';
-          ctx.font = `700 ${Math.floor(cw * 0.045)}px "Plus Jakarta Sans", sans-serif`;
-          ctx.fillText('Network Media Reach', cw * 0.5, ch * 0.23);
+          ctx.fillStyle = '#ffffff';
+          const s2FontSize = Math.min(38, Math.floor(cw * 0.095));
+          ctx.font = `900 ${s2FontSize}px "Plus Jakarta Sans", sans-serif`;
+          ctx.shadowColor = 'rgba(56, 189, 248, 0.4)';
+          ctx.shadowBlur = 16;
+          ctx.fillText('24million+', cw * 0.5, ch * 0.22);
+          ctx.shadowBlur = 0;
+
+          ctx.fillStyle = 'rgba(148, 163, 184, 0.85)';
+          ctx.font = `700 ${Math.min(14, Math.floor(cw * 0.038))}px "Plus Jakarta Sans", sans-serif`;
+          ctx.fillText('Network Media Reach', cw * 0.5, ch * 0.27);
           ctx.restore();
 
           // Falling Coins / Spheres
@@ -6727,15 +6735,15 @@ document.addEventListener('DOMContentLoaded', () => {
           // SCENE 3: SMARTPHONE ON STAGE WITH MONEY / REACH EXPONENTIAL BREAKTHROUGH
           const sceneProg = (t - 6.2) / 3.2;
 
-          // Pure White Horizon Spotlight
-          const stageLight = ctx.createLinearGradient(0, 0, 0, ch);
-          stageLight.addColorStop(0, '#ffffff');
-          stageLight.addColorStop(0.75, '#f1f5f9');
-          stageLight.addColorStop(1, '#cbd5e1');
+          // Deep Frosted Slate & Ice Horizon Spotlight
+          const stageLight = ctx.createRadialGradient(cw * 0.5, ch * 0.45, 20, cw * 0.5, ch * 0.45, cw * 0.7);
+          stageLight.addColorStop(0, 'rgba(26, 38, 64, 0.55)');
+          stageLight.addColorStop(0.65, 'rgba(14, 22, 38, 0.75)');
+          stageLight.addColorStop(1, 'rgba(8, 12, 22, 0.92)');
           ctx.fillStyle = stageLight;
           ctx.fillRect(0, 0, cw, ch);
 
-          // Exponential Breakthrough Lightning / Zig-Zag Growth Vector
+          // Exponential Breakthrough Growth Vector with Cyan/Gold Glow
           ctx.save();
           ctx.beginPath();
           ctx.moveTo(-20, ch * 0.68);
@@ -6744,16 +6752,18 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.lineTo(cw * 0.76, ch * 0.24);
           ctx.lineTo(cw * 0.82, ch * 0.32);
           ctx.lineTo(cw + 30, ch * 0.12);
-          ctx.strokeStyle = '#1e293b';
-          ctx.lineWidth = 14;
+          ctx.strokeStyle = 'rgba(15, 23, 42, 0.85)';
+          ctx.lineWidth = 12;
           ctx.lineCap = 'round';
           ctx.lineJoin = 'miter';
           ctx.stroke();
 
-          // Thin neon accent line inside the arrow
           ctx.strokeStyle = '#fbbf24';
-          ctx.lineWidth = 4;
+          ctx.lineWidth = 3.5;
+          ctx.shadowColor = 'rgba(251, 191, 36, 0.65)';
+          ctx.shadowBlur = 12;
           ctx.stroke();
+          ctx.shadowBlur = 0;
           ctx.restore();
 
           // Center Horizontal Smartphone on Podium

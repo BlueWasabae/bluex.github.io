@@ -23790,15 +23790,16 @@ html.effects-frozen .pin1up-fab-orb::before {
 /* Motion Graphic Reel Frame (Pin gaLOkD5Fd) */
 .ib-motion-reel-card {
   position: relative;
-  background: linear-gradient(165deg, rgba(20, 32, 54, 0.88) 0%, rgba(11, 18, 32, 0.95) 100%);
-  border: 1px solid rgba(251, 191, 36, 0.35);
+  background: linear-gradient(150deg, rgba(16, 25, 42, 0.72) 0%, rgba(10, 16, 28, 0.82) 100%);
+  border: 1px solid rgba(125, 211, 252, 0.22);
   border-radius: 28px;
   padding: 18px;
   box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.65),
-    0 0 40px rgba(251, 191, 36, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px);
+    0 24px 60px rgba(2, 6, 16, 0.68),
+    0 0 36px rgba(56, 189, 248, 0.10),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .ib-motion-top-bar {
@@ -23857,9 +23858,11 @@ html.effects-frozen .pin1up-fab-orb::before {
   max-height: 520px;
   border-radius: 20px;
   overflow: hidden;
-  background: radial-gradient(circle at center, #0f182a 0%, #080d18 100%);
-  border: 1px solid rgba(251, 191, 36, 0.25);
-  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.85);
+  background: linear-gradient(165deg, rgba(12, 19, 32, 0.75) 0%, rgba(8, 12, 22, 0.85) 100%);
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  box-shadow:
+    inset 0 0 40px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .ib-motion-canvas {
@@ -23870,47 +23873,48 @@ html.effects-frozen .pin1up-fab-orb::before {
 
 .ib-hud-floating-top {
   position: absolute;
-  top: 14px;
+  top: 12px;
   left: 14px;
   right: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   pointer-events: none;
+  z-index: 5;
 }
 
 .hud-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(11, 18, 32, 0.82);
-  border: 1px solid rgba(56, 189, 248, 0.32);
+  background: rgba(13, 21, 36, 0.68);
+  border: 1px solid rgba(56, 189, 248, 0.28);
   border-radius: 9999px;
-  padding: 4px 10px;
+  padding: 4px 11px;
   color: #7dd3fc;
   font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  backdrop-filter: blur(8px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(10px);
 }
 
 .hud-pulse-amber {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #fbbf24;
-  box-shadow: 0 0 8px #fbbf24;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
 }
 
 .hud-rate-tag {
-  background: rgba(11, 18, 32, 0.82);
-  border: 1px solid rgba(251, 191, 36, 0.35);
+  background: rgba(13, 21, 36, 0.68);
+  border: 1px solid rgba(251, 191, 36, 0.28);
   border-radius: 9999px;
-  padding: 4px 10px;
-  color: #fbbf24;
+  padding: 4px 11px;
+  color: #fde047;
   font-size: 0.68rem;
   font-weight: 700;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
 }
 
 .ib-hud-floating-bottom {
@@ -24253,11 +24257,13 @@ html.effects-frozen .pin1up-fab-orb::before {
 }
 
 .ib-phase-pill.active {
-  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-  border-color: #fbbf24;
-  color: #0b0f19;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.32) 0%, rgba(251, 191, 36, 0.28) 100%);
+  border: 1px solid rgba(125, 211, 252, 0.65);
+  color: #ffffff;
   font-weight: 800;
-  box-shadow: 0 0 12px rgba(251, 191, 36, 0.45);
+  box-shadow:
+    0 0 14px rgba(56, 189, 248, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 .ib-scrub-bar-wrap {
