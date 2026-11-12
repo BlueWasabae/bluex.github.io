@@ -489,6 +489,13 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.courses': 'Courses',
       'nav.genesis': '<span class="genesis-pulse-dot"></span> SMC Genesis <span class="nav-new-badge">NEW</span>',
       'nav.hedging': '<span class="nav-label-full">Gold</span>&nbsp;Hedging',
+      'nav.ib': '<span class="ib-pulse-dot"></span> IB Partner <span class="nav-vip-badge">VIP</span>',
+      'nav.ibPartner': 'IB Partner VIP Desk',
+      'ib.pageTitle': 'BlueX IB Partner • Institutional Broker Partnership',
+      'ib.badge': 'Institutional Broker Partnership • Multi-Tier Rebate Engine',
+      'ib.title': 'Scale Your Forex &amp; Gold Brokerage as an <span class="gold-accent">Official BlueX IB Partner</span>',
+      'ib.subtitle': 'Direct STP Liquidity, Multi-Tier Raw Rebates up to $18/Lot, Custom Trading Academy Infrastructure, and Turnkey Client Acquisition.',
+      'ib.calcHeading': 'Interactive IB Commission &amp; Volume Forecaster',
       'nav.drawerBrand': 'BLUEX TERMINAL',
       'nav.spotlightDesc': 'Pure Supply & Demand (S&D) Framework',
       'nav.drawerDm': 'Register Now — Direct DM (@Le_Bluue)',
@@ -1279,6 +1286,13 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.courses': 'វគ្គសិក្សា',
       'nav.genesis': '<span class="genesis-pulse-dot"></span> SMC Genesis <span class="nav-new-badge">ថ្មី</span>',
       'nav.hedging': 'Hedging<span class="nav-label-full"> មាស</span>',
+      'nav.ib': '<span class="ib-pulse-dot"></span> ដៃគូ IB <span class="nav-vip-badge">VIP</span>',
+      'nav.ibPartner': 'ផ្នែកដៃគូ IB VIP',
+      'ib.pageTitle': 'ដៃគូ BlueX IB • កិច្ចសហការឈ្មួញកណ្តាលកម្រិតស្ថាប័ន',
+      'ib.badge': 'កិច្ចសហការដៃគូ IB • ប្រព័ន្ធ Rebate កម្រិតខ្ពស់',
+      'ib.title': 'ពង្រីកបណ្តាញអតិថិជន និងចំណូល Brokerage ជាមួយ <span class="gold-accent">BlueX IB Partner</span>',
+      'ib.subtitle': 'សន្ទុះសាច់ប្រាក់ STP ផ្ទាល់, កម្រៃជើងសារ Rebate រហូតដល់ $18/Lot, ប្រព័ន្ធបណ្តុះបណ្តាល និងសម្ភារៈទីផ្សារកម្រិតអាជីព។',
+      'ib.calcHeading': 'ប្រព័ន្ធគណនាប្រាក់ចំណូល Rebate &amp; បរិមាណជួញដូរ',
       'nav.drawerBrand': 'បណ្តាញ BLUEX TERMINAL',
       'nav.spotlightDesc': 'ប្រព័ន្ធ Supply & Demand (S&D) ជាក់ស្តែង',
       'nav.drawerDm': 'ចុះឈ្មោះឥឡូវនេះ — ផ្ញើសារផ្ទាល់ (@Le_Bluue)',
@@ -6330,6 +6344,120 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'Escape') setOpen(false);
     });
   }
+
+  
+  // ========================================================
+  // 5. INTERACTIVE IB PARTNER RECRUITING & REBATE ENGINE
+  // ========================================================
+  function initIbRecruitingEngine() {
+    const tradersSlider = document.getElementById('ibTradersSlider');
+    const tradersVal = document.getElementById('ibTradersVal');
+    const lotsSlider = document.getElementById('ibLotsSlider');
+    const lotsVal = document.getElementById('ibLotsVal');
+    const tierSelect = document.getElementById('ibTierSelect');
+
+    const outMonthlyVol = document.getElementById('ibOutMonthlyVol');
+    const outMonthlyRev = document.getElementById('ibOutMonthlyRev');
+    const outAnnualRev = document.getElementById('ibOutAnnualRev');
+    const outRateBadge = document.getElementById('ibOutRateBadge');
+    const outSubIbRev = document.getElementById('ibOutSubIbRev');
+
+    const videoPlayer = document.getElementById('ibMotionGraphicVideo');
+    const videoLoopToggle = document.getElementById('ibVideoLoopToggle');
+    const videoReplayBtn = document.getElementById('ibVideoReplayBtn');
+
+    // Commission Rates per Standard Lot based on Tier
+    const tierRates = {
+      silver: { rate: 8, subRate: 1.5, name: 'Silver IB ($8/Lot)' },
+      gold: { rate: 12, subRate: 2.5, name: 'Gold IB ($12/Lot)' },
+      vip: { rate: 15, subRate: 3.5, name: 'VIP Institutional ($15/Lot)' },
+      master: { rate: 18, subRate: 4.5, name: 'Master Partner Desk ($18/Lot)' }
+    };
+
+    function recalcIbProjections() {
+      if (!tradersSlider || !lotsSlider) return;
+      const traders = parseInt(tradersSlider.value, 10) || 25;
+      const avgLots = parseFloat(lotsSlider.value) || 20;
+      const tierKey = tierSelect ? tierSelect.value : 'gold';
+      const tier = tierRates[tierKey] || tierRates.gold;
+
+      const totalMonthlyLots = Math.round(traders * avgLots);
+      const directMonthlyRev = totalMonthlyLots * tier.rate;
+      const estimatedSubIbRev = Math.round(directMonthlyRev * 0.22); // ~22% multi-tier network leverage
+      const totalMonthlyIncome = directMonthlyRev + estimatedSubIbRev;
+      const annualIncome = totalMonthlyIncome * 12;
+
+      if (tradersVal) tradersVal.textContent = traders.toLocaleString();
+      if (lotsVal) lotsVal.textContent = avgLots.toFixed(0);
+
+      if (outMonthlyVol) outMonthlyVol.textContent = totalMonthlyLots.toLocaleString() + ' Lots';
+      if (outMonthlyRev) outMonthlyRev.textContent = '$' + totalMonthlyIncome.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+      if (outAnnualRev) outAnnualRev.textContent = '$' + annualIncome.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+      if (outSubIbRev) outSubIbRev.textContent = '+$' + estimatedSubIbRev.toLocaleString() + ' (2-Tier Override)';
+      if (outRateBadge) outRateBadge.textContent = '$' + tier.rate + ' / Lot';
+    }
+
+    if (tradersSlider) tradersSlider.addEventListener('input', recalcIbProjections);
+    if (lotsSlider) lotsSlider.addEventListener('input', recalcIbProjections);
+    if (tierSelect) tierSelect.addEventListener('change', recalcIbProjections);
+
+    // Initial run
+    recalcIbProjections();
+
+    // Motion Graphic Video Controls & Autoplay with Fallback
+    if (videoPlayer) {
+      // Ensure smooth autoplay when in viewport
+      const vIo = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            videoPlayer.play().catch(() => {});
+          } else {
+            videoPlayer.pause();
+          }
+        });
+      }, { threshold: 0.2 });
+      vIo.observe(videoPlayer);
+
+      if (videoReplayBtn) {
+        videoReplayBtn.addEventListener('click', () => {
+          videoPlayer.currentTime = 0;
+          videoPlayer.play().catch(() => {});
+        });
+      }
+
+      if (videoLoopToggle) {
+        videoLoopToggle.addEventListener('click', () => {
+          videoPlayer.loop = !videoPlayer.loop;
+          videoLoopToggle.classList.toggle('active', videoPlayer.loop);
+        });
+      }
+    }
+
+    // Interactive Inquiry Form to Direct Telegram Pre-filled Dispatch
+    const ibForm = document.getElementById('ibInquiryForm');
+    if (ibForm) {
+      ibForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = (document.getElementById('ibNameInput') || {}).value || 'Partner';
+        const phone = (document.getElementById('ibPhoneInput') || {}).value || 'N/A';
+        const exp = (document.getElementById('ibExpInput') || {}).value || 'Broker IB / Community';
+        const msg = (document.getElementById('ibNoteInput') || {}).value || 'Requesting full IB terms';
+
+        const text = encodeURIComponent(
+          `💎 [NEW IB PARTNER INQUIRY • BLUEX VIP]\n\n` +
+          `👤 Name: ${name}\n` +
+          `📞 Contact/Telegram: ${phone}\n` +
+          `📊 Current Network/Experience: ${exp}\n` +
+          `📝 Notes: ${msg}\n\n` +
+          `Sent from BlueX IB Recruiting Portal (https://www.bluexacademy.site/ib-partner)`
+        );
+
+        window.open(`https://t.me/Le_Bluue?text=${text}`, '_blank');
+      });
+    }
+  }
+
+  initIbRecruitingEngine();
 
   initNeatNavbarMoreMenu();
 
