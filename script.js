@@ -604,8 +604,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'calc.ruleVal': 'Never Risk > 1.0% Per Trade',
       'calc.pairLabel': 'Select Instrument / Pair',
       'calc.balanceLabel': 'Account Balance ($)',
-      'calc.stopLossLabel': 'Stop Loss (Points / Pips)',
+      'calc.stopLossLabel': 'Stop Loss (Pips)',
       'calc.riskPercentLabel': 'Risk Percentage (%)',
+      'calc.riskCashLabel': 'Risk Cash Amount ($)',
       'calc.resultsTag': 'Recommended Position Size',
       'calc.safeRisk': 'Disciplined Risk',
       'calc.lotsUnit': 'Standard Lots',
@@ -1393,8 +1394,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'calc.ruleVal': 'កុំប្រថុយលើសពី ១.០% ក្នុងមួយ Trade',
       'calc.pairLabel': 'ជ្រើសរើសគូរូបិយប័ណ្ណ / មាស',
       'calc.balanceLabel': 'សមតុល្យគណនី ($)',
-      'calc.stopLossLabel': 'Stop Loss (Points / Pips)',
+      'calc.stopLossLabel': 'Stop Loss (Pips)',
       'calc.riskPercentLabel': 'ភាគរយហានិភ័យ (%)',
+      'calc.riskCashLabel': 'ចំនួនទឹកប្រាក់ហានិភ័យ ($)',
       'calc.resultsTag': 'ទំហំ Lot ដែលត្រូវចូល',
       'calc.safeRisk': 'ហានិភ័យមានវិន័យ',
       'calc.lotsUnit': 'Standard Lots',
@@ -2067,6 +2069,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const calcBalanceInput = document.getElementById('calcBalance');
   const calcStopLossInput = document.getElementById('calcStopLoss');
   const calcRiskPercentInput = document.getElementById('calcRiskPercent');
+  const calcRiskInputLabel = document.getElementById('calcRiskInputLabel');
+  const calcRiskPrefix = document.getElementById('calcRiskPrefix');
+  const calcRiskSuffix = document.getElementById('calcRiskSuffix');
+  const calcModeCashBtn = document.getElementById('calcModeCashBtn');
+  const calcModePctBtn = document.getElementById('calcModePctBtn');
+  const calcPresetBtnsContainer = document.getElementById('calcPresetBtns');
   const calcStopLossLabel = document.getElementById('calcStopLossLabel');
   const calcStopLossUnit = document.getElementById('calcStopLossUnit');
   const presetBtns = document.querySelectorAll('.preset-btn');
@@ -2079,10 +2087,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const calcRewardVal = document.getElementById('calcRewardVal');
   const riskSafetyBadge = document.getElementById('riskSafetyBadge');
 
+  // Risk Mode state: 'percent' or 'cash'
+  let calcRiskMode = 'percent';
+
   // Instrument specifications
-  // pipValPerLot = cash value per 1 unit of stop loss for 1 standard lot
+  // pipValPerLot = cash value per 1 pip of stop loss for 1 standard lot
   const instruments = {
-    XAUUSD: { name: 'Gold', unitName: 'oz Gold', slUnit: 'points', pipValPerLot: 10, contractSize: 100, defaultSL: 30 },
+    XAUUSD: { name: 'Gold', unitName: 'oz Gold', slUnit: 'pips', pipValPerLot: 10, contractSize: 100, defaultSL: 30 },
     EURUSD: { name: 'EUR/USD', unitName: 'units', slUnit: 'pips', pipValPerLot: 10, contractSize: 100000, defaultSL: 25 },
     GBPUSD: { name: 'GBP/USD', unitName: 'units', slUnit: 'pips', pipValPerLot: 10, contractSize: 100000, defaultSL: 25 },
     USDJPY: { name: 'USD/JPY', unitName: 'units', slUnit: 'pips', pipValPerLot: 6.70, contractSize: 100000, defaultSL: 25 },
@@ -2096,6 +2107,68 @@ document.addEventListener('DOMContentLoaded', () => {
   const langToggleBtn = document.getElementById('langToggleBtn');
   const langBtnText = document.getElementById('langBtnText');
 
+  function updateRiskModeUI() {
+    if (calcModeCashBtn) calcModeCashBtn.classList.toggle('active', calcRiskMode === 'cash');
+    if (calcModePctBtn) calcModePctBtn.classList.toggle('active', calcRiskMode === 'percent');
+
+    if (calcRiskMode === 'cash') {
+      if (calcRiskPrefix) calcRiskPrefix.style.display = 'block';
+      if (calcRiskSuffix) calcRiskSuffix.style.display = 'none';
+      if (calcRiskPercentInput) {
+        calcRiskPercentInput.step = '10';
+        calcRiskPercentInput.min = '1';
+        calcRiskPercentInput.max = '100000';
+        calcRiskPercentInput.placeholder = '100';
+      }
+      if (calcRiskInputLabel) {
+        calcRiskInputLabel.textContent = currentLang === 'km' ? 'ចំនួនទឹកប្រាក់ហានិភ័យ ($)' : 'Risk Cash Amount ($)';
+      }
+      if (calcPresetBtnsContainer) {
+        calcPresetBtnsContainer.style.display = 'none';
+      }
+    } else {
+      if (calcRiskPrefix) calcRiskPrefix.style.display = 'none';
+      if (calcRiskSuffix) calcRiskSuffix.style.display = 'block';
+      if (calcRiskPercentInput) {
+        calcRiskPercentInput.step = '0.1';
+        calcRiskPercentInput.min = '0.1';
+        calcRiskPercentInput.max = '10';
+        calcRiskPercentInput.placeholder = '1.0';
+      }
+      if (calcRiskInputLabel) {
+        calcRiskInputLabel.textContent = currentLang === 'km' ? 'ភាគរយហានិភ័យ (%)' : 'Risk Percentage (%)';
+      }
+      if (calcPresetBtnsContainer) {
+        calcPresetBtnsContainer.style.display = 'flex';
+      }
+    }
+  }
+
+  function setRiskMode(mode) {
+    if (calcRiskMode === mode) return;
+    const balance = Math.max(1, parseFloat(calcBalanceInput ? calcBalanceInput.value : '10000') || 10000);
+    const curVal = parseFloat(calcRiskPercentInput ? calcRiskPercentInput.value : '1') || 1;
+
+    if (mode === 'cash') {
+      // Transition from % to $: Cash = Balance * (% / 100)
+      const cashVal = Math.round((balance * (curVal / 100)) * 100) / 100;
+      calcRiskMode = 'cash';
+      updateRiskModeUI();
+      if (calcRiskPercentInput) calcRiskPercentInput.value = cashVal > 0 ? cashVal : 100;
+    } else {
+      // Transition from $ to %: % = (Cash / Balance) * 100
+      const pctVal = Math.round(((curVal / balance) * 100) * 10) / 10;
+      calcRiskMode = 'percent';
+      updateRiskModeUI();
+      if (calcRiskPercentInput) calcRiskPercentInput.value = pctVal > 0 ? pctVal : 1.0;
+      // sync preset buttons
+      presetBtns.forEach(b => {
+        b.classList.toggle('active', parseFloat(b.getAttribute('data-risk')) === pctVal);
+      });
+    }
+    calculateLotSize();
+  }
+
   function updatePairSpecs() {
     const pair = calcPairSelect ? calcPairSelect.value : 'XAUUSD';
     const spec = instruments[pair] || instruments.XAUUSD;
@@ -2108,6 +2181,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ? `Stop Loss (${spec.slUnit})` 
         : `Stop Loss (${spec.slUnit.charAt(0).toUpperCase() + spec.slUnit.slice(1)})`;
     }
+    updateRiskModeUI();
   }
 
   function calculateLotSize() {
@@ -2115,12 +2189,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const balance = Math.max(1, parseFloat(calcBalanceInput.value) || 0);
     const stopLoss = Math.max(0.1, parseFloat(calcStopLossInput.value) || 0);
-    const riskPercent = Math.max(0.01, parseFloat(calcRiskPercentInput.value) || 0);
+    const rawRiskVal = Math.max(0.01, parseFloat(calcRiskPercentInput.value) || 0);
     const pair = calcPairSelect ? calcPairSelect.value : 'XAUUSD';
     const spec = instruments[pair] || instruments.XAUUSD;
 
-    // 1. Calculate maximum allowed cash loss
-    const cashRisk = balance * (riskPercent / 100);
+    // 1. Calculate maximum allowed cash loss & effective percentage
+    let cashRisk = 0;
+    let effectiveRiskPercent = 0;
+
+    if (calcRiskMode === 'cash') {
+      cashRisk = rawRiskVal;
+      effectiveRiskPercent = (cashRisk / balance) * 100;
+    } else {
+      effectiveRiskPercent = rawRiskVal;
+      cashRisk = balance * (effectiveRiskPercent / 100);
+    }
 
     // 2. Calculate standard lot size: CashRisk / (SL * PipValuePerLot)
     let calculatedLots = cashRisk / (stopLoss * spec.pipValPerLot);
@@ -2136,7 +2219,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Update cash risk display
     if (calcRiskCashDisplay) {
-      calcRiskCashDisplay.textContent = `$${cashRisk.toFixed(2)} ${currentLang === 'km' ? 'ហានិភ័យសាច់ប្រាក់' : 'cash risk'}`;
+      const pctFormatted = effectiveRiskPercent.toFixed(2);
+      calcRiskCashDisplay.textContent = `$${cashRisk.toFixed(2)} ${currentLang === 'km' ? 'ហានិភ័យសាច់ប្រាក់' : 'cash risk'} (${pctFormatted}%)`;
     }
 
     // 4. Max Cash Loss
@@ -2159,7 +2243,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 7. Risk Safety Badge Logic
     if (riskSafetyBadge) {
-      if (riskPercent <= 1.0) {
+      if (effectiveRiskPercent <= 1.0) {
         riskSafetyBadge.innerHTML = `
           <span class="badge-dot green"></span>
           <span>${currentLang === 'km' ? 'ហានិភ័យមានវិន័យ' : 'Disciplined Risk'}</span>
@@ -2167,7 +2251,7 @@ document.addEventListener('DOMContentLoaded', () => {
         riskSafetyBadge.style.borderColor = 'rgba(212, 255, 0, 0.4)';
         riskSafetyBadge.style.background = 'rgba(212, 255, 0, 0.08)';
         riskSafetyBadge.style.color = '#d4ff00';
-      } else if (riskPercent <= 2.0) {
+      } else if (effectiveRiskPercent <= 2.0) {
         riskSafetyBadge.innerHTML = `
           <span class="badge-dot" style="background:#ffb800; box-shadow:0 0 10px #ffb800;"></span>
           <span>${currentLang === 'km' ? 'ហានិភ័យកម្រិតមធ្យម' : 'Moderate Risk'}</span>
@@ -2240,12 +2324,23 @@ document.addEventListener('DOMContentLoaded', () => {
       presetBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const riskVal = btn.getAttribute('data-risk');
+      if (calcRiskMode === 'cash') {
+        setRiskMode('percent');
+      }
       if (calcRiskPercentInput) {
         calcRiskPercentInput.value = riskVal;
       }
       calculateLotSize();
     });
   });
+
+  // Risk Mode Switch Buttons ($ Cash vs % Percent)
+  if (calcModeCashBtn) {
+    calcModeCashBtn.addEventListener('click', () => setRiskMode('cash'));
+  }
+  if (calcModePctBtn) {
+    calcModePctBtn.addEventListener('click', () => setRiskMode('percent'));
+  }
 
   // Input listeners
   if (calcPairSelect) {
@@ -2264,14 +2359,16 @@ document.addEventListener('DOMContentLoaded', () => {
   if (calcStopLossInput) calcStopLossInput.addEventListener('input', calculateLotSize);
   if (calcRiskPercentInput) {
     calcRiskPercentInput.addEventListener('input', () => {
-      const cur = parseFloat(calcRiskPercentInput.value);
-      presetBtns.forEach(b => {
-        if (parseFloat(b.getAttribute('data-risk')) === cur) {
-          b.classList.add('active');
-        } else {
-          b.classList.remove('active');
-        }
-      });
+      if (calcRiskMode === 'percent') {
+        const cur = parseFloat(calcRiskPercentInput.value);
+        presetBtns.forEach(b => {
+          if (parseFloat(b.getAttribute('data-risk')) === cur) {
+            b.classList.add('active');
+          } else {
+            b.classList.remove('active');
+          }
+        });
+      }
       calculateLotSize();
     });
   }

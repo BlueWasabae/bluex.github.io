@@ -2436,6 +2436,47 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
+}
+
+.calc-mode-switch {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  gap: 2px;
+}
+
+.calc-mode-btn {
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 10px;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.calc-mode-btn:hover {
+  color: #fff;
+}
+
+.calc-mode-btn.active {
+  background: var(--color-cyan);
+  color: #040914;
+  box-shadow: 0 0 10px rgba(0, 245, 212, 0.35);
+}
+
+.calc-risk-subrow {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .calc-risk-cash {
@@ -23578,3 +23619,23 @@ html.effects-frozen .pin1up-fab-orb::before {
 
 
 
+
+/* Light Mode Support for Calculator Risk Mode Switch */
+[data-theme="light"] .calc-mode-switch {
+  background: rgba(15, 23, 42, 0.06) !important;
+  border-color: rgba(125, 211, 252, 0.22) !important;
+}
+
+[data-theme="light"] .calc-mode-btn {
+  color: #94a3b8 !important;
+}
+
+[data-theme="light"] .calc-mode-btn:hover {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .calc-mode-btn.active {
+  background: var(--color-cyan) !important;
+  color: #040914 !important;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.35) !important;
+}
