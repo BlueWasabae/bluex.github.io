@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script>
+    if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.location.replace('https://' + window.location.host + window.location.pathname + window.location.search + window.location.hash);
+    }
+    if (window.history && window.history.replaceState && window.location.pathname.endsWith('.html')) {
+      const cleanPath = window.location.pathname.replace(/\.html$/, '');
+      window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+    }
+  </script>
+  <title>BlueX Tactical Arcade • ក្រក Infinite 5-in-a-Row Strategy Arena</title>
+  <meta name="description" content="Play ក្រក (Infinite 5-in-a-Row Gomoku) on the BlueX Tactical Arcade. Sharpen mental anticipation, tactical calculation, and strategic pattern recognition. Local, AI, and Online Multiplayer.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.bluexacademy.site/games">
+
+  <!-- OpenGraph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BlueX Global Terminal">
+  <meta property="og:url" content="https://www.bluexacademy.site/games">
+  <meta property="og:title" content="BlueX Tactical Arcade • ក្រក Infinite 5-in-a-Row Strategy Arena">
+  <meta property="og:description" content="Play ក្រក (Infinite 5-in-a-Row Gomoku). Sharpen mental anticipation, pattern recognition, and tactical calculation with AI, Local, and Online Multiplayer.">
+  <meta property="og:image" content="https://www.bluexacademy.site/assets/images/disciplined-trader-focus.jpg">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="720">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.bluexacademy.site/games">
+  <meta name="twitter:title" content="BlueX Tactical Arcade • ក្រក Infinite 5-in-a-Row Strategy Arena">
+  <meta name="twitter:description" content="Play ក្រក (Infinite 5-in-a-Row Gomoku). Sharpen mental anticipation, pattern recognition, and tactical calculation with AI, Local, and Online Multiplayer.">
+  <meta name="twitter:image" content="https://www.bluexacademy.site/assets/images/disciplined-trader-focus.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/images/bluex-3d-logo.png">
+  <link rel="apple-touch-icon" href="/assets/images/bluex-3d-logo.png">
+  <meta name="theme-color" content="#050811">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@500;600;700&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="/styles.css?v=20261120v38">
+</head>
+<body class="page-games">
+
+  <div class="bg-glow-orb purple" style="position: fixed; top: -10%; right: 15%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, rgba(0, 0, 0, 0) 70%); pointer-events: none; z-index: -1;"></div>
+  <div class="bg-glow-orb blue" style="position: fixed; bottom: 10%; left: 10%; width: 45vw; height: 45vw; background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(0, 0, 0, 0) 70%); pointer-events: none; z-index: -1;"></div>
+
+  <!-- SITE HEADER & NAVIGATION -->
+  <header class="site-header" id="top">
+    <div class="container">
+      <nav class="nav-wrapper">
+        <a href="/" class="logo pin-prismatic-logo" id="brandLogo" aria-label="BlueX Official - Return to Home" title="BlueX Home">
+          <span class="pin-prism-medallion" aria-hidden="true">
+            <span class="pin-prism-flare"></span>
+            <span class="pin-prism-ring"></span>
+            <span class="pin-prism-disc">
+              <svg class="pin-prism-emblem" viewBox="0 0 24 24" fill="none">
+                <defs>
+                  <linearGradient id="bluexPrismGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#38bdf8"/>
+                  </linearGradient>
+                </defs>
+                <path d="M12 2.5L16.2 6.8L12 11.1L7.8 6.8L12 2.5Z" fill="url(#bluexPrismGrad)"/>
+                <path d="M5.5 8.5L10.2 14L5.5 19.5H8.8L12 15.8L15.2 19.5H18.5L13.8 14L18.5 8.5H15.2L12 12.2L8.8 8.5H5.5Z" fill="url(#bluexPrismGrad)"/>
+              </svg>
+            </span>
+          </span>
+          <img src="/assets/images/bluex-3d-logo.png" alt="BlueX" class="nav-logo-3d-img">
+        </a>
+
+        <!-- Centered Menu Navigation -->
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-mobile-header nav-mobile-only">
+            <div class="nav-drawer-brand">
+              <span class="nav-drawer-dot"></span>
+              <span data-i18n="nav.drawerBrand">BLUEX TERMINAL</span>
+            </div>
+            <button type="button" class="nav-drawer-close-btn" id="navDrawerCloseBtn" aria-label="Close menu">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </li>
+          <li class="nav-item-home"><a href="/" class="nav-link" data-i18n="nav.home">Home</a></li>
+          <li><a href="/#about" class="nav-link" data-i18n="nav.about">About</a></li>
+          <li><a href="/#brokers" class="nav-link" data-i18n="nav.brokers">Brokers</a></li>
+          <li><a href="/gold-hedging" class="nav-link" data-i18n="nav.hedging"><span class="nav-label-full">Gold</span>&nbsp;Hedging</a></li>
+          <li><a href="/ib-partner" class="nav-link nav-link-ib" data-i18n="nav.ib"><span class="ib-pulse-dot"></span>IB Partner <span class="nav-vip-badge">VIP</span></a></li>
+          <li><a href="/games" class="nav-link active nav-link-games" data-i18n="nav.games"><span class="games-pulse-dot"></span>Games <span class="nav-arcade-badge">ARCADE</span></a></li>
+          <li><a href="/#calculator" class="nav-link" data-i18n="nav.calculator">Calculator</a></li>
+          <li><a href="/knowledge" class="nav-link" data-i18n="nav.knowledge">Knowledge</a></li>
+          <li class="nav-more-wrap" id="navMoreWrap">
+            <button type="button" class="nav-link nav-more-trigger" id="navMoreTrigger" aria-expanded="false" aria-haspopup="true">
+              <span>More</span>
+              <svg class="nav-more-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <ul class="nav-more-menu" id="navMoreMenu">
+              <li><a href="/#capital" class="nav-link" data-i18n="nav.capital">Strategy</a></li>
+              <li><a href="/#pillars" class="nav-link" data-i18n="nav.pillars">Pillars</a></li>
+              <li><a href="/#media" class="nav-link" data-i18n="nav.media">Media</a></li>
+              <li><a href="/#faq" class="nav-link" data-i18n="nav.faq">FAQ</a></li>
+              <li class="nav-item-connect"><a href="/#connect" class="nav-link" data-i18n="nav.connect">Connect</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- Right Header Actions -->
+        <div class="nav-right-actions">
+          <button class="nav-tool-btn" id="langToggleBtn" type="button" aria-label="Switch Language" title="ប្តូរជាភាសាខ្មែរ">
+            <span class="lang-flag">KH</span>
+            <span id="langBtnText">ខ្មែរ</span>
+          </button>
+          <button class="nav-tool-btn nav-theme-btn" id="themeToggleBtn" type="button" aria-label="Toggle Theme" title="Toggle Light / Dark Mode">
+            <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="nav-cta-btn nav-register-dm-btn" title="Direct VIP Terminal Contact (@Le_Bluue)">
+            <span>Connect ➤</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN GAMING SECTION -->
+  <main id="main-content">
+    <section class="game-hero-section">
+      <div class="container">
+        <!-- Header Banner -->
+        <div style="text-align: center; max-width: 820px; margin: 0 auto;">
+          <div class="arcade-badge-pill">
+            <span class="arcade-dot-pulse"></span>
+            <span>TACTICAL ARCADE • STRATEGIC PATTERN RECOGNITION</span>
+          </div>
+          <h1 style="font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 800; line-height: 1.15; color: #fff; margin-bottom: 16px;">
+            BlueX Strategy Arena: <span class="arcade-gradient-text">ក្រក (Infinite 5-in-a-Row)</span>
+          </h1>
+          <p style="font-size: 1.05rem; line-height: 1.65; color: #94a3b8; margin-bottom: 24px;">
+            Hone high-depth anticipation, spatial pattern recognition, and multi-move defensive hedging. Spar against the AI engine, practice local tactical drills, or compete in real-time online multiplayer.
+          </p>
+        </div>
+
+        <!-- Interactive Game Arena Container -->
+        <div class="game-arena-wrapper">
+          <!-- Top Controller Bar -->
+          <div class="game-arena-top-controls">
+            <div class="game-status-indicator">
+              <span class="game-live-dot"></span>
+              <span>LIVE ONLINE ENGINE • krokbtb.oneapp.dev</span>
+            </div>
+            <div class="game-action-buttons">
+              <button type="button" id="gameReloadBtn" class="game-ctrl-btn" title="Reset / Reload Game Frame">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                <span>Reload</span>
+              </button>
+              <button type="button" id="gameFullscreenBtn" class="game-ctrl-btn" title="Toggle Fullscreen Focus Mode">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                <span>Fullscreen</span>
+              </button>
+              <a href="https://krokbtb.oneapp.dev" target="_blank" rel="noopener noreferrer" class="game-ctrl-btn game-launch-btn" title="Open Dedicated Standalone Game in New Window">
+                <span>Open Standalone ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Embedded High-Performance Responsive Webview -->
+          <div class="game-frame-container" id="gameFrameContainer">
+            <iframe
+              id="krokGameIframe"
+              src="https://krokbtb.oneapp.dev"
+              title="ក្រក - Infinite 5-in-a-Row Gomoku Game Engine"
+              allow="fullscreen; clipboard-read; clipboard-write; accelerometer; gyroscope"
+              loading="eager"
+              class="game-iframe">
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Strategy & Game Modes Bento Grid -->
+        <div class="game-features-grid">
+          <div class="game-feature-card">
+            <div class="game-feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3 class="game-feature-title">PvE Adaptive AI Engine</h3>
+            <p class="game-feature-desc">
+              Spar against a tactical algorithm calculating multi-step combinatorial threat trees. Ideal for warming up mental pattern acuity and evaluating counter-moves.
+            </p>
+          </div>
+
+          <div class="game-feature-card">
+            <div class="game-feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 class="game-feature-title">Online Multiplayer</h3>
+            <p class="game-feature-desc">
+              Instant matchmaking and private room codes powered by low-latency Firebase real-time state synchronization for competitive live sparring.
+            </p>
+          </div>
+
+          <div class="game-feature-card">
+            <div class="game-feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            </div>
+            <h3 class="game-feature-title">Infinite Canvas Grid</h3>
+            <p class="game-feature-desc">
+              Zero boundary restrictions. Drag to pan and pinch to zoom on an unbounded 2D coordinate plane, forcing players to anticipate emergent vector expansion.
+            </p>
+          </div>
+
+          <div class="game-feature-card">
+            <div class="game-feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="game-feature-title">Calculated Discipline</h3>
+            <p class="game-feature-desc">
+              Align 5 consecutive stones across horizontal, vertical, or diagonal vectors. Master defensive intercept before committing capital to aggressive offense.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="text-align: center; padding: 30px 0; color: #64748b; font-size: 0.85rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+        <p>© 2026 BlueX Global Terminal • Tactical Strategy Arcade. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Pin 1Upf5WvRC: 5-Tab Floating Detached Glassmorphic Mobile Navigation & Center FAB -->
+  <nav class="orbix-mobile-bottom-bar pin1up-dock" id="orbixMobileBottomBar" data-pin1up-theme="floating" aria-label="Mobile Navigation Dock">
+    <a href="/" class="pin1up-nav-item" data-pin1up-nav="home" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 10.5L12 3l9 7.5v9a1.5 1.5 0 0 1-1.5 1.5H14.5v-6h-5v6H4.5A1.5 1.5 0 0 1 3 19.5v-9z"/>
+      </svg>
+      <span class="pin1up-nav-lbl">Home</span>
+    </a>
+
+    <a href="/#calculator" class="pin1up-nav-item" data-pin1up-nav="tools" aria-label="Lot & Telemetry Tool">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="7"/>
+        <line x1="20" y1="20" x2="16.2" y2="16.2"/>
+      </svg>
+      <span class="pin1up-nav-lbl">Tools</span>
+    </a>
+
+    <button type="button" class="pin1up-fab-slot" id="orbixAiOrbBtn" aria-label="Open Quick Setup & Dock Kit">
+      <span class="pin1up-fab-orb" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+      </span>
+      <span class="pin1up-fab-lbl">Setup</span>
+    </button>
+
+    <a href="/games" class="pin1up-nav-item is-active" data-pin1up-nav="games" aria-label="Tactical Games">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="6" width="20" height="12" rx="2"/>
+        <path d="M6 12h4m-2-2v4m7-3a1 1 0 1 0 2 0 1 1 0 0 0-2 0zm3 2a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>
+      </svg>
+      <span class="pin1up-nav-lbl">Games</span>
+    </a>
+
+    <a href="/ib-partner" class="pin1up-nav-item" data-pin1up-nav="ib" aria-label="IB Partnership VIP">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+      <span class="pin1up-nav-lbl">IB VIP</span>
+    </a>
+  </nav>
+
+  <!-- Pin 7rg9IHjAC: Frosted Glass Bottom Sheet & Neon Lime Setup Wizard -->
+  <div class="orbix-wizard-backdrop" id="orbixWizardBackdrop" aria-hidden="true">
+    <div class="orbix-wizard-sheet" id="orbixWizardSheet" role="dialog" aria-modal="true" aria-labelledby="orbixWizardHeading">
+      <div class="orbix-sheet-top-bar">
+        <span class="orbix-sheet-kicker">HELLO TRADER,</span>
+        <button type="button" class="orbix-sheet-close" id="orbixWizardCloseBtn" aria-label="Close Setup Assistant">✕</button>
+      </div>
+
+      <h3 class="orbix-sheet-heading" id="orbixWizardHeading">Complete setup & discover BlueX terminal tools</h3>
+
+      <div class="orbix-sheet-body">
+        <div class="orbix-quick-actions">
+          <a href="/games" class="orbix-action-card">
+            <div class="orbix-action-icon" style="background: rgba(168, 85, 247, 0.2); color: #c084fc;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4m-2-2v4m7-3a1 1 0 1 0 2 0 1 1 0 0 0-2 0zm3 2a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/></svg>
+            </div>
+            <div class="orbix-action-meta">
+              <strong>ក្រក Tactical Arena</strong>
+              <span>Infinite 5-in-a-Row Board Game</span>
+            </div>
+          </a>
+          <a href="/ib-partner" class="orbix-action-card">
+            <div class="orbix-action-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="orbix-action-meta">
+              <strong>IB Partnership Desk</strong>
+              <span>Raw Rebates from $6 to $11+/Lot</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/script.js?v=20261120v38"></script>
+</body>
+</html>
