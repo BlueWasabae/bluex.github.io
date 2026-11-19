@@ -90,13 +90,13 @@
             </button>
           </li>
           <li class="nav-item-home"><a href="/" class="nav-link" data-i18n="nav.home">Home</a></li>
-          <li><a href="/#about" class="nav-link" data-i18n="nav.about">About</a></li>
           <li><a href="/#brokers" class="nav-link" data-i18n="nav.brokers">Brokers</a></li>
+          <li><a href="/#courses" class="nav-link" data-i18n="nav.courses">Courses</a></li>
+          <li><a href="/smc-genesis" class="nav-link nav-link-genesis" data-i18n="nav.genesis"><span class="genesis-pulse-dot"></span>SMC Genesis <span class="nav-new-badge">NEW</span></a></li>
           <li><a href="/gold-hedging" class="nav-link" data-i18n="nav.hedging"><span class="nav-label-full">Gold</span>&nbsp;Hedging</a></li>
           <li><a href="/ib-partner" class="nav-link active nav-link-ib" data-i18n="nav.ib"><span class="ib-pulse-dot"></span>IB Partner <span class="nav-vip-badge">VIP</span></a></li>
           <li><a href="/games" class="nav-link nav-link-games" data-i18n="nav.games"><span class="games-pulse-dot"></span>Games <span class="nav-arcade-badge">ARCADE</span></a></li>
           <li><a href="/#calculator" class="nav-link" data-i18n="nav.calculator">Calculator</a></li>
-          <li><a href="/knowledge" class="nav-link" data-i18n="nav.knowledge">Knowledge</a></li>
           <li class="nav-more-wrap" id="navMoreWrap">
             <button type="button" class="nav-link nav-more-trigger" id="navMoreTrigger" aria-expanded="false" aria-haspopup="true">
               <span>More</span>
@@ -105,6 +105,8 @@
               </svg>
             </button>
             <ul class="nav-more-menu" id="navMoreMenu">
+              <li><a href="/#about" class="nav-link" data-i18n="nav.about">About</a></li>
+              <li><a href="/knowledge" class="nav-link" data-i18n="nav.knowledge">Knowledge</a></li>
               <li><a href="/#capital" class="nav-link" data-i18n="nav.capital">Strategy</a></li>
               <li><a href="/#pillars" class="nav-link" data-i18n="nav.pillars">Pillars</a></li>
               <li><a href="/#media" class="nav-link" data-i18n="nav.media">Media</a></li>
@@ -133,9 +135,36 @@
               <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
             </svg>
           </button>
+          <button class="nav-tool-btn nav-fx-btn" id="fxToggleBtn" type="button" role="switch" aria-checked="true" aria-label="Toggle Visual Effects (Art Mode)" title="Art Mode: ON (Click to Freeze / Smooth Performance)">
+            <span class="fx-art-track" id="fxArtTrack" aria-hidden="true">
+              <span class="fx-art-glass-shine"></span>
+              <span class="fx-art-glow-left"></span>
+              <span class="fx-art-glow-right"></span>
+              <span class="fx-art-thumb" id="fxArtThumb">
+                <span class="fx-art-ring"></span>
+                <span class="fx-art-core-spark"></span>
+              </span>
+              <span class="fx-art-ripple"></span>
+            </span>
+          </button>
           <a href="https://t.me/Le_Bluue" target="_blank" rel="noopener noreferrer" class="nav-cta-btn nav-register-dm-btn" title="Direct VIP Partner DM (@Le_Bluue)">
-            <span>Join As IB ➔</span>
+            <span>Join As IB ➤</span>
           </a>
+          <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Toggle Navigation Menu">
+            <span class="hamburger-icon" id="hamburgerIcon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <line x1="4" y1="7" x2="20" y2="7"></line>
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="17" x2="20" y2="17"></line>
+              </svg>
+            </span>
+            <span class="close-icon" id="hamburgerCloseIcon" style="display:none;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </span>
+          </button>
         </div>
       </nav>
     </div>

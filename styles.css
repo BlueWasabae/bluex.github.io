@@ -3659,28 +3659,12 @@ body.menu-drawer-locked .site-header .nav-wrapper {
 }
 
 @media (min-width: 1280px) and (max-width: 1440px) {
-  .nav-link {
-    font-size: 11.2px !important;
-    padding: 3.5px 5px !important;
-  }
-  .nav-menu {
-    gap: 1.5px !important;
-  }
-  .nav-logo-3d-img {
-    height: 30px !important;
-  }
-  .logo {
-    margin-right: 6px !important;
-    padding-right: 8px !important;
-  }
-  .nav-right-actions {
-    margin-left: 6px !important;
-    gap: 4px !important;
-  }
-  .nav-cta-btn,
-  .nav-register-dm-btn {
+  .site-header .nav-link {
+    font-size: 0.75rem !important;
     padding: 5px 8px !important;
-    font-size: 0.72rem !important;
+  }
+  .site-header .nav-menu {
+    gap: 2.5px !important;
   }
 }
 
@@ -6479,7 +6463,7 @@ html[lang="km"] .nav-register-dm-btn {
   }
 }
 
-@media (max-width: 1379px) {
+@media (max-width: 1279px) {
   html[lang="km"] .nav-menu {
     display: none !important;
   }
@@ -22941,17 +22925,22 @@ html.effects-frozen .pin1up-fab-orb::before {
    Streamlines crowded links into clean 8+More strip & unifies right utility chrome
    ========================================================================== */
 .site-header .nav-wrapper {
-  min-height: 52px;
-  background: rgba(9, 13, 24, 0.86) !important;
-  backdrop-filter: blur(22px) saturate(160%) !important;
-  -webkit-backdrop-filter: blur(22px) saturate(160%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  height: 52px !important;
+  min-height: 52px !important;
+  max-height: 52px !important;
+  background: rgba(9, 13, 24, 0.92) !important;
+  backdrop-filter: blur(24px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+  border: 1px solid rgba(212, 175, 55, 0.25) !important;
   border-radius: 9999px !important;
-  padding: 6px 10px 6px 12px !important;
+  padding: 0 10px 0 12px !important;
   box-shadow:
-    0 12px 32px rgba(0, 0, 0, 0.55),
+    0 10px 32px rgba(0, 0, 0, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-  gap: 14px !important;
+  gap: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
 }
 
 .site-header .logo.pin-prismatic-logo {
@@ -22961,6 +22950,11 @@ html.effects-frozen .pin1up-fab-orb::before {
   background: rgba(255, 255, 255, 0.03) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  height: 38px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  border-radius: 9999px !important;
+  flex-shrink: 0 !important;
 }
 
 .site-header .pin-prism-medallion {
@@ -22975,40 +22969,85 @@ html.effects-frozen .pin1up-fab-orb::before {
 /* Airy, Evenly Spaced Navigation Links Strip */
 @media (min-width: 1280px) {
   .site-header .nav-menu {
-    gap: 4px !important;
+    display: flex !important;
+    align-items: center !important;
     justify-content: center !important;
+    gap: 3px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    list-style: none !important;
   }
 
   .site-header .nav-link {
-    font-size: 0.78rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.76rem !important;
     font-weight: 600 !important;
     letter-spacing: -0.01em !important;
-    padding: 6px 10px !important;
+    padding: 5px 9px !important;
     border-radius: 9999px !important;
-    color: rgba(203, 213, 225, 0.85) !important;
+    color: rgba(226, 232, 240, 0.85) !important;
     border: 1px solid transparent !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   .site-header .nav-link:hover {
     color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.06) !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
     transform: none !important;
   }
 
+  /* Vibrant Teal Pill Active Indicator Matching Master Spec */
   .site-header .nav-link.active {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border-color: rgba(0, 245, 212, 0.34) !important;
+    background: rgba(0, 245, 212, 0.14) !important;
+    border: 1px solid rgba(0, 245, 212, 0.52) !important;
     color: #ffffff !important;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0 14px rgba(0, 245, 212, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+  }
+
+  .site-header .mobile-menu-toggle {
+    display: none !important;
   }
 
   .site-header .nav-new-badge {
-    font-size: 8px !important;
-    padding: 2px 5px !important;
+    background: linear-gradient(135deg, #d4af37, #f59e0b) !important;
+    color: #000000 !important;
+    font-size: 7.5px !important;
+    font-weight: 800 !important;
+    padding: 1.5px 5px !important;
     border-radius: 999px !important;
     box-shadow: none !important;
-    margin-left: 5px !important;
+    margin-left: 4px !important;
+    line-height: 1 !important;
+  }
+
+  .site-header .nav-vip-badge {
+    background: linear-gradient(135deg, #8b5cf6, #d946ef) !important;
+    color: #ffffff !important;
+    font-size: 7.5px !important;
+    font-weight: 800 !important;
+    padding: 1.5px 5px !important;
+    border-radius: 999px !important;
+    box-shadow: none !important;
+    margin-left: 4px !important;
+    line-height: 1 !important;
+  }
+
+  .site-header .nav-arcade-badge {
+    background: linear-gradient(135deg, #06b6d4, #10b981) !important;
+    color: #000000 !important;
+    font-size: 7.5px !important;
+    font-weight: 800 !important;
+    padding: 1.5px 5px !important;
+    border-radius: 999px !important;
+    box-shadow: none !important;
+    margin-left: 4px !important;
+    line-height: 1 !important;
   }
 
   /* "More ▾" Clean Frosted Dropdown for Secondary Anchor Links */
@@ -23099,12 +23138,16 @@ html.effects-frozen .pin1up-fab-orb::before {
   .site-header .nav-right-actions {
     display: inline-flex !important;
     align-items: center !important;
-    gap: 7px !important;
-    margin-left: 4px !important;
+    gap: 6px !important;
+    margin-left: auto !important;
+    flex-shrink: 0 !important;
+    height: 34px !important;
   }
 
   .site-header #langToggleBtn {
     height: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
     padding: 0 11px 0 5px !important;
     gap: 6px !important;
     border-radius: 9999px !important;
@@ -23112,6 +23155,9 @@ html.effects-frozen .pin1up-fab-orb::before {
     border: 1px solid rgba(255, 255, 255, 0.13) !important;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
     color: #f1f5f9 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
   }
 
   .site-header #langToggleBtn::before,
@@ -23137,6 +23183,9 @@ html.effects-frozen .pin1up-fab-orb::before {
     color: #7dd3fc !important;
     font-size: 0.56rem !important;
     font-weight: 800 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .site-header #langToggleBtn #langBtnText {
@@ -23151,10 +23200,18 @@ html.effects-frozen .pin1up-fab-orb::before {
     width: 34px !important;
     height: 34px !important;
     min-width: 34px !important;
+    max-width: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
     border-radius: 50% !important;
     background: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid rgba(255, 255, 255, 0.13) !important;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .site-header #themeToggleBtn:hover {
@@ -23175,18 +23232,26 @@ html.effects-frozen .pin1up-fab-orb::before {
     animation: none !important;
   }
 
-  /* Crisp FX Status Orb Button (Replaces Blurry Marble) */
+  /* Crisp FX Status Orb Button */
   .site-header .nav-tool-btn.nav-fx-btn,
   .site-header #fxToggleBtn {
     width: 34px !important;
     height: 34px !important;
     min-width: 34px !important;
+    max-width: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
     border-radius: 50% !important;
     background: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid rgba(0, 245, 212, 0.34) !important;
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.14),
       0 0 12px rgba(0, 245, 212, 0.16) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .site-header #fxToggleBtn:hover {
@@ -23215,11 +23280,13 @@ html.effects-frozen .pin1up-fab-orb::before {
     filter: none !important;
   }
 
-  /* Primary Register Now Pill: Clean Uniform 34px Height */
+  /* Primary Register / Contact Pill: Clean Uniform 34px Height */
   .site-header .nav-cta-btn,
   .site-header .nav-register-dm-btn {
     height: 34px !important;
-    padding: 0 15px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
+    padding: 0 14px !important;
     gap: 6px !important;
     border-radius: 9999px !important;
     background: linear-gradient(135deg, rgba(14, 165, 233, 0.22) 0%, rgba(0, 245, 212, 0.2) 100%) !important;
@@ -23228,9 +23295,14 @@ html.effects-frozen .pin1up-fab-orb::before {
     font-size: 0.76rem !important;
     font-weight: 700 !important;
     letter-spacing: -0.01em !important;
+    white-space: nowrap !important;
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.22),
       0 4px 16px rgba(0, 245, 212, 0.16) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
   }
 
   .site-header .nav-cta-btn:hover,
