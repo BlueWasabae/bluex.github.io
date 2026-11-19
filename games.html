@@ -17,7 +17,7 @@
       window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
     }
   </script>
-  <title>BlueX Tactical Arcade • ក្រក Infinite 5-in-a-Row Strategy Arena</title>
+  <title>BlueX Tactical Arcade • ក្រក Infinite 5-in-a-Row Development Arena</title>
   <meta name="description" content="Play ក្រក (Infinite 5-in-a-Row Gomoku) on the BlueX Tactical Arcade. Sharpen mental anticipation, tactical calculation, and strategic pattern recognition. Local, AI, and Online Multiplayer.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.bluexacademy.site/games">
@@ -26,7 +26,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="BlueX Global Terminal">
   <meta property="og:url" content="https://www.bluexacademy.site/games">
-  <meta property="og:title" content="BlueX Tactical Arcade • ក្រក Infinite 5-in-a-Row Strategy Arena">
+  <meta property="og:title" content="BlueX Tactical Arcade • ក្រក Infinite 5-in-a-Row Development Arena">
   <meta property="og:description" content="Play ក្រក (Infinite 5-in-a-Row Gomoku). Sharpen mental anticipation, pattern recognition, and tactical calculation with AI, Local, and Online Multiplayer.">
   <meta property="og:image" content="https://www.bluexacademy.site/assets/images/disciplined-trader-focus.jpg">
   <meta property="og:image:width" content="1280">
@@ -35,7 +35,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.bluexacademy.site/games">
-  <meta name="twitter:title" content="BlueX Tactical Arcade • ក្រក Infinite 5-in-a-Row Strategy Arena">
+  <meta name="twitter:title" content="BlueX Tactical Arcade • ក្រក Infinite 5-in-a-Row Development Arena">
   <meta name="twitter:description" content="Play ក្រក (Infinite 5-in-a-Row Gomoku). Sharpen mental anticipation, pattern recognition, and tactical calculation with AI, Local, and Online Multiplayer.">
   <meta name="twitter:image" content="https://www.bluexacademy.site/assets/images/disciplined-trader-focus.jpg">
 
@@ -188,7 +188,7 @@
             <span>TACTICAL ARCADE • STRATEGIC PATTERN RECOGNITION</span>
           </div>
           <h1 style="font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 800; line-height: 1.15; color: #fff; margin-bottom: 16px;">
-            BlueX Strategy Arena: <span class="arcade-gradient-text">ក្រក (Infinite 5-in-a-Row)</span>
+            BlueX Development Arena: <span class="arcade-gradient-text">ក្រក (Infinite 5-in-a-Row)</span>
           </h1>
           <p style="font-size: 1.05rem; line-height: 1.65; color: #94a3b8; margin-bottom: 24px;">
             Hone high-depth anticipation, spatial pattern recognition, and multi-move defensive hedging. Spar against the AI engine, practice local tactical drills, or compete in real-time online multiplayer.
@@ -219,7 +219,11 @@
           </div>
 
           <!-- Embedded High-Performance Responsive Webview -->
-          <div class="game-frame-container" id="gameFrameContainer">
+                    <div class="game-frame-container" id="gameFrameContainer">
+            <button type="button" id="gameExitFloatingBtn" class="game-floating-exit-btn" aria-label="Exit Fullscreen" title="Exit Fullscreen (Esc)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <span>Exit Fullscreen</span>
+            </button>
             <iframe
               id="krokGameIframe"
               src="https://krokbtb.oneapp.dev"

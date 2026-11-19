@@ -24264,7 +24264,7 @@ html.effects-frozen .pin1up-fab-orb::before {
    ========================================================================== */
 
 /* ==========================================================================
-   BLUEX STRATEGY ARCADE: ក្រក (INFINITE 5-IN-A-ROW) GAMING TERMINAL STYLES
+   BLUEX DEVELOPMENT ARCADE: ក្រក (INFINITE 5-IN-A-ROW) GAMING TERMINAL STYLES
    ========================================================================== */
 .nav-arcade-badge {
   display: inline-block;
@@ -24451,16 +24451,63 @@ html.effects-frozen .pin1up-fab-orb::before {
   background: #020617;
 }
 
-.game-frame-container.is-fullscreen {
+.game-frame-container.is-fullscreen,
+.game-frame-container:fullscreen,
+.game-frame-container:-webkit-full-screen {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
   max-height: 100vh !important;
-  z-index: 999999 !important;
+  z-index: 9999999 !important;
   border-radius: 0 !important;
   border: none !important;
+  background: #020617 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.game-floating-exit-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10000000;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(11, 16, 28, 0.94);
+  border: 1px solid rgba(0, 245, 212, 0.55);
+  border-radius: 9999px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 245, 212, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+.game-floating-exit-btn:hover {
+  background: rgba(0, 245, 212, 0.22);
+  border-color: #00f5d4;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 22px rgba(0, 245, 212, 0.5);
+}
+
+.game-frame-container.is-fullscreen .game-floating-exit-btn,
+.game-frame-container:fullscreen .game-floating-exit-btn,
+.game-frame-container:-webkit-full-screen .game-floating-exit-btn {
+  display: inline-flex !important;
+}
+
+body.game-fullscreen-active {
+  overflow: hidden !important;
 }
 
 .game-features-grid {

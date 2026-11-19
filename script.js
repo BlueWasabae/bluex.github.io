@@ -492,7 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.ib': '<span class="ib-pulse-dot"></span> IB Partner <span class="nav-vip-badge">VIP</span>',
       'nav.ibPartner': 'IB Partner VIP Desk',
       'nav.games': '<span class="games-pulse-dot"></span> Games <span class="nav-arcade-badge">ARCADE</span>',
-      'nav.gamesTitle': 'BlueX Strategy Arcade • ក្រក Infinite 5-in-a-Row',
+      'nav.gamesTitle': 'BlueX Development Arcade • ក្រក Infinite 5-in-a-Row',
       'ib.pageTitle': 'BlueX IB Partner • Institutional Broker Partnership',
       'ib.badge': 'Institutional Broker Partnership • Multi-Tier Rebate Engine',
       'ib.title': 'Scale Your Forex &amp; Gold Brokerage as an <span class="gold-accent">Official BlueX IB Partner</span>',
@@ -1291,7 +1291,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'nav.ib': '<span class="ib-pulse-dot"></span> ដៃគូ IB <span class="nav-vip-badge">VIP</span>',
       'nav.ibPartner': 'ផ្នែកដៃគូ IB VIP',
       'nav.games': '<span class="games-pulse-dot"></span> ហ្គេម <span class="nav-arcade-badge">ក្រក</span>',
-      'nav.gamesTitle': 'សង្វៀនហ្គេមយុទ្ធសាស្ត្រ BlueX • ក្រក Infinite 5-in-a-Row',
+      'nav.gamesTitle': 'BlueX Development Arcade • ក្រក Infinite 5-in-a-Row',
       'ib.pageTitle': 'ដៃគូ BlueX IB • កិច្ចសហការឈ្មួញកណ្តាលកម្រិតស្ថាប័ន',
       'ib.badge': 'កិច្ចសហការដៃគូ IB • ប្រព័ន្ធ Rebate កម្រិតខ្ពស់',
       'ib.title': 'ពង្រីកបណ្តាញអតិថិជន និងចំណូល Brokerage ជាមួយ <span class="gold-accent">BlueX IB Partner</span>',
@@ -7084,31 +7084,110 @@ document.addEventListener('DOMContentLoaded', () => {
   initIbRecruitingEngine();
 
   // =========================================================================
-  // BLUEX STRATEGY ARCADE: ក្រក (INFINITE 5-IN-A-ROW) CONTROLS
+  // BLUEX DEVELOPMENT ARCADE: ក្រក (INFINITE 5-IN-A-ROW) CONTROLS
   // =========================================================================
   function initGamesArcadeEngine() {
     const gameFullscreenBtn = document.getElementById('gameFullscreenBtn');
     const gameReloadBtn = document.getElementById('gameReloadBtn');
     const gameContainer = document.getElementById('gameFrameContainer');
     const gameIframe = document.getElementById('krokGameIframe');
+    const gameFloatingExitBtn = document.getElementById('gameExitFloatingBtn');
 
-    if (gameFullscreenBtn && gameContainer) {
-      gameFullscreenBtn.addEventListener('click', () => {
-        const isFull = gameContainer.classList.toggle('is-fullscreen');
-        gameFullscreenBtn.innerHTML = isFull
-          ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg><span>Exit Fullscreen</span>'
-          : '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg><span>Fullscreen</span>';
-        document.body.style.overflow = isFull ? 'hidden' : '';
-      });
+    if (!gameContainer) return;
 
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && gameContainer.classList.contains('is-fullscreen')) {
-          gameContainer.classList.remove('is-fullscreen');
-          document.body.style.overflow = '';
-          gameFullscreenBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg><span>Fullscreen</span>';
+    function isCurrentlyFullscreen() {
+      return Boolean(
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement ||
+        gameContainer.classList.contains('is-fullscreen')
+      );
+    }
+
+    function updateFullscreenUI(full) {
+      if (full) {
+        gameContainer.classList.add('is-fullscreen');
+        document.body.classList.add('game-fullscreen-active');
+        document.body.style.overflow = 'hidden';
+        if (gameFullscreenBtn) {
+          gameFullscreenBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg><span>Exit Fullscreen</span>';
+          gameFullscreenBtn.classList.add('active');
         }
+      } else {
+        gameContainer.classList.remove('is-fullscreen');
+        document.body.classList.remove('game-fullscreen-active');
+        document.body.style.overflow = '';
+        if (gameFullscreenBtn) {
+          gameFullscreenBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg><span>Fullscreen</span>';
+          gameFullscreenBtn.classList.remove('active');
+        }
+      }
+    }
+
+    function toggleFullscreen() {
+      const full = isCurrentlyFullscreen();
+      if (!full) {
+        // Request fullscreen
+        const rfs = gameContainer.requestFullscreen ||
+                    gameContainer.webkitRequestFullscreen ||
+                    gameContainer.mozRequestFullScreen ||
+                    gameContainer.msRequestFullscreen;
+        if (rfs) {
+          try {
+            rfs.call(gameContainer).catch(() => {
+              updateFullscreenUI(true);
+            });
+          } catch (e) {
+            updateFullscreenUI(true);
+          }
+        }
+        updateFullscreenUI(true);
+      } else {
+        // Exit fullscreen
+        const efs = document.exitFullscreen ||
+                    document.webkitExitFullscreen ||
+                    document.mozCancelFullScreen ||
+                    document.msExitFullscreen;
+        if (efs && (document.fullscreenElement || document.webkitFullscreenElement)) {
+          try {
+            efs.call(document).catch(() => {});
+          } catch (e) {}
+        }
+        updateFullscreenUI(false);
+      }
+    }
+
+    if (gameFullscreenBtn) {
+      gameFullscreenBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleFullscreen();
       });
     }
+
+    if (gameFloatingExitBtn) {
+      gameFloatingExitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleFullscreen();
+      });
+    }
+
+    ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'].forEach(evt => {
+      document.addEventListener(evt, () => {
+        const hasNative = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+        if (!hasNative && gameContainer.classList.contains('is-fullscreen')) {
+          updateFullscreenUI(false);
+        } else if (hasNative && !gameContainer.classList.contains('is-fullscreen')) {
+          updateFullscreenUI(true);
+        }
+      });
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isCurrentlyFullscreen()) {
+        toggleFullscreen();
+      }
+    });
 
     if (gameReloadBtn && gameIframe) {
       gameReloadBtn.addEventListener('click', () => {
