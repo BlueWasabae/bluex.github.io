@@ -2835,21 +2835,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
 
-  // 5. YOUTUBE VIDEO SHOWCASE SWITCHER
+  // 5. YOUTUBE VIDEO SHOWCASE SWITCHER & AUTO-UPDATE ENGINE
   // ========================================================
   const mainYouTubeIframe = document.getElementById('mainYouTubeIframe');
-  const ytSwitchBtns = document.querySelectorAll('.yt-switch-btn');
+  const ytVideoSwitcher = document.querySelector('.yt-video-switcher');
   const ytPlayerTitle = document.getElementById('ytPlayerTitle');
   const ytPlayerDesc = document.getElementById('ytPlayerDesc');
   const ytDirectWatchBtn = document.getElementById('ytDirectWatchBtn');
 
-  ytSwitchBtns.forEach(btn => {
+  function bindYtSwitcherButton(btn) {
     btn.addEventListener('click', () => {
       const vid = btn.getAttribute('data-vid');
       const title = btn.getAttribute('data-title');
       const desc = btn.getAttribute('data-desc');
 
-      ytSwitchBtns.forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.yt-switch-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
       if (mainYouTubeIframe && vid) {
@@ -2865,7 +2865,116 @@ document.addEventListener('DOMContentLoaded', () => {
         ytPlayerDesc.textContent = desc;
       }
     });
-  });
+  }
+
+  // Bind existing static buttons
+  document.querySelectorAll('.yt-switch-btn').forEach(bindYtSwitcherButton);
+
+  // Auto-Sync: Fetch live YouTube RSS feed for channel UCxFno7M7BjWlh-L5HNi4WAA (@bluextrader)
+  // Keeps website automatically up to date immediately when a new video is published
+  function initAutoYouTubeSync() {
+    if (!ytVideoSwitcher || !mainYouTubeIframe) return;
+
+    const CHANNEL_ID = 'UCxFno7M7BjWlh-L5HNi4WAA';
+    const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+    const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
+    const CACHE_KEY = 'bluex_yt_feed_v1';
+    const CACHE_TIME_KEY = 'bluex_yt_feed_time_v1';
+    const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes cache in browser
+
+    function renderFeed(items) {
+      if (!Array.isArray(items) || items.length === 0) return;
+
+      const videos = [];
+      for (const it of items) {
+        let vid = null;
+        if (it.link) {
+          const m = it.link.match(/v=([a-zA-Z0-9_-]+)/);
+          if (m) vid = m[1];
+        }
+        if (!vid && it.guid) {
+          const m = it.guid.match(/([a-zA-Z0-9_-]{11})$/);
+          if (m) vid = m[1];
+        }
+        if (vid) {
+          videos.push({
+            id: vid,
+            title: it.title || 'BlueX Video',
+            desc: (it.description || it.title || '').replace(/<[^>]*>/g, '').replace(/[\r\n]+/g, ' ').trim().slice(0, 180)
+          });
+        }
+      }
+
+      if (videos.length === 0) return;
+
+      const currentFirstBtn = ytVideoSwitcher.querySelector('.yt-switch-btn');
+      const latestVid = videos[0].id;
+
+      // If already up to date, retain current DOM
+      if (currentFirstBtn && currentFirstBtn.getAttribute('data-vid') === latestVid) {
+        return;
+      }
+
+      // Rebuild switcher buttons dynamically with latest uploads
+      ytVideoSwitcher.innerHTML = '';
+      videos.slice(0, 4).forEach((v, index) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `yt-switch-btn ${index === 0 ? 'active' : ''}`;
+        btn.setAttribute('data-vid', v.id);
+        btn.setAttribute('data-title', v.title);
+        btn.setAttribute('data-desc', v.desc);
+
+        let shortLabel = v.title;
+        if (shortLabel.length > 28) {
+          shortLabel = shortLabel.slice(0, 26) + '…';
+        }
+
+        btn.innerHTML = `
+          <span class="yt-dot"></span>
+          <span>${shortLabel}</span>
+        `;
+
+        bindYtSwitcherButton(btn);
+        ytVideoSwitcher.appendChild(btn);
+      });
+
+      // Update primary player to latest video
+      const top = videos[0];
+      mainYouTubeIframe.src = `https://www.youtube-nocookie.com/embed/${top.id}?rel=0&enablejsapi=1`;
+      if (ytDirectWatchBtn) ytDirectWatchBtn.href = `https://www.youtube.com/watch?v=${top.id}`;
+      if (ytPlayerTitle) ytPlayerTitle.textContent = top.title;
+      if (ytPlayerDesc) ytPlayerDesc.textContent = top.desc;
+    }
+
+    // Check localStorage cache
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      const cacheTime = localStorage.getItem(CACHE_TIME_KEY);
+      if (cached && cacheTime && (Date.now() - Number(cacheTime) < CACHE_DURATION)) {
+        renderFeed(JSON.parse(cached));
+        return;
+      }
+    } catch (e) {}
+
+    // Fetch live feed from RSS-to-JSON bridge
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.status === 'ok' && Array.isArray(data.items)) {
+          renderFeed(data.items);
+          try {
+            localStorage.setItem(CACHE_KEY, JSON.stringify(data.items));
+            localStorage.setItem(CACHE_TIME_KEY, String(Date.now()));
+          } catch (e) {}
+        }
+      })
+      .catch(() => {
+        // Fallback: static HTML buttons remain intact
+      });
+  }
+
+  initAutoYouTubeSync();
 
 
   // ========================================================

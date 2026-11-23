@@ -1,0 +1,39 @@
+name: Auto-Sync YouTube Uploads
+
+on:
+  schedule:
+    # Run every 6 hours (00:00, 06:00, 12:00, 18:00 UTC)
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions web console
+
+permissions:
+  contents: write
+
+jobs:
+  sync-youtube:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run YouTube Auto-Sync Engine
+        run: node scripts/sync-youtube-feed.js
+
+      - name: Commit and Push If New Video Uploaded
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain index.html assets/)" ]; then
+            git add index.html assets/images/socials/
+            git commit -m "chore(youtube): auto-sync newest YouTube upload [skip ci]"
+            git push origin main
+          else
+            echo "No new YouTube uploads detected. Everything is up to date."
+          fi
