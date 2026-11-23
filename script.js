@@ -4454,8 +4454,8 @@ document.addEventListener('DOMContentLoaded', () => {
           imgB: '/assets/images/bluex-3d-logo.png', subB: 'DIRECT DM', mainB: '@Le_Bluue ↗'
         },
         col2: {
-          href: 'https://www.youtube.com/watch?v=ACsklIOiGkc',
-          imgA: '/assets/images/socials/yt-vid-2.jpg', tagA: 'SMC 2.0', capA: 'មេរៀន SMC 2.0 For Free???',
+          href: 'https://www.youtube.com/watch?v=zxQDup9_R4E',
+          imgA: '/assets/images/socials/yt-vid-2.jpg', tagA: 'AI WEB', capA: 'Build Website with AI ($5)',
           imgB: '/assets/images/socials/yt-vid-3.jpg', tagB: '350 PIPS', capB: 'XAU/USD Entry Recap'
         }
       },
@@ -4568,9 +4568,9 @@ document.addEventListener('DOMContentLoaded', () => {
         dashBadge: 'YOUTUBE LIVE',
         followDone: 'Subscribe',
         col0: {
-          href: 'https://www.youtube.com/watch?v=ACsklIOiGkc',
-          imgA: '/assets/images/socials/yt-vid-2.jpg', tagA: '169 VIEWS', capA: 'មេរៀន SMC 2.0 For Free???',
-          imgB: '/assets/images/socials/yt-vid-1.jpg', tagB: '53 VIEWS', capB: 'Trading Psychology | BlueX'
+          href: 'https://www.youtube.com/watch?v=38H7VdvGYvE',
+          imgA: '/assets/images/socials/yt-vid-1.jpg', tagA: 'PSYCHOLOGY', capA: 'Trading Psychology (ហានិភ័យ)',
+          imgB: '/assets/images/socials/yt-vid-4.jpg', tagB: 'INSIGHT', capB: 'Market Insight Article'
         },
         col1: {
           href: 'https://youtube.com/@bluextrader?si=kYuO3ACRxIhHMilT',
